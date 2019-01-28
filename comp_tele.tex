@@ -1,0 +1,350 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Arsclassica Article
+% LaTeX Template
+% Version 1.1 (1/8/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Lorenzo Pantieri (http://www.lorenzopantieri.net) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+10pt, % Main document font size
+a4paper, % Paper type, use 'letterpaper' for US Letter paper
+oneside, % One page layout (no page indentation)
+%twoside, % Two page layout (page indentation for binding and different headers)
+headinclude,footinclude, % Extra spacing for the header and footer
+BCOR5mm, % Binding correction
+]{scrartcl}
+
+\input{structure.tex} % Include the structure.tex file which specified the document structure and 
+%layout
+
+\usepackage[hmarginratio=1:1,top=25mm,left=40mm,columnsep=25pt]{geometry}
+\usepackage{hyperref}
+\usepackage{relsize} % e.g. used for \mathsmaller
+\usepackage{bm}
+
+
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\XX}{\mathbf{X}}
+\newcommand{\XXX}{\mathbb{X}}
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\CC}{\mathbf{C}}
+\newcommand{\dX}{\mathrm{d}\XX}
+\newcommand{\dx}{\mathrm{d}\xx}
+\newcommand{\mm}{\mathbf{m}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\MM}{\mathbf{M}}
+\newcommand{\OBig}{\mathcal{O}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\FF}{\mathbf{F}}
+\renewcommand{\AA}{\mathbf{A}}
+\newcommand{\BB}{\mathbf{B}}
+\newcommand{\qq}{\mathbf{q}}
+\newcommand{\QQ}{\mathbf{Q}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\Lie}{\mathfrak{L}}
+
+\newcommand{\MP}[1]{{\color{Green}MP:\ \ #1}}
+\newcommand{\IP}[1]{{\color{Red}IP:\ \ #1}}
+\newcommand{\MH}[1]{{\color{Red}MH:\ \ #1}}
+
+\newcommand{\sA}{\mathsmaller A}
+\newcommand{\sB}{\mathsmaller B}
+\newcommand{\sC}{\mathsmaller C}
+\newcommand{\sD}{\mathsmaller D}
+\newcommand{\sM}{\mathsmaller M}
+\newcommand{\sN}{\mathsmaller N}
+\newcommand{\sL}{\mathsmaller L}
+
+\newcommand{\pd}{\partial}
+\newcommand{\F}[2]{F^{\ #1}_{\mathsmaller#2}}
+\newcommand{\hatF}[2]{\hat{F}^{\ #1}_{\mathsmaller#2}}
+\newcommand{\A}[2]{A^{\mathsmaller#1}_{\ #2}}
+
+\newcommand{\itetr}[2]{e^{\ #1}_{#2}}
+\newcommand{\tetr}[2]{a^{#1}_{\phantom{#1}#2}}
+\newcommand{\rtetr}[2]{a^{#1}_{(\text{r}) #2}}
+\newcommand{\spin}[2]{\omega^{#1}_{\ #2}}
+\newcommand{\Lor}[2]{\Lambda^{#1'}_{\ #2}}
+\newcommand{\iLor}[2]{\Lambda^{\ #1}_{#2'}}
+\newcommand{\D}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
+\newcommand{\Tors}[2]{T^{#1}_{\phantom{a}#2}}
+\newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
+\newcommand{\Torsl}[1]{T_{#1}}
+\newcommand{\W}[2]{\mathcal{W}^{#1}_{\ #2}}
+\newcommand{\w}[2]{W^{#1}_{\ #2}}
+\newcommand{\FI}{Fock-Ivanenko}
+\newcommand{\We}{Weitzenb\"ock}
+\newcommand{\Lag}{\mathcal{L}}	% Lagrangian which depends on ordinary derivatives
+\newcommand{\Lagcov}{\pounds}% Lagrangian which depends on gauge covariant derivatives
+\newcommand{\Laghodge}{L}% Lagrangian which depends on the Hofge dual of the torsion derivatives
+\newcommand{\veps}{\varepsilon}
+
+\newcommand{\tegr}{TEGR}
+\newcommand{\HT}[1]{\accentset{\star}{T}^{#1}}
+
+\hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where 
+%you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop 
+%hyphenation altogether
+
+%----------------------------------------------------------------------------------------
+%	TITLE AND AUTHOR(S)
+%----------------------------------------------------------------------------------------
+
+\title{\large\normalfont\spacedallcaps{Computational aspects of teleparallel gravity}} % The article 
+%title
+
+%\subtitle{Subtitle} % Uncomment to display a subtitle
+
+\author{\normalsize\textsc{Ilya Peshkov}$^1$ \& 
+\normalsize\textsc{Evgeniy Romenski}$^2$
+} % The article author(s) - author affiliations 
+%need to be 
+%specified in the 
+%AUTHOR AFFILIATIONS block
+
+\date{\small\today} % An optional date to appear under the author(s)
+
+%----------------------------------------------------------------------------------------
+
+
+\begin{document}
+
+%----------------------------------------------------------------------------------------
+%	HEADERS
+%----------------------------------------------------------------------------------------
+
+\renewcommand{\sectionmark}[1]{\markright{\spacedlowsmallcaps{#1}}} % The header for all pages 
+%(oneside) or for even pages (twoside)
+%\renewcommand{\subsectionmark}[1]{\markright{\thesubsection~#1}} % Uncomment when using the 
+%%twoside option - this modifies the header on odd pages
+\lehead{\mbox{\llap{\small\thepage\kern1em\color{halfgray} 
+\vline}\color{halfgray}\hspace{0.5em}\rightmark\hfil}} % The header style
+
+\pagestyle{scrheadings} % Enable the headers specified in this block
+
+%----------------------------------------------------------------------------------------
+%	TABLE OF CONTENTS & LISTS OF FIGURES AND TABLES
+%----------------------------------------------------------------------------------------
+
+\maketitle % Print the title/author/date block
+
+\setcounter{tocdepth}{2} % Set the depth of the table of contents to show sections and subsections 
+%only
+
+\tableofcontents % Print the table of contents
+
+% \listoffigures % Print the list of figures
+
+% \listoftables % Print the list of tables
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT
+%----------------------------------------------------------------------------------------
+
+\section*{Abstract} % This section will not appear in the table of contents due to the star 
+% (\section*)
+We discuss well-posedness properties of a first-order reformulation of the teleparallel gravity. 
+theory.
+
+%----------------------------------------------------------------------------------------
+%	AUTHOR AFFILIATIONS
+%----------------------------------------------------------------------------------------
+\let\thefootnote\relax\footnotetext{* \textit{peshenator@gmail.com}}
+\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{Institut de mathématiques de Toulouse, Toulouse, France}}
+\let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of Mathematics, Novosibirsk, Russia}}
+\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, Novosibirsk, Russia}}
+
+%----------------------------------------------------------------------------------------
+
+%\newpage % Start the article content on the second page, remove this if you have a longer abstract 
+%that goes onto the second page
+
+% PARAGRAPH OPTIONS:
+\setlength\parindent{10pt} % sets indent to zero
+\setlength{\parskip}{5pt} % changes vertical space between paragraphs
+% PARAGRAPH OPTIONS.
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\section{Definitions}
+
+We use the following index convention. Greek letters $ \lambda,\mu,\nu,... =0,1,2,3
+$ are used to index quantities related to the spacetime manifold, the Latin letters $ a,b,c,... 
+=0,1,2,3$ are used to index quantities related to the tangent Minkowski space.
+
+
+
+Consider a spacetime manifold $ M $ equipped with a coordinate system $ x^\mu $. At each point of 
+the spacetime there is a natural tangent $ T_{x}M $ space spanned by the basis $ \bm{\pd}_\mu $. 
+There is also the cotangent space $ T_x^*M $ spanned by the cobasis vectors $ \bm{\dx}^\mu $.
+The metric on $ M $ is a general Riemannian metric $ g_{\mu\nu} $.
+
+In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
+which is a Minkowski space spanned by the orthogonal anholonomic 
+frames $ \bm{e}^a $ and equipped with the Minkowski metric $ g_{ab} $. Similarly, there is the 
+corresponding cotangent Minkowski space spanned by the co-frames $ \bm{e}_a $. 
+
+We introduce the field of anholonomic basis tetrad $ \itetr{\mu}{a} $ with the inverse $ 
+\tetr{a}{\mu} $ as
+\begin{equation}
+\itetr{\mu}{a} \bm{e}^a = \bm{\dx}^\mu, \qquad \text{or} \qquad \bm{e}_a = \tetr{a}{\mu}\bm{\dx}^\mu
+\end{equation}
+
+
+\begin{equation}
+g_{\mu\nu} = g_{ab} \tetr{a}{\mu}\tetr{b}{\nu}
+\end{equation}
+
+
+The inertial spin connection is introduced as
+\begin{equation}
+\spin{a}{bc} := \iLor{a}{b}\pd_b\Lor{b}{c}
+\end{equation}
+where $ \Lor{a}{a} $ is the Lorentz transformation $ \bm{e}^{a'} = \Lor{a}{a} \bm{e}^a $ with $ 
+\iLor{a}{a} $ being its inverse, and $ \pd_a := \itetr{\mu}{a} \pd_\mu $.
+
+The corresponding covariant derivative is 
+\begin{equation}
+\D{a} v^b = \pd_a v^b + \spin{b}{ac} v^c, \qquad \D{a} v_b = \pd_a v_b - \spin{c}{ab} v_c
+\end{equation}
+
+We rewrite this covariant derivative in the spacetime basis
+\begin{equation}
+\D{\mu} v^b = \tetr{a}{\mu} \D{a} v^b = \pd_\mu v^b + \spin{b}{\mu c} v^c
+\end{equation}
+where $ \spin{b}{\mu c} = \tetr{a}{\mu}\spin{b}{ac} $
+This derivative still acts on the Minkowski indexes only.
+
+The torsion is introduced as
+\begin{equation}
+\Tors{a}{\mu\nu}(\tetr{a}{\mu},\spin{a}{\mu c}):=\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = 
+\W{a}{\mu\nu} - \W{a}{\nu\mu},
+\end{equation}
+where $ \W{a}{\mu\nu} = \tetr{a}{\lambda}\W{\lambda}{\mu\nu}$ and $ \W{\lambda}{\mu\nu} = 
+\w{\lambda}{\mu\nu} + \spin{\lambda}{\mu\nu}$ is the 
+generalized \We\ connection, $ \w{\lambda}{\mu\nu} = \itetr{\lambda}{a}\pd_\mu \tetr{a}{\nu}$ is 
+the pure tetrad \We\ connection.
+
+
+An important feature of this derivative is the commutative property
+\begin{equation}
+\D{\mu}(\D{\nu} v^a) - \D{\nu}(\D{\mu} v^a) = 0.
+\end{equation}
+Note that its tangent space counterpart does not have such a property
+\begin{equation}
+\D{b}(\D{c} v^a) - \D{c}(\D{b} v^a) = 
+-\itetr{\mu}{b}\itetr{\nu}{c}\itetr{\lambda}{d}\Tors{d}{\mu\nu}\D{\lambda}v^a .
+\end{equation}
+
+We also define the \textit{reference} tetrad $ \rtetr{a}{\mu} $ as the one for which the torsion 
+vanishes
+\begin{equation}
+\Tors{a}{\mu\nu}(\rtetr{a}{\mu},\spin{a}{\mu c}) = 0
+\end{equation}
+which means that this tetrad does not contain any 
+
+\section{Variational formulation}
+The Lagrangian is 
+\begin{equation}
+\Lambda = \Lag(\tetr{a}{\mu},\pd_\lambda\tetr{a}{\nu}) = 
+\Lagcov(\tetr{a}{\mu},\D{\lambda}\tetr{a}{\nu})  = \Laghodge(\tetr{a}{\mu},\HT{a\mu\nu}),
+\end{equation}
+where $ \HT{a\mu\nu} $ is the Hodge dual to the torsion:
+\begin{equation}
+\HT{a\mu\nu} := \frac{1}{2}\veps^{\mu\nu\rho\sigma}\Tors{a}{\rho\sigma} = 
+\veps^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \qquad \Tors{a}{\mu\nu} = 
+-\frac{1}{2}\veps_{\mu\nu\rho\sigma}\HT{a\rho\sigma}.
+\end{equation}
+
+
+
+
+The Euler-Lagrange equation is
+\begin{equation}
+\pd_\lambda(\Lag_{\pd_\lambda\tetr{a}{\mu}}) = \Lag_{\tetr{a}{\mu}}.
+\end{equation}
+Using the results from \cite{Lewis2009,Lorce2013}, the Euler-Lagrange equation can be rewritten as
+\begin{equation}
+\D{\lambda}(\Lagcov_{\D{\lambda}\tetr{a}{\mu}}) = \Lagcov_{\tetr{a}{\mu}}.
+\end{equation}
+Eventually, we can rewrite it as
+\begin{equation}
+\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) =-\Laghodge_{\tetr{a}{\mu}}.
+\end{equation}
+
+The Euler-Lagrange equations has to be supplemented by the integrability condition
+\begin{equation}
+\D{\nu}\HT{a\mu\nu} = 0,
+\end{equation}
+which is a trivial consequence of the Hodge dual and the commutative property of the gauge 
+covariant derivative $ \D{\mu} $.
+
+Another consequence of the commutative property is the energy-momentum conservation law
+\begin{equation}
+\D{\mu}\Laghodge_{\tetr{a}{\mu}} = 0,
+\end{equation}
+which also has to be supplemented by the integrability condition 
+\begin{equation}
+\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = \Tors{a}{\mu\nu}.
+\end{equation}
+
+Therefore, the system to be solved is
+\begin{subequations}
+	\begin{align}
+		\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
+		&=-\Laghodge_{\tetr{a}{\mu}},\\[2mm]
+		\D{\nu}\HT{a\mu\nu} &= 0,\\[2mm]
+		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\\[2mm]
+		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},
+	\end{align}
+\end{subequations}
+in which the unknowns are
+\begin{equation}
+(\tetr{a}{\mu},\HT{a\mu\nu}).
+\end{equation}
+
+
+
+
+
+
+\section{Closure}
+
+
+
+In the standard \tegr\ the Lagrangian density is (e.g. \cite{Krssak2017})
+\begin{equation}
+\Lambda = \frac{a}{4\kappa} \Tors{a}{\mu\nu}\Supp{a}{\mu\nu},
+\end{equation}
+where $ \kappa = 8 \pi G $, $ a = \det(\tetr{a}{\mu}) $, and $ \Supp{a}{\mu\nu} $ is the so-called 
+superpotential and is given by
+\begin{equation}
+\Supp{a}{\mu\nu} = -\Supp{a}{\nu\mu} = K^{\mu\nu}_{\phantom{\mu\nu}a} - \itetr{\nu}{a} T^\mu + 
+\itetr{\mu}{a} 
+T^\nu, \qquad T^\mu = T^{\lambda\mu}_{\phantom{\lambda\mu}\lambda}.
+\end{equation}
+
+
+\section{Governing equations}
+
+\printbibliography
+
+\end{document}
