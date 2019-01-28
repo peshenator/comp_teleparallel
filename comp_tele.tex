@@ -76,24 +76,31 @@ BCOR5mm, % Binding correction
 \newcommand{\hatF}[2]{\hat{F}^{\ #1}_{\mathsmaller#2}}
 \newcommand{\A}[2]{A^{\mathsmaller#1}_{\ #2}}
 
-\newcommand{\itetr}[2]{e^{\ #1}_{#2}}
+\newcommand{\itetr}[2]{e^{\phantom{#2}#1}_{#2}}
 \newcommand{\tetr}[2]{a^{#1}_{\phantom{#1}#2}}
 \newcommand{\rtetr}[2]{a^{#1}_{(\text{r}) #2}}
-\newcommand{\spin}[2]{\omega^{#1}_{\ #2}}
-\newcommand{\Lor}[2]{\Lambda^{#1'}_{\ #2}}
-\newcommand{\iLor}[2]{\Lambda^{\ #1}_{#2'}}
+\newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
+\newcommand{\Lor}[2]{\Lambda^{#1'}_{\phantom{#1}#2}}
+\newcommand{\iLor}[2]{\Lambda^{\phantom{#2}#1}_{#2'}}
 \newcommand{\D}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
 \newcommand{\Tors}[2]{T^{#1}_{\phantom{a}#2}}
 \newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
 \newcommand{\Torsl}[1]{T_{#1}}
-\newcommand{\W}[2]{\mathcal{W}^{#1}_{\ #2}}
-\newcommand{\w}[2]{W^{#1}_{\ #2}}
+\newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\eT}[2]{e^{#1#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\hT}[2]{h^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\W}[2]{\mathcal{W}^{#1}_{\phantom{#1}#2}}
+\newcommand{\w}[2]{W^{#1}_{\phantom{#1}#2}}
 \newcommand{\FI}{Fock-Ivanenko}
 \newcommand{\We}{Weitzenb\"ock}
 \newcommand{\Lag}{\mathcal{L}}	% Lagrangian which depends on ordinary derivatives
 \newcommand{\Lagcov}{\pounds}% Lagrangian which depends on gauge covariant derivatives
-\newcommand{\Laghodge}{L}% Lagrangian which depends on the Hofge dual of the torsion derivatives
+\newcommand{\Laghodge}{L}% Lagrangian which depends on the Hodge dual of the torsion
+\newcommand{\Lagtors}{\mathbb{L}}% Lagrangian which depends on torsion
+\newcommand{\LagBE}{\mathfrak{L}}% Lagrangian which depends on the B and E fields
 \newcommand{\veps}{\varepsilon}
+
 
 \newcommand{\tegr}{TEGR}
 \newcommand{\HT}[1]{\accentset{\star}{T}^{#1}}
@@ -221,7 +228,7 @@ The inertial spin connection is introduced as
 where $ \Lor{a}{a} $ is the Lorentz transformation $ \bm{e}^{a'} = \Lor{a}{a} \bm{e}^a $ with $ 
 \iLor{a}{a} $ being its inverse, and $ \pd_a := \itetr{\mu}{a} \pd_\mu $.
 
-The corresponding covariant derivative is 
+The corresponding gauge covariant derivative is 
 \begin{equation}
 \D{a} v^b = \pd_a v^b + \spin{b}{ac} v^c, \qquad \D{a} v_b = \pd_a v_b - \spin{c}{ab} v_c
 \end{equation}
@@ -230,8 +237,9 @@ We rewrite this covariant derivative in the spacetime basis
 \begin{equation}
 \D{\mu} v^b = \tetr{a}{\mu} \D{a} v^b = \pd_\mu v^b + \spin{b}{\mu c} v^c
 \end{equation}
-where $ \spin{b}{\mu c} = \tetr{a}{\mu}\spin{b}{ac} $
-This derivative still acts on the Minkowski indexes only.
+where $ \spin{b}{\mu c} = \tetr{a}{\mu}\spin{b}{ac} $.
+This derivative still acts on the Minkowski indexes only. Sometimes, it is also called the \FI\ 
+covariant derivative~\cite{AldrovandiPereiraBook}.
 
 The torsion is introduced as
 \begin{equation}
@@ -240,12 +248,13 @@ The torsion is introduced as
 \end{equation}
 where $ \W{a}{\mu\nu} = \tetr{a}{\lambda}\W{\lambda}{\mu\nu}$ and $ \W{\lambda}{\mu\nu} = 
 \w{\lambda}{\mu\nu} + \spin{\lambda}{\mu\nu}$ is the 
-generalized \We\ connection, $ \w{\lambda}{\mu\nu} = \itetr{\lambda}{a}\pd_\mu \tetr{a}{\nu}$ is 
+generalized \We\ connection \cite{AldrovandiPereiraBook}, $ \w{\lambda}{\mu\nu} = 
+\itetr{\lambda}{a}\pd_\mu \tetr{a}{\nu}$ is 
 the pure tetrad \We\ connection.
 
 
 An important feature of this derivative is the commutative property
-\begin{equation}
+\begin{equation}\label{eqn.commut.D}
 \D{\mu}(\D{\nu} v^a) - \D{\nu}(\D{\mu} v^a) = 0.
 \end{equation}
 Note that its tangent space counterpart does not have such a property
@@ -259,7 +268,7 @@ vanishes
 \begin{equation}
 \Tors{a}{\mu\nu}(\rtetr{a}{\mu},\spin{a}{\mu c}) = 0
 \end{equation}
-which means that this tetrad does not contain any 
+which means that this tetrad does not contain any gravity effect but only inertia.
 
 \section{Variational formulation}
 The Lagrangian is 
@@ -268,7 +277,7 @@ The Lagrangian is
 \Lagcov(\tetr{a}{\mu},\D{\lambda}\tetr{a}{\nu})  = \Laghodge(\tetr{a}{\mu},\HT{a\mu\nu}),
 \end{equation}
 where $ \HT{a\mu\nu} $ is the Hodge dual to the torsion:
-\begin{equation}
+\begin{equation}\label{eqn.Hodge.def}
 \HT{a\mu\nu} := \frac{1}{2}\veps^{\mu\nu\rho\sigma}\Tors{a}{\rho\sigma} = 
 \veps^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \qquad \Tors{a}{\mu\nu} = 
 -\frac{1}{2}\veps_{\mu\nu\rho\sigma}\HT{a\rho\sigma}.
@@ -282,11 +291,13 @@ The Euler-Lagrange equation is
 \pd_\lambda(\Lag_{\pd_\lambda\tetr{a}{\mu}}) = \Lag_{\tetr{a}{\mu}}.
 \end{equation}
 Using the results from \cite{Lewis2009,Lorce2013}, the Euler-Lagrange equation can be rewritten as
-\begin{equation}
+\begin{equation}\label{eqn.cov.field.PDE}
 \D{\lambda}(\Lagcov_{\D{\lambda}\tetr{a}{\mu}}) = \Lagcov_{\tetr{a}{\mu}}.
 \end{equation}
-Eventually, we can rewrite it as
-\begin{equation}
+Note that $  \Lag_{\tetr{a}{\mu}} \neq  \Lagcov_{\tetr{a}{\mu}}. $
+
+Eventually, using \eqref{eqn.Hodge.def}, we can rewrite \eqref{eqn.cov.field.PDE} as
+\begin{equation}\label{eqn.cov.field.PDE.Hodge}
 \D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) =-\Laghodge_{\tetr{a}{\mu}}.
 \end{equation}
 
@@ -294,10 +305,11 @@ The Euler-Lagrange equations has to be supplemented by the integrability conditi
 \begin{equation}
 \D{\nu}\HT{a\mu\nu} = 0,
 \end{equation}
-which is a trivial consequence of the Hodge dual and the commutative property of the gauge 
+which is a trivial consequence of the Hodge dual and the commutative property \eqref{eqn.commut.D} 
+of the gauge 
 covariant derivative $ \D{\mu} $.
 
-Another consequence of the commutative property is the energy-momentum conservation law
+Another consequence of the commutative property is the energy-momentum covariant conservation law
 \begin{equation}
 \D{\mu}\Laghodge_{\tetr{a}{\mu}} = 0,
 \end{equation}
@@ -306,14 +318,17 @@ which also has to be supplemented by the integrability condition
 \D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = \Tors{a}{\mu\nu}.
 \end{equation}
 
-Therefore, the system to be solved is
-\begin{subequations}
+
+\section{First-order field equations}
+
+Therefore, the first-order form of TEGR governing equations to be solved is
+\begin{subequations}\label{eqn.1st.order.TEGR}
 	\begin{align}
 		\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
-		&=-\Laghodge_{\tetr{a}{\mu}},\\[2mm]
-		\D{\nu}\HT{a\mu\nu} &= 0,\\[2mm]
-		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\\[2mm]
-		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},
+		&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.1st.order.EL}\\[2mm]
+		\D{\lambda}\HT{a\mu\lambda} &= 0,\label{eqn.1st.order.integr}\\[2mm]
+		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\label{eqn.1st.order.enermomen}\\[2mm]
+		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},\label{eqn.1st.order.tetrad}
 	\end{align}
 \end{subequations}
 in which the unknowns are
@@ -322,9 +337,75 @@ in which the unknowns are
 \end{equation}
 
 
+\section{3+1 split}
 
+System \eqref{eqn.1st.order.TEGR} is not yet in a convenient form for the numerical treatment. It 
+is necessary to perform a 3+1 split \cite{Alcubierre2008}. 
 
+Let us introduce the frame 4-velocity as
+\begin{equation}\label{eqn.4velocity}
+u^\mu := \itetr{\mu}{0}, \qquad u_\mu = g_{\mu\nu}u^\nu
+\end{equation}
 
+We then define 
+\begin{equation}
+\ET{a}{\mu} := u^\nu \Tors{a}{\mu\nu}, \qquad  \BT{a}{\mu} := u_\nu\HT{a\mu\nu}
+\end{equation}
+
+It is known that for any skew-symmetric tensor and a time-like vector $ u^\mu $ the following 
+decompositions holds
+\begin{subequations}\label{eqn.T.decompos}
+\begin{align}
+\HT{a\mu\nu} &= u^\mu \BT{a}{\nu} - u^\nu \BT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+\ET{a}{\rho},\\[2mm]
+\Tors{a}{\mu\nu} &= u_\mu \ET{a}{\nu} - u_\nu \ET{a}{\mu} - \veps^{\mu\nu\lambda\rho}u^\lambda 
+\BT{a}{\rho},
+\end{align}
+\end{subequations}
+
+We assume that the Lagrangian can be written 
+\begin{equation}
+\Lambda = \Laghodge(\tetr{a}{\mu},\HT{a\mu\nu}) = \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
+\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}).
+\end{equation}
+It then can be shown that 
+\begin{equation}
+\Laghodge_{\HT{a\mu\nu}}u^\nu = -\LagBE_{\BT{a}{\mu}}, \qquad \Lagtors_{\Tors{a}{\mu\nu}}u_\nu = 
+-\LagBE_{\ET{a}{\mu}},
+\end{equation}
+and hence, the PDEs \eqref{eqn.1st.order.EL} and \eqref{eqn.1st.order.integr} can be written as 
+\begin{subequations}\label{eqn.tors.BE}
+	\begin{align}
+		\D{\mu}(u^\mu \BT{a}{\nu} - u^\nu\BT{a}{\mu} + 
+		\veps^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) = 0,\\[2mm]
+		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} - 
+		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) = ??
+	\end{align}
+\end{subequations}
+
+Let us now introduce a new potential $ U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) $ as a partial 
+Legendre transform
+\begin{equation}
+ U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) = \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
+\end{equation}
+and new variables
+\begin{equation}
+\eT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \hT{a}{\mu} = -\BT{a}{\mu}
+\end{equation}
+such that we have
+\begin{equation}
+U_{\eT{a}{\mu}} = \ET{a}{\mu}, \qquad U_{\hT{a}{\mu}} = - \LagBE_{\BT{a}{\mu}}.
+\end{equation}
+This allows us to rewrite equations \eqref{eqn.tors.BE} in the form similar to the non-linear 
+electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017}
+\begin{subequations}
+\begin{align}
+\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - \veps^{\mu\nu\lambda\rho}u_\lambda U_{\eT{a}{\rho}}) 
+= 0,\\[2mm]
+\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda U_{\hT{a}{\rho}})
+= ??
+\end{align}
+\end{subequations}
 
 \section{Closure}
 
