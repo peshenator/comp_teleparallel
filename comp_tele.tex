@@ -87,9 +87,9 @@ BCOR5mm, % Binding correction
 \newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
 \newcommand{\Torsl}[1]{T_{#1}}
 \newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\eT}[2]{e^{#1#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\eT}[2]{D_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
 \newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
-\newcommand{\hT}[2]{h^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\hT}[2]{H^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\W}[2]{\mathcal{W}^{#1}_{\phantom{#1}#2}}
 \newcommand{\w}[2]{W^{#1}_{\phantom{#1}#2}}
 \newcommand{\FI}{Fock-Ivanenko}
@@ -323,13 +323,13 @@ which also has to be supplemented by the integrability condition
 
 Therefore, the first-order form of TEGR governing equations to be solved is
 \begin{subequations}\label{eqn.1st.order.TEGR}
-	\begin{align}
+	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
 		\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
 		&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.1st.order.EL}\\[2mm]
 		\D{\lambda}\HT{a\mu\lambda} &= 0,\label{eqn.1st.order.integr}\\[2mm]
 		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\label{eqn.1st.order.enermomen}\\[2mm]
 		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},\label{eqn.1st.order.tetrad}
-	\end{align}
+	\end{empheq}
 \end{subequations}
 in which the unknowns are
 \begin{equation}
@@ -337,7 +337,10 @@ in which the unknowns are
 \end{equation}
 
 
-\section{3+1 split}
+\section{Preparation for 3+1 split}
+
+\subsection{Transformation of the torsion equations}
+
 
 System \eqref{eqn.1st.order.TEGR} is not yet in a convenient form for the numerical treatment. It 
 is necessary to perform a 3+1 split \cite{Alcubierre2008}. 
@@ -373,45 +376,92 @@ It then can be shown that
 \Laghodge_{\HT{a\mu\nu}}u^\nu = -\LagBE_{\BT{a}{\mu}}, \qquad \Lagtors_{\Tors{a}{\mu\nu}}u_\nu = 
 -\LagBE_{\ET{a}{\mu}},
 \end{equation}
-and hence, the PDEs \eqref{eqn.1st.order.EL} and \eqref{eqn.1st.order.integr} can be written as 
+and hence, the PDEs \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} can be written as 
 \begin{subequations}\label{eqn.tors.BE}
 	\begin{align}
+		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} {\color{Red}\bm{+}} 
+		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) &=\LagBE_{\tetr{a}{\mu}}\\[2mm]
 		\D{\mu}(u^\mu \BT{a}{\nu} - u^\nu\BT{a}{\mu} + 
-		\veps^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) = 0,\\[2mm]
-		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} - 
-		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) = ??
+		\veps^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) &= 0,
 	\end{align}
 \end{subequations}
 
 Let us now introduce a new potential $ U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) $ as a partial 
-Legendre transform
+Legendre transform of the Lagrangian
 \begin{equation}
  U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) = \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
 \end{equation}
-and new variables
+and new state variables
 \begin{equation}
-\eT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \hT{a}{\mu} = -\BT{a}{\mu}
+\eT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \hT{a}{\mu} = -\BT{a}{\mu}, \qquad \tetr{a}{\mu},
 \end{equation}
 such that we have
 \begin{equation}
-U_{\eT{a}{\mu}} = \ET{a}{\mu}, \qquad U_{\hT{a}{\mu}} = - \LagBE_{\BT{a}{\mu}}.
+U_{\eT{a}{\mu}} = \ET{a}{\mu}, \qquad U_{\hT{a}{\mu}} = \LagBE_{\BT{a}{\mu}},
+\qquad U_{\tetr{a}{\mu}} = - \LagBE_{\tetr{a}{\mu}}.
 \end{equation}
-This allows us to rewrite equations \eqref{eqn.tors.BE} in the form similar to the non-linear 
-electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017}
+This allows us to rewrite equations \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} in 
+the form similar to the non-linear 
+electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
 \begin{subequations}
-\begin{align}
-\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - \veps^{\mu\nu\lambda\rho}u_\lambda U_{\eT{a}{\rho}}) 
-= 0,\\[2mm]
-\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda U_{\hT{a}{\rho}})
-= ??
+	\begin{align}
+		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+		U_{\hT{a}{\rho}})
+		& ={\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
+		\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - 
+		\veps^{\mu\nu\lambda\rho}u_\lambda 
+		U_{\eT{a}{\rho}}) 
+		& = 0,
 \end{align}
 \end{subequations}
+with $\hT{a}{\mu}$ and $\eT{a}{\mu}$ being the analog of the magnetic and electric fields, 
+accordingly.
+
+\subsection{Transformation of the tetrad equations}
+
+After the above change of variables and potentials, the tetrad equations 
+\eqref{eqn.1st.order.enermomen} and \eqref{eqn.1st.order.tetrad} are
+\begin{subequations}
+	\begin{align}
+		\D{\mu}U_{\tetr{a}{\mu}} &= 0,\\[2mm]
+		u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) & =U_{\eT{a}{\nu}},
+	\end{align}
+\end{subequations}
+Furthermore, using the identity $ \itetr{\mu}{b}\D{\nu}\tetr{a}{\nu} = - 
+\tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition of 4-velocity \eqref{eqn.4velocity}, the 
+latter equation can be rewritten as
+\begin{equation}
+	u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu = U_{\eT{a}{\nu}},
+\end{equation}
+
+
+\subsection{Summary}
+
+
+\begin{subequations}
+	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
+		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+		U_{\hT{a}{\rho}})
+		& ={\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
+		\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - 
+		\veps^{\mu\nu\lambda\rho}u_\lambda 
+		U_{\eT{a}{\rho}})
+		& = 0,\\[2mm]
+		\D{\mu}U_{\tetr{a}{\mu}} &= 0,\\[2mm]
+			u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu &= U_{\eT{a}{\nu}},
+	\end{empheq}
+\end{subequations}
+
+
+{\color{Red} The energy-momentum is not symmetric. Some extra work is required....... }
+
+
 
 \section{Closure}
 
 
 
-In the standard \tegr\ the Lagrangian density is (e.g. \cite{Krssak2017})
+In the standard \tegr\ the Lagrangian density is %(e.g. \cite{Krssak2017})
 \begin{equation}
 \Lambda = \frac{a}{4\kappa} \Tors{a}{\mu\nu}\Supp{a}{\mu\nu},
 \end{equation}

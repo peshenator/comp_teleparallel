@@ -101,3 +101,30 @@ backref,backrefstyle=none,maxbibnames=99]{biblatex}
      test {\ifentrytype{article}}%
   }{}{\printtext{\bibstring{in}\intitlepunct}}%
 }
+
+%----------------------------------------------------------------------------------------
+% these commands allow to put equations in a fancy boxes:
+%----------------------------------------------------------------------------------------
+\usepackage{empheq}
+\newlength\mytemplen
+\newsavebox\mytempbox
+\makeatletter
+\definecolor{cream}{rgb}{.81, .88, 1}
+ \newcommand\mycreambox{%
+     \@ifnextchar[%]
+        {\@mycreambox}%
+        {\@mycreambox[0pt]}}
+ \def\@mycreambox[#1]{%
+     \@ifnextchar[%]
+        {\@@mycreambox[#1]}%
+        {\@@mycreambox[#1][0pt]}}
+ \def\@@mycreambox[#1][#2]#3{
+     \sbox\mytempbox{#3}%
+     \mytemplen\ht\mytempbox
+     \advance\mytemplen #1\relax
+     \ht\mytempbox\mytemplen
+     \mytemplen\dp\mytempbox
+     \advance\mytemplen #2\relax
+     \dp\mytempbox\mytemplen
+     \colorbox{cream}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
+ \makeatother
