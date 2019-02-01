@@ -100,7 +100,7 @@ BCOR5mm, % Binding correction
 \newcommand{\Lagtors}{\mathbb{L}}% Lagrangian which depends on torsion
 \newcommand{\LagBE}{\mathfrak{L}}% Lagrangian which depends on the B and E fields
 \newcommand{\veps}{\varepsilon}
-
+\newcommand{\EM}[2]{\Sigma^{#1}_{\phantom{#1}#2}}
 
 \newcommand{\tegr}{TEGR}
 \newcommand{\HT}[1]{\accentset{\star}{T}^{#1}}
@@ -119,7 +119,8 @@ BCOR5mm, % Binding correction
 %\subtitle{Subtitle} % Uncomment to display a subtitle
 
 \author{\normalsize\textsc{Ilya Peshkov}$^1$ \& 
-\normalsize\textsc{Evgeniy Romenski}$^2$
+\normalsize\textsc{Evgeniy Romenski}$^{2,3}$ \&
+\normalsize\textsc{Michael Dumbser}$^{4}$
 } % The article author(s) - author affiliations 
 %need to be 
 %specified in the 
@@ -166,7 +167,7 @@ BCOR5mm, % Binding correction
 
 \section*{Abstract} % This section will not appear in the table of contents due to the star 
 % (\section*)
-We discuss well-posedness properties of a first-order reformulation of the teleparallel gravity. 
+We discuss well-posedness properties of a first-order reformulation of the teleparallel gravity
 theory.
 
 %----------------------------------------------------------------------------------------
@@ -176,7 +177,7 @@ theory.
 \let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{Institut de mathématiques de Toulouse, Toulouse, France}}
 \let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of Mathematics, Novosibirsk, Russia}}
 \let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, Novosibirsk, Russia}}
-
+\let\thefootnote\relax\footnotetext{\textsuperscript{4} \textit{University of Trento, Trento, Italy}}
 %----------------------------------------------------------------------------------------
 
 %\newpage % Start the article content on the second page, remove this if you have a longer abstract 
@@ -190,6 +191,13 @@ theory.
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
 %----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+Why to study teleparallel gravity? Quickly recall the main arguments from Chapter\,18 of 
+\cite{AldrovandiPereiraBook}, and then add that the same equations are, in fact, applicable to 
+modeling of 
+turbulence, micromorphic solids (acoustic metamaterials), dislocations \cite{PRD-Torsion2018}... 
 
 \section{Definitions}
 
@@ -288,8 +296,12 @@ where $ \HT{a\mu\nu} $ is the Hodge dual to the torsion:
 
 The Euler-Lagrange equation is
 \begin{equation}
-\pd_\lambda(\Lag_{\pd_\lambda\tetr{a}{\mu}}) = \Lag_{\tetr{a}{\mu}}.
+\pd_\lambda(\Lag_{\pd_\lambda\tetr{a}{\mu}}) = \Lag_{\tetr{a}{\mu}},
 \end{equation}
+where $ \Lag_{\pd_\lambda\tetr{a}{\mu}} = \frac{\pd \Lag}{\pd(\pd_\lambda\tetr{a}{\mu})} $ and $ 
+\Lag_{\tetr{a}{\mu}} = \frac{\pd \Lag}{\pd \tetr{a}{\mu}} $.
+
+
 Using the results from \cite{Lewis2009,Lorce2013}, the Euler-Lagrange equation can be rewritten as
 \begin{equation}\label{eqn.cov.field.PDE}
 \D{\lambda}(\Lagcov_{\D{\lambda}\tetr{a}{\mu}}) = \Lagcov_{\tetr{a}{\mu}}.
@@ -339,16 +351,30 @@ in which the unknowns are
 
 \section{Preparation for 3+1 split}
 
-\subsection{Transformation of the torsion equations}
+
+\subsection{Frame 4-velocity}
+
+Let us introduce the frame 4-velocity as
+\begin{equation}\label{eqn.4velocity}
+u^\mu := \itetr{\mu}{0}, \qquad u_\mu = g_{\mu\nu}u^\nu,
+\end{equation}
+then, due to
+\begin{equation}
+u_\mu = g_{\mu\nu} u^\nu = \eta_{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{0} = 
+\eta_{a0}\tetr{a}{\mu} = -\tetr{0}{\mu},
+\end{equation}\label{eqn.4velocity.cov}
+the covariant components are
+\begin{equation}
+u_\mu = -\tetr{0}{\mu}.
+\end{equation}
+
+
+\subsection{Transformation of the torsion equations}\label{sec.transform.potential}
 
 
 System \eqref{eqn.1st.order.TEGR} is not yet in a convenient form for the numerical treatment. It 
 is necessary to perform a 3+1 split \cite{Alcubierre2008}. 
 
-Let us introduce the frame 4-velocity as
-\begin{equation}\label{eqn.4velocity}
-u^\mu := \itetr{\mu}{0}, \qquad u_\mu = g_{\mu\nu}u^\nu
-\end{equation}
 
 We then define 
 \begin{equation}
@@ -389,7 +415,7 @@ and hence, the PDEs \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} ca
 Let us now introduce a new potential $ U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) $ as a partial 
 Legendre transform of the Lagrangian
 \begin{equation}
- U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) = \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
+ U(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) := \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
 \end{equation}
 and new state variables
 \begin{equation}
@@ -417,16 +443,31 @@ electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
 with $\hT{a}{\mu}$ and $\eT{a}{\mu}$ being the analog of the magnetic and electric fields, 
 accordingly.
 
+
+
+
 \subsection{Transformation of the tetrad equations}
 
-After the above change of variables and potentials, the tetrad equations 
-\eqref{eqn.1st.order.enermomen} and \eqref{eqn.1st.order.tetrad} are
-\begin{subequations}
-	\begin{align}
-		\D{\mu}U_{\tetr{a}{\mu}} &= 0,\\[2mm]
-		u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) & =U_{\eT{a}{\nu}},
-	\end{align}
-\end{subequations}
+Let us introduce a pure spacetime energy-momentum tensor
+\begin{equation}\label{def.energymom.spacetime}
+\EM{\mu}{\nu} := \tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}.
+\end{equation}
+Note that $ \D{\lambda} \EM{\mu}{\nu} = \pd_\lambda\EM{\mu}{\nu} $. 
+
+Using definition \eqref{def.energymom.spacetime}, the energy-momentum conservation law can be 
+rewritten in a pure spacetime form
+\begin{equation}
+\D{\mu} (\tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}) - U_{\tetr{a}{\mu}} 
+\Tors{a}{\mu\nu} = 0.
+\end{equation}
+
+
+Now, contracting \eqref{eqn.1st.order.tetrad} with the 4-velocity $ u^\mu $, and then after the 
+change of variables and potentials described in Section\,\ref{sec.transform.potential}, the 
+resulting equation reads as
+\begin{equation}
+	u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) = U_{\eT{a}{\nu}},
+\end{equation}
 Furthermore, using the identity $ \itetr{\mu}{b}\D{\nu}\tetr{a}{\nu} = - 
 \tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition of 4-velocity \eqref{eqn.4velocity}, the 
 latter equation can be rewritten as
@@ -437,24 +478,36 @@ latter equation can be rewritten as
 
 \subsection{Summary}
 
-
+Finally, the resulting system of first-order equations is
 \begin{subequations}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
 		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\hT{a}{\rho}})
-		& ={\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
+		& = {\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
 		\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - 
 		\veps^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\eT{a}{\rho}})
 		& = 0,\\[2mm]
-		\D{\mu}U_{\tetr{a}{\mu}} &= 0,\\[2mm]
-			u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu &= U_{\eT{a}{\nu}},
+		\D{\mu} (\tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}) - U_{\tetr{a}{\mu}} 
+		\Tors{a}{\mu\nu} & = 0,\\[2mm]
+		u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu & = U_{\eT{a}{\nu}},
 	\end{empheq}
 \end{subequations}
+which has to be solved for the unknowns
+\begin{equation}
+(\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu}).
+\end{equation}
 
+{\color{Red} Interestingly, the energy-momentum PDE is exactly like we use for the symmetrization 
+in the non-relativistic settings, i.e. when we add the torsion multiplied by $ U_{\tetr{a}{\mu}} $ 
+to the momentum equation. However, when we usually du the summation, we don't need this 
+non-conservative terms.... hm-m....}
 
-{\color{Red} The energy-momentum is not symmetric. Some extra work is required....... }
+\section{Reference tetrad}
 
+Discuss here the choice of the reference tetrad $ \rtetr{a}{\mu} $ which is used to define the spin 
+connection and 
+subsequently, to define the gauge covariant derivative $ \D{\mu} $...
 
 
 \section{Closure}
@@ -474,7 +527,6 @@ T^\nu, \qquad T^\mu = T^{\lambda\mu}_{\phantom{\lambda\mu}\lambda}.
 \end{equation}
 
 
-\section{Governing equations}
 
 \printbibliography
 
