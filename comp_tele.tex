@@ -69,6 +69,7 @@ BCOR5mm, % Binding correction
 \newcommand{\sM}{\mathsmaller M}
 \newcommand{\sN}{\mathsmaller N}
 \newcommand{\sL}{\mathsmaller L}
+\newcommand{\sr}{\mathsmaller r}
 
 \newcommand{\pd}{\partial}
 \newcommand{\F}[2]{F^{\ #1}_{\mathsmaller#2}}
@@ -77,7 +78,7 @@ BCOR5mm, % Binding correction
 
 \newcommand{\itetr}[2]{e^{\phantom{#2}#1}_{#2}}
 \newcommand{\tetr}[2]{a^{#1}_{\phantom{#1}#2}}
-\newcommand{\rtetr}[2]{a^{#1}_{(\text{r}) #2}}
+\newcommand{\rtetr}[2]{a^{#1}_{\mathsmaller{(r)} #2}}
 \newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
 \newcommand{\Lor}[2]{\Lambda^{#1'}_{\phantom{#1}#2}}
 \newcommand{\iLor}[2]{\Lambda^{\phantom{#2}#1}_{#2'}}
@@ -107,6 +108,7 @@ BCOR5mm, % Binding correction
 \hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where 
 %you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop 
 %hyphenation altogether
+
 
 %----------------------------------------------------------------------------------------
 %	TITLE AND AUTHOR(S)
@@ -215,7 +217,8 @@ The metric on $ M $ is a general Riemannian metric $ g_{\mu\nu} $.
 
 In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
 which is a Minkowski space spanned by the orthogonal anholonomic 
-frames $ \bm{e}^a $ and equipped with the Minkowski metric $ g_{ab} $. Similarly, there is the 
+frames $ \bm{e}^a $ and equipped with the Minkowski metric $ g_{ab} $ with the signature $ 
+(-,+,+,+) $. Similarly, there is the 
 corresponding cotangent Minkowski space spanned by the co-frames $ \bm{e}_a $. 
 
 \subsection{Spin connection}
@@ -292,7 +295,8 @@ Note that its tangent space counterpart does not have such a property
 
 \subsection{Reference tetrad}
 
-We also define the \textit{reference} tetrad $ \rtetr{a}{\mu} $ as the one for which the torsion 
+We also define the \textit{reference} tetrad $ \rtetr{a}{\mu}$ as the one for which 
+the torsion 
 vanishes
 \begin{equation}
 \Tors{a}{\mu\nu}(\rtetr{a}{\mu},\spin{a}{\mu c}) = 0
@@ -303,26 +307,44 @@ which means that this tetrad does not contain any gravity effect but only inerti
 \subsection{Levi-Civita tensor}
 We shall also need the Levi-Civita tensor
 \begin{equation}\label{def.LeviCivita}
-\veps^{\mu\nu\lambda\rho} = a^{-1} \epsilon^{\mu\nu\lambda\rho}, \qquad \veps_{\mu\nu\lambda\rho} = 
-a 
-\epsilon_{\mu\nu\lambda\rho},
+\veps^{\lambda\mu\nu\rho} = a^{-1} \epsilon^{\lambda\mu\nu\rho}, \qquad \veps_{\lambda\mu\nu\rho} = 
+a \, \epsilon_{\lambda\mu\nu\rho},
 \end{equation}
-where $ a = \det(\tetr{a}{\mu}) $, and $ 
-\epsilon^{{\mu\nu\lambda\rho}} $ is the totally antisymmetric Levi-Civita 
+where $ a = \det(\tetr{a}{\mu}) = \sqrt{-g}$, $ g = \det(g_{\mu\nu}) $, and $ 
+\epsilon^{{\lambda\mu\nu\rho}} $ is the totally antisymmetric Levi-Civita 
 symbol~\cite{AldrovandiPereiraBook}.
 
-In particular, due to \eqref{eqn.covD.pd}, we remark that 
-\begin{multline}
-\D{\sigma}\veps^{\mu\nu\lambda\rho} = \D{\sigma}(a^{-1}\epsilon^{\mu\nu\lambda\rho}) = 
-\epsilon\D{\sigma}a^{-1} = 
+
+In particular, we remark that due to \eqref{eqn.covD.pd}, we have
+\begin{multline}\label{eqn.diff.LeviCivita}
+\D{\sigma}\veps^{\lambda\mu\nu\rho} = \D{\sigma}(a^{-1}\epsilon^{\lambda\mu\nu\rho}) = 
+\epsilon^{\lambda\mu\nu\rho}\D{\sigma}a^{-1} = 
 \\
--\epsilon^{\mu\nu\lambda\rho}a^{-1}\itetr{\eta}{a}\D{\sigma}\tetr{a}{\eta} = 
--\epsilon^{\mu\nu\lambda\rho}a^{-1}\W{\eta}{\sigma\eta} = 
--\veps^{\mu\nu\lambda\rho}\W{\eta}{\sigma\eta} . 
+-\epsilon^{\lambda\mu\nu\rho}a^{-1}\itetr{\eta}{a}\D{\sigma}\tetr{a}{\eta} = 
+-\epsilon^{\lambda\mu\nu\rho}a^{-1}\W{\eta}{\sigma\eta} = 
+-\veps^{\lambda\mu\nu\rho}\W{\eta}{\sigma\eta} . 
 \end{multline}
+
+Similarly, we introduce the Levi-Civita tensor in the tangent Minkowski space
+\begin{equation}
+\veps^{abcd} =\frac{1}{ \sqrt{-\eta}}\epsilon^{abcd} = \epsilon^{abcd}, \qquad \veps_{abcd} = 
+\sqrt{-\eta}\epsilon_{abcd} = \epsilon_{abcd}.
+\end{equation}
+
+It can be straightforwardly verified that the Levi-Civita tensors $ \veps^{\lambda\mu\nu\rho} $ and 
+$ \veps^{abcd} $ are 
+related as
+\begin{equation}
+\veps^{abcd} = \tetr{a}{\lambda}\tetr{b}{\mu}\tetr{c}{\nu}\tetr{d}{\rho}\veps^{\lambda\mu\nu\rho}.
+\end{equation}
 
 
 \section{Variational formulation}
+
+\IP{Because it is not clear to me how to define derivatives $ \pd_a $ in the tangent Minkowski 
+space it is then unclear how to do variation. Therefore, let's try to do variation in the spacetime 
+where the derivatives $ \pd_\mu $ are well defined...}
+
 The Lagrangian is 
 \begin{equation}
 \Lambda = \Lag(\tetr{a}{\mu},\pd_\lambda\tetr{a}{\nu}) = 
@@ -361,6 +383,9 @@ The Euler-Lagrange equations has to be supplemented by the integrability conditi
 \begin{equation}
 \D{\nu}\HT{a\mu\nu} = 0,
 \end{equation}
+\IP{this is WRONG!!! :( because $ \D{\nu}\veps^{\mu\nu\sigma\rho} \neq 0 $, see 
+\eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability condition. Most likely it is 
+only possible to get it in tangent Minkowski space!}
 which is a trivial consequence of the Hodge dual and the commutative property \eqref{eqn.commut.D} 
 of the gauge 
 covariant derivative $ \D{\mu} $.
@@ -542,7 +567,7 @@ which has to be solved for the unknowns
 (\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu}).
 \end{equation}
 
-{\color{Red} Interestingly, the energy-momentum PDE is exactly like we use for the symmetrization 
+\IP{Interestingly, the energy-momentum PDE is exactly like we use for the symmetrization 
 in the non-relativistic settings, i.e. when we add the torsion multiplied by $ U_{\tetr{a}{\mu}} $ 
 to the momentum equation. However, when we usually du the summation, we don't need this 
 non-conservative terms.... hm-m....}
