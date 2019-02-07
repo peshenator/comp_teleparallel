@@ -342,7 +342,8 @@ related as
 \section{Variational formulation}
 
 \IP{Because it is not clear to me how to define derivatives $ \pd_a $ in the tangent Minkowski 
-space it is then unclear how to do variation. Therefore, let's try to do variation in the spacetime 
+space it is then unclear how to do variation in the tangent space. Therefore, let's try to do 
+variation in the spacetime 
 where the derivatives $ \pd_\mu $ are well defined...}
 
 The Lagrangian is 
@@ -385,7 +386,7 @@ The Euler-Lagrange equations has to be supplemented by the integrability conditi
 \end{equation}
 \IP{this is WRONG!!! :( because $ \D{\nu}\veps^{\mu\nu\sigma\rho} \neq 0 $, see 
 \eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability condition. Most likely it is 
-only possible to get it in tangent Minkowski space!}
+only possible to get it in the tangent Minkowski space!}
 which is a trivial consequence of the Hodge dual and the commutative property \eqref{eqn.commut.D} 
 of the gauge 
 covariant derivative $ \D{\mu} $.
@@ -407,7 +408,7 @@ Therefore, the first-order form of TEGR governing equations to be solved is
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
 		\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
 		&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.1st.order.EL}\\[2mm]
-		\D{\lambda}\HT{a\mu\lambda} &= 0,\label{eqn.1st.order.integr}\\[2mm]
+		\D{\lambda}\HT{a\mu\lambda} & = {\color{Red}?????},\label{eqn.1st.order.integr}\\[2mm]
 		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\label{eqn.1st.order.enermomen}\\[2mm]
 		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},\label{eqn.1st.order.tetrad}
 	\end{empheq}
@@ -475,7 +476,8 @@ and hence, the PDEs \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} ca
 \begin{subequations}\label{eqn.tors.BE}
 	\begin{align}
 		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} {\color{Red}\bm{+}} 
-		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) &=\LagBE_{\tetr{a}{\mu}}\\[2mm]
+		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) &=\LagBE_{\tetr{a}{\mu}}
+		\\[2mm]
 		\D{\mu}(u^\mu \BT{a}{\nu} - u^\nu\BT{a}{\mu} + 
 		\veps^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) &= 0,
 	\end{align}
@@ -511,8 +513,6 @@ electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
 \end{subequations}
 with $\hT{a}{\mu}$ and $\eT{a}{\mu}$ being the analog of the magnetic and electric fields, 
 accordingly.
-
-
 
 
 \subsection{Transformation of the tetrad equations}
