@@ -76,12 +76,12 @@ BCOR5mm, % Binding correction
 \newcommand{\hatF}[2]{\hat{F}^{\ #1}_{\mathsmaller#2}}
 \newcommand{\A}[2]{A^{\mathsmaller#1}_{\ #2}}
 
-\newcommand{\itetr}[2]{e^{\phantom{#2}#1}_{#2}}
+\newcommand{\itetr}[2]{e^{#1}_{\phantom{#1}#2}}
 \newcommand{\tetr}[2]{a^{#1}_{\phantom{#1}#2}}
 \newcommand{\rtetr}[2]{a^{#1}_{\mathsmaller{(r)} #2}}
 \newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
 \newcommand{\Lor}[2]{\Lambda^{#1'}_{\phantom{#1}#2}}
-\newcommand{\iLor}[2]{\Lambda^{\phantom{#2}#1}_{#2'}}
+\newcommand{\iLor}[2]{\Lambda^{#1}_{\phantom{#1}#2'}}
 \newcommand{\D}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
 \newcommand{\Tors}[2]{T^{#1}_{\phantom{a}#2}}
 \newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
@@ -101,11 +101,14 @@ BCOR5mm, % Binding correction
 \newcommand{\LagBE}{\mathfrak{L}}% Lagrangian which depends on the B and E fields
 \newcommand{\veps}{\varepsilon}
 \newcommand{\EM}[2]{\Sigma^{#1}_{\phantom{#1}#2}}
+\newcommand{\LCsymb}{\bm{\in}}    % Levi-Civita symbol (tensor-density)
+\newcommand{\LCtens}{\varepsilon} % Levi-Civita ordinary tensor
 
 \newcommand{\tegr}{TEGR}
 \newcommand{\HT}[1]{\accentset{\star}{T}^{#1}}
 
-\hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in words with dashes where 
+\hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in 
+%words with dashes where 
 %you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop 
 %hyphenation altogether
 
@@ -121,7 +124,7 @@ BCOR5mm, % Binding correction
 
 \author{\normalsize\textsc{Ilya Peshkov}$^1$ \& 
 \normalsize\textsc{Evgeniy Romenski}$^{2,3}$ \&
-\normalsize\textsc{Michael Dumbser}$^{4}$
+\normalsize\textsc{Michael Dumbser}$^{4}$ \ldots
 } % The article author(s) - author affiliations 
 %need to be 
 %specified in the 
@@ -198,7 +201,8 @@ theory.
 Why to study teleparallel gravity? Quickly recall the main arguments from Chapter\,18 of 
 \cite{AldrovandiPereiraBook}, and then add that the same equations are, in fact, applicable to 
 modeling of 
-turbulence, micromorphic solids (acoustic metamaterials), dislocations \cite{PRD-Torsion2018}... 
+turbulence, micromorphic solids (acoustic metamaterials), dislocations 
+\cite{PRD-Torsion2019}... 
 
 \section{Definitions}
 
@@ -257,7 +261,8 @@ where $ \spin{b}{\mu c} = \tetr{a}{\mu}\spin{b}{ac} $.
 This derivative still acts on the Minkowski indexes only. Sometimes, it is also called the \FI\ 
 covariant derivative~\cite{AldrovandiPereiraBook}.
 
-In particular remark that $ \D{\mu} $ acts on the spacetime tensors as ordinary derivative $ 
+In particular, remark that $ \D{\mu} $ acts on the spacetime tensors as an
+ordinary derivative $ 
 \pd_\mu $, e.g.
 \begin{multline}\label{eqn.covD.pd}
 \D{\mu}v^{\nu} = \D{\mu}(\itetr{\nu}{a}v^a) = \itetr{\nu}{a}\D{\mu}v^a + v^a\D{\mu}\itetr{\nu}{a} = 
@@ -276,18 +281,27 @@ The torsion is introduced as
 \Tors{a}{\mu\nu}(\tetr{a}{\mu},\spin{a}{\mu c}):=\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = 
 \W{a}{\mu\nu} - \W{a}{\nu\mu},
 \end{equation}
-where $ \W{a}{\mu\nu} = \tetr{a}{\lambda}\W{\lambda}{\mu\nu}$ and $ \W{\lambda}{\mu\nu} = 
-\w{\lambda}{\mu\nu} + \spin{\lambda}{\mu\nu}$ is the 
-generalized \We\ connection \cite{AldrovandiPereiraBook}, $ \w{\lambda}{\mu\nu} = 
-\itetr{\lambda}{a}\pd_\mu \tetr{a}{\nu}$ is 
-the pure tetrad \We\ connection.
+where $ \W{a}{\mu\nu} = \tetr{a}{\lambda}\W{\lambda}{\mu\nu}$ and 
+\begin{equation}
+    \W{\lambda}{\mu\nu} := \w{\lambda}{\mu\nu} + \spin{\lambda}{\mu\nu}
+\end{equation}
+is the 
+generalized \We\ connection \cite{AldrovandiPereiraBook}, while 
+\begin{equation}
+    \w{\lambda}{\mu\nu} := 
+    \itetr{\lambda}{a}\pd_\mu \tetr{a}{\nu}
+\end{equation}
+is the pure tetrad \We\ connection.
 
 
-An important feature of this derivative is the commutative property
+An important feature of this derivative is the commutative property for both 
+spacetime and Lorentz vectors
 \begin{equation}\label{eqn.commut.D}
+\D{\mu}(\D{\nu} v^\lambda) - \D{\nu}(\D{\mu} v^\lambda) = 0, 
+\qquad 
 \D{\mu}(\D{\nu} v^a) - \D{\nu}(\D{\mu} v^a) = 0.
 \end{equation}
-Note that its tangent space counterpart does not have such a property
+Note that its tangent space counterpart $\D{a} = \itetr{\mu}{a}\D{\mu}$ does not have such a property
 \begin{equation}
 \D{b}(\D{c} v^a) - \D{c}(\D{b} v^a) = 
 -\itetr{\mu}{b}\itetr{\nu}{c}\itetr{\lambda}{d}\Tors{d}{\mu\nu}\D{\lambda}v^a .
@@ -305,59 +319,79 @@ which means that this tetrad does not contain any gravity effect but only inerti
 
 
 \subsection{Levi-Civita tensor}
+
+This \href{https://physics.stackexchange.com/questions/429434/lorentz-covariant-derivative-of-the-vielbein-determinant}{discussion} is very relevant.
+
 We shall also need the Levi-Civita tensor
 \begin{equation}\label{def.LeviCivita}
-\veps^{\lambda\mu\nu\rho} = a^{-1} \epsilon^{\lambda\mu\nu\rho}, \qquad \veps_{\lambda\mu\nu\rho} = 
-a \, \epsilon_{\lambda\mu\nu\rho},
+\LCtens^{\lambda\mu\nu\rho} = a^{-1} \LCsymb^{\lambda\mu\nu\rho}, 
+\qquad 
+\LCtens_{\lambda\mu\nu\rho} = 
+a \, \LCsymb_{\lambda\mu\nu\rho},
+\qquad
+\LCtens_{0123} = a,
 \end{equation}
 where $ a = \det(\tetr{a}{\mu}) = \sqrt{-g}$, $ g = \det(g_{\mu\nu}) $, and $ 
-\epsilon^{{\lambda\mu\nu\rho}} $ is the totally antisymmetric Levi-Civita 
-symbol~\cite{AldrovandiPereiraBook}.
+\LCsymb^{{\lambda\mu\nu\rho}} $ is the totally antisymmetric Levi-Civita 
+symbol~\cite{AldrovandiPereiraBook} with the reference $ \LCsymb_{0123} = 1 $, 
+i.e. it is a tensor-density of weight $ W=+1 $.
 
 
 In particular, we remark that due to \eqref{eqn.covD.pd}, we have
 \begin{multline}\label{eqn.diff.LeviCivita}
-\D{\sigma}\veps^{\lambda\mu\nu\rho} = \D{\sigma}(a^{-1}\epsilon^{\lambda\mu\nu\rho}) = 
-\epsilon^{\lambda\mu\nu\rho}\D{\sigma}a^{-1} = 
+\D{\sigma}\LCtens^{\lambda\mu\nu\rho} = 
+\pd_{\sigma}(a^{-1}\LCsymb^{\lambda\mu\nu\rho}) = 
+\LCsymb^{\lambda\mu\nu\rho}\pd_{\sigma}a^{-1} = 
 \\
--\epsilon^{\lambda\mu\nu\rho}a^{-1}\itetr{\eta}{a}\D{\sigma}\tetr{a}{\eta} = 
--\epsilon^{\lambda\mu\nu\rho}a^{-1}\W{\eta}{\sigma\eta} = 
--\veps^{\lambda\mu\nu\rho}\W{\eta}{\sigma\eta} . 
+-\LCsymb^{\lambda\mu\nu\rho}a^{-1}\itetr{\eta}{a}\pd_{\sigma}\tetr{a}{\eta} = 
+-\LCtens^{\lambda\mu\nu\rho}\w{\eta}{\sigma\eta}. 
 \end{multline}
+Yet, for Levi-Civita symbol, we have
+\begin{equation}\label{eqn.diff.LCsymb}
+\D{\mu}\LCsymb^{\lambda\mu\nu\rho} = 0.
+\end{equation}
 
 Similarly, we introduce the Levi-Civita tensor in the tangent Minkowski space
 \begin{equation}
-\veps^{abcd} =\frac{1}{ \sqrt{-\eta}}\epsilon^{abcd} = \epsilon^{abcd}, \qquad \veps_{abcd} = 
-\sqrt{-\eta}\epsilon_{abcd} = \epsilon_{abcd}.
+\LCtens^{abcd} =\frac{1}{ \sqrt{-\eta}}\LCsymb^{abcd} = \LCsymb^{abcd}, \qquad 
+\LCtens_{abcd} = 
+\sqrt{-\eta}\LCsymb_{abcd} = \LCsymb_{abcd}.
 \end{equation}
 
-It can be straightforwardly verified that the Levi-Civita tensors $ \veps^{\lambda\mu\nu\rho} $ and 
-$ \veps^{abcd} $ are 
+It can be straightforwardly verified that the Levi-Civita tensors $ 
+\LCtens^{\lambda\mu\nu\rho} $ and 
+$ \LCtens^{abcd} $ are 
 related as
 \begin{equation}
-\veps^{abcd} = \tetr{a}{\lambda}\tetr{b}{\mu}\tetr{c}{\nu}\tetr{d}{\rho}\veps^{\lambda\mu\nu\rho}.
+\LCtens^{abcd} = 
+\tetr{a}{\lambda}\tetr{b}{\mu}\tetr{c}{\nu}\tetr{d}{\rho}\LCtens^{\lambda\mu\nu\rho}.
 \end{equation}
 
 
 \section{Variational formulation}
 
-\IP{Because it is not clear to me how to define derivatives $ \pd_a $ in the tangent Minkowski 
-space it is then unclear how to do variation in the tangent space. Therefore, let's try to do 
-variation in the spacetime 
-where the derivatives $ \pd_\mu $ are well defined...}
+%\IP{Because it is not clear to me how to define derivatives $ \pd_a $ in the 
+%tangent Minkowski 
+%space it is then unclear how to do variation in the tangent space. Therefore, 
+%let's try to do 
+%variation in the spacetime 
+%where the derivatives $ \pd_\mu $ are well defined...}
 
-The Lagrangian is 
+The Lagrangian (scalar-density) is 
 \begin{equation}
 \Lambda = \Lag(\tetr{a}{\mu},\pd_\lambda\tetr{a}{\nu}) = 
 \Lagcov(\tetr{a}{\mu},\D{\lambda}\tetr{a}{\nu})  = \Laghodge(\tetr{a}{\mu},\HT{a\mu\nu}),
 \end{equation}
-where $ \HT{a\mu\nu} $ is the Hodge dual to the torsion:
+where $ \HT{a\mu\nu} $ is the Hodge dual to the 
+torsion:
 \begin{equation}\label{eqn.Hodge.def}
-\HT{a\mu\nu} := \frac{1}{2}\veps^{\mu\nu\rho\sigma}\Tors{a}{\rho\sigma} = 
-\veps^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \qquad \Tors{a}{\mu\nu} = 
--\frac{1}{2}\veps_{\mu\nu\rho\sigma}\HT{a\rho\sigma}.
+\HT{a\mu\nu} := \frac{1}{2}\LCsymb^{\mu\nu\rho\sigma}\Tors{a}{\rho\sigma} = 
+\LCsymb^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \qquad \Tors{a}{\mu\nu} = 
+-\frac{1}{2}\LCsymb_{\mu\nu\rho\sigma}\HT{a\rho\sigma}.
 \end{equation}
-
+It is important to emphasize that we chose to define the Hodge dual be the 
+\textbf{tensor-density} of weight $ W=+1 $, which will be important later for 
+the so-called integrability condition \eqref{integr.HT}.
 
 
 
@@ -377,21 +411,28 @@ Note that $  \Lag_{\tetr{a}{\mu}} \neq  \Lagcov_{\tetr{a}{\mu}}. $
 
 Eventually, using \eqref{eqn.Hodge.def}, we can rewrite \eqref{eqn.cov.field.PDE} as
 \begin{equation}\label{eqn.cov.field.PDE.Hodge}
-\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) =-\Laghodge_{\tetr{a}{\mu}}.
+\D{\lambda}(\LCsymb^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
+=-\Laghodge_{\tetr{a}{\mu}}.
 \end{equation}
 
 The Euler-Lagrange equations has to be supplemented by the integrability condition
-\begin{equation}
+\begin{equation}\label{integr.HT}
 \D{\nu}\HT{a\mu\nu} = 0,
 \end{equation}
-\IP{this is WRONG!!! :( because $ \D{\nu}\veps^{\mu\nu\sigma\rho} \neq 0 $, see 
-\eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability condition. Most likely it is 
-only possible to get it in the tangent Minkowski space!}
-which is a trivial consequence of the Hodge dual and the commutative property \eqref{eqn.commut.D} 
+%\IP{this is WRONG, it can't be zero!!! :( because $ 
+%\D{\nu}\LCtens^{\mu\nu\sigma\rho} \neq 0 $, see 
+%\eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability 
+%condition. Most likely it is 
+%only possible to get it in the tangent Minkowski space!}
+which is a trivial consequence of the definition of the  Hodge dual 
+tensor-density, commutative property \eqref{eqn.commut.D} 
 of the gauge 
-covariant derivative $ \D{\mu} $.
+covariant derivative $ \D{\mu} $, and the identity \eqref{eqn.diff.LCsymb}.
+We note that if the Hodge dual would be defined using the Levi-Civita tensor $ 
+\LCtens^{\mu\nu\rho\sigma} $ instead of the Levi-Civita symbol, then one would 
+have that $ \D{\mu}\HT{a\mu\nu} \neq 0 $.
 
-Another consequence of the commutative property is the energy-momentum covariant conservation law
+Another consequence of the commutative property is the energy-momentum covariant conservation law (note that $\Laghodge_{\tetr{a}{\mu}}$ is a tensor-density)
 \begin{equation}
 \D{\mu}\Laghodge_{\tetr{a}{\mu}} = 0,
 \end{equation}
@@ -406,10 +447,14 @@ which also has to be supplemented by the integrability condition
 Therefore, the first-order form of TEGR governing equations to be solved is
 \begin{subequations}\label{eqn.1st.order.TEGR}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
-		\D{\lambda}(\veps^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
+		\D{\lambda}(\LCsymb^{\mu\nu\rho\lambda}\Laghodge_{\HT{a\nu\rho}}) 
 		&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.1st.order.EL}\\[2mm]
-		\D{\lambda}\HT{a\mu\lambda} & = {\color{Red}?????},\label{eqn.1st.order.integr}\\[2mm]
-		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 0,\label{eqn.1st.order.enermomen}\\[2mm]
+%		
+		\D{\lambda}\HT{a\mu\lambda} & = 0,\label{eqn.1st.order.integr}\\[2mm]
+%		
+		\D{\mu}\Laghodge_{\tetr{a}{\mu}} &= 
+		0,\label{eqn.1st.order.enermomen}\\[2mm]
+%		
 		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},\label{eqn.1st.order.tetrad}
 	\end{empheq}
 \end{subequations}
@@ -417,6 +462,7 @@ in which the unknowns are
 \begin{equation}
 (\tetr{a}{\mu},\HT{a\mu\nu}).
 \end{equation}
+
 
 
 \section{Preparation for 3+1 split}
@@ -450,36 +496,41 @@ We then define
 \begin{equation}
 \ET{a}{\mu} := u^\nu \Tors{a}{\mu\nu}, \qquad  \BT{a}{\mu} := u_\nu\HT{a\mu\nu}
 \end{equation}
+\IP{$ \ET{a}{\mu} $ is a tensor, while $ \BT{a}{\mu} $ is a tensor-density.}
 
 It is known that for any skew-symmetric tensor and a time-like vector $ u^\mu $ the following 
 decompositions holds
 \begin{subequations}\label{eqn.T.decompos}
 \begin{align}
-\HT{a\mu\nu} &= u^\mu \BT{a}{\nu} - u^\nu \BT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+\HT{a\mu\nu} &= u^\mu \BT{a}{\nu} - u^\nu \BT{a}{\mu} + 
+\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
 \ET{a}{\rho},\\[2mm]
-\Tors{a}{\mu\nu} &= u_\mu \ET{a}{\nu} - u_\nu \ET{a}{\mu} - \veps^{\mu\nu\lambda\rho}u^\lambda 
+\Tors{a}{\mu\nu} &= u_\mu \ET{a}{\nu} - u_\nu \ET{a}{\mu} - 
+\LCsymb_{\mu\nu\lambda\rho}u^\lambda 
 \BT{a}{\rho},
 \end{align}
 \end{subequations}
 
-We assume that the Lagrangian can be written 
+We assume that the Lagrangian density can be \textit{equivalently} written 
 \begin{equation}
 \Lambda = \Laghodge(\tetr{a}{\mu},\HT{a\mu\nu}) = \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
 \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}).
 \end{equation}
-It then can be shown that 
+It then can be shown that the derivatives of these different representations of the Lagrangian are related as
 \begin{equation}
-\Laghodge_{\HT{a\mu\nu}}u^\nu = -\LagBE_{\BT{a}{\mu}}, \qquad \Lagtors_{\Tors{a}{\mu\nu}}u_\nu = 
--\LagBE_{\ET{a}{\mu}},
+\Laghodge_{\HT{a\mu\nu}}u^\nu = -\frac12\LagBE_{\BT{a}{\mu}}, 
+\qquad 
+\Lagtors_{\Tors{a}{\mu\nu}}u_\nu = -\frac12\LagBE_{\ET{a}{\mu}},
 \end{equation}
 and hence, the PDEs \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} can be written as 
 \begin{subequations}\label{eqn.tors.BE}
 	\begin{align}
-		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} {\color{Red}\bm{+}} 
-		\veps^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) &=\LagBE_{\tetr{a}{\mu}}
-		\\[2mm]
+		\D{\nu}(u^\mu \LagBE_{\ET{a}{\nu}} - u^\nu\LagBE_{\ET{a}{\mu}} + 
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) 
+		&=\LagBE_{\tetr{a}{\mu}} \\[2mm]
+%		
 		\D{\mu}(u^\mu \BT{a}{\nu} - u^\nu\BT{a}{\mu} + 
-		\veps^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) &= 0,
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) &= 0,
 	\end{align}
 \end{subequations}
 
@@ -492,6 +543,7 @@ and new state variables
 \begin{equation}
 \eT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \hT{a}{\mu} = -\BT{a}{\mu}, \qquad \tetr{a}{\mu},
 \end{equation}
+\IP{Now, both $ \eT{a}{\mu} $ and $ \hT{a}{\mu} $ are tensor-densities.}\\
 such that we have
 \begin{equation}
 U_{\eT{a}{\mu}} = \ET{a}{\mu}, \qquad U_{\hT{a}{\mu}} = \LagBE_{\BT{a}{\mu}},
@@ -502,11 +554,12 @@ the form similar to the non-linear
 electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
 \begin{subequations}
 	\begin{align}
-		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + 
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\hT{a}{\rho}})
-		& ={\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
+		& =-U_{\tetr{a}{\mu}},\\[2mm]
 		\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - 
-		\veps^{\mu\nu\lambda\rho}u_\lambda 
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\eT{a}{\rho}}) 
 		& = 0,
 \end{align}
@@ -517,13 +570,14 @@ accordingly.
 
 \subsection{Transformation of the tetrad equations}
 
-Let us introduce a pure spacetime energy-momentum tensor
+Let us introduce a pure spacetime energy-momentum tensor-density
 \begin{equation}\label{def.energymom.spacetime}
 \EM{\mu}{\nu} := \tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}.
 \end{equation}
-Note that $ \D{\lambda} \EM{\mu}{\nu} = \pd_\lambda\EM{\mu}{\nu} $. 
+Recall that $ \D{\lambda} \EM{\mu}{\nu} = \pd_\lambda\EM{\mu}{\nu} $. 
 
-Using definition \eqref{def.energymom.spacetime}, the energy-momentum conservation law can be 
+Using definition \eqref{def.energymom.spacetime}, the energy-momentum 
+conservation law \eqref{eqn.1st.order.enermomen} can be 
 rewritten in a pure spacetime form
 \begin{equation}
 \D{\mu} (\tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}) - U_{\tetr{a}{\mu}} 
@@ -550,15 +604,19 @@ latter equation can be rewritten as
 Finally, the resulting system of first-order equations is
 \begin{subequations}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
-		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + \veps^{\mu\nu\lambda\rho}u_\lambda 
+		\D{\mu}(u^\mu\eT{a}{\nu} - u^\nu\eT{a}{\mu} + 
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\hT{a}{\rho}})
-		& = {\color{Red}\bm{-}}U_{\tetr{a}{\mu}},\\[2mm]
+		& = -U_{\tetr{a}{\mu}},\label{eT}\\[2mm]
+%		
 		\D{\mu}(u^\mu \hT{a}{\nu} - u^\nu\hT{a}{\mu} - 
-		\veps^{\mu\nu\lambda\rho}u_\lambda 
+		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
 		U_{\eT{a}{\rho}})
-		& = 0,\\[2mm]
+		& = 0,\label{hT}\\[2mm]
+%		
 		\D{\mu} (\tetr{a}{\nu} U_{\tetr{a}{\mu}} - U \delta^\mu_{\ \nu}) - U_{\tetr{a}{\mu}} 
 		\Tors{a}{\mu\nu} & = 0,\\[2mm]
+%		
 		u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu & = U_{\eT{a}{\nu}},
 	\end{empheq}
 \end{subequations}
@@ -567,10 +625,26 @@ which has to be solved for the unknowns
 (\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu}).
 \end{equation}
 
-\IP{Interestingly, the energy-momentum PDE is exactly like we use for the symmetrization 
-in the non-relativistic settings, i.e. when we add the torsion multiplied by $ U_{\tetr{a}{\mu}} $ 
-to the momentum equation. However, when we usually du the summation, we don't need this 
-non-conservative terms.... hm-m....}
+\IP{Shouldn't we have analogues of the charge density like $ 
+u^{\nu}\D{\mu}\eT{a}{\mu} $ and $ u^{\nu}\D{\mu}\hT{a}{\mu} $ in \eqref{eT} 
+and \eqref{hT}? Most likely not because in the Maxwell we assume that the 
+Lagrangian does not depend explicitly on $ A_a $ but only on its derivatives. 
+While here, charge density should be in the Neuter's current $ 
+U_{\tetr{a}{\mu}} $ }
+
+\IP{The important question is what to do with the inertial connections $ 
+\spin{a}{\mu b} $? One option is to find the way to compute it (which implies 
+extra equations). The 
+second is to find and fix the frame where this connection vanishes as discussed 
+in \cite{Obukhov2019} and hence, $ \D{\mu} \rightarrow \pd_\mu $.}
+
+%\IP{Interestingly, the energy-momentum PDE is exactly like we use for the 
+%symmetrization 
+%in the non-relativistic settings, i.e. when we add the torsion multiplied by $ 
+%U_{\tetr{a}{\mu}} $ 
+%to the momentum equation. However, when we usually du the summation, we don't 
+%need this 
+%non-conservative terms.... hm-m....}
 
 \section{Reference tetrad}
 
