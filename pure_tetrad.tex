@@ -32,7 +32,6 @@ BCOR5mm, % Binding correction
 %layout
 
 \usepackage[hmarginratio=1:1,top=25mm,left=30mm,columnsep=25pt]{geometry}
-\usepackage{hyperref}
 \usepackage{relsize} % e.g. used for \mathsmaller
 \usepackage{bm}
 
@@ -80,9 +79,11 @@ BCOR5mm, % Binding correction
 \newcommand{\bas}[1]{\bm{h}^{#1}}
 \newcommand{\cobas}[1]{\bm{h}_{#1}}
 
-\newcommand{\itetr}[2]{F^{#1}_{\phantom{#1}#2}}
-\newcommand{\tetr}[2]{A^{#1}_{\phantom{#1}#2}}
-\newcommand{\deth}{A}
+\newcommand{\tetrsymbol}{h}
+\newcommand{\itetrsymbol}{\theta}
+\newcommand{\itetr}[2]{\itetrsymbol^{#1}_{\phantom{#1}#2}}
+\newcommand{\tetr}[2]{\tetrsymbol^{#1}_{\phantom{#1}#2}}
+\newcommand{\detTetr}{\tetrsymbol}
 \newcommand{\rtetr}[2]{h^{#1}_{\mathsmaller{(r)} #2}}
 \newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
 \newcommand{\Lor}[2]{\Lambda^{#1'}_{\phantom{#1}#2}}
@@ -163,7 +164,6 @@ teleparallel gravity}} % The article
 
 %----------------------------------------------------------------------------------------
 
-
 \begin{document}
 
 %----------------------------------------------------------------------------------------
@@ -207,12 +207,20 @@ in the 3+1 split of the governing equations and subsequently in the numerical si
 %----------------------------------------------------------------------------------------
 %	AUTHOR AFFILIATIONS
 %----------------------------------------------------------------------------------------
-\let\thefootnote\relax\footnotetext{* \textit{ilya.peshkov@unitn.it}}
-\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{University of Trento, Trento, 
-Italy}}
-\let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of Mathematics, Novosibirsk, Russia}}
-\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, 
-Novosibirsk, Russia}}
+%\let\thee\relax\footnotetext{* \textit{ilya.peshkov@unitn.it}}
+%\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{University of Trento, Trento, 
+%Italy}}
+%\let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of Mathematics, 
+%Novosibirsk, Russia}}
+%\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, 
+%Novosibirsk, Russia}}
+\footnotetext{* \textit{ilya.peshkov@unitn.it}}
+\footnotetext{\textsuperscript{1} \textit{University of Trento, Trento, 
+		Italy}}
+\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of Mathematics, Novosibirsk, Russia}}
+\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, 
+		Novosibirsk, Russia}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
 %----------------------------------------------------------------------------------------
 
 %\newpage % Start the article content on the second page, remove this if you have a longer abstract 
@@ -233,7 +241,7 @@ Why to study teleparallel gravity? Quickly recall the main arguments from Chapte
 \cite{AldrovandiPereiraBook}, and then add that the same equations are, in fact, applicable to 
 modeling of 
 turbulence, micromorphic solids (acoustic metamaterials), dislocations 
-\cite{PRD-Torsion2019}... 
+\cite{Torsion2019}... 
 
 \section{Definitions}
 
@@ -325,33 +333,50 @@ their tangent space counterparts $\D{a} = \itetr{\mu}{a}\D{\mu}$ do not
 
 \subsection{Levi-Civita tensor}
 
-This \href{https://physics.stackexchange.com/questions/429434/lorentz-covariant-derivative-of-the-vielbein-determinant}{discussion} is very relevant.
+%This 
+%\href{https://physics.stackexchange.com/questions/429434/lorentz-covariant-derivative-of-the-vielbein-determinant}{discussion}
+% is very relevant.
 
-We shall also need the Levi-Civita tensor
-\begin{equation}\label{def.LeviCivita}
-\LCtens^{\lambda\mu\nu\rho} = \deth^{-1} \LCsymb^{\lambda\mu\nu\rho}, 
-\qquad 
-\LCtens_{\lambda\mu\nu\rho} = 
-\deth \, \LCsymb_{\lambda\mu\nu\rho},
-\qquad
-\LCtens_{0123} = \deth,
+We shall also need the Levi-Civita symbol (tensor-density of weight\footnote{We 
+	use the 
+	sign convention for the tensor density weight according to \cite{Ryder2009,Grinfeld2013}, i.e.
+	under a 
+	general 
+	coordinate change $ x^\mu \to x^{\mu'} $ the determinant $ \det(\tetr{a}{\mu}) = \detTetr $ 
+	transforms as $ \detTetr' = \det \left(\frac{\partial x^\mu}{\partial x^{\mu'}} \right)^W 
+	\cdot \detTetr $ with $ W=+1 $. Therefore, the tetrad's determinant $ \detTetr $ and the 
+	square root of the metric determinant $ \detTetr = \sqrt{-g} $ have weights $ +1 $, as well as 
+	the Lagrangian density in the action integral.} $ +1 $)
+\begin{equation}\label{eqn.LCsymbol.def}
+	\LCsymb^{\lambda\mu\nu\rho} = 
+	\left\{ 
+	\begin{array}{ll}
+	 +1,	& \text{if \ }\lambda\mu\nu\rho \text{ is an even permutation of } 0123,\\[2mm]
+     -1,	& \text{if \ }\lambda\mu\nu\rho \text{ is an odd \ permutation of } 0123,\\[2mm]
+	  \phantom{-}0,	& \text{otehrwise}.
+	\end{array}
+	\right.
 \end{equation}
-where $ \deth = \det(\tetr{a}{\mu}) = \sqrt{-g}$, $ g = \det(g_{\mu\nu}) $, and $ 
-\LCsymb^{{\lambda\mu\nu\rho}} $ is the totally antisymmetric Levi-Civita 
-symbol~\cite{AldrovandiPereiraBook} with the reference $ \LCsymb_{0123} = 1 $, 
-i.e. it is a \emph{tensor-density} of weight $ W=+1 $.
-In particular, we remark that
+Its covariant components $ \LCsymb_{\lambda\mu\nu\rho} $ define a tensor density of weight $ -1 $ 
+with the reference value $ \LCsymb_{0123} = -1 $. One could define an absolute 
+Levi-Civita 
+contravariant $ \LCtens^{\lambda\mu\nu\rho} = h^{-1} \LCsymb^{\lambda\mu\nu\rho} $ 
+and covariant tensors $ \LCtens_{\lambda\mu\nu\rho} = h \LCsymb_{\lambda\mu\nu\rho} $ 
+but for our further considerations, it is important that 
+(see Sec.\,\ref{sec.PDEs})
+\begin{equation}\label{eqn.diff.LCsymb}
+\D{\sigma}\LCsymb^{\lambda\mu\nu\rho} = 0,
+\end{equation}
+whereas for $ \LCtens^{\lambda\mu\nu\rho} $ one has
 \begin{equation}\label{eqn.diff.LeviCivita}
 \D{\sigma}\LCtens^{\lambda\mu\nu\rho} = 
-\pd{\sigma}(\deth^{-1}\LCsymb^{\lambda\mu\nu\rho}) = 
-\LCsymb^{\lambda\mu\nu\rho}\pd{\sigma}\deth^{-1} = 
--\LCsymb^{\lambda\mu\nu\rho}\deth^{-1}\itetr{\eta}{a}\pd{\sigma}\tetr{a}{\eta} = 
+\pd{\sigma}(\detTetr^{-1}\LCsymb^{\lambda\mu\nu\rho}) = 
+\LCsymb^{\lambda\mu\nu\rho}\pd{\sigma}\detTetr^{-1} = 
+-\LCsymb^{\lambda\mu\nu\rho}\detTetr^{-1}\itetr{\eta}{a}\pd{\sigma}\tetr{a}{\eta} = 
 -\LCtens^{\lambda\mu\nu\rho}\w{\eta}{\sigma\eta}. 
 \end{equation}
-Yet, for the Levi-Civita symbol, we have
-\begin{equation}\label{eqn.diff.LCsymb}
-\D{\sigma}\LCsymb^{\lambda\mu\nu\rho} = 0.
-\end{equation}
+
+
 
 %Similarly, we introduce the Levi-Civita tensor in the tangent Minkowski space
 %\begin{equation}
@@ -394,9 +419,14 @@ torsion:
 \LCsymb^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \qquad \Tors{a}{\mu\nu} = 
 -\frac{1}{2}\LCsymb_{\mu\nu\rho\sigma}\HDT{a\rho\sigma}.
 \end{equation}
-It is important to emphasize that we chose to define the Hodge dual be a 
-\emph{tensor-density} of weight $ W=+1 $, that will be important later for 
+It is important to emphasize that we deliberately chose to define the Hodge dual using the 
+Levi-Civita symbol $ 
+\LCsymb^{\lambda\mu\nu\rho} $ and \emph{not} Levi-Civita tensor $ \LCtens^{\lambda\mu\nu\rho} = 
+\detTetr^{-1} 
+\LCsymb^{\lambda\mu\nu\rho} $ that will be important later for 
 the so-called integrability condition \eqref{integr.HT}.
+Remark that according to the definition \eqref{eqn.Hodge.def}, $ \HDT{a\mu\nu} $ is a  
+\emph{tensor-density} of weight $ +1 $.
 
 
 
@@ -410,7 +440,7 @@ where $ \Lag_{\pd{\lambda}\tetr{a}{\mu}} = \frac{\partial
 form a system of 16 second-order partial differential equations for 16 unknowns $ \tetr{a}{\mu} $.
 
 
-\section{First-order extension}
+\section{First-order extension}\label{sec.PDEs}
 
 From now on, we shall formally treat the frame field $ \tetr{a}{\mu} $ and its gradients $ 
 \pd{\lambda}\tetr{a}{\mu} $ as independent variables and in what follows, we shall rewrite system 
@@ -444,7 +474,8 @@ We note that if the Hodge dual would be defined using the Levi-Civita tensor $
 \LCtens^{\mu\nu\rho\sigma} $ instead of the Levi-Civita symbol, then one would 
 have that $ \D{\mu}\HDT{a\mu\nu} \neq 0 $.
 
-Another consequence of the commutative property of $ \pd{\mu} $ is the energy-momentum
+Another consequence of the commutative property of $ \pd{\mu} $ and the definition of the Hodge 
+dual (based on the Levi-Civita symbol) is the energy-momentum
 conservation law
 \begin{equation}\label{eqn.EM}
 \D{\mu}\Laghodge_{\tetr{a}{\mu}} = 0,
@@ -527,19 +558,30 @@ Therefore, the first-order form of TEGR governing equations to be solved is
 
 \subsection{Frame 4-velocity}
 
-Let us introduce the frame 4-velocity as
-\begin{equation}\label{eqn.4velocity}
+Let us introduce the observer 4-velocity as
+\begin{equation}\label{eqn.4v}
 u^\mu := \itetr{\mu}{\indlat{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu,
 \end{equation}
 then, due to
 \begin{equation}
 u_\mu = g_{\mu\nu} u^\nu = \eta_{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{\indlat{0}} = 
 \eta_{a\indlat{0}}\tetr{a}{\mu} = -\tetr{\indlat{0}}{\mu},
-\end{equation}\label{eqn.4velocity.cov}
+\end{equation}\label{eqn.4v.cov}
 the covariant components are
 \begin{equation}
 u_\mu = -\tetr{\indlat{0}}{\mu}.
 \end{equation}
+
+Also, we may need these velocities expressed in the frames themselves:
+\begin{subequations}\label{eqn.4v.Lagr}
+	\begin{gather}\label{eqn.4v.a}
+		u^a := u^\mu \tetr{a}{\mu} = \itetr{\mu}{\indlat{0}}\tetr{a}{\mu} = \KD{a}{\indlat{0}} = 
+		(1,0,0,0),
+		\\[2mm]
+		u_a := u_\mu \itetr{\mu}{a} =-\tetr{\indlat{0}}{\mu}\itetr{\mu}{a} =-\KD{a}{\indlat{0}} = 
+		(-1,0,0,0).\label{eqn.4v.b}
+	\end{gather}
+\end{subequations}
 
 
 \subsection{Transformation of the torsion equations}\label{sec.transform.potential}
@@ -811,8 +853,8 @@ If we introduce the change of variables
 \begin{equation}
 	\dT{a}{\mu} := \lapse^{-1} \eT{a}{\mu}, \qquad \bT{a}{\mu} := -\lapse^{-1}\hT{a}{\mu}
 \end{equation}
-so that the derivatives of the potential $ \Lagtpo(\dT{a}{\mu},\bT{a}{\mu},\tetr{a}{\mu}) := 
-\LagST(\eT{a}{\mu},\hT{a}{\mu},\tetr{a}{\mu})
+so that the derivatives of the potential $ \Lagtpo(\tetr{a}{\mu},\dT{a}{\mu},\bT{a}{\mu}) := 
+\LagST(\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu})
 $ 
 transform as
 \begin{equation}
@@ -839,11 +881,11 @@ Hence, \eqref{eqn.tpo.1} can be rewritten as
 
 \subsubsection{Case $ \mu = 0 $} 
 
-The $ 0 $-th equations \eqref{eT} and \eqref{hT} are pure spacial constraints
+The $ 0 $-th equations \eqref{eT} and \eqref{hT} are pure spacial (stationary) constraints
 \begin{equation}
-	\pd{i} (\dT{a}{i} + \shift{i}\dT{a}{0}) = \NC{a}{0}, 
+	\pd{k} (\dT{a}{k} + \shift{k}\dT{a}{0}) = \NC{a}{0}, 
 	\qquad
-	\pd{i} \bT{a}{i} = 0.
+	\pd{k} \bT{a}{k} = 0.
 \end{equation}
 
 
@@ -855,9 +897,9 @@ The $ 0 $-th equations \eqref{eT} and \eqref{hT} are pure spacial constraints
 
 
 In the \tegr\ and its $ f(\Tscal) $-extensions the Lagrangian density is a function of the 
-torsion scalar, e.g. in \tegr\ 
+torsion scalar $ \Tscal $, e.g. in \tegr\ 
 \begin{equation}
-	\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = \frac{\deth}{16\pi G} \Tscal,
+	\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = \frac{\detTetr}{16\pi G} \Tscal,
 \end{equation}
 \begin{equation}
 	\Tscal(\tetr{a}{\mu},\Tors{a}{\mu\nu}) := \frac14 g^{\beta\lambda} g^{\mu\gamma} g_{\alpha\eta} 
@@ -883,19 +925,19 @@ It is also possible to express the torsion scalar as $
 \Tscal(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) $:
 \begin{multline}\label{eqn.Tscal.EB}
 	\Tscal(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = 
-	-\frac12 (\ETmix{\hat{0}\lambda}{}\ETmix{\hat{0}}{\ \,\lambda}   +
+	-\frac12 (\ETmix{\indlat{0}\lambda}{}\ETmix{\indlat{0}}{\ \,\lambda}   +
 		      \ETmix{\ \,\lambda}{\beta} \ETmix{\beta}{\ \,\lambda}  +
 			  \ETmix{\lambda}{\ \,\beta}\ETmix{\beta}{\ \,\lambda}   -
 			  2\ETmix{\lambda}{\ \,\lambda}\ETmix{\beta}{\ \,\beta} )
 			  \\
-	+ \frac12 (  \BTmix{}{\hat{0}\lambda}\BTmix{\hat{0}\lambda}{}
+	+ \frac12 (  \BTmix{}{\indlat{0}\lambda}\BTmix{\indlat{0}\lambda}{}
 	           - \BTmix{\ \,\lambda}{\lambda}\BTmix{\ \,\beta}{\beta}
 	           + 2\BTmix{\lambda\beta}{}\BTmix{}{\beta\lambda}
 	           )
 	          \\
 	          + \LCsymb_{\lambda\gamma\eta\rho} u^\eta 
-	          (\ETmix{\lambda\gamma}{}\BTmix{\hat{0}\rho}{} + 2 
-	          \ET{\hat{0}\lambda}{}\BTmix{\gamma\rho}{}).
+	          (\ETmix{\lambda\gamma}{}\BTmix{\indlat{0}\rho}{} + 2 
+	          \ET{\indlat{0}\lambda}{}\BTmix{\gamma\rho}{}).
 \end{multline}
 
 
@@ -1038,7 +1080,7 @@ Hence, $ \NC{a}{\mu} $ becomes
 + ( u_\nu \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} - 
 \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda})\itetr{\nu}{a}u^\mu,
 \end{multline}
-which, using the fact that $ \itetr{\nu}{a}u_\nu = \itetr{\nu}{a} \tetr{\indlat{0}}{\nu} = 
+which, using the fact that $ u_a := \itetr{\nu}{a}u_\nu = \itetr{\nu}{a} \tetr{\indlat{0}}{\nu} = 
 -\KD{\indlat{0}}{a} $, can be also rewritten as
 \begin{multline}\label{app.eqn.Noether2}
 \NC{a}{\mu} = 
@@ -1050,7 +1092,7 @@ which, using the fact that $ \itetr{\nu}{a}u_\nu = \itetr{\nu}{a} \tetr{\indlat{
 \LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}} \right) \\ 
 - \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda}\itetr{\nu}{a}u^\mu.
 \end{multline}
-Finally, bearing in mind that, for $ a=\hat{0} $, the last term vanishes due to $ 
+Finally, bearing in mind that, for $ a=\indlat{0} $, the last term vanishes due to $ 
 \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\itetr{\nu}{a} =  
 \LCsymb_{\nu\alpha\beta\lambda}u^\alpha u^\nu = 0$, the current $ \NC{a}{\mu} $ can be also written 
 as
@@ -1061,10 +1103,10 @@ as
 	- (\hT{b}{\lambda} \LagST_{\hT{b}{\lambda}} 
 	+ \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} )u^\mu
 	+ \LCsymb^{\mu\alpha\beta\lambda} u_\alpha 
-	\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}},	& a=\hat{0},  \\[3mm] 
+	\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}},	& a=\indlat{0},  \\[3mm] 
 	-\LagST_{\tetr{a}{\mu}}	
 	- \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda}\itetr{\nu}{a}u^\mu & a = 
-	\hat{1},\hat{2},\hat{3}. \\ 
+	\indlat{1},\indlat{2},\indlat{3}. \\ 
 	\end{array} 
 	\right.
 \end{equation}

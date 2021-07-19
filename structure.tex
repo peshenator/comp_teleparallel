@@ -25,7 +25,7 @@ beramono, % Use the Bera Mono font for monospaced text (\texttt)
 pdfspacing, % Makes use of pdftex’ letter spacing capabilities via the microtype package
 dottedtoc % Dotted lines leading to the page numbers in the table of contents
 ]{classicthesis} % The layout is based on the Classic Thesis style
-\usepackage{hyperref}
+%\usepackage{hyperref}
 
 \usepackage{arsclassica} % Modifies the Classic Thesis package
 
@@ -50,6 +50,9 @@ dottedtoc % Dotted lines leading to the page numbers in the table of contents
 
 \usepackage[title]{appendix}
 
+\usepackage[symbol]{footmisc}
+
+\usepackage{hyperref}
 
 %----------------------------------------------------------------------------------------
 %	THEOREM STYLES
@@ -63,22 +66,6 @@ dottedtoc % Dotted lines leading to the page numbers in the table of contents
 
 \theoremstyle{remark} % Define theorem styles here based on the remark style (used for remarks and notes)
 
-%----------------------------------------------------------------------------------------
-%	HYPERLINKS
-%---------------------------------------------------------------------------------------
-
-\hypersetup{
-%draft, % Uncomment to remove all links (useful for printing in black and white)
-colorlinks=true, breaklinks=true, bookmarks=true,bookmarksnumbered,
-urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, % Link colors
-pdftitle={}, % PDF title
-pdfauthor={\textcopyright}, % PDF Author
-pdfsubject={}, % PDF Subject
-pdfkeywords={}, % PDF Keywords
-pdfcreator={pdfLaTeX}, % PDF Creator
-pdfproducer={LaTeX with hyperref and ClassicThesis} % PDF producer
-}
-
 
 %----------------------------------------------------------------------------------------
 %	BIBLATEX
@@ -91,7 +78,7 @@ backref,backrefstyle=none,maxbibnames=99]{biblatex}
   backrefpages = {Cited on pp\adddot}%
 }
 
-\bibliography{library}
+\bibliography{biblio}
 
 \renewcommand*{\bibfont}{\footnotesize}
 
@@ -128,3 +115,19 @@ backref,backrefstyle=none,maxbibnames=99]{biblatex}
      \dp\mytempbox\mytemplen
      \colorbox{cream}{\hspace{1em}\usebox{\mytempbox}\hspace{1em}}}
  \makeatother
+ 
+ %----------------------------------------------------------------------------------------
+ %	HYPERLINKS
+ %---------------------------------------------------------------------------------------
+ 
+ \hypersetup{
+ 	%draft, % Uncomment to remove all links (useful for printing in black and white)
+ 	colorlinks=true, breaklinks=true, bookmarks=true,bookmarksnumbered,
+ 	urlcolor=webbrown, linkcolor=RoyalBlue, citecolor=webgreen, % Link colors
+ 	pdftitle={}, % PDF title
+ 	pdfauthor={\textcopyright}, % PDF Author
+ 	pdfsubject={}, % PDF Subject
+ 	pdfkeywords={}, % PDF Keywords
+ 	pdfcreator={pdfLaTeX}, % PDF Creator
+ 	pdfproducer={LaTeX with hyperref and ClassicThesis} % PDF producer
+ }
