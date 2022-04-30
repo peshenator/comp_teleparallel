@@ -34,6 +34,7 @@ BCOR5mm, % Binding correction
 \usepackage[hmarginratio=1:1,top=25mm,left=30mm,columnsep=25pt]{geometry}
 \usepackage{relsize} % e.g. used for \mathsmaller
 \usepackage{bm}
+\usepackage{showlabels}
 
 
 \newcommand{\xx}{\mathbf{x}}
@@ -72,6 +73,8 @@ BCOR5mm, % Binding correction
 \newcommand{\F}[2]{F^{\ #1}_{\mathsmaller#2}}
 \newcommand{\hatF}[2]{\hat{F}^{\ #1}_{\mathsmaller#2}}
 \newcommand{\A}[2]{A^{\mathsmaller#1}_{\ #2}}
+\newcommand{\mg}[1]{\kappa_{#1}}			% Minkowski metric
+\newcommand{\MG}[1]{\kappa^{#1}}			% inverse Minkowski metric
 
 \newcommand{\pdd}[1]{{\bm{\partial}_{#1}}}
 \newcommand{\dx}[1]{{\bm{\mathrm{d}x}^{#1}}}
@@ -80,7 +83,7 @@ BCOR5mm, % Binding correction
 \newcommand{\cobas}[1]{\bm{h}_{#1}}
 
 \newcommand{\tetrsymbol}{h}
-\newcommand{\itetrsymbol}{\theta}
+\newcommand{\itetrsymbol}{\eta}
 \newcommand{\itetr}[2]{\itetrsymbol^{#1}_{\phantom{#1}#2}}
 \newcommand{\tetr}[2]{\tetrsymbol^{#1}_{\phantom{#1}#2}}
 \newcommand{\detTetr}{\tetrsymbol}
@@ -96,13 +99,19 @@ BCOR5mm, % Binding correction
 \newcommand{\Torsl}[1]{T_{#1}}
 \newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
 \newcommand{\ETmix}[2]{E^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\eT}[2]{D_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\dT}[2]{\mathcal{D}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric 
+\newcommand{\dT}[2]{D_{#1}^{\phantom{#1}\,#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\ddT}[2]{\mathcal{D}_{#1}^{\phantom{#1}\,#2}}	%Torsion decomposition, analog of 
+\newcommand{\dddT}[2]{\mathtt{d}_{#1}^{\phantom{#1}\,#2}}	%Torsion decomposition, analog of 
+%%%Electric 
 %field
 \newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\BTmix}[2]{B^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\hT}[2]{H^{#1#2}}	%Torsion decomposition, analog of Magnetic field
-\newcommand{\bT}[2]{\mathcal{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\bT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\bbT}[2]{\mathcal{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\bbbT}[2]{\mathtt{b}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\bbbTmix}[2]{\mathtt{b}^{#1}_{#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\bbTmix}[2]{\mathcal{B}^{#1}_{#2}}
+\newcommand{\hT}[2]{H_{#1#2}}	%dual to B
 \newcommand{\W}[2]{\mathcal{W}^{#1}_{\phantom{#1}#2}}
 \newcommand{\w}[2]{W^{#1}_{\phantom{#1}#2}}
 \newcommand{\FI}{Fock-Ivanenko}
@@ -125,7 +134,7 @@ BCOR5mm, % Binding correction
 \newcommand{\HDmix}{\accentset{\star}{T}}
 \newcommand{\KD}[2]{\delta^{#1}_{\,\,#2}}
 \newcommand{\NC}[2]{J^{\phantom{#1}#2}_{#1}}
-\newcommand{\indlat}[1]{\hat{\mathsmaller{#1}}}
+\newcommand{\indalg}[1]{\hat{\mathsmaller{#1}}}
 
 \newcommand{\TorsConj}[2]{\mathbb{T}_{#1}^{\phantom{#1}#2}}
 \newcommand{\HTConj}[1]{\accentset{\star}{\mathbb{T}}_{#1}}
@@ -133,8 +142,9 @@ BCOR5mm, % Binding correction
 \newcommand{\Hbb}[2]{\mathbb{H}_{#1#2}}
 \newcommand{\lapse}{\alpha}
 \newcommand{\shift}[1]{\beta^{#1}}
-\newcommand{\Tscal}{\mathbb{T}}		% torsion scalar
-
+\newcommand{\Tscal}{\mathcal{T}}		% torsion scalar
+\newcommand{\projector}[2]{\Delta^{#1}_{\ #2}}
+\newcommand{\Hscal}{\mathcal{H}}		% torsion scalar
 
 \hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in 
 %words with dashes where 
@@ -146,7 +156,8 @@ BCOR5mm, % Binding correction
 %	TITLE AND AUTHOR(S)
 %----------------------------------------------------------------------------------------
 
-\title{\large\normalfont\spacedallcaps{On a first-order hyperbolic reduction of the pure tetrad 
+\title{\large\normalfont\spacedallcaps{A first-order symmetric hyperbolic reduction of the pure 
+tetrad 
 teleparallel gravity}} % The article 
 %title
 
@@ -200,7 +211,8 @@ teleparallel gravity}} % The article
 
 \section*{Abstract} % This section will not appear in the table of contents due to the star 
 % (\section*)
-We deduce a first-order reduction of the second-order $ f(T) $ teleparallel gravity field 
+Being motivated by solving the Einstein field equations numerically, we derive a first-order 
+reduction of the second-order $ f(T) $ teleparallel gravity field 
 equations 
 in the pure-tetrad formulation (no spin connection). The first-order reduction is then can be used 
 in the 3+1 split of the governing equations and subsequently in the numerical simulations. 
@@ -263,7 +275,7 @@ Recall that the frames $ \dx{\mu} $ and $ \pdd{\mu} $ are \emph{holonomic}.
 
 In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
 which is a Minkowski space spanned by tetrad $ \{ \bas{a} \}$ and equipped with the 
-Minkowski metric $ g_{ab} $ with the signature $ 
+Minkowski metric $ \mg{ab} $ with the signature $ 
 (-,+,+,+) $. Similarly, there is the 
 corresponding cotangent Minkowski space spanned by the co-frames $ \{ \cobas{a} \}$. It is assumed 
 that the frames $ \bas{a} $ and $ \cobas{a} $ are non-holonomic in general.
@@ -282,7 +294,7 @@ with $ \tetr{a}{\mu} $ being the inverse of $ \itetr{\mu}{a} $, i.e.
 
 
 \begin{equation}
-	g_{\mu\nu} = g_{ab} \tetr{a}{\mu}\tetr{b}{\nu}
+	g_{\mu\nu} = \mg{ab} \tetr{a}{\mu}\tetr{b}{\nu}, \qquad \mg{ab} = \text{diag}(-1,1,1,1).
 \end{equation}
 
 
@@ -305,7 +317,10 @@ where $ \w{a}{\mu\nu} = \tetr{a}{\lambda}\w{\lambda}{\mu\nu}$ and
 \w{\lambda}{\mu\nu} := 
 \itetr{\lambda}{a}\pd{\mu} \tetr{a}{\nu}
 \end{equation}
-is the \We\ connection \cite{AldrovandiPereiraBook,KleinertMultivalued}.
+is the \We\ connection\footnote{Note that we use a different convention on the positioning of the 
+lower indices of the \We\ connection $ \w{a}{\mu\nu} = \pd{\mu}\tetr{a}{\nu} $ than in 
+\cite{AldrovandiPereiraBook}. Namely, the derivative index goes first.}
+\cite{AldrovandiPereiraBook,KleinertMultivalued}.
 
 
 Note that while the spacetime derivatives commute
@@ -361,7 +376,7 @@ Its covariant components $ \LCsymb_{\lambda\mu\nu\rho} $ define a tensor density
 with the reference value $ \LCsymb_{0123} = -1 $. One could define an absolute 
 Levi-Civita 
 contravariant $ \LCtens^{\lambda\mu\nu\rho} = h^{-1} \LCsymb^{\lambda\mu\nu\rho} $ 
-and covariant tensors $ \LCtens_{\lambda\mu\nu\rho} = h \LCsymb_{\lambda\mu\nu\rho} $ 
+and covariant $ \LCtens_{\lambda\mu\nu\rho} = h \LCsymb_{\lambda\mu\nu\rho} $ tensors  
 but for our further considerations, it is important that 
 (see Sec.\,\ref{sec.PDEs})
 \begin{equation}\label{eqn.diff.LCsymb}
@@ -430,7 +445,7 @@ Remark that according to the definition \eqref{eqn.Hodge.def}, $ \HDT{a\mu\nu} $
 
 
 
-The Euler-Lagrange equation for $ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) $ is
+The Euler-Lagrange equation for $ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = \Lag(\tetr{a}{\mu},\w{a}{\lambda\nu}) $ is
 \begin{equation}\label{eqn.EL}
 \pd{\lambda}(\Lag_{\pd{\lambda}\tetr{a}{\mu}}) = \Lag_{\tetr{a}{\mu}},
 \end{equation}
@@ -533,7 +548,8 @@ with
 being the \emph{total} (gravity+matter) \emph{energy-momentum tensor density} 
 (of weight $ +1 $).
 
-Therefore, the first-order form of TEGR governing equations to be solved is
+Therefore, the first-order form of the teleparallel gravity field equations to be written in the 3+1 form  
+is
 \begin{subequations}\label{eqn.1st.order.TEGR}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
 		\D{\nu}(\LCsymb^{\mu\nu\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}}) 
@@ -560,25 +576,25 @@ Therefore, the first-order form of TEGR governing equations to be solved is
 
 Let us introduce the observer 4-velocity as
 \begin{equation}\label{eqn.4v}
-u^\mu := \itetr{\mu}{\indlat{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu,
+u^\mu := \itetr{\mu}{\indalg{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu,
 \end{equation}
 then, due to
 \begin{equation}
-u_\mu = g_{\mu\nu} u^\nu = \eta_{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{\indlat{0}} = 
-\eta_{a\indlat{0}}\tetr{a}{\mu} = -\tetr{\indlat{0}}{\mu},
+u_\mu = g_{\mu\nu} u^\nu = \mg{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{\indalg{0}} = 
+\mg{a\indalg{0}}\tetr{a}{\mu} = -\tetr{\indalg{0}}{\mu},
 \end{equation}\label{eqn.4v.cov}
 the covariant components are
 \begin{equation}
-u_\mu = -\tetr{\indlat{0}}{\mu}.
+u_\mu = -\tetr{\indalg{0}}{\mu}.
 \end{equation}
 
 Also, we may need these velocities expressed in the frames themselves:
 \begin{subequations}\label{eqn.4v.Lagr}
 	\begin{gather}\label{eqn.4v.a}
-		u^a := u^\mu \tetr{a}{\mu} = \itetr{\mu}{\indlat{0}}\tetr{a}{\mu} = \KD{a}{\indlat{0}} = 
+		u^a := u^\mu \tetr{a}{\mu} = \itetr{\mu}{\indalg{0}}\tetr{a}{\mu} = \KD{a}{\indalg{0}} = 
 		(1,0,0,0),
 		\\[2mm]
-		u_a := u_\mu \itetr{\mu}{a} =-\tetr{\indlat{0}}{\mu}\itetr{\mu}{a} =-\KD{a}{\indlat{0}} = 
+		u_a := u_\mu \itetr{\mu}{a} =-\tetr{\indalg{0}}{\mu}\itetr{\mu}{a} =-\KD{a}{\indalg{0}} = 
 		(-1,0,0,0).\label{eqn.4v.b}
 	\end{gather}
 \end{subequations}
@@ -593,7 +609,7 @@ is necessary to perform a 3+1 split \cite{Alcubierre2008}.
 
 We then define (note that $ \ET{a}{\mu} $ is a tensor, while $ \BT{a}{\mu} $ is a tensor-density)
 \begin{equation}
-\ET{a}{\mu} := u^\nu \Tors{a}{\mu\nu}, \qquad  \BT{a}{\mu} := u_\nu\HDT{a\mu\nu}
+\ET{a}{\mu} := \Tors{a}{\mu\nu} u^\nu, \qquad  \BT{a}{\mu} := \HDT{a\mu\nu} u_\nu
 \end{equation}
 
 
@@ -617,9 +633,11 @@ We assume that the Lagrangian density can be \textit{equivalently} written
 \end{equation}
 It then can be shown that the derivatives of these different representations of the Lagrangian are related as
 \begin{equation}
-\Laghodge_{\HDT{a\mu\nu}}u^\nu = -\frac12\LagBE_{\BT{a}{\mu}}, 
+\Laghodge_{\HDT{a\mu\nu}}u^\nu = -\frac12\left( \LagBE_{\BT{a}{\mu}} +u_\mu 
+\LagBE_{\BT{a}{\lambda}} u^\lambda \right), 
 \qquad 
-\Lagtors_{\Tors{a}{\mu\nu}}u_\nu = -\frac12\LagBE_{\ET{a}{\mu}},
+\Lagtors_{\Tors{a}{\mu\nu}}u_\nu = -\frac12\left( \LagBE_{\ET{a}{\mu}} + u^\mu 
+\LagBE_{\ET{a}{\lambda}} u_\lambda \right),
 \end{equation}
 and hence, the PDEs \eqref{eqn.1st.order.EL} and \eqref{eqn.1st.order.integr} 
 can be written as (see Appendix~\eqref{app.sec.Deqn})
@@ -635,19 +653,21 @@ can be written as (see Appendix~\eqref{app.sec.Deqn})
 \end{subequations}
 where the source $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ yet to be developed.
 
-Let us now introduce a new potential $ \LagST(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) $ as a partial 
+Let us now introduce a new potential $ \LagST(\tetr{a}{\mu},\bT{a}{\mu},\dT{a}{\mu}) $ as a partial 
 Legendre transform of the Lagrangian
 \begin{equation}\label{eqn.Legandre1}
- \LagST(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) := \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
+ \LagST(\tetr{a}{\mu},\bT{a}{\mu},\dT{a}{\mu}) := \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - \LagBE,
 \end{equation}
-and new state variables (note that both $ \eT{a}{\mu} $ and $ \hT{a}{\mu} $ are now 
+and new state variables (note that both $ \dT{a}{\mu} $ and $ \bT{a}{\mu} $ are now 
 \emph{tensor-densities})
 \begin{equation}\label{eqn.Legandre2}
-\eT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \hT{a}{\mu} = -\BT{a}{\mu}, \qquad \tetr{a}{\mu},
+\dT{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \bT{a}{\mu} = -\BT{a}{\mu}, \qquad 
+\tetr{a}{\mu},
 \end{equation}
+({\color{blue}we use the same letter `$ B $' for the variable with the minus, it's not good})
 such that we have
 \begin{equation}\label{eqn.Legandre3}
-\LagST_{\eT{a}{\mu}} = \ET{a}{\mu}, \qquad \LagST_{\hT{a}{\mu}} = \LagBE_{\BT{a}{\mu}},
+\LagST_{\dT{a}{\mu}} = \ET{a}{\mu}, \qquad \LagST_{\bT{a}{\mu}} = \LagBE_{\BT{a}{\mu}},
 \qquad \LagST_{\tetr{a}{\mu}} = - \LagBE_{\tetr{a}{\mu}}.
 \end{equation}
 This allows us to rewrite equations \eqref{eqn.1st.order.integr} and \eqref{eqn.1st.order.EL} in 
@@ -655,34 +675,34 @@ the form similar to the non-linear
 electrodynamics of moving medium~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
 \begin{subequations}
 	\begin{align}
-		\D{\nu}(u^\mu\eT{a}{\nu} - u^\nu \eT{a}{\mu} + 
+		\D{\nu}(u^\mu\dT{a}{\nu} - u^\nu \dT{a}{\mu} + 
 		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
-		\LagST_{\hT{a}{\rho}})
+		\LagST_{\bT{a}{\rho}})
 		& =	\NC{a}{\mu},\\[2mm]
-		\D{\nu}(u^\mu \hT{a}{\nu} - u^\nu \hT{a}{\mu} - 
+		\D{\nu}(u^\mu \bT{a}{\nu} - u^\nu \bT{a}{\mu} - 
 		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
-		\LagST_{\eT{a}{\rho}}) 
+		\LagST_{\dT{a}{\rho}}) 
 		& = 0,
 \end{align}
 \end{subequations}
-with $\hT{a}{\mu}$ and $\eT{a}{\mu}$ being the analog of the magnetic and electric fields, 
+with $\bT{a}{\mu}$ and $\dT{a}{\mu}$ being the analog of the magnetic and electric fields, 
 accordingly.
 
 
 Finally, we need to express also the Noether current $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ in 
 terms of the 
-new potential $ \LagST $ and the fields $ \eT{a}{\mu} $ and $ \hT{a}{\mu} $. One has (see details 
+new potential $ \LagST $ and the fields $ \dT{a}{\mu} $ and $ \bT{a}{\mu} $. One has (see details 
 in Appendix~\ref{app.sec.NC})
 \begin{equation}\label{eqn.J}
 	\NC{a}{\mu} = \left\{
 	\begin{array}{ll}
-	-\LagST_{\tetr{\indlat{0}}{\mu}} 
-	- (\hT{b}{\lambda} \LagST_{\hT{b}{\lambda}} 
-	+ \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} )u^\mu
+	-\LagST_{\tetr{\indalg{0}}{\mu}} 
+	- (\bT{b}{\lambda} \LagST_{\bT{b}{\lambda}} 
+	+ \dT{b}{\lambda} \LagST_{\dT{b}{\lambda}} )u^\mu
 	+ \LCsymb^{\mu\alpha\beta\lambda} u_\alpha 
-	\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}},	& a=\hat{0},  \\[3mm] 
+	\LagST_{\dT{b}{\beta}} \LagST_{\bT{b}{\lambda}},	& a=\hat{0},  \\[3mm] 
 	-\LagST_{\tetr{a}{\mu}}	
-	- \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda}\itetr{\nu}{a}u^\mu & a = 
+	- \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\dT{b}{\beta}\bT{b}{\lambda}\itetr{\nu}{a}u^\mu & a = 
 	\hat{1},\hat{2},\hat{3}. \\ 
 	\end{array} 
 	\right.
@@ -710,83 +730,58 @@ Now, contracting \eqref{eqn.1st.order.tetrad} with the 4-velocity $ u^\mu $, and
 change of variables and potentials described in Section\,\ref{sec.transform.potential}, the 
 resulting equation reads as
 \begin{equation}
-	u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) = \LagST_{\eT{a}{\nu}},
+	u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) = \LagST_{\dT{a}{\nu}},
 \end{equation}
 Furthermore, using the identity $ \itetr{\mu}{b}\D{\nu}\tetr{a}{\nu} = - 
-\tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition $ u^\mu = \itetr{\mu}{\indlat{0}} 
+\tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition $ u^\mu = \itetr{\mu}{\indalg{0}} 
 $, the 
 latter equation can be rewritten as
 \begin{equation}
-	u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu = \LagST_{\eT{a}{\nu}},
+	u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu = \LagST_{\dT{a}{\nu}},
 \end{equation}
 
+
+\subsection{Transformation of the energy-momentum}
 Now, we express the energy-momentum $ \EM{\mu}{\nu} $ \eqref{eqn.EM4} in terms of new variables 
 \eqref{eqn.Legandre2} and 
-the potential $ \LagST(\tetr{a}{\mu},\hT{a}{\mu},\eT{a}{\mu}) $. It can be shown (see 
-expression \eqref{app.eqn.Noether2} 
-for $ \Laghodge_{\tetr{a}{\mu}} $ in 
-Appendix~\ref{app.sec.NC}) that the tetrad part $ 
-\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} $ expands as
-\begin{align}
-	\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} & =
-    -\tetr{a}{\nu} \LagST_{\tetr{a}{\mu}} \nonumber\\
-   & + u_\nu u^\mu(\hT{a}{\lambda} \LagST_{\hT{a}{\lambda}} + \eT{a}{\lambda} 
-   \LagST_{\eT{a}{\lambda}}) 
-   \nonumber\\
-%   &- u^\mu u_\lambda \eT{a}{\lambda} \LagST_{\eT{a}{\nu}} - u_\nu u^\lambda 
-%   \hT{a}{\mu}\LagST_{\hT{a}{\lambda}} \nonumber\\
-   &-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \LagST_{\eT{a}{\beta}} \LagST_{\hT{a}{\lambda}}
-   -\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \eT{a}{\beta}\hT{a}{\lambda}
-\end{align}
-
-On the other hand, the torsion part $ - 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
-(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} $ reads
-\begin{align}
-	- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
-	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} & = -\LagST 
-	\KD{\mu}{\nu}\nonumber\\
-	& + \eT{a}{\mu}\LagST_{\eT{a}{\nu}}+ \hT{a}{\mu}\LagST_{\hT{a}{\nu}} \nonumber\\
-	& - u_\nu u^\mu(\hT{a}{\lambda} \LagST_{\hT{a}{\lambda}} + \eT{a}{\lambda} 
-	\LagST_{\eT{a}{\lambda}}) 
-	\nonumber\\
-	%   &- u^\mu u_\lambda \eT{a}{\lambda} \LagST_{\eT{a}{\nu}} - u_\nu u^\lambda 
-	%   \hT{a}{\mu}\LagST_{\hT{a}{\lambda}} \nonumber\\
-	&-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \mathcal{\LagST}_{\eT{a}{\beta}} 
-	\LagST_{\hT{a}{\lambda}}
-	-\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \eT{a}{\beta}\hT{a}{\lambda}.
-\end{align}
-
-Therefore, the total energy-momentum  now reads
-\begin{equation}
+the potential $ \LagST(\tetr{a}{\mu},\bT{a}{\mu},\dT{a}{\mu}) $. It now reads
+\begin{equation}\label{eqn.EM.BD}
 	\EM{\mu}{\nu} = 
-	 \eT{a}{\mu}\LagST_{\eT{a}{\nu}}+ \hT{a}{\mu}\LagST_{\hT{a}{\nu}}
-	 -\tetr{a}{\nu} \LagST_{\tetr{a}{\mu}} 
-	- \LagST \KD{\mu}{\nu}.
+	- \tetr{a}{\nu} \LagST_{\tetr{a}{\mu}}
+	+ \dT{a}{\mu}\LagST_{\dT{a}{\nu}} + \bT{a}{\mu}\LagST_{\bT{a}{\nu}}
+	- (
+	\dT{a}{\lambda}\LagST_{\dT{a}{\lambda}}+ \bT{a}{\lambda}\LagST_{\bT{a}{\lambda}}
+	-\LagST
+	) \KD{\mu}{\nu}.
 \end{equation}
 
 \subsection{Summary}
 
 Finally, the resulting system of first-order governing equations for the 
-unknowns $ \{\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu}\} $  reads
-\begin{subequations}
+unknowns $ \{\tetr{a}{\mu},\dT{a}{\mu},\bT{a}{\mu}\} $  reads
+\begin{subequations}\label{eq.PDE.4D}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
-		\D{\nu}(u^\mu\eT{a}{\nu} - u^\nu \eT{a}{\mu} + 
+		\D{\nu}(u^\mu\dT{a}{\nu} - u^\nu \dT{a}{\mu} + 
 		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
-		\LagST_{\hT{a}{\rho}})
+		\LagST_{\bT{a}{\rho}})
 		& =	\NC{a}{\mu},\label{eT}\\[2mm]
 %		
-		\D{\nu}(u^\mu \hT{a}{\nu} - u^\nu \hT{a}{\mu} - 
+		\D{\nu}(u^\mu \bT{a}{\nu} - u^\nu \bT{a}{\mu} - 
 		\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
-		\LagST_{\eT{a}{\rho}}) 
+		\LagST_{\dT{a}{\rho}}) 
 		& = 0,\label{hT}\\[2mm]
 %		
-			\pd{\mu}\left( \eT{a}{\mu}\LagST_{\eT{a}{\nu}}+ 
-			\hT{a}{\mu}\LagST_{\hT{a}{\nu}}
-			-\tetr{a}{\nu} \LagST_{\tetr{a}{\mu}} 
-			- \LagST \KD{\mu}{\nu}
-\right) & = 0,\\[2mm]
+		\pd{\mu}\left( 
+			  \tetr{a}{\nu} \LagST_{\tetr{a}{\mu}}
+        	- \dT{a}{\mu}\LagST_{\dT{a}{\nu}} - \bT{a}{\mu}\LagST_{\bT{a}{\nu}}
+        	+ (
+        	\dT{a}{\lambda}\LagST_{\dT{a}{\lambda}}+ \bT{a}{\lambda}\LagST_{\bT{a}{\lambda}}
+        	-\LagST
+        	) \KD{\mu}{\nu}
+        \right) & = 0,\\[2mm]
 %		
-		u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu & = \LagST_{\eT{a}{\nu}},
+		u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu & = \LagST_{\dT{a}{\nu}},
+		\label{tetr}
 	\end{empheq}
 \end{subequations}
 with $ \NC{a}{\mu} $ given by \eqref{eqn.J}.
@@ -805,14 +800,20 @@ with $ \NC{a}{\mu} $ given by \eqref{eqn.J}.
 \section{$ 3+1 $ split}	\label{sec.31}
 %-------------------------------------------------------
 
-The observer Eulerian 4-velocity $ n^\mu $ is associated with the $ \hat{0} $-th column of the 
+WE shall use Latin indices $ i,j,k=1,2,3 $ to denote the spatial components of the spacetime 
+tensors, and Latin indices $ \sA,\sB,\sC = \indalg{1},\indalg{2},\indalg{3} $ to denote the spatial 
+components in the tangent Minkowski space. Additionally, we use $ \indalg{0} $ for time components 
+in the Minkowski space in order to distinguish them from the time components $ \mu,\nu,\ldots
+=0 $ of the spacetime tensors.  The observer Eulerian 4-velocity 
+$ 
+n^\mu $ is associated with the $ \hat{0} $-th column of the 
 inverse frame $ \itetr{\mu}{a} $, while the covariant components $ n_\mu $ of the 4-velocity with 
 the $ 
 \hat{0} $-th raw of the frame field:
-\begin{subequations}
+\begin{subequations}\label{eq.4vel}
 	\begin{align}
-		n^{\mu} &= \itetr{\mu}{\indlat{0}}  = \lapse^{-1}(1,-\shift{i}) = \lapse^{-1}(1,v^i)\\
-		n_\mu   &= - \tetr{\indlat{0}}{\mu} = (-\lapse,0,0,0) 
+		n^{\mu} &= \itetr{\mu}{\indalg{0}}  = \lapse^{-1}(1,-\shift{i}) = \lapse^{-1}(1,v^i)\\
+		n_\mu   &= - \tetr{\indalg{0}}{\mu} = (-\lapse,0,0,0) 
 	\end{align}
 %	\begin{equation}
 %		\tetr{\hat{i}}{\mu} = 
@@ -822,58 +823,101 @@ the $
 %		\itetr{\mu}{\hat{i}} = (0,\tetr{i}{\hat{i}})
 %	\end{equation}
 \end{subequations}
-Here, $ \lapse $ is the \emph{lapse function}, and $ \shift{i} $ is the \emph{shift vector}.
+Here, $ \lapse $ is the \emph{lapse function}, and $ \shift{i} $ is the \emph{shift vector}. Also, 
+$ \beta^{\sA} = \tetr{\sA}{i}\beta^i$.
+\begin{equation}
+	\bm{\tetrsymbol} = \left(
+	\begin{array}{cccc}
+		\alpha          & 0 & 0 & 0 \\[1mm]
+		\beta^{\indalg{1}} &  &  &  \\
+		\beta^{\indalg{2}} &  & \left (\itetr{i}{\sA}\right )^{-1} &  \\
+		\beta^{\indalg{3}} &  &  & 
+	\end{array}
+	\right) ,
+	\quad
+	\bm{h}^{-1} = \bm{\itetrsymbol} = \left(
+	\begin{array}{rlcl}
+		1/\alpha          & 0 & 0 & 0 \\[1mm]
+		-\beta^{1}/\alpha &  &  &  \\
+		-\beta^{2}/\alpha &  & \itetr{i}{\sA} &  \\
+		-\beta^{3}/\alpha &  &  & 
+	\end{array}
+	\right) ,
+\end{equation}
+The metric tensor and its inverse are (e.g. see \cite{Gourgoulhon2012a})
+\begin{equation}
+	g_{\mu\nu} = \left(
+	\begin{array}{cc}
+		-\alpha^2 + \beta_i\beta^i & \beta_i \\[1mm]
+		\beta_i & \gamma_{ij}  \\
+	\end{array}
+	\right) ,
+	\quad
+	g^{\mu\nu} = \left(
+	\begin{array}{cc}
+		-1/\alpha^2       & \beta^i/\alpha^2 \\[1mm]
+		\beta^{i}/\alpha^2 & \gamma^{ij} - \beta^i\beta^j/\alpha^2  \\
+	\end{array}
+	\right) ,
+\end{equation}
+where $ \gamma_{ij} = \kappa_{\sA\sB} \tetr{\sA}{i}\tetr{\sB}{j}$, $ 
+\gamma^{ij} = \left( \gamma_{ij} \right)^{-1}  $, and $ \beta_i =  \gamma_{ij}\beta^j$ 
+according to (5.43) in \cite{Gourgoulhon2012a}.
 
-
-
+\begin{equation}\label{eq.det}
+	\detTetr_4 := \det(\tetr{a}{\mu}) = \alpha \detTetr_3, \qquad \detTetr_3 := \det(\tetr{\sA}{i}).
+\end{equation}
 
 %=========================================================
 \subsection{$ 3+1 $ split of the torsion PDEs}	\label{ssec.31.tors}
 %=========================================================
+
+\IP{check the sign when you do replacement of $ \LCsymb^{0ijk} $ by $ \LCsymb^{ijk} $. It should be 
+$ \LCsymb^{0ijk} = \LCsymb^{ijk} $.}
 
 \subsubsection{Case $ \mu = i=1,2,3 $} 
 
 Equations \eqref{eT} and \eqref{hT} read
 \begin{subequations}\label{eqn.tpo.1}
 	\begin{align}
-		\pd{t} (\shift{i} \lapse^{-1} \eT{a}{0} + \lapse^{-1}\eT{a}{i}) + \pd{k}(\shift{i} 
-		\lapse^{-1}\eT{a}{k} - \shift{k}\lapse^{-1}\eT{a}{i}  + \LCsymb^{ikj} \lapse \,
-		\LagST_{\hT{a}{j}}) & 
+		\pd{t} \lapse^{-1}\dT{a}{i} + \pd{k}(\shift{i} 
+		\lapse^{-1}\dT{a}{k} - \shift{k}\lapse^{-1}\dT{a}{i}  - \LCsymb^{ikj} \lapse \,
+		\LagST_{\bT{a}{j}}) & 
 		= -\NC{a}{i}, \\[2mm]
 %
-		\pd{t} (-\lapse^{-1}\hT{a}{i}) + \pd{k}(\shift{k} 
-		\lapse^{-1}\hT{a}{i} - \shift{i}\lapse^{-1}\hT{a}{k}  + \LCsymb^{ikj} \lapse \,
-		\LagST_{\eT{a}{j}}) & 
+		\pd{t} (-\lapse^{-1}\bT{a}{i}) + \pd{k}(\shift{k} 
+		\lapse^{-1}\bT{a}{i} - \shift{i}\lapse^{-1}\bT{a}{k}  + \LCsymb^{ikj} \lapse \,
+		\LagST_{\dT{a}{j}}) & 
 		= 0 .
 	\end{align}
 \end{subequations}
-
-
-If we introduce the change of variables
-\begin{equation}
-	\dT{a}{\mu} := \lapse^{-1} \eT{a}{\mu}, \qquad \bT{a}{\mu} := -\lapse^{-1}\hT{a}{\mu}
+Because of the factor $ \alpha^{-1} $ everywhere in these equations, it is convenient to rescale 
+the 
+variables 
+\begin{equation}\label{eq.varDB.final}
+	\ddT{a}{\mu} := \lapse^{-1} \dT{a}{\mu}, \qquad \bbT{a}{\mu} := -\lapse^{-1}\bT{a}{\mu}
 \end{equation}
-so that the derivatives of the potential $ \Lagtpo(\tetr{a}{\mu},\dT{a}{\mu},\bT{a}{\mu}) := 
-\LagST(\tetr{a}{\mu},\eT{a}{\mu},\hT{a}{\mu})
+so that the derivatives of the potential $ \Lagtpo(\tetr{a}{\mu},\ddT{a}{\mu},\bbT{a}{\mu}) := 
+\LagST(\tetr{a}{\mu},\dT{a}{\mu},\bT{a}{\mu})
 $ 
 transform as
 \begin{equation}
-	\Lagtpo_{\dT{a}{\mu}} =  \lapse \, \LagST_{\eT{a}{\mu}},
+	\Lagtpo_{\ddT{a}{\mu}} =  \lapse \, \LagST_{\dT{a}{\mu}},
 	\qquad
-	\Lagtpo_{\bT{a}{\mu}} = -\lapse \, \LagST_{\hT{a}{\mu}}.
+	\Lagtpo_{\bbT{a}{\mu}} = -\lapse \, \LagST_{\bT{a}{\mu}}.
 \end{equation}
 Hence, \eqref{eqn.tpo.1} can be rewritten as
 \begin{subequations}\label{eqn.tpo.2}
 	\begin{align}
-	\pd{t} (\dT{a}{i} + \shift{i} \dT{a}{0}) + \pd{k}(\shift{i} 
-	\dT{a}{k} - \shift{k}\dT{a}{i}  - \LCsymb^{ikj} \,
-	\Lagtpo_{\bT{a}{j}}) & 
-	= -\NC{a}{i}, \\[2mm]
+	\pd{t} \ddT{a}{i} + \pd{k}(\shift{i} 
+	\ddT{a}{k} - \shift{k}\ddT{a}{i}  - \LCsymb^{ikj} \,
+	\Lagtpo_{\bbT{a}{j}}) & 
+	= -\NC{a}{i}, \label{eqn.tpo.D}\\[2mm]
 	%
-	\pd{t} \bT{a}{i} + \pd{k}(\shift{i} 
-	\bT{a}{k} - \shift{k}\bT{a}{i}  + \LCsymb^{ikj} 
-	\Lagtpo_{\dT{a}{j}}) & 
-	= 0 .
+	\pd{t} \bbT{a}{i} + \pd{k}(\shift{i} 
+	\bbT{a}{k} - \shift{k}\bbT{a}{i}  + \LCsymb^{ikj} 
+	\Lagtpo_{\ddT{a}{j}}) & 
+	= 0\label{eqn.tpo.B} .
 	\end{align}
 \end{subequations}
 
@@ -881,66 +925,394 @@ Hence, \eqref{eqn.tpo.1} can be rewritten as
 
 \subsubsection{Case $ \mu = 0 $} 
 
-The $ 0 $-th equations \eqref{eT} and \eqref{hT} are pure spacial (stationary) constraints
-\begin{equation}
-	\pd{k} (\dT{a}{k} + \shift{k}\dT{a}{0}) = \NC{a}{0}, 
+The $ 0 $-th equations \eqref{eT} and \eqref{hT} are pure spatial (stationary) constraints
+\begin{equation}\label{eq.div.constr}
+	\pd{k} \ddT{a}{k} = \NC{a}{0}, 
 	\qquad
-	\pd{k} \bT{a}{k} = 0.
+	\pd{k} \bbT{a}{k} = 0.
 \end{equation}
 
 
+\subsection{Tetrad PDE}
+
+It seems that the components $ \tetr{a}{0} $ are abandoned (they are not used in any equations). 
+Therefore, we are only interested in the components $ \tetr{a}{k} $. Thus, using the definition of 
+the 4-velocity \eqref{eq.4vel}, equation \eqref{tetr} can be written as
+\begin{equation}\label{eq.tetr.3+1}
+	\pd{t} \tetr{a}{k} - \beta^i \pd{i} \tetr{a}{k} - \tetr{a}{i} \pd{k} \beta^i = 
+	\Lagtpo_{\ddT{a}{k}}.
+\end{equation}
+
+This equation can be also written in a slightly different form. After adding $ 0\equiv - \beta^i 
+\pd{k}\tetr{a}{i} + \beta^i \pd{k}\tetr{a}{i} $ to the left hand-side of \eqref{eq.tetr.3+1}, one 
+has  
+\begin{equation}\label{eq.tetr.3+1.2}
+	\pd{t} \tetr{a}{k} - \pd{k} (\beta^i \tetr{a}{i}) - \beta^i (\pd{i}\tetr{a}{k} - 
+	\pd{k}\tetr{a}{i}) = 
+	\Lagtpo_{\ddT{a}{k}}.
+\end{equation}
+Finally, using the definition of $ \BT{a}{\mu} $ and $ n_\mu $, we have that 
+\begin{equation}
+	\BT{a}{\mu} = \HDT{a\mu\nu} u_\nu = u_\nu \LCsymb^{\mu\nu\alpha\beta} 
+	\pd{\alpha}\tetr{a}{\beta} = -
+	u_\nu \LCsymb^{\nu\mu\alpha\beta} \pd{\alpha}\tetr{a}{\beta} =
+	\alpha \LCsymb^{0\mu\alpha\beta} \pd{\alpha}\tetr{a}{\beta} 
+\end{equation}
+and hence (use that $ \LCsymb^{0ijk} =\LCsymb^{ijk} $)
+\begin{equation}
+	\BT{a}{k} =  \alpha \LCsymb^{kij}\pd{i}\tetr{a}{j},
+\end{equation}
+or
+\begin{equation}
+	\alpha^{-1}\LCsymb_{klj}v^l \BT{a}{j} = \beta^i (\pd{i}\tetr{a}{k} - \pd{k}\tetr{a}{i}).
+\end{equation}
+Therefore, \eqref{eq.tetr.3+1.2} can be also rewritten as 
+\begin{equation}\label{eq.tetr.3+1.3}
+	\pd{t} \tetr{a}{k} - \pd{k} (\beta^i \tetr{a}{i}) =  
+	\Lagtpo_{\ddT{a}{k}} - \LCsymb_{klj} \beta^l \bbT{a}{j}.
+\end{equation}
+It is not clear yet which form, \eqref{eq.tetr.3+1}, \eqref{eq.tetr.3+1.2}, or 
+\eqref{eq.tetr.3+1.3}, is more suitable for numerical solution.
+
+\subsection{3+1 summary}
 
 
+\subsubsection{Evolution equations}
+\begin{subequations}\label{eq.3+1.summary}
+	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
+		\pd{t} \ddT{a}{i} + \pd{k}(\shift{i} 
+		\ddT{a}{k} - \shift{k}\ddT{a}{i}  - \LCsymb^{ikj} \,
+		\Lagtpo_{\bbT{a}{j}}) 
+		&= -\NC{a}{i},\tag{\ref{eqn.tpo.D}}\\[2mm]
+		%		
+		\pd{t} \bbT{a}{i} + \pd{k}(\shift{i} 
+		\bbT{a}{k} - \shift{k}\bbT{a}{i}  + \LCsymb^{ikj} 
+		\Lagtpo_{\ddT{a}{j}}) 
+		&= 0,\tag{\ref{eqn.tpo.B}}\\[2mm]
+		%		
+		\pd{\mu}\left( \ddT{a}{\mu}\Lagtpo_{\ddT{a}{\nu}}+ 
+		\bbT{a}{\mu}\Lagtpo_{\bbT{a}{\nu}}
+		-\tetr{a}{\nu} \Lagtpo_{\tetr{a}{\mu}} 
+		- \Lagtpo \KD{\mu}{\nu}
+		\right) & = 0,\\[2mm]
+		%		
+		\pd{t} \tetr{a}{k} - \beta^i \pd{i} \tetr{a}{k} - \tetr{a}{i} \pd{k} \beta^i &= 
+		\Lagtpo_{\ddT{a}{k}},
+		\tag{\ref{eq.tetr.3+1}} 
+	\end{empheq}
+\end{subequations}
+
+\subsubsection{Stationary constraints}
+
+\begin{equation}
+	\pd{k} \ddT{a}{k} = \NC{a}{0}, 
+	\qquad
+	\pd{k} \bbT{a}{k} = 0. \tag{\ref{eq.div.constr}}
+\end{equation}
+
+\subsubsection{Algebraic constraints}
+As a consequence of our choice of the $ 3+1 $-split \eqref{eq.4vel} and definitions  and the fact 
+that $ \ET{a}{\mu} u^\mu = 0 $ and $ \BT{a}{\mu} u_\mu = 0$, we have 
+the following algebraic constraints 
+\begin{subequations}\label{eq.constr.alg.EB}
+	\begin{equation}
+		\bbT{\indalg{0}}{\mu} = \bT{\indalg{0}}{\mu} = 0, \qquad \bbT{a}{0} = \bT{a}{0} = 0,
+	\end{equation}
+	\begin{equation}\label{eq.alg.constrE}
+		\ET{\indalg{0}}{0} = W, \qquad \ET{\indalg{0}}{k} = N_k,\qquad  \ET{\sA}{0} = 
+		\beta^j \ET{\sA}{j},
+	\end{equation}
+	\begin{equation}
+		W := \beta^k N_k, \qquad 	N_k := \pd{k} 
+		\ln(\alpha).
+	\end{equation}
+\end{subequations}
+Also, from the expression \eqref{eqn.Tscal.EB1} for $ \LagBE $ we get the expressions of the time 
+component of $ \ddT{a}{\mu} = \alpha^{-1} \dT{a}{\mu} = \alpha^{-1} \frac{\partial \LagBE}{\partial 
+\ET{a}{\mu}} $
+\begin{equation}\label{eq.D0}
+	\ddT{\indalg{0}}{0} = \frac{1}{2\alpha} \left(  \ddT{k}{k} - \frac{\detTetr_3}{2\alpha
+	\varkappa} 
+	\beta^k 
+	N_k \right),
+	\qquad
+	\ddT{\indalg{0}}{k} = -\beta^k \ddT{\indalg{0}}{0} + \frac{\detTetr_3}{\varkappa} \LCsymb_{jli} 
+	\gamma^{jk}\bbT{l}{i},
+	\qquad
+	\ddT{\sA}{0} = -\frac{\detTetr_3}{2\alpha\varkappa}\itetr{k}{\sA} N_k.
+\end{equation}
+
+\begin{equation}\label{eq.D0.tmp}
+	\dT{\indalg{0}}{0} = \frac{1}{2 \alpha} \left(  \dT{k}{k} - \frac{\detTetr_3}{2 
+		\varkappa} 
+	\beta^k 
+	N_k \right),
+	\qquad
+	\dT{\indalg{0}}{k} = -\beta^k \dT{\indalg{0}}{0} - \frac{\detTetr_3}{\varkappa} \LCsymb_{jli} 
+	\gamma^{jk}\bT{l}{i},
+	\qquad
+	\dT{\sA}{0} = -\frac{\detTetr_3}{2\varkappa}\itetr{k}{\sA} N_k.
+\end{equation}
+
+\begin{equation}\label{eq.D0.tmp2}
+	\dT{\indalg{0}}{0} = \frac{1}{2 \alpha} \tetr{\sA}{k}\left(  \dT{\sA}{k} + 
+	\beta^k \dT{\sA}{0} \right),
+	\qquad
+	\dT{\indalg{0}}{k} = -\beta^k \dT{\indalg{0}}{0} - \frac{\detTetr_3}{\varkappa} \LCsymb_{jli} 
+	\gamma^{jk}\bT{l}{i},
+	\qquad
+	\dT{\sA}{0} = -\frac{\detTetr_3}{2\varkappa}\itetr{k}{\sA} N_k.
+\end{equation}
 
 \section{Closure}
 
 
 
 In the \tegr\ and its $ f(\Tscal) $-extensions the Lagrangian density is a function of the 
-torsion scalar $ \Tscal $, e.g. in \tegr\ 
-\begin{equation}
-	\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = \frac{\detTetr}{16\pi G} \Tscal,
-\end{equation}
-\begin{equation}
-	\Tscal(\tetr{a}{\mu},\Tors{a}{\mu\nu}) := \frac14 g^{\beta\lambda} g^{\mu\gamma} g_{\alpha\eta} 
-	\Tors{\alpha}{\lambda\gamma}
-	\Tors{\eta}{\beta\mu} +
-			  \frac12 g^{\mu\gamma} \Tors{\lambda}{\beta\mu} \Tors{\beta}{\lambda\gamma} - 
-			  g^{\mu\lambda} \Tors{\rho}{\mu\rho} \Tors{\gamma}{\lambda\gamma},	  
-\end{equation}
-where $ \Tors{\lambda}{\mu\nu} = \itetr{\lambda}{a} \Tors{a}{\mu\nu} $, and the metric and it 
+torsion scalar $ \Tscal $, e.g. in \tegr, the Lagrangian is
+\begin{subequations}\label{eq.TEGR.Lagr}
+	\begin{equation}
+		\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = \frac{\detTetr}{2 \, \varkappa} \Tscal,
+	\end{equation}
+	\begin{equation}\label{eqn.tors.scal0}
+		\Tscal(\tetr{a}{\mu},\Tors{a}{\mu\nu}) := 
+		\frac14 g^{\beta\lambda} g^{\mu\gamma} g_{\alpha\eta} \Tors{\alpha}{\lambda\gamma}
+		\Tors{\eta}{\beta\mu} +
+		%
+		\frac12 g^{\mu\gamma} \Tors{\lambda}{\mu\beta} \Tors{\beta}{\gamma\lambda} - 
+		%
+		g^{\mu\lambda} \Tors{\rho}{\mu\rho} \Tors{\gamma}{\lambda\gamma},	  
+	\end{equation}
+\end{subequations}
+where $ \varkappa = 8\pi G $ is the Einstein gravitational constant, $ \Tors{\lambda}{\mu\nu} = 
+\itetr{\lambda}{a} \Tors{a}{\mu\nu} $, and the metric and its 
 inverse must be computed as $ g_{\mu\nu} = 
-\eta_{ab}\tetr{a}{\mu}\tetr{b}{\nu} $ and $ g^{\mu\nu} = \eta^{ab}\itetr{\mu}{a}\itetr{\nu}{b}$.
+\mg{ab}\tetr{a}{\mu}\tetr{b}{\nu} $ and $ g^{\mu\nu} = \MG{ab}\itetr{\mu}{a}\itetr{\nu}{b}$.
 
-If one needs the Lagrangian density $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $ as a function of the 
-Hodge dual, then the torsion scalar $ \Tscal $ can be expressed as
-\eqref{eqn.Lagrangians2}
-\begin{equation}\label{eqn.Tscal.Hodge}
-	\Tscal(\tetr{a}{\mu},\HDT{a\mu\nu}) = \frac12 \HDT{\mu\nu\lambda} (\HDmix_{\lambda\mu\nu} + 
-	\HDmix_{\nu\lambda\mu} + g_{\mu\lambda} \HDmix^{\gamma}_{\phantom{\gamma\,} \nu\gamma})
+Denoting the scalars in the right-hand side of \eqref{eqn.tors.scal0} as
+\begin{align}\label{eqn.tors.scal}
+	\Tscal_1 = & \frac14 \mg{ab}g^{\beta\lambda }g^{\mu\gamma 
+	}\Tors{a}{\lambda\gamma} \Tors{b}{\beta\mu },\\[2mm]
+	%
+	\Tscal_2 = & \frac12 g^{\mu\gamma} \itetr{\lambda}{a} \itetr{\beta}{b} \Tors{a}{\mu\beta} 
+	\Tors{b}{\gamma\lambda},\\[2mm]
+	%
+	\quad
+	\Tscal_3 = & -g^{\mu\lambda} \itetr{\rho}{a} \itetr{\gamma}{b} \Tors{a}{\mu\rho} 
+	 \Tors{b}{\lambda\gamma},	  
+\end{align}
+we can also write 
+\begin{align}\label{eqn.tors.scal.TQLC}
+	\mathcal{T}_1 &= Q_3 + \frac12 C_4, \\
+	\mathcal{T}_2 &=- Q_1 + Q_4 + L_1 -C_1 + C_2 + \frac12 C_4, \\[2mm]
+	\mathcal{T}_3 &= 2 Q_1 + Q_2 + L_2 + 2 C_1 + C_3 - C_4,
+\end{align}
+where the scalars $ Q $, $ L $, and $ C $ are scalars made of $ \ET{a}{\mu} $ and 
+$ \BT{a}{\mu} $.
+
+Quadratic in $ \ET{a}{\mu} $:
+\begin{align}\label{eqn.tors.scal2.Q}
+	Q_1 &= -\frac12 \ET{\indalg{0}}{\alpha} g^{\alpha\beta} \ET{\indalg{0}}{\beta},\\[2mm]
+	%
+	Q_2 &= \itetr{\alpha}{a} \ET{a}{\alpha} \itetr{\beta}{b} \ET{b}{\beta} = 
+	\ET{\alpha}{\alpha} \ET{\beta}{\beta},\\[2mm]
+	%
+	Q_3 &=-\frac12 \mg{ab} \ET{a}{\alpha} g^{\alpha\mu}
+	\ET{b}{\mu},\\[2mm]
+	%
+	Q_4 &=-\frac12 \itetr{\lambda}{a} \ET{a}{\beta} \itetr{\beta}{b} \ET{b}{\lambda} = 
+	\ET{\lambda}{\beta} \ET{\beta}{\lambda}.
+\end{align}
+
+Mixed scalars (linear in $ \ET{a}{\mu} $):
+\begin{align}\label{eqb.ts.scal.L}
+	L_1 &= \LCsymb_{\lambda\tau\varphi\gamma} u^\varphi g^{\tau\beta} \itetr{\lambda}{a} 
+	\ET{a}{\beta} \BT{\indalg{0}}{\gamma},\\[2mm]
+	%
+	L_2 &= 2 \LCsymb_{\lambda\tau\varphi\gamma} u^\varphi g^{\lambda\beta} \itetr{\tau}{a} 
+	\ET{\indalg{0}}{\beta} \BT{a}{\gamma}.
+\end{align}
+
+Quadratic in $ \BT{a}{\mu} $ (constant in  $ \ET{a}{\mu} $)
+\begin{align}\label{eqn.tors.scal.C}
+	C_1 &=-\frac12 h^{-2} g_{\lambda\rho} \BT{\indalg{0}}{\rho} \BT{\indalg{0}}{\lambda},\\[2mm]
+	%
+	C_2 &=-\frac12 h^{-2} g_{\rho\varphi} \itetr{\varphi}{a} \BT{a}{\rho} \itetr{\beta}{b} 
+	\BT{b}{\lambda}g_{\lambda\beta} = -\frac12 h^{-2} g_{\rho\varphi} \BT{\varphi}{\rho} 
+	\BT{\beta}{\lambda}g_{\lambda\beta},\\[2mm]
+	%
+	C_3 &= h^{-2} \itetr{\varphi}{a} \BT{a}{\sigma} g_{\varphi\beta} \itetr{\lambda}{b} 
+	\BT{b}{\beta} g_{\lambda\sigma} = h^{-2} \BT{\varphi}{\sigma} g_{\varphi\beta} 
+	\BT{\lambda}{\beta} g_{\lambda\sigma},\\[2mm]
+	%
+	C_4 &= h^{-2} \itetr{\varphi}{a} \BT{a}{\sigma} g_{\varphi\lambda} \itetr{\lambda}{b} 
+	\BT{b}{\beta} g_{\beta\sigma} =h^{-2} \BT{\varphi}{\sigma} g_{\varphi\lambda} 
+	\BT{\lambda}{\beta} g_{\beta\sigma}.
+\end{align}
+
+In terms of the Hodge dual $ \HDT{a\mu\nu} $, the torsion scalar $ \Tscal $ can be rewritten as
+\begin{equation}\label{eqn.tors.scal.hodge}
+	\Tscal = \Hscal_1 + \Hscal_2
+\end{equation}
+where 
+\begin{align}\label{eqn.hodge.scal}
+	\Hscal_1 &= \frac{1}{2\,h^2} g_{\alpha\mu}g_{\beta\nu}g_{\sigma\rho} 
+	\itetr{\alpha}{a}\itetr{\beta}{b} \HDT{a\mu\rho}\HDT{b\nu\sigma} = 
+	\frac{1}{2\,h^2} g_{\alpha\mu}g_{\beta\nu}g_{\sigma\rho} 
+	\HDT{\alpha\mu\rho}\HDT{\beta\nu\sigma},
+	\\[2mm]
+	%
+	\Hscal_2 &=-\frac{1}{h^2} g_{\alpha\mu}g_{\beta\nu}g_{\sigma\rho} 
+	\itetr{\alpha}{a}\itetr{\beta}{b} \HDT{a\nu\sigma}\HDT{b\mu\rho} = 
+	-\frac{1}{h^2} g_{\alpha\mu}g_{\beta\nu}g_{\sigma\rho} 
+	\HDT{\alpha\nu\sigma}\HDT{\beta\mu\rho}
+\end{align}
+
+
+
+%If one needs the Lagrangian density $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $ as a function of 
+%the 
+%Hodge dual, then the torsion scalar $ \Tscal $ can be expressed as
+%\eqref{eqn.Lagrangians2}
+%\begin{equation}\label{eqn.Tscal.Hodge}
+%	\Tscal(\tetr{a}{\mu},\HDT{a\mu\nu}) = \frac12 \HDT{\mu\nu\lambda} (\HDmix_{\lambda\mu\nu} + 
+%	\HDmix_{\nu\lambda\mu} + g_{\mu\lambda} \HDmix^{\gamma}_{\phantom{\gamma\,} \nu\gamma})
+%\end{equation}
+
+
+However, to close system \eqref{eq.3+1.summary}, we need not the Lagrangian $ 
+\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu})  $ directly but we need to perform a sequence of variable 
+and potential changes: $ \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
+\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) $ $ \longrightarrow $ $ \ET{a}{\mu} 
+\dT{a}{\mu} - \LagBE = 
+\LagST(\tetr{a}{\mu},\dT{a}{\mu},\bT{a}{\mu}) = 
+\Lagtpo(\tetr{a}{\mu},\ddT{a}{\mu},\bbT{a}{\mu}) $. 
+%in terms of 
+%the state vector $ \vec{Q} = \{ 
+%\tetr{a}{\mu}, \ddT{a}{i}, \bbT{a}{\mu} \} $ which can be obtained from the following expresion in 
+%terms of $ \{ \tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}\} $:
+Thus, we have
+\begin{multline}\label{eqn.Tscal.EB}
+	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = \frac{\detTetr}{2 \, \varkappa}
+	\bigg(
+	-\frac12 (\ETmix{\indalg{0}\lambda}{}\ETmix{\indalg{0}}{\ \lambda} -  
+				2\ETmix{\lambda}{\ \,\lambda}\ETmix{\beta}{\ \,\beta} +
+		      \ETmix{\ \,\lambda}{\beta} \ETmix{\beta}{\ \,\lambda}  +
+			  \ETmix{\lambda}{\ \,\beta}\ETmix{\beta}{\ \,\lambda} )
+	          \\
+	          \hspace{4cm} + \LCsymb_{\lambda\gamma\eta\rho} u^\eta 
+	          (\ETmix{\lambda\gamma}{}\BTmix{\indalg{0}\rho}{} + 2 
+	          \ET{\indalg{0}\lambda}{}\BTmix{\gamma\rho}{})
+  			  \\
+	          - \frac12 h^{-2} ( \BTmix{\indalg{0}\lambda}{}\BTmix{\indalg{0}}{\ \lambda}
+	          + \BTmix{\lambda}{\ \,\lambda}\BTmix{\beta}{\ \,\beta}
+	          - 2\BTmix{\lambda}{\ \,\beta}\BTmix{\beta}{\ \,\lambda}
+	          )
+	          \bigg)
+\end{multline}
+or, using algebraic constraints \eqref{eq.constr.alg.EB}
+\begin{multline}\label{eqn.Tscal.EB1}
+	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = \frac{h}{2\,\varkappa} \bigg( 
+	 \ETmix{k}{\ \,k}\ETmix{i}{\ \,i} 
+	-\frac12 \ETmix{k}{\ \,i} \ETmix{i}{\ \,k}
+	-\frac12 \ETmix{\ \,k}{i} \ETmix{i}{\ \,k} 
+	%
+	-\frac12 \detTetr^{-2} 
+	  \BTmix{i}{\ \,i}\BTmix{k}{\ \,k}
+	+ \detTetr^{-2} \BTmix{i}{\ \,k}\BTmix{k}{\ \,i} 
+	\\
+	%
+	{\color{red}-} 2 \, \alpha^{-1} \LCsymb_{kli} N^k \BTmix{l i}{}
+	\bigg),
+\end{multline}
+where  $ N^k = N_j \gamma^{jk} $, $ \ET{i}{j} = 
+\itetr{i}{\sA} \ET{\sA}{j}$, $ \ETmix{\ \,k}{i} = \gamma_{ij} \ET{j}{l} \gamma^{lk} 
+$, $ \BT{i}{j} = \itetr{i}{\sA} 
+\BT{\sA}{j} $,  and $ \BTmix{i}{\ \,k} = 
+\BT{i}{j} \gamma_{jk}$. Also, in \eqref{eqn.Tscal.EB1}, $ \LCsymb_{ijk} $ is the pure spatial 
+Levi-Civita symbol with the reference $ \LCsymb_{123}=1 $ and $ \LCsymb_{ijk} = \LCsymb^{ijk} $ (in 
+particular $ \LCsymb_{0123} = -\LCsymb_{123} $).
+
+ 
+To close system \eqref{eq.3+1.summary}, we need however not the Lagrangian $ 
+\LagBE(\tetr{\sA}{k},\ET{\sA}{k},\BT{\sA}{k}) $ but we need to express another 
+potential $ \LagST(\tetr{\sA}{k},\dT{\sA}{k},\bT{\sA}{k}) = \ET{a}{\mu} 
+\dT{a}{\mu} - \LagBE$
+in terms of $ \{\tetr{\sA}{k},\dT{\sA}{k},\bT{\sA}{k}\} $. It reads
+\begin{multline}\label{eq.Lagr.DB}
+	 \LagST(\tetr{\sA}{k},\dT{\sA}{k},\bT{\sA}{k}) = 
+	 \frac{1}{4\,h} \bigg( \varkappa \left(
+	 \dT{i}{i}\dT{k}{k} - 2 \dT{i}{k}\dT{k}{i}
+	 \right)
+	 % 
+ 	+ \frac{1}{\varkappa} \left ( 
+	 \BTmix{i}{\ \,i}\BTmix{k}{\ \,k}
+	 - 2 \BTmix{i}{\ \,k}\BTmix{k}{\ \,i}
+	 \right ) \\
+	 	+ \varkappa (\beta^j \dT{j}{0} + 2 \beta^j \dT{j}{0}\dddT{k}{k} - 4 \beta^j \dT{k}{0} 
+	 	\dddT{j}{k}) 
+	 	\bigg).
+%	 	 {\color{red}+} 18 \, \alpha^{-1} h \LCsymb_{kli} N^k \BTmix{l i}{}
+\end{multline}
+where we have introduced
+\begin{equation}\label{eqn.db}
+	\dddT{\sA}{k} = \dT{\sA}{k} + \beta^k \dT{\sA}{0}, \qquad \bbbT{\sA}{k} = \bT{\sA}{k}.
+\end{equation}
+But in fact, in terms of \eqref{eqn.db} this potential reads
+\begin{equation}\label{eq.Lagr.db}
+	\LagST(\tetr{\sA}{k},\dddT{\sA}{k},\bbbT{\sA}{k}) = 
+	\frac{1}{4\,h} \bigg( \varkappa \left(
+	\dddT{i}{i}\dddT{k}{k} - 2 \dddT{i}{k}\dddT{k}{i}
+	\right)
+	% 
+	+ \frac{1}{\varkappa} \left ( 
+	\bbbTmix{i}{\ \,i}\bbbTmix{k}{\ \,k}
+	- 2 \bbbTmix{i}{\ \,k}\bbbTmix{k}{\ \,i}
+	\right ) \bigg).
+	%	 	 {\color{red}+} 18 \, \alpha^{-1} h \LCsymb_{kli} N^k \BTmix{l i}{}
 \end{equation}
 
+Finally, the potential $ \Lagtpo(\tetr{\sA}{k},\ddT{\sA}{k},\bbT{\sA}{k}) $ in 
+the new variables \eqref{eq.varDB.final} reads as
+\begin{equation}\label{eq.Lagr.DB.final}
+	\Lagtpo(\tetr{\sA}{k},\ddT{\sA}{k},\bbT{\sA}{k}) = 
+%	 \frac{1}{2\,\varkappa} \bigg(
+%	-\frac78 \detTetr^{-1} \alpha^2 \left(  
+%	\ddT{i}{i}\ddT{k}{k} - 2 \ddT{i}{k}\ddT{k}{i}
+%	\right)
+%	% 
+%	+ \frac92 \detTetr^{-1} \alpha^2 \left ( 
+%	\bbTmix{i}{\ \,i}\bbTmix{k}{\ \,k}
+%	- 2 \bbTmix{i}{\ \,k}\bbTmix{k}{\ \,i}
+%	\right )\\
+%	%
+%	{\color{red}-} 18 \, h \LCsymb_{kli} N^k \bbT{l}{i}
+%	\bigg).
+\end{equation}
 
-It is also possible to express the torsion scalar as $ 
-\Tscal(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) $:
-\begin{multline}\label{eqn.Tscal.EB}
-	\Tscal(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = 
-	-\frac12 (\ETmix{\indlat{0}\lambda}{}\ETmix{\indlat{0}}{\ \,\lambda}   +
-		      \ETmix{\ \,\lambda}{\beta} \ETmix{\beta}{\ \,\lambda}  +
-			  \ETmix{\lambda}{\ \,\beta}\ETmix{\beta}{\ \,\lambda}   -
-			  2\ETmix{\lambda}{\ \,\lambda}\ETmix{\beta}{\ \,\beta} )
-			  \\
-	+ \frac12 (  \BTmix{}{\indlat{0}\lambda}\BTmix{\indlat{0}\lambda}{}
-	           - \BTmix{\ \,\lambda}{\lambda}\BTmix{\ \,\beta}{\beta}
-	           + 2\BTmix{\lambda\beta}{}\BTmix{}{\beta\lambda}
-	           )
-	          \\
-	          + \LCsymb_{\lambda\gamma\eta\rho} u^\eta 
-	          (\ETmix{\lambda\gamma}{}\BTmix{\indlat{0}\rho}{} + 2 
-	          \ET{\indlat{0}\lambda}{}\BTmix{\gamma\rho}{}).
-\end{multline}
+%Also, because $ \LagST $ is a quadratic form in $ \dT{\sA}{k} $ and $ \bT{\sA}{k} $, 
+%one can write 
+%\begin{equation}\label{eqn.Tscal.HBDE}
+%	\LagST(\tetr{\sA}{k},\dT{\sA}{k},\bT{\sA}{k}) = \frac12 
+%\BT{a}{\mu}\LagBE_{\BT{a}{\mu}} - 
+%	\frac12 \ET{a}{\mu}\LagBE_{\ET{a}{\mu}} 
+%	=
+%	\frac12 \BT{a}{\mu}\hT{a}{\mu} - \frac12 \ET{a}{\mu}\dT{a}{\mu},
+%\end{equation}
+%or
+%\begin{equation}
+%	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu})
+%	=
+%	\frac12 \BT{a}{i}\hT{a}{i} - \frac12 \ET{a}{i}\dT{a}{i},
+%\end{equation}
+%where $ \hT{a}{\mu} = \LagBE_{\BT{a}{\mu}} $ and $ \dT{a}{\mu} = \LagBE_{\ET{a}{\mu}} $.
 
 
+\IP{Decide what variables are finally to be used $ \{\dT{}{},\bT{}{}\} $ or the re-scaled ones $ 
+\{\ddT{}{},\bbT{}{}\} $ }
+
+\IP{Not clear why we don't have a mixed invariant kinda $ \dT{i}{k} B^i_{\ k} $ in the 
+Lagrangian $ \LagST $. Should we?}
 %-------------------------------------------------------
 \appendix
 %-------------------------------------------------------
@@ -988,13 +1360,15 @@ expression from the Euler-Lagrange equation for the torsion \eqref{eqn.EM.Hodge}
 \end{multline}
 where we have used  $ 
 -\LCsymb_{\mu\nu\alpha\beta}\LCsymb^{\mu\gamma\rho\lambda} = 
-\KD{\gamma}{\nu}\KD{\rho}{\alpha}\KD{\lambda}{\beta} +
-\KD{\lambda}{\nu}\KD{\gamma}{\alpha}\KD{\rho}{\beta} +
-\KD{\rho}{\nu}\KD{\lambda}{\alpha}\KD{\gamma}{\beta} -
-\KD{\gamma}{\nu}\KD{\lambda}{\alpha}\KD{\rho}{\beta} -
-\KD{\lambda}{\nu}\KD{\rho}{\alpha}\KD{\gamma}{\beta} -
-\KD{\rho}{\nu}\KD{\gamma}{\alpha}\KD{\lambda}{\beta}
-$, e.g. see \cite{KleinertMultivalued}, p.45. Hence, using expression \eqref{app.eqn.EM2}, equation 
+\KD{\gamma\rho\lambda}{\nu\alpha\beta} +
+\KD{\lambda\gamma\rho}{\nu\alpha\beta} +
+\KD{\rho\lambda\gamma}{\nu\alpha\beta} -
+\KD{\gamma\lambda\rho}{\nu\alpha\beta} -
+\KD{\lambda\rho\gamma}{\nu\alpha\beta} -
+\KD{\rho\gamma\lambda}{\nu\alpha\beta}
+$, with $ \KD{\gamma\rho\lambda}{\nu\alpha\beta} = 
+\KD{\gamma}{\nu}\KD{\rho}{\alpha}\KD{\lambda}{\beta} $, e.g. see \cite{KleinertMultivalued}, p.45. 
+Hence, using expression \eqref{app.eqn.EM2}, equation 
 \eqref{app.eqn.EM1} can be written as
 \begin{equation}
 \pd{\mu}(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} - L \delta^\mu_{\ \nu}) +
@@ -1020,31 +1394,64 @@ L) \delta^\mu_{\ \nu} \right) = 0.
 \end{equation} 
 
 
+%It can be shown (see 
+%expression \eqref{app.eqn.Noether2} 
+%for $ \Laghodge_{\tetr{a}{\mu}} $ in 
+%Appendix~\ref{app.sec.NC}) that the tetrad part $ 
+%\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} $ expands as
+%\begin{align}
+%	\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} & =
+%    -\tetr{a}{\nu} \LagST_{\tetr{a}{\mu}} \nonumber\\
+%   & + u_\nu u^\mu(\bT{a}{\lambda} \LagST_{\bT{a}{\lambda}} + \dT{a}{\lambda} 
+%   \LagST_{\dT{a}{\lambda}}) 
+%   \nonumber\\
+%%   &- u^\mu u_\lambda \dT{a}{\lambda} \LagST_{\dT{a}{\nu}} - u_\nu u^\lambda 
+%%   \bT{a}{\mu}\LagST_{\bT{a}{\lambda}} \nonumber\\
+%   &-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \LagST_{\dT{a}{\beta}} \LagST_{\bT{a}{\lambda}}
+%   -\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \dT{a}{\beta}\bT{a}{\lambda}
+%\end{align}
+%
+%On the other hand, the torsion part $ - 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+%(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} $ reads
+%\begin{align}
+%	- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+%	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} & = -\LagST 
+%	\KD{\mu}{\nu}\nonumber\\
+%	& + \dT{a}{\mu}\LagST_{\dT{a}{\nu}}+ \bT{a}{\mu}\LagST_{\bT{a}{\nu}} \nonumber\\
+%	& - u_\nu u^\mu(\bT{a}{\lambda} \LagST_{\bT{a}{\lambda}} + \dT{a}{\lambda} 
+%	\LagST_{\dT{a}{\lambda}}) 
+%	\nonumber\\
+%	%   &- u^\mu u_\lambda \dT{a}{\lambda} \LagST_{\dT{a}{\nu}} - u_\nu u^\lambda 
+%	%   \bT{a}{\mu}\LagST_{\bT{a}{\lambda}} \nonumber\\
+%	&-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \mathcal{\LagST}_{\dT{a}{\beta}} 
+%	\LagST_{\bT{a}{\lambda}}
+%	-\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \dT{a}{\beta}\bT{a}{\lambda}.
+%\end{align}
 
 
 \section{Transformation of the Noether's current $ \NC{a}{\mu} $}\label{app.sec.NC}
 
 Here, we express the source terms $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ in terms of the 
-potential $ \LagST $ and $ \eT{a}{\mu} $ and $ \hT{a}{\mu} $. One has
+potential $ \LagST $ and $ \dT{a}{\mu} $ and $ \bT{a}{\mu} $. One has
 \begin{equation}\label{app.eqn.Noether1}
 	\Laghodge_{\tetr{a}{\mu}} = \LagBE_{\tetr{a}{\mu}} 
 	+ \LagBE_{\BT{b}{\lambda}} \frac{\partial \BT{b}{\lambda}}{\partial \tetr{a}{\mu}}
 	+ \LagBE_{\ET{b}{\lambda}} \frac{\partial \ET{b}{\lambda}}{\partial \tetr{a}{\mu}}.
 \end{equation}
-Then, using the definitions of the frame 4-velocity $ u^\nu = \itetr{\nu}{\indlat{0}} $ and $ u_\nu 
+Then, using the definitions of the frame 4-velocity $ u^\nu = \itetr{\nu}{\indalg{0}} $ and $ u_\nu 
 = 
--\tetr{\indlat{0}}{\nu} $ and the torsion fields
-$ \BT{b}{\lambda} = \HDT{b\lambda\nu} u_\nu = - \HDT{b\lambda\nu} \tetr{\indlat{0}}{\nu}$ and 
+-\tetr{\indalg{0}}{\nu} $ and the torsion fields
+$ \BT{b}{\lambda} = \HDT{b\lambda\nu} u_\nu = - \HDT{b\lambda\nu} \tetr{\indalg{0}}{\nu}$ and 
 $ \ET{b}{\lambda} = \Tors{b}{\lambda\nu} u^\nu = 
--\frac12\LCsymb_{\lambda\nu\alpha\beta}\HDT{b\alpha\beta} \itetr{\nu}{\indlat{0}}$ and the simple 
+-\frac12\LCsymb_{\lambda\nu\alpha\beta}\HDT{b\alpha\beta} \itetr{\nu}{\indalg{0}}$ and the simple 
 fact 
 that $ \partial\itetr{\lambda}{b}/\partial\tetr{a}{\mu} = -\itetr{\lambda}{a}\itetr{\mu}{b} $, we 
 can rewrite \eqref{app.eqn.Noether1} as
 \begin{multline}
-	\NC{a}{\mu} = \LagBE_{\tetr{a}{\mu}} 
+	\Laghodge_{\tetr{a}{\mu}} = \LagBE_{\tetr{a}{\mu}} 
 	+ \LagBE_{\BT{b}{\lambda}} \frac{\partial \BT{b}{\lambda}}{\partial \tetr{a}{\mu}}
 	+ \LagBE_{\ET{b}{\lambda}} \frac{\partial \ET{b}{\lambda}}{\partial \tetr{a}{\mu}} = \\
-	\LagBE_{\tetr{a}{\mu}} - \LagBE_{\BT{b}{\lambda}} \KD{\indlat{0}}{a}
+	\LagBE_{\tetr{a}{\mu}} - \LagBE_{\BT{b}{\lambda}} \KD{\indalg{0}}{a}
 	(u^\lambda \BT{b}{\mu} - u^\mu \BT{b}{\lambda}+\LCsymb^{\lambda\mu\alpha\beta} u_\alpha  
 	\ET{b}{\beta}) \\
 	-\LagBE_{\ET{b}{\lambda}} (u_\lambda \ET{b}{\nu} - u_\nu \ET{b}{\lambda} - 
@@ -1053,63 +1460,174 @@ can rewrite \eqref{app.eqn.Noether1} as
 Using the definitions \eqref{eqn.Legandre2} and \eqref{eqn.Legandre3}, the latter can be rewritten 
 as
 \begin{multline}
-	\NC{a}{\mu} =
+	\Laghodge_{\tetr{a}{\mu}} =
 	-\LagST_{\tetr{a}{\mu}} 
-	- \LagST_{\hT{b}{\lambda}} \KD{\indlat{0}}{a}
-	(-u^\lambda \hT{b}{\mu} + u^\mu \hT{b}{\lambda}+\LCsymb^{\lambda\mu\alpha\beta} u_\alpha 
-	\LagST_{\eT{b}{\beta}}) \\
-	-\eT{b}{\lambda} (u_\lambda \LagST_{\eT{b}{\nu}} - u_\nu \LagST_{\eT{b}{\lambda}} + 
-	\LCsymb_{\lambda\nu\alpha\rho}u^\alpha\hT{b}{\rho})\itetr{\nu}{a}u^\mu.
+	- \LagST_{\bT{b}{\lambda}} \KD{\indalg{0}}{a}
+	(-u^\lambda \bT{b}{\mu} + u^\mu \bT{b}{\lambda}+\LCsymb^{\lambda\mu\alpha\beta} u_\alpha 
+	\LagST_{\dT{b}{\beta}}) \\
+	-\dT{b}{\lambda} (u_\lambda \LagST_{\dT{b}{\nu}} - u_\nu \LagST_{\dT{b}{\lambda}} + 
+	\LCsymb_{\lambda\nu\alpha\rho}u^\alpha\bT{b}{\rho})\itetr{\nu}{a}u^\mu,
 \end{multline}
-Note that the terms $ u^\lambda \LagST_{\hT{b}{\lambda}} $ and $ u_\lambda\eT{a}{\lambda} $ vanish 
-because they are contractions of symmetric and anti-symmetric tensors: 
-\begin{equation}
-u^\lambda \LagST_{\hT{b}{\lambda}} = u^\lambda \LagBE_{\BT{b}{\lambda}} = -2 u^\lambda 
-u^\gamma \Laghodge_{\HDT{b\lambda\gamma}} = 0, 
-\qquad
-u_\lambda\eT{b}{\lambda} = u_\lambda\LagBE_{\ET{b}{\lambda}} = -2 u_\lambda u_\gamma 
-\Lagtors_{\Tors{b}{\lambda\gamma}} = 0.
-\end{equation}
-Hence, $ \NC{a}{\mu} $ becomes
-\begin{multline}
-\NC{a}{\mu} =
--\LagST_{\tetr{a}{\mu}} 
-- \KD{\indlat{0}}{a}
-(u^\mu \hT{b}{\lambda} \LagST_{\hT{b}{\lambda}} + \LCsymb^{\lambda\mu\alpha\beta} u_\alpha 
-\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}}) \\
-+ ( u_\nu \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} - 
-\LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda})\itetr{\nu}{a}u^\mu,
+which, after some term rearrangements, reads
+\begin{multline}\label{eqn.J.BD}
+	\Laghodge_{\tetr{a}{\mu}} =
+	-\LagST_{\tetr{a}{\mu}}
+	% 
+	+ \KD{\indalg{0}}{a}
+	\left( 
+	  u^\lambda \bT{b}{\mu} \LagST_{\bT{b}{\lambda}} 
+	- u^\mu \bT{b}{\lambda} \LagST_{\bT{b}{\lambda}} 
+	- u^\mu \dT{b}{\lambda} \LagST_{\dT{b}{\lambda}}
+	+ \LCsymb^{\mu\lambda\rho\sigma} u_\rho \LagST_{\bT{b}{\lambda}}
+	\LagST_{\dT{b}{\sigma}} 
+	\right) \\
+	%
+	- \itetr{\nu}{a}u^\mu
+	\left(
+	u_\lambda \dT{b}{\lambda} \LagST_{\dT{b}{\nu}} 
+	- \LCsymb_{\nu\lambda\rho\sigma}u^\rho\bT{b}{\sigma}\dT{b}{\lambda}
+	\right).
 \end{multline}
-which, using the fact that $ u_a := \itetr{\nu}{a}u_\nu = \itetr{\nu}{a} \tetr{\indlat{0}}{\nu} = 
--\KD{\indlat{0}}{a} $, can be also rewritten as
-\begin{multline}\label{app.eqn.Noether2}
-\NC{a}{\mu} = 
--\LagST_{\tetr{a}{\mu}} 
-- \KD{\indlat{0}}{a}
-\left((\hT{b}{\lambda} \LagST_{\hT{b}{\lambda}} 
-+ \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} )u^\mu
-- \LCsymb^{\mu\alpha\beta\lambda} u_\alpha 
-\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}} \right) \\ 
-- \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda}\itetr{\nu}{a}u^\mu.
-\end{multline}
-Finally, bearing in mind that, for $ a=\indlat{0} $, the last term vanishes due to $ 
-\LCsymb_{\nu\alpha\beta\lambda}u^\alpha\itetr{\nu}{a} =  
-\LCsymb_{\nu\alpha\beta\lambda}u^\alpha u^\nu = 0$, the current $ \NC{a}{\mu} $ can be also written 
-as
+
+
+Finally, the Noether's current $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ reads
 \begin{equation}
 	\NC{a}{\mu} = \left\{
 	\begin{array}{ll}
-	-\LagST_{\tetr{\indlat{0}}{\mu}} 
-	- (\hT{b}{\lambda} \LagST_{\hT{b}{\lambda}} 
-	+ \eT{b}{\lambda} \LagST_{\eT{b}{\lambda}} )u^\mu
-	+ \LCsymb^{\mu\alpha\beta\lambda} u_\alpha 
-	\LagST_{\eT{b}{\beta}} \LagST_{\hT{b}{\lambda}},	& a=\indlat{0},  \\[3mm] 
-	-\LagST_{\tetr{a}{\mu}}	
-	- \LCsymb_{\nu\alpha\beta\lambda}u^\alpha\eT{b}{\beta}\hT{b}{\lambda}\itetr{\nu}{a}u^\mu & a = 
-	\indlat{1},\indlat{2},\indlat{3}. \\ 
+	-\LagST_{\tetr{\indalg{0}}{\mu}}
+	+ u^\lambda \bT{b}{\mu} \LagST_{\bT{b}{\lambda}} 
+	- u^\mu \bT{b}{\lambda} \LagST_{\bT{b}{\lambda}} 
+	- u^\mu \dT{b}{\lambda} \LagST_{\dT{b}{\lambda}}
+	+ \LCsymb^{\mu\lambda\rho\sigma} u_\rho \LagST_{\bT{b}{\lambda}}
+	\LagST_{\dT{b}{\sigma}},	& a=\indalg{0},  \\[3mm] 
+	%
+	-\LagST_{\tetr{\sA}{\mu}}	
+	- \itetr{\nu}{\sA}u^\mu
+	\left(
+	u_\lambda \dT{b}{\lambda} \LagST_{\dT{b}{\nu}} 
+	- \LCsymb_{\nu\lambda\rho\sigma}u^\rho\bT{b}{\sigma}\dT{b}{\lambda}
+	\right), & a = \sA. \\ 
 	\end{array} 
 	\right.
 \end{equation}
+
+
+\section{Expression for the energymomentum}\label{app.energymomentum}
+
+In this section, we demonstrate how the following expression of the energymomentum tensor
+\begin{equation}\label{eqn.EM.hodge}
+	\EM{\mu}{\nu} :=
+	\tetr{a}{\nu} L_{\tetr{a}{\mu}} - 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu}
+\end{equation}
+in terms of the Lagrangian $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $ can be rewritten as
+\begin{equation}
+	\EM{\mu}{\nu} = 
+	- \tetr{a}{\nu} \LagST_{\tetr{a}{\mu}}
+	+ \dT{a}{\mu}\LagST_{\dT{a}{\nu}} + \bT{a}{\mu}\LagST_{\bT{a}{\nu}}
+	- (
+	\dT{a}{\lambda}\LagST_{\dT{a}{\lambda}}+ \bT{a}{\lambda}\LagST_{\bT{a}{\lambda}}
+	-\LagST
+	) \KD{\mu}{\nu},
+\end{equation}
+i.e. in terms of the new potential $ \LagST(\tetr{a}{\mu},\bT{a}{\mu},\dT{a}{\mu}) $.
+
+The first term in \eqref{eqn.EM.hodge} is given by \eqref{eqn.J.BD}. Therefore, it remains to 
+understand how to compute $ \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} $. Because $ \HDT{a\mu\nu} $ is 
+antisymmetric tensor, to compute the derivative $ \Laghodge_{\HDT{a\lambda\nu}} $ one needs to use 
+its parametrization via the \We\ connection, which is not symmetric, i.e. $ \HDT{a\mu\nu} = 
+\LCsymb^{\mu\nu\rho\sigma} \w{a}{\rho\sigma}$. Thus, for Lagrangians $ 
+\Lag(\tetr{a}{\mu},\w{a}{\mu\nu}) = 
+\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu})$ one can write 
+\begin{equation}
+	\Lag_{\w{a}{\lambda\mu}} = \LCsymb^{\lambda\mu\rho\sigma} \Laghodge_{\HDT{a\rho\sigma}}
+\end{equation}
+or using the identity $ \LCsymb_{\lambda\mu\alpha\beta}\LCsymb^{\lambda\mu\rho\sigma} = 
+-2(\KD{\rho}{\alpha}\KD{\sigma}{\beta} - \KD{\rho}{\beta}\KD{\sigma}{\alpha}) $, 
+\begin{equation}\label{eqn.L.T}
+	\LCsymb_{\alpha\beta\rho\sigma}\Lag_{\w{a}{\lambda\mu}} = -4 \Laghodge_{\HDT{a\rho\sigma}}.
+\end{equation}
+
+On the other hand, using the definitions $ \ET{a}{\mu} = (\w{a}{\mu\nu} - \w{a}{\nu\mu})u^\nu $ and $ 
+\BT{a}{\mu} = \LCsymb^{\mu\nu\rho\sigma}\w{a}{\rho\sigma} u_\nu $ and  the parametrization $ 
+\Lag(\tetr{a}{\mu},\w{a}{\mu\nu}) = \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\mu}) $, one can write
+\begin{equation}\label{eqn.Lambda.W}
+	\Lag_{\w{b}{\lambda\gamma}} = 
+	\LagBE_{\ET{a}{\mu}} \frac{\partial \ET{a}{\mu}}{\partial \w{b}{\lambda\gamma}} 
+	+
+	\LagBE_{\BT{a}{\mu}} \frac{\partial \BT{a}{\mu}}{\partial \w{b}{\lambda\gamma}} 
+	=
+	u^\gamma \LagBE_{\ET{b}{\lambda}} - u^\lambda \LagBE_{\ET{b}{\gamma}} - 
+	\LCsymb^{\lambda\gamma\nu\mu} u_\nu \LagBE_{\BT{a}{\mu}}.
+\end{equation}
+
+From \eqref{eqn.L.T} and \eqref{eqn.Lambda.W}, one can deduce 
+\begin{equation}
+	\Laghodge_{\HDT{a\lambda\nu}} = -\frac{1}{2} 
+	\left(
+	u_\lambda \LagBE_{\BT{a}{\nu}} - u_\nu \LagBE_{\BT{a}{\lambda}} 
+	-
+	\LCsymb_{\lambda\nu\rho\sigma} u^\rho \LagBE_{\ET{a}{\sigma}} 
+	\right).
+\end{equation}
+Then, after contracting the later equation with $ \HDT{a\lambda\mu} = u^\lambda \BT{a}{\mu} - u^\mu 
+\BT{a}{\lambda} + \LCsymb^{\lambda\mu\alpha\beta} u_\alpha \ET{a}{\beta} $, one obtains
+ \begin{align}\label{eqn.T.L.T} 
+ 	-2 \HDT{a\lambda\mu} \Laghodge_{\HDT{a\lambda\nu}} =
+ 	& -\BT{a}{\mu}\LagBE_{\BT{a}{\nu}} + \ET{a}{\nu}\LagBE_{\ET{a}{\mu}} \\
+ 	& - u^\lambda u_\nu \BT{a}{\mu} \LagBE_{\BT{a}{\lambda}} + u^\mu u_\nu \BT{a}{\lambda} 
+ 	\LagBE_{\BT{a}{\lambda}}				\nonumber\\
+ 	& + \LCsymb_{\nu\lambda\rho\sigma} u^\mu u^\sigma \BT{a}{\lambda} \LagBE_{\ET{a}{\rho}} 
+ 	  + \LCsymb^{\mu\lambda\rho\sigma} u_\nu u_\rho \ET{a}{\sigma} \LagBE_{\BT{a}{\lambda}}
+ 	\nonumber \\
+ 	& - (u^\mu u_\nu + \KD{\mu}{\nu}) \ET{a}{\lambda} \LagBE_{\ET{a}{\lambda}} + u^\mu u_\lambda 
+ 	\ET{a}{\nu} \LagBE_{\ET{a}{\lambda}}.
+ 	\nonumber
+ \end{align}
+This can be used to demonstrate that the full contraction  $ 	\HDT{a\lambda\rho} 
+\Laghodge_{\HDT{a\lambda\rho}} $ results in
+\begin{equation}\label{eqn.T.L.T.full}
+	\HDT{a\lambda\rho} \Laghodge_{\HDT{a\lambda\rho}}
+	=
+	\BT{a}{\lambda} \LagBE_{\BT{a}{\lambda}} + \ET{a}{\lambda} \LagBE_{\ET{a}{\lambda}}.
+\end{equation}
+
+Collecting together \eqref{eqn.T.L.T} and \eqref{eqn.T.L.T.full} and using the change of 
+variables and potential \eqref{eqn.Legandre1}--\eqref{eqn.Legandre3}, the torsion part of $ 
+\EM{\mu}{\nu} $ reads
+\begin{align}\label{eqn.Sigma.tors.part}
+	- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu} 
+	& = \bT{a}{\mu}\LagST_{\bT{a}{\nu}} + \dT{a}{\nu}\LagST_{\dT{a}{\mu}} \\
+	& + u^\lambda u_\nu \bT{a}{\mu} \LagBE_{\bT{a}{\lambda}} + u^\mu u_\lambda \dT{a}{\lambda} 
+		\LagST_{\dT{a}{\nu}}				\nonumber\\
+	& - \projector{\mu}{\nu} \bT{a}{\lambda} \LagST_{\bT{a}{\lambda}} 
+	  - \projector{\mu}{\nu} \dT{a}{\lambda} \LagST_{\dT{a}{\lambda}}
+	  \nonumber \\
+	& - \LCsymb_{\nu\sigma\lambda\rho} u^\mu u^\sigma \bT{a}{\lambda} \dT{a}{\rho} 
+	  - \LCsymb^{\mu\sigma\lambda\rho} u_\nu u_\sigma \LagST_{\bT{a}{\lambda}} \LagST_{\dT{a}{\rho}} 
+	  \nonumber \\
+	& + \LagST \KD{\mu}{\nu}, \nonumber
+\end{align}
+where $ \projector{\mu}{\nu} = u^\mu u_\nu + \KD{\mu}{\nu} $.
+
+Finally, combining this result with the tetrad part given by \eqref{eqn.J.BD}, one arrives at
+\begin{multline}
+	\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}}
+		- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu} = \\
+	- \tetr{a}{\nu} \LagST_{\tetr{a}{\mu}}
+	+ \dT{a}{\mu}\LagST_{\dT{a}{\nu}} + \bT{a}{\mu}\LagST_{\bT{a}{\nu}}
+	- (
+	\dT{a}{\lambda}\LagST_{\dT{a}{\lambda}}+ \bT{a}{\lambda}\LagST_{\bT{a}{\lambda}}
+	-\LagST
+	) \KD{\mu}{\nu}.	
+\end{multline}
+
+
+
+
+
 
 \section{Transformation of the torsion PDE}\label{app.sec.Deqn}
 
