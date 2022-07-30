@@ -146,10 +146,15 @@ BCOR5mm, % Binding correction
 \newcommand{\projector}[2]{\Delta^{#1}_{\ #2}}
 \newcommand{\Hscal}{\mathcal{H}}		% torsion scalar
 
+
+\newcommand{\ho}[1]{\textcolor{magenta}{HO: #1}}
+
 \hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in 
 %words with dashes where 
 %you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop 
 %hyphenation altogether
+
+
 
 
 %----------------------------------------------------------------------------------------
@@ -273,6 +278,12 @@ There is also the cotangent space $ T_x^*M $ spanned by the coframe $ \pdd{\mu} 
 The metric on $ M $ is a general Riemannian metric $ g_{\mu\nu} $. 
 Recall that the frames $ \dx{\mu} $ and $ \pdd{\mu} $ are \emph{holonomic}.
 
+\ho{I have always seen the tangent space $ T_{x}M $ spanned by the basis vectors
+$ \pdd{\mu} $ and the cotangent space $ T_x^*M $ spanned by the basis 1-forms $ \dx{\mu} $.
+However, I am not sure if it makes a difference, since I don't recall the definition of tangent
+and co-tangent spaces. Also, in the literature, `tetrad' usually implies an orthonormal
+basis, so it may cause some confusion to use it here for a coordinate frame.}
+
 In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
 which is a Minkowski space spanned by tetrad $ \{ \bas{a} \}$ and equipped with the 
 Minkowski metric $ \mg{ab} $ with the signature $ 
@@ -297,9 +308,9 @@ with $ \tetr{a}{\mu} $ being the inverse of $ \itetr{\mu}{a} $, i.e.
 	g_{\mu\nu} = \mg{ab} \tetr{a}{\mu}\tetr{b}{\nu}, \qquad \mg{ab} = \text{diag}(-1,1,1,1).
 \end{equation}
 
-
-
-
+\ho{Using the notation $\eta$ for the transformation coefficients can be
+confusing, since in a lot of the literature $\eta_{\mu\nu}$ is used
+for the Minkowski metric (e.g. Misner-Thorne-Wheeler and Aldrovandi \& Pereira).}
 
 
 
@@ -421,7 +432,7 @@ whereas for $ \LCtens^{\lambda\mu\nu\rho} $ one has
 
 We consider a general Lagrangian (scalar-density) $ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) $ 
 of the teleparallel gravity which is a function of the frame field $ \tetr{a}{\mu} $ and its first 
-gradients $ \pd{\lambda}\tetr{a}{\nu} $. For our porpoises, it is also convenient to treat $ 
+gradients $ \pd{\lambda}\tetr{a}{\nu} $. For our purposes, it is also convenient to treat $ 
 \Lag $ as a function of a special combination of the gradients $ \pd{\lambda}\tetr{a}{\nu} $:
 \begin{equation}\label{eqn.Lagrangians}
 \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
@@ -495,7 +506,17 @@ conservation law
 \begin{equation}\label{eqn.EM}
 \D{\mu}\Laghodge_{\tetr{a}{\mu}} = 0,
 \end{equation}
-which also has to be supplemented by the integrability condition 
+
+ \ho{It is not clear to me why $ \Laghodge_{\tetr{a}{\mu}} $ is the energy-momentum.
+ Does it follow from Noether's theorem? Or does it coincide with
+ a known expression? From eqs. 36 and 37,
+ I get that it is not energy-momentum
+ in the `traditional' sense, but a combination of gravitational plus matter
+ energy-momentum. If so, which definition of gravitational
+ energy-momentum is adopted (eg. Einstein or Landou-Lifshitz)?
+ Or is it something completely different for TEGR?}
+
+which also has to be supplemented by the integrability condition
 \begin{equation}\label{eqn.tetr}
 \D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = \Tors{a}{\mu\nu}.
 \end{equation}
@@ -1029,7 +1050,9 @@ the following algebraic constraints
 \end{subequations}
 Also, from the expression \eqref{eqn.Tscal.EB1} for $ \LagBE $ we get the expressions of the time 
 component of $ \ddT{a}{\mu} = \alpha^{-1} \dT{a}{\mu} = \alpha^{-1} \frac{\partial \LagBE}{\partial 
-\ET{a}{\mu}} $
+\ET{a}{\mu}} $ \ho{Here $\varkappa$ is used before its definition (until next section).
+But also, why does it appear here? The Einstein constant gives the coupling between matter and gravity,
+but here everything is gravity.}
 \begin{equation}\label{eq.D0}
 	\ddT{\indalg{0}}{0} = \frac{1}{2\alpha} \left(  \ddT{k}{k} - \frac{\detTetr_3}{2\alpha
 	\varkappa} 
@@ -1307,7 +1330,7 @@ the new variables \eqref{eq.varDB.final} reads as
 %\end{equation}
 %where $ \hT{a}{\mu} = \LagBE_{\BT{a}{\mu}} $ and $ \dT{a}{\mu} = \LagBE_{\ET{a}{\mu}} $.
 
-
+\ho{Hector Here}
 \IP{Decide what variables are finally to be used $ \{\dT{}{},\bT{}{}\} $ or the re-scaled ones $ 
 \{\ddT{}{},\bbT{}{}\} $ }
 
