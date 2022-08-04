@@ -371,16 +371,16 @@ We shall consider a spacetime manifold $ M $ equipped with a general Riemannian 
 $ and a coordinate system $ x^\mu $. At each 
 point of 
 the spacetime, there is the tangent space $ T_{x}M $ spanned by the frame (or tetrad) $ 
-\dx{\mu} $ which is the standard coordinate basis. 
-There is also the cotangent space $ T_x^*M $ spanned by the coframe field $ \pdd{\mu} $. 
-Recall that the frames $ \dx{\mu} $ and $ \pdd{\mu} $ are \emph{holonomic} 
+\pdd{\mu} $ which is the standard coordinate basis. 
+There is also the cotangent space $ T_x^*M $ spanned by the coframe field $ \dx{\mu} $. 
+Recall that the frames $ \pdd{\mu} $ and $ \dx{\mu} $ are \emph{holonomic} 
 \cite{AldrovandiPereiraBook}.
 
-\ho{I have always seen the tangent space $ T_{x}M $ spanned by the basis vectors
-$ \pdd{\mu} $ and the cotangent space $ T_x^*M $ spanned by the basis 1-forms $ \dx{\mu} $.
-However, I am not sure if it makes a difference, since I don't recall the definition of tangent
-and co-tangent spaces. Also, in the literature, `tetrad' usually implies an orthonormal
-basis, so it may cause some confusion to use it here for a coordinate frame.}
+%\ho{I have always seen the tangent space $ T_{x}M $ spanned by the basis vectors
+%$ \pdd{\mu} $ and the cotangent space $ T_x^*M $ spanned by the basis 1-forms $ \dx{\mu} $.
+%However, I am not sure if it makes a difference, since I don't recall the definition of tangent
+%and co-tangent spaces. Also, in the literature, `tetrad' usually implies an orthonormal
+%basis, so it may cause some confusion to use it here for a coordinate frame.}
 
 In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
 which is a Minkowski space spanned by an orthonormal frame (tetrad) $ \{ \bas{a} \}$ and equipped 
@@ -414,9 +414,9 @@ $ and $ \mg{ab} $ are related by
 	g_{\mu\nu} = \mg{ab} \tetr{a}{\mu}\tetr{b}{\nu}.
 \end{equation}
 
-\ho{Using the notation $\eta$ for the transformation coefficients can be
-confusing, since in a lot of the literature $\eta_{\mu\nu}$ is used
-for the Minkowski metric (e.g. Misner-Thorne-Wheeler and Aldrovandi \& Pereira).}
+%\ho{Using the notation $\eta$ for the transformation coefficients can be
+%confusing, since in a lot of the literature $\eta_{\mu\nu}$ is used
+%for the Minkowski metric (e.g. Misner-Thorne-Wheeler and Aldrovandi \& Pereira).}
 
 Note that 
 \begin{equation}\label{eqn.det}
@@ -1690,11 +1690,11 @@ electrodynamics of
 moving media already solved numerically in \cite{DPRZ2017} for example, as well as the structure of 
 the continuum mechanics
 equations with torsion \cite{Torsion2019}. Moreover,
-\ho{despite deep conceptual differences,}
+despite deep conceptual differences,
 it is almost identical to 
 the dGREM formulation of the Einstein equations recently pushed forward in \cite{Olivares2022}.
-\ho{However, it is important to mention that the Lagrangian approach adopted here
-in principle permits to generalize the formulation to other $f(T)$ theories.}
+However, it is important to mention that the Lagrangian approach adopted here
+in principle permits to generalize the formulation to other $f(\Tscal)$ theories.
 A detailed comparison of 
 these two formulations will be a subject of a future paper.
 
@@ -1837,7 +1837,9 @@ For the TEGR Lagrangian \eqref{eq.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}
 		\qquad
 		\pd{k} \Dfin{\sA}{k} = \rho_{\sA}, 
 		\qquad
-		\pd{k} \Bfin{\sA}{k} = 0.
+		\pd{k} \Bfin{\sA}{k} = 0,
+		\qquad
+		\Bfin{\sA}{k} = \LCsymb^{kij}\pd{i}\tetr{\sA}{j}.
 	\end{equation}
 %	\begin{equation}
 %		\LCsymb_{ikj}\pd{k} \aE{\indalg{0}}{j} = 0,
