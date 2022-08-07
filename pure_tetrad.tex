@@ -2257,7 +2257,7 @@ dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evol
 equations for the gravity and matter energy-momenta separately).
 
 
-\section{Some analytical relations to GR}
+\section{Relation between the torsion and extrinsic curvature}
 
 In GR, the evolution equation of the spatial conformal metric $ \tilde{\gamma}_{ij} = 
 \phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
@@ -2277,7 +2277,8 @@ the following evolution equation for the spatial metric:
 	-\gamma_{jl}\pd{i}\shift{l} = \mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
 	\Efin{\sB}{i})	.
 \end{equation} 
-Then, using the evolution equation of the determinant $ \detTetr_3 = \sqrt{\det(\gamma_{ij})} $
+Then, using the evolution equation of the determinant $ \detTetr_3 =\det(\tetr{\sA}{k}) = 
+\sqrt{\det(\gamma_{ij})} $
 \begin{equation}\label{eqn.h.PDE}
 	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) = \frac{\alpha \varkappa}{2} \Dfin{\sA}{\sA},
 \end{equation}
@@ -2319,7 +2320,7 @@ follows from the fact that
 \begin{equation}
 	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
 	=
-	\mg{\sA\sB} \frac{\alpha \varkappa}{\detTetr_3}\bigg( 
+	-\mg{\sA\sB} \frac{\alpha \varkappa}{\detTetr_3}\bigg( 
 	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
 	-
 	\frac12
