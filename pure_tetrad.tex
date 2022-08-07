@@ -2257,6 +2257,75 @@ dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evol
 equations for the gravity and matter energy-momenta separately).
 
 
+\section{Some analytical relations to GR}
+
+In GR, the evolution equation of the spatial conformal metric $ \tilde{\gamma}_{ij} = 
+\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
+\begin{equation}\label{eqn.gamma.CCZ4}
+	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+	\pd{j}\shift{k}
+	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
+	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
+\end{equation} 
+where $ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $, $ K_{ij} $ is the spatial extrinsic 
+curvature, and $ K = K_{ij}\gamma^{ij} $ is its trace.
+
+On the other hand, contracting \eqref{eq.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} $, one obtains 
+the following evolution equation for the spatial metric:
+\begin{equation}\label{eqn.gamma.PDE}
+	\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+	-\gamma_{jl}\pd{i}\shift{l} = \mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+	\Efin{\sB}{i})	.
+\end{equation} 
+Then, using the evolution equation of the determinant $ \detTetr_3 = \sqrt{\det(\gamma_{ij})} $
+\begin{equation}\label{eqn.h.PDE}
+	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) = \frac{\alpha \varkappa}{2} \Dfin{\sA}{\sA},
+\end{equation}
+one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
+conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
+\begin{equation}\label{eqn.gamma.TEGR}
+	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+	\pd{j}\shift{k}
+	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = 
+	\phi^2 \mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+	-
+	\phi^5 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} \gamma_{ij}.
+\end{equation} 
+
+Because the left hand-sides in \eqref{eqn.gamma.CCZ4} and \eqref{eqn.gamma.TEGR} coincide, we 
+conclude that 
+\begin{equation}\label{key}
+	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+	-
+	\phi^3 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} {\gamma}_{ij}
+	=
+	-2\alpha K_{ij} + \frac{2\alpha K}{3} \gamma_{ij}.
+\end{equation}
+Hence, the first outcome is that in order TEGR and GR have the same solutions, one at least has to 
+impose that
+\begin{equation}
+	\Dfin{\sA}{\sA} = \tetr{\sA}{i} \Dfin{\sA}{i} = -2 \frac{K \detTetr_3}{\varkappa},
+\end{equation}
+while the second outcome 
+\begin{equation}
+	\mg{\sA\sB} \bigg( 
+	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+	-
+	\frac12
+	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+	\bigg) \Dfin{\sC}{k} = \frac{2 \detTetr_3}{\varkappa} K_{ij}
+\end{equation}
+follows from the fact that
+\begin{equation}
+	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+	=
+	\mg{\sA\sB} \frac{\alpha \varkappa}{\detTetr_3}\bigg( 
+	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+	-
+	\frac12
+	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+	\bigg) \Dfin{\sC}{k}.
+\end{equation}
 
 \section{Conclusion}
 
