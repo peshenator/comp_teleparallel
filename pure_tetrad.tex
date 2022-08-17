@@ -85,6 +85,7 @@ BCOR5mm, % Binding correction
 \newcommand{\itetrsymbol}{\eta}
 \newcommand{\itetr}[2]{\itetrsymbol^{#1}_{\phantom{#1}#2}}
 \newcommand{\tetr}[2]{\tetrsymbol^{#1}_{\phantom{#1}#2}}
+\newcommand{\stress}[2]{s_{#1}^{\phantom{#1}#2}}
 \newcommand{\detTetr}{\tetrsymbol}
 \newcommand{\rtetr}[2]{h^{#1}_{\mathsmaller{(r)} #2}}
 \newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
@@ -132,7 +133,7 @@ BCOR5mm, % Binding correction
 \newcommand{\aU}{\mathcal{U}}% potential for 3+1
 \newcommand{\veps}{\varepsilon}
 \newcommand{\EM}[2]{\Sigma^{#1}_{\phantom{#1}#2}}
-\newcommand{\EMmat}[2]{\sigma^{#1}_{\phantom{#1}#2}}
+\newcommand{\EMmat}[2]{\sigma^{\ #1}_{#2}}
 \newcommand{\EMgrav}[2]{t^{#1}_{\phantom{#1}#2}}
 \newcommand{\LCsymb}{\bm{\in}}    % Levi-Civita symbol (tensor-density)
 \newcommand{\LCtens}{\varepsilon} % Levi-Civita ordinary tensor
@@ -143,7 +144,7 @@ BCOR5mm, % Binding correction
 \newcommand{\tegr}{TEGR}
 \newcommand{\HDT}[1]{\accentset{\star}{T}^{#1}}
 \newcommand{\HDmix}{\accentset{\star}{T}}
-\newcommand{\KD}[2]{\delta^{#1}_{\,\,#2}}
+\newcommand{\KD}[2]{\delta^{\ #1}_{#2}}
 \newcommand{\NC}[2]{J^{\phantom{#1}#2}_{#1}}
 \newcommand{\nc}[2]{j^{\phantom{#1}#2}_{#1}}
 \newcommand{\indalg}[1]{\hat{\mathsmaller{#1}}}
@@ -1455,29 +1456,27 @@ following expressions
 	being the gravitational momentum)
 	%
 	\item
-	for the momentum flux, $ \sigma^k_{\ i} = \mat{\sigma^k_{\ i}} + \gra{\sigma^k_{\ 
-	i}}$:
+	for the momentum flux, $ \EMmat{k}{i} = \mat{\EMmat{k}{i}} + \gra{\EMmat{k}{i}}$:
 	\begin{equation}\label{eqn.sigmaki}
-		\gra{\sigma^k_{\ i}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + 
+		\gra{\EMmat{k}{i}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + 
 		\LCsymb_{ilj} 
 		\beta^k \Bfin{a}{l}\Dfin{a}{j} + (\Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j} 
-		- \Ufin)\delta^k_{\ i},
+		- \Ufin)\KD{k}{i},
 	\end{equation}
 	%
 	\item
 	for the energy density:
 	\begin{equation}\label{eqn.sigma00}
-		\rho_0 :=\sigma^0_{\ 0} = \shift{i} \rho^\text{(m)}_i - \LCsymb_{ilj} 
+		\rho_0 :=\EMmat{0}{0} = \shift{i} \rho^\text{(m)}_i - \LCsymb_{ilj} 
 		\beta^i\Bfin{a}{l}\Dfin{a}{j} - \Ufin = \beta^i 
 		\rho_i 
 		- \Ufin,
 	\end{equation}
 	%
 	\item
-	and for the energy flux, $ \sigma^k_{\ 0} = \mat{\sigma^k_{\ 0}}+\gra{\sigma^k_{\ 
-	0}}$:
+	and for the energy flux, $ \EMmat{k}{0} = \mat{\EMmat{k}{0}}+\gra{\EMmat{k}{0}}$:
 	\begin{equation}\label{eqn.sigmak0}
-		\gra{\sigma^k_{\ 0}} = -\beta^j( \Bfin{a}{k} \Hfin{a}{j} + \Dfin{a}{k} \Efin{a}{j})
+		\gra{\EMmat{k}{0}} = -\beta^j( \Bfin{a}{k} \Hfin{a}{j} + \Dfin{a}{k} \Efin{a}{j})
 		+
 		\beta^k( \Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j})
 		+
@@ -1486,7 +1485,7 @@ following expressions
 		\LCsymb^{klj} \Hfin{a}{l} \Efin{a}{j}.
 	\end{equation}
 \end{itemize}
-It is convenient to split the momentum and energy fluxes $ \sigma^k_{\ i} $ and $ \sigma^k_{\ 0} $ 
+It is convenient to split the momentum and energy fluxes $ \EMmat{k}{i} $ and $ \EMmat{k}{0} $ 
 in 
 \eqref{eqn.EM.sigma} into advective 
 and constitutive parts, so that the finale form of the $ 3+1 $ equations for the total 
@@ -1494,13 +1493,13 @@ energy-momentum
 \eqref{eqn.EM.sigma} reads
 \begin{subequations}\label{eqn.EM.PDE}
 	\begin{align}
-		\pd{t}\rho_i & + \pd{k}(-\beta^k \rho_i + s^k_{\ i}) = \rhs{i},\label{eqn.EM.m}\\[2mm]
-		\pd{t}\rho_0 & + \pd{k}(-\beta^k \rho_0 + \beta^i s^k_{\ i} + \LCsymb^{klj} \Hfin{a}{l} 
+		\pd{t}\rho_i & + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) = \rhs{i},\label{eqn.EM.m}\\[2mm]
+		\pd{t}\rho_0 & + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} \Hfin{a}{l} 
 		\Efin{a}{j}) = \rhs{0},\label{eqn.EM.e}
 	\end{align}
-where $ s^k_{\ i} = \mat{s^k_{\ i}} + \gra{s^k_{\ i}} $ with the gravity part given by
+where $ \stress{i}{k} = \mat{\stress{i}{k}} + \gra{\stress{i}{k}} $ with the gravity part given by
 \begin{gather}\label{eqn.flux.const}
-	\gra{s^k_{\ i}} := -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
+	\gra{\stress{i}{k}} := -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 	\Hfin{a}{j} + 
 	\Dfin{a}{j} \Efin{a}{j} 
 	- \Ufin)\delta^k_{\ i}.
@@ -1508,14 +1507,15 @@ where $ s^k_{\ i} = \mat{s^k_{\ i}} + \gra{s^k_{\ i}} $ with the gravity part gi
 The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
 \begin{align}\label{eqn.source.rhoi}
 	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
-	+s^k_{\ j} \w{j}{ki}
+	+\stress{j}{k} \w{j}{ki}
 %	- \LCsymb_{ilj} s^l_{\ k} \itetr{k}{\sA} 
 %	\Bfin{\sA}{j} + s^l_{\ k} \itetr{k}{\sA} \pd{i}\tetr{\sA}{l} 
 	,\\[2mm]
 	\rhs{0} =&- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
 	          + \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_j 
 	          \itetr{j}{\sA} \nonumber\\
-	          &+ \LCsymb^{klj} \Hfin{a}{l}\Efin{a}{j}\pd{k}\ln(\alpha) + s^k_{\ j} \itetr{j}{\sA} 
+	          &+ \LCsymb^{klj} \Hfin{a}{l}\Efin{a}{j}\pd{k}\ln(\alpha) + \stress{j}{k} 
+	          \itetr{j}{\sA} 
 	          \pd{k}\shift{\sA}. \label{eqn.f0}
 \end{align}
 \end{subequations}
@@ -1565,8 +1565,9 @@ Because the energy-momentum $ \EMmat{k}{i} $ was defined as $ \EMmat{k}{i} = \te
 \NC{a}{k} = \tetr{\sA}{i} \NC{\sA}{k} $, we can use the expression for $ \EMmat{k}{i} $ to have an 
 explicit formula for the Noether current. Thus, we have
 \begin{equation}\label{eqn.J.new}
-	\NC{\sA}{k} = \itetr{i}{\sA} \EMmat{k}{i} = \itetr{i}{\sA} (-\shift{k} \rho_i + s^k_{\ i} ) = 
-	-\shift{k} \rho_{\sA} + s^k_{\ \sA}.
+	\NC{\sA}{k} = \itetr{i}{\sA} \EMmat{k}{i} = \itetr{i}{\sA} (-\shift{k} \rho_i + \stress{i}{k} ) 
+	= 
+	-\shift{k} \rho_{\sA} + \stress{\sA}{k}.
 \end{equation}
 
 In the same way we can find $ \NC{a}{0} $ necessary in \eqref{eq.div.constr}: $ \NC{a}{0} = 
@@ -1599,7 +1600,7 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
 		\Hfin{\sA}{j}) & 
-		= \shift{i} \rho_{\sA} - s^i_{\ \sA},
+		= \shift{i} \rho_{\sA} - \stress{\sA}{i},
 %		\tag{\ref{eqn.tpo.D}}
 		\\[2mm]
 		%		
@@ -1618,10 +1619,10 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 %		-\aU
 %		) \KD{\mu}{\nu}
 %		\right) & = 0,
-		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + s^k_{\ i}) &= \rhs{i},
+		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) &= \rhs{i},
 		\label{eq.3+1.m}
 		\\[2mm]
-		\pd{t}\rho_0 + \pd{k}(-\beta^k \rho_0 + \beta^i s^k_{\ i} + \LCsymb^{klj} \Hfin{a}{l} 
+		\pd{t}\rho_0 + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} \Hfin{a}{l} 
 		\Efin{a}{j}) &= \rhs{0},	
 		\label{eq.3+1.e}
 		\\[2mm]
@@ -1645,7 +1646,8 @@ with the total energy-momentum $ \rho_i := \rho^\text{(m)}_i + \rho^\text{(g)}_i
 \end{equation*}
 and with the momentum flux given by
 \begin{gather*}
-	s^k_{\ i} := \mat{s^k_{\ i}} + \gra{s^k_{\ i}} = \mat{s^k_{\ i}} -\Bfin{a}{k} \Hfin{a}{i} - 
+	\stress{i}{k} := \mat{\stress{i}{k}} + \gra{\stress{i}{k}} = \mat{\stress{i}{k}} -\Bfin{a}{k} 
+	\Hfin{a}{i} - 
 	\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 	\Hfin{a}{j} + 
 	\Dfin{a}{j} \Efin{a}{j} 
@@ -1663,7 +1665,7 @@ and with the momentum flux given by
 while the source terms in the energy-momentum equations read
 \begin{align*}
 	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
-	+s^k_{\ j} \w{j}{ki}\\[2mm]
+	+\stress{j}{k} \w{j}{ki}\\[2mm]
 %	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} 
 %	\Bfin{\sA}{j} + \rho_\sA \pd{i}\shift{\sA} + (-\shift{k} \rho_{\sA}+ s^k_{\ \sA})  
 %	\pd{i}\tetr{\sA}{k} = 
@@ -1673,12 +1675,12 @@ while the source terms in the energy-momentum equations read
 	\rhs{0} =&
 	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
 	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_{\sA}
-	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + s^k_{\ \sA} 
+	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \stress{\sA}{k} 
 	\pd{k}\shift{\sA}\\[2mm]
 	=&
 	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	+ \rho_j \pd{t} \shift{j} + s^k_{\ j}\pd{k}\shift{j} + \rho_{\sA} \shift{j} \Efin{\sA}{j} 
-	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} s^k_{\ l}\w{l}{kj},
+	+ \rho_j \pd{t} \shift{j} + \stress{j}{k} \pd{k}\shift{j} + \rho_{\sA} \shift{j} \Efin{\sA}{j} 
+	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} \stress{l}{k} \w{l}{kj},
 \end{align*}
 where $ \rho_{\sA} = \itetr{i}{\sA} \rho_i$, 
 %$ s^k_{\ \sA} = \itetr{i}{\sA} s^k_{\ i} $, 
@@ -1833,14 +1835,15 @@ For the TEGR Lagrangian \eqref{eq.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}
 
 
 	\begin{equation}\label{eq.div.constr2}
-		\pd{k} \Dfin{\indalg{0}}{k} = -\alpha^{-1} \Ufin,
+		\pd{k} \Dfin{\indalg{0}}{k} = \rho_{\indalg{0}},
 		\qquad
 		\pd{k} \Dfin{\sA}{k} = \rho_{\sA}, 
 		\qquad
 		\pd{k} \Bfin{\sA}{k} = 0,
 		\qquad
-		\Bfin{\sA}{k} = \LCsymb^{kij}\pd{i}\tetr{\sA}{j}.
+		\Bfin{\sA}{k} = \LCsymb^{kij}\pd{i}\tetr{\sA}{j},
 	\end{equation}
+with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin = \NC{\indalg{0}}{0} $.
 %	\begin{equation}
 %		\LCsymb_{ikj}\pd{k} \aE{\indalg{0}}{j} = 0,
 %	\end{equation}
@@ -2187,7 +2190,7 @@ the 4-divergence) read
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
 		\Hfin{\sA}{j}) & 
-		= \shift{i}\rho_\sA - s^i_{\ \sA},
+		= \shift{i}\rho_\sA - \stress{\sA}{i},
 		\label{eqn.BD.alt0.D}
 		\\[2mm]
 		%		
@@ -2213,7 +2216,7 @@ such a pathology
 		\Hfin{\sA}{j}) 
 		-\shift{i}\pd{k} \Dfin{\sA}{k}
 		& 
-		= - s^i_{\ \sA},
+		= - \stress{\sA}{i},
 		\label{eqn.BD.alt.D}
 		\\[2mm]
 		%		
@@ -2246,7 +2249,7 @@ notations introduced in Sec.\,\ref{sec.energymomentum}, conservation law $ \pd{\
 $ now reads
 \begin{subequations}
 	\begin{align}
-		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + s^k_{\ \sA}) = 0,\\[2mm]
+		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
 		\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
 		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) = 0,
 	\end{align}
@@ -2259,7 +2262,8 @@ equations for the gravity and matter energy-momenta separately).
 
 \section{Relation between the torsion and extrinsic curvature}
 
-In GR, the evolution equation of the spatial conformal metric $ \tilde{\gamma}_{ij} = 
+In CCZ4 formulation of GR, the evolution equation of the spatial conformal metric $ 
+\tilde{\gamma}_{ij} = 
 \phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
 \begin{equation}\label{eqn.gamma.CCZ4}
 	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
@@ -2295,7 +2299,7 @@ conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
 
 Because the left hand-sides in \eqref{eqn.gamma.CCZ4} and \eqref{eqn.gamma.TEGR} coincide, we 
 conclude that 
-\begin{equation}\label{key}
+\begin{equation}
 	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
 	-
 	\phi^3 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} {\gamma}_{ij}
