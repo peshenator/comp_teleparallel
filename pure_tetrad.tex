@@ -104,8 +104,8 @@ BCOR5mm, % Binding correction
 \newcommand{\ETmix}[2]{E^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
 \newcommand{\Dm}[2]{D_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
 \newcommand{\aD}[2]{\mathcal{D}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of 
-\newcommand{\Dfin}[2]{\mathtt{D}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of 
-\newcommand{\Hfin}[2]{\mathtt{H}_{#1#2}}	%Torsion decomposition, analog of 
+\newcommand{\Dfin}[2]{\mathtt{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
+\newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
 \newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
 \newcommand{\Ufin}{\mathtt{U}}
 %%%Electric 
@@ -1051,14 +1051,14 @@ Contracting \eqref{eqn.TEGR0.tetrad} with the 4-velocity $ u^\mu $, and then aft
 change of variables \eqref{eqn.Legendre2} and \eqref{eqn.Legendre3}, the 
 resulting equation reads as
 \begin{equation}
-	u^\mu(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) = \Um_{\Dm{a}{\nu}}.
+	(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) u^\nu = \Um_{\Dm{a}{\mu}}.
 \end{equation}
 Furthermore, using the identity $ \itetr{\mu}{b}\D{\nu}\tetr{a}{\nu} = - 
 \tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition $ u^\mu = \itetr{\mu}{\indalg{0}} 
 $, the 
 latter equation can be rewritten as
 \begin{equation}
-	u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu = \Um_{\Dm{a}{\nu}},
+	u^\nu\D{\nu}\tetr{a}{\mu} + \tetr{a}{\nu}\D{\mu}u^\nu =-\Um_{\Dm{a}{\mu}},
 \end{equation}
 that later will be used in the $ 3+1 $-split.
 
@@ -1129,7 +1129,7 @@ unknowns $ \{\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}\} $  reads
         & = \EMmat{\mu}{\lambda} 
         \w{\lambda}{\mu\nu},\\[2mm]
 %		
-		u^\mu\D{\mu}\tetr{a}{\nu} + \tetr{a}{\mu}\D{\nu}u^\mu & = \Um_{\Dm{a}{\nu}},
+		u^\nu\D{\nu}\tetr{a}{\mu} + \tetr{a}{\nu}\D{\mu}u^\nu =-\Um_{\Dm{a}{\mu}},
 		\label{tetr}
 	\end{empheq}
 \end{subequations}
@@ -1374,7 +1374,7 @@ the 4-velocity \eqref{eq.4vel}, equation \eqref{tetr} can be written as
 \begin{equation}\label{eq.tetr.3+1}
 	\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
 	= 
-	\Efin{\sA}{k}.
+	-\Efin{\sA}{k}.
 	% \aU_{\aD{\sA}{k}}.
 \end{equation}
 
@@ -1386,7 +1386,7 @@ has
 	\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i (\pd{i}\tetr{\sA}{k} - 
 	\pd{k}\tetr{\sA}{i})
 	= 
-	\Efin{\sA}{k}.
+	-\Efin{\sA}{k}.
 	%	\aU_{\aD{\sA}{k}}.
 \end{equation}
 Finally, using the definition of $ \BT{\sA}{\mu} $ and $ u_\mu $, we have that 
@@ -1413,7 +1413,7 @@ or
 Therefore, \eqref{eq.tetr.3+1.2} can be also rewritten as 
 \begin{equation}\label{eq.tetr.3+1.3}
 	\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) =  
-	\Efin{\sA}{k} - \LCsymb_{klj} \beta^l \Bfin{\sA}{j}.
+	-\Efin{\sA}{k} - \LCsymb_{klj} \beta^l \Bfin{\sA}{j}.
 \end{equation}
 It is not clear yet which one of these equivalent forms \eqref{eq.tetr.3+1}, \eqref{eq.tetr.3+1.2}, 
 or 
@@ -1637,7 +1637,7 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i (\pd{i}\tetr{\sA}{k} - 
 		\pd{k}\tetr{\sA}{i})
 		&= 
-		\Efin{\sA}{k}.
+		-\Efin{\sA}{k}.
 %		\pd{t} \tetr{a}{k} - \beta^i \pd{i} \tetr{a}{k} - \tetr{a}{i} \pd{k} \beta^i &= 
 %		{\Efin{a}{k}},
 %		\tag{\ref{eq.tetr.3+1}} 
@@ -1733,6 +1733,7 @@ For the TEGR Lagrangian \eqref{eq.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}
 		- 
 		\frac{\varkappa}{\detTetr_3} \LCsymb^{jil} 
 		\gamma_{jk} \tetr{\sA}{i} \Hfin{\indalg{0}}{l}.
+		\label{eqn.E}
 	\end{align}
 \end{subequations}
 
@@ -2269,75 +2270,96 @@ equations for the gravity and matter energy-momenta separately).
 
 \section{Relation between the torsion and extrinsic curvature}
 
-In CCZ4 formulation of GR, the evolution equation of the spatial conformal metric $ 
-\tilde{\gamma}_{ij} = 
-\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
-\begin{equation}\label{eqn.gamma.CCZ4}
-	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
-	\pd{j}\shift{k}
-	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
-	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
-\end{equation} 
-where $ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $, $ K_{ij} $ is the spatial extrinsic 
-curvature, and $ K = K_{ij}\gamma^{ij} $ is its trace.
-
+In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
+\cite[Eq.(7.64)]{RezzollaZanottiBook})
+%$\tilde{\gamma}_{ij} = 
+%\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
+%\begin{equation}\label{eqn.gamma.CCZ4}
+%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+%	\pd{j}\shift{k}
+%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
+%	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
+%\end{equation} 
+\begin{equation}\label{eqn.K}
+		\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+	-\gamma_{jl}\pd{i}\shift{l} = - 2 \alpha K_{ij},
+\end{equation}
+%$ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $,
+where  $ K_{ij} $ is the spatial extrinsic 
+curvature.
 On the other hand, contracting \eqref{eq.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} $, one obtains 
 the following evolution equation for the spatial metric:
 \begin{equation}\label{eqn.gamma.PDE}
 	\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
-	-\gamma_{jl}\pd{i}\shift{l} = \mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
-	\Efin{\sB}{i})	.
+	-\gamma_{jl}\pd{i}\shift{l} = -\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+	\Efin{\sB}{i}).
 \end{equation} 
-Then, using the evolution equation of the determinant $ \detTetr_3 =\det(\tetr{\sA}{k}) = 
-\sqrt{\det(\gamma_{ij})} $
-\begin{equation}\label{eqn.h.PDE}
-	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) = \frac{\alpha \varkappa}{2} \Dfin{\sA}{\sA},
+Therefore, one has the following expression for the extrinsic curvature in terms of $ 
+\Efin{\sA}{i} $ 
+\begin{equation}\label{key}
+	K_{ij} = \frac{1}{2\alpha}\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+	\Efin{\sB}{i}).
 \end{equation}
-one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
-conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
-\begin{equation}\label{eqn.gamma.TEGR}
-	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
-	\pd{j}\shift{k}
-	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = 
-	\phi^2 \mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
-	-
-	\phi^5 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} \gamma_{ij}.
-\end{equation} 
 
-Because the left hand-sides in \eqref{eqn.gamma.CCZ4} and \eqref{eqn.gamma.TEGR} coincide, we 
-conclude that 
-\begin{equation}
-	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
-	-
-	\phi^3 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} {\gamma}_{ij}
-	=
-	-2\alpha K_{ij} + \frac{2\alpha K}{3} \gamma_{ij}.
-\end{equation}
-Hence, the first outcome is that in order TEGR and GR have the same solutions, one at least has to 
-impose that
-\begin{equation}
-	\Dfin{\sA}{\sA} = \tetr{\sA}{i} \Dfin{\sA}{i} = -2 \frac{K \detTetr_3}{\varkappa},
-\end{equation}
-while the second outcome 
-\begin{equation}
-	\mg{\sA\sB} \bigg( 
-	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
-	-
-	\frac12
-	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
-	\bigg) \Dfin{\sC}{k} = \frac{2 \detTetr_3}{\varkappa} K_{ij}
-\end{equation}
-follows from the fact that
+To obtain another expression for $ K_{ij} $ in terms of the primary state variable $ \Dfin{\sA}{i} 
+$, one needs to use the the constitutive relationship \eqref{eqn.E} to deduce
 \begin{equation}
 	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
 	=
-	-\mg{\sA\sB} \frac{\alpha \varkappa}{\detTetr_3}\bigg( 
+	-\frac{\alpha \varkappa}{\detTetr_3}  \mg{\sA\sB}  \bigg( 
 	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
 	-
 	\frac12
 	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
 	\bigg) \Dfin{\sC}{k}.
 \end{equation}
+Therefore, the following expression can be obtained
+\begin{equation}
+	K_{ij} = -\frac{\varkappa}{2 \detTetr_3}\mg{\sA\sB} \bigg( 
+	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+	-
+	\frac12
+	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+	\bigg) \Dfin{\sC}{k},
+\end{equation}
+which, if contracted, gives the relationship for the traces $ K = \gamma^{ij}K_{ji} $ and $ 
+\Dfin{i}{i} =  \Dfin{\sA}{i}\tetr{\sA}{i} $
+\begin{equation}
+	 K = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
+\end{equation}
+
+\IP{put it somewhere\\
+Then, using the evolution equation of the determinant $ \detTetr_3 =\det(\tetr{\sA}{k}) = 
+\sqrt{\det(\gamma_{ij})} $
+\begin{equation}\label{eqn.h.PDE}
+	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
+\end{equation}
+}
+
+%one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
+%conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
+%\begin{equation}\label{eqn.gamma.TEGR}
+%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+%	\pd{j}\shift{k}
+%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = 
+%	-\phi^2 \mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+%	+
+%	\phi^5 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} \gamma_{ij}.
+%\end{equation} 
+%
+%Because the left hand-sides in \eqref{eqn.gamma.CCZ4} and \eqref{eqn.gamma.TEGR} coincide, we 
+%conclude that 
+%\begin{equation}
+%	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+%	-
+%	\phi^3 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} {\gamma}_{ij}
+%	=
+%	-2\alpha K_{ij} + \frac{2\alpha K}{3} \gamma_{ij}.
+%\end{equation}
+%Hence, the first outcome is that in order TEGR and GR have the same solutions, one at least has 
+%to 
+%impose that
+
 
 \section{Conclusion}
 
