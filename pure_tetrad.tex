@@ -102,8 +102,8 @@ BCOR5mm, % Binding correction
 \newcommand{\Torsl}[1]{T_{#1}}
 \newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
 \newcommand{\ETmix}[2]{E^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\Dm}[2]{D_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
-\newcommand{\aD}[2]{\mathcal{D}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+\newcommand{\Dm}[2]{D_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\aD}[2]{\mathcal{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Dfin}[2]{\mathtt{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
 \newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
@@ -133,7 +133,7 @@ BCOR5mm, % Binding correction
 \newcommand{\aU}{\mathcal{U}}% potential for 3+1
 \newcommand{\veps}{\varepsilon}
 \newcommand{\EM}[2]{\Sigma^{#1}_{\phantom{#1}#2}}
-\newcommand{\EMmat}[2]{\sigma^{\ #1}_{#2}}
+\newcommand{\EMmat}[2]{\sigma^{#1}_{\ \,#2}}
 \newcommand{\EMgrav}[2]{t^{#1}_{\phantom{#1}#2}}
 \newcommand{\LCsymb}{\bm{\in}}    % Levi-Civita symbol (tensor-density)
 \newcommand{\LCtens}{\varepsilon} % Levi-Civita ordinary tensor
@@ -145,7 +145,7 @@ BCOR5mm, % Binding correction
 \newcommand{\HDT}[1]{\accentset{\star}{T}^{#1}}
 \newcommand{\HDmix}{\accentset{\star}{T}}
 \newcommand{\KD}[2]{\delta^{\ #1}_{#2}}
-\newcommand{\NC}[2]{J^{\phantom{#1}#2}_{#1}}
+\newcommand{\NC}[2]{J^{#2}_{\phantom{#2}#1}}
 \newcommand{\nc}[2]{j^{\phantom{#1}#2}_{#1}}
 \newcommand{\indalg}[1]{\hat{\mathsmaller{#1}}}
 \newcommand{\aE}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}
@@ -1324,8 +1324,8 @@ change of variables
 \end{equation}
 which are essentially $ 3 $-by-$ 3 $ matrices ($ \Dfin{a}{0} = 0$, $ \Bfin{a}{0} = 
 \Bfin{\indalg{0}}{\mu} = 0 $, and $ \Dfin{\indalg{0}}{k} $ are given by \eqref{eq.D0.tmp3}),
-we arrive at the final form of the $ 3+1 $ equations for the fields $ \Dfin{a}{i} $ and $ 
-\Bfin{a}{i} $
+we arrive at the final form of the $ 3+1 $ equations for the fields $ \Dfin{\sA}{i} $ and $ 
+\Bfin{\sA}{i} $
 \begin{subequations}\label{eqn.PDE.BD.final}
 	\begin{align}
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
@@ -1983,54 +1983,225 @@ system
 \eqref{eq.3+1.summary}.
 %$ \LCsymb_{\sA\sB\sC} = \LCsymb_{ijk} \itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $
 
-\subsection{Summary of change of variables and potentials}
+%\subsection{Summary of change of variables and potentials}
+%
+%\begin{itemize}
+%	\item[$ \left\langle 1 \right\rangle $] 
+%	$ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
+%	\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $,  
+%	\quad 
+%	$ \{\tetr{a}{\mu},\pd{\mu}\tetr{a}{\nu}\} \to \{\tetr{a}{\mu},\HDT{a\mu\nu}\}$,
+%	\quad
+%	eqs. \eqref{eqn.EL}$ \to $ \eqref{eqn.1st.order.TEGR}
+%	\\[1mm]
+%	%
+%	\item[$ \left\langle 2 \right\rangle $] 
+%	$ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+%	\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu})$,
+%	\quad
+%	$ \{\tetr{a}{\mu},\HDT{a\mu\nu}\} \to \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} $,
+%	\quad
+%	eqs. \eqref{eqn.1st.order.TEGR}$ \to $\eqref{eqn.tors.BE}
+%	\\[1mm]
+%	%
+%	\item[$ \left\langle 3 \right\rangle $] 
+%	$ \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}) \to 
+%	\Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu})$,
+%	\quad
+%	$ \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} \to \{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\}$,
+%	\quad
+%	eqs. \eqref{eqn.tors.BE}$ \to $\eqref{eqn.PDE.4D}
+%	\\[1mm]
+%	%
+%	\item[$ \left\langle 4 \right\rangle $] 
+%	$ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) = \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu})$,
+%	\quad
+%	$\{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\} \to 
+%	\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\}$,
+%	\quad
+%	eqs. \eqref{eqn.PDE.4D}$ \to $\eqref{eqn.tpo.2}
+%	\\[1mm]
+%	%
+%	\item[$ \left\langle 5 \right\rangle $] 
+%	$ \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}) = 
+%	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})$,
+%	\quad
+%	$\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\} \to 
+%	\{\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu}\}$,
+%	\quad
+%	eqs. \eqref{eqn.tpo.2}$ \to $\eqref{eq.3+1.summary}
+%\end{itemize}
 
-\begin{itemize}
-	\item[$ \left\langle 1 \right\rangle $] 
-	$ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
-	\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $,  
-	\quad 
-	$ \{\tetr{a}{\mu},\pd{\mu}\tetr{a}{\nu}\} \to \{\tetr{a}{\mu},\HDT{a\mu\nu}\}$,
-	\quad
-	eqs. \eqref{eqn.EL}$ \to $ \eqref{eqn.1st.order.TEGR}
-	\\[1mm]
-	%
-	\item[$ \left\langle 2 \right\rangle $] 
-	$ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
-	\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu})$,
-	\quad
-	$ \{\tetr{a}{\mu},\HDT{a\mu\nu}\} \to \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} $,
-	\quad
-	eqs. \eqref{eqn.1st.order.TEGR}$ \to $\eqref{eqn.tors.BE}
-	\\[1mm]
-	%
-	\item[$ \left\langle 3 \right\rangle $] 
-	$ \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}) \to 
-	\Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu})$,
-	\quad
-	$ \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} \to \{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\}$,
-	\quad
-	eqs. \eqref{eqn.tors.BE}$ \to $\eqref{eqn.PDE.4D}
-	\\[1mm]
-	%
-	\item[$ \left\langle 4 \right\rangle $] 
-	$ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) = \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu})$,
-	\quad
-	$\{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\} \to 
-	\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\}$,
-	\quad
-	eqs. \eqref{eqn.PDE.4D}$ \to $\eqref{eqn.tpo.2}
-	\\[1mm]
-	%
-	\item[$ \left\langle 5 \right\rangle $] 
-	$ \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}) = 
-	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})$,
-	\quad
-	$\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\} \to 
-	\{\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu}\}$,
-	\quad
-	eqs. \eqref{eqn.tpo.2}$ \to $\eqref{eq.3+1.summary}
-\end{itemize}
+
+
+\section{Some alternative forms for numerics}
+
+Here, we give alternative forms for the torsion field and energy-momentum equations that might be 
+useful for the numerical discretization of system \eqref{eq.3+1.summary}.
+
+\subsection{Alternative form of the torsion equations}
+
+The evolution equations for the torsion fields have a conservative form (i.e. their differential 
+terms are 
+the 4-divergence) read
+\begin{subequations}\label{eqn.BD.alt0}
+	\begin{align}
+		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+		\Hfin{\sA}{j}) & 
+		= \shift{i}\rho_\sA - \stress{\sA}{i},
+		\label{eqn.BD.alt0.D}
+		\\[2mm]
+		%		
+		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+		\Efin{\sA}{j}) & 
+		= 0.
+		\label{eqn.BD.alt0.B}
+	\end{align}
+\end{subequations}
+However, from our experience with the non-relativistic equations of nonlinear electrodynamics of 
+moving media \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that have the 
+same structure as \eqref{eq.3+1.summary}, this form of equations has a flaw. 
+Namely, one of the characteristic has a zero velocity which breaks the Hamiltonian invariance
+of the equations in \cite{DPRZ2017,Torsion2019}. The same issue is well known for the 
+magnetohydrodynamics 
+equations \cite{Powell1999}. Instead, the following non-conservative form does not have 
+such a pathology
+\begin{subequations}\label{eqn.BD.alt}
+	\begin{align}
+		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+		\Hfin{\sA}{j}) 
+		-\shift{i}\pd{k} \Dfin{\sA}{k}
+		& 
+		= - \stress{\sA}{i},
+		\label{eqn.BD.alt.D}
+		\\[2mm]
+		%		
+		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+		\Efin{\sA}{j}) 
+		-\shift{i}\pd{k} \Bfin{\sA}{k}
+		& 
+		= 0,
+		\label{eqn.BD.alt.B}
+	\end{align}
+\end{subequations}
+and which is obtained from \eqref{eqn.BD.alt0} by formally treating the momentum $ \rho_\sA $ as $ 
+\rho_\sA = \pd{k}\Dfin{\sA}{k} $ in \eqref{eqn.BD.alt0.D} and adding $ 0 = \pd{k}\Bfin{\sA}{k} $ to 
+\eqref{eqn.BD.alt0.B}. This is valid thanks to the involution constraints \eqref{eq.div.constr2} 
+and \eqref{eqn.Ja0}.
+
+\subsection{Alternative form of the energy-momentum equations}
+
+In \eqref{eq.3+1.summary} we deliberately use the energy-momentum tensor with both spacetime 
+indices because we would like to use the SHTC and Hamiltonian structure \cite{SHTC-GENERIC-CMAT} of 
+these equations for designing numerical schemes in the future, e.g. \cite{HTC2022,SPH_SHTC}. 
+However, the resulting PDEs 
+\eqref{eq.3+1.m} and \eqref{eq.3+1.e} do not have a fully 
+conservative form preferable for example when dealing with the shock waves in the matter fields.
+Therefore, one may want to use the true conservation law \eqref{eqn.Noether.cons} for the total 
+(matter+gravity) Noether 
+current $ \NC{a}{\mu} $ instead of \eqref{eq.3+1.m} and \eqref{eq.3+1.e}. Thus, in the new 
+notations introduced in Sec.\,\ref{sec.energymomentum}, conservation law $ \pd{\mu}\NC{a}{\mu} = 0 
+$ now reads
+\begin{subequations}
+	\begin{align}
+		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
+		\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
+		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) = 0,
+	\end{align}
+\end{subequations}
+with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin $. This form, and therefore the entire system of the 
+$ 3+1 $ TEGR equations \eqref{eq.3+1.summary},  is equivalent to the 
+dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evolution 
+equations for the gravity and matter energy-momenta separately).
+
+
+
+\subsection{Evolution of the volume}
+
+As in the computational Newtonian mechanics \cite{DPRZ2016,SIGPR2021}, the evolution of the tetrad 
+field at the numerical level has to be made consistently with the volume/mass conservation law. In 
+TEGR, the equivalent to the mass conservation in the Newtonian mechanics is 
+\begin{equation}\label{eqn.pde.det}
+	\pd{\mu}(\detTetr u^\mu) = -\detTetr \ET{\mu}{\mu} 
+\end{equation} 
+which can be obtained after contracting \eqref{tetr} with $ \partial \detTetr/\partial \tetr{a}{\mu} 
+= \detTetr
+\itetr{\mu}{a} $, and where $ \ET{\mu}{\mu} = \itetr{\mu}{a} \ET{a}{\mu}$.
+
+   
+After using \eqref{eq.4vel}, \eqref{eqn.h.eta.matrix}, and \eqref{eqn.E}, this balance law becomes
+\begin{equation}\label{eqn.h.PDE}
+	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
+\end{equation}
+where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
+
+
+
+\section{Relation between the torsion and extrinsic curvature}
+
+In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
+\cite[Eq.(7.64)]{RezzollaZanottiBook})
+%$\tilde{\gamma}_{ij} = 
+%\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
+%\begin{equation}\label{eqn.gamma.CCZ4}
+%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+%	\pd{j}\shift{k}
+%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
+%	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
+%\end{equation} 
+\begin{equation}\label{eqn.K}
+	\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+	-\gamma_{jl}\pd{i}\shift{l} = - 2 \alpha K_{ij},
+\end{equation}
+%$ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $,
+where  $ K_{ij} $ is the spatial extrinsic 
+curvature.
+On the other hand, contracting \eqref{eq.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} $, one obtains 
+the following evolution equation for the spatial metric:
+\begin{equation}\label{eqn.gamma.PDE}
+	\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+	-\gamma_{jl}\pd{i}\shift{l} = -\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+	\Efin{\sB}{i}).
+\end{equation} 
+Therefore, one has the following expression for the extrinsic curvature in terms of $ 
+\Efin{\sA}{i} $ 
+\begin{equation}\label{key}
+	K_{ij} = \frac{1}{2\alpha}\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+	\Efin{\sB}{i}).
+\end{equation}
+
+To obtain another expression for $ K_{ij} $ in terms of the primary state variable $ \Dfin{\sA}{i} 
+$, one needs to use the the constitutive relationship \eqref{eqn.E} to deduce
+\begin{equation}
+	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+	=
+	-\frac{\alpha \varkappa}{\detTetr_3}  \mg{\sA\sB}  \bigg( 
+	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+	-
+	\frac12
+	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+	\bigg) \Dfin{\sC}{k}.
+\end{equation}
+Therefore, the following expression can be obtained
+\begin{equation}
+	K_{ij} = -\frac{\varkappa}{2 \detTetr_3}\mg{\sA\sB} \bigg( 
+	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+	-
+	\frac12
+	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+	\bigg) \Dfin{\sC}{k},
+\end{equation}
+which, if contracted, gives the relationship for the traces $ K = \gamma^{ij}K_{ji} $ and $ 
+\Dfin{i}{i} =  \Dfin{\sA}{i}\tetr{\sA}{i} $
+\begin{equation}
+	K = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
+\end{equation}
+
+
 
 
 \subsection{Closure}\label{sec.closure}
@@ -2183,158 +2354,6 @@ so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) =
 	\end{equation}
 \end{subequations}
 
-\section{Some alternative forms for numerics}
-
-Here, we give alternative forms for the torsion field and energy-momentum equations that might be 
-useful for the numerical discretization of system \eqref{eq.3+1.summary}.
-
-\subsection{Alternative form of the torsion equations}
-
-The evolution equations for the torsion fields have a conservative form (i.e. their differential 
-terms are 
-the 4-divergence) read
-\begin{subequations}\label{eqn.BD.alt0}
-	\begin{align}
-		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		\Hfin{\sA}{j}) & 
-		= \shift{i}\rho_\sA - \stress{\sA}{i},
-		\label{eqn.BD.alt0.D}
-		\\[2mm]
-		%		
-		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		\Efin{\sA}{j}) & 
-		= 0.
-		\label{eqn.BD.alt0.B}
-	\end{align}
-\end{subequations}
-However, from our experience with the non-relativistic equations of nonlinear electrodynamics of 
-moving media \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that have the 
-same structure as \eqref{eq.3+1.summary}, this form of equations has a flaw. 
-Namely, one of the characteristic has a zero velocity which breaks the Hamiltonian invariance
-of the equations in \cite{DPRZ2017,Torsion2019}. The same issue is well known for the 
-magnetohydrodynamics 
-equations \cite{Powell1999}. Instead, the following non-conservative form does not have 
-such a pathology
-\begin{subequations}\label{eqn.BD.alt}
-	\begin{align}
-		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		\Hfin{\sA}{j}) 
-		-\shift{i}\pd{k} \Dfin{\sA}{k}
-		& 
-		= - \stress{\sA}{i},
-		\label{eqn.BD.alt.D}
-		\\[2mm]
-		%		
-		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		\Efin{\sA}{j}) 
-		-\shift{i}\pd{k} \Bfin{\sA}{k}
-		& 
-		= 0,
-		\label{eqn.BD.alt.B}
-	\end{align}
-\end{subequations}
-and which is obtained from \eqref{eqn.BD.alt0} by formally treating the momentum $ \rho_\sA $ as $ 
-\rho_\sA = \pd{k}\Dfin{\sA}{k} $ in \eqref{eqn.BD.alt0.D} and adding $ 0 = \pd{k}\Bfin{\sA}{k} $ to 
-\eqref{eqn.BD.alt0.B}. This is valid thanks to the involution constraints \eqref{eq.div.constr2} 
-and \eqref{eqn.Ja0}.
-
-\subsection{Alternative form of the energy-momentum equations}
-
-In \eqref{eq.3+1.summary} we deliberately use the energy-momentum tensor with both spacetime 
-indices because we would like to use the SHTC and Hamiltonian structure \cite{SHTC-GENERIC-CMAT} of 
-these equations for designing numerical schemes in the future, e.g. \cite{HTC2022,SPH_SHTC}. 
-However, the resulting PDEs 
-\eqref{eq.3+1.m} and \eqref{eq.3+1.e} do not have a fully 
-conservative form preferable for example when dealing with the shock waves in the matter fields.
-Therefore, one may want to use the true conservation law \eqref{eqn.Noether.cons} for the total 
-(matter+gravity) Noether 
-current $ \NC{a}{\mu} $ instead of \eqref{eq.3+1.m} and \eqref{eq.3+1.e}. Thus, in the new 
-notations introduced in Sec.\,\ref{sec.energymomentum}, conservation law $ \pd{\mu}\NC{a}{\mu} = 0 
-$ now reads
-\begin{subequations}
-	\begin{align}
-		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
-		\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
-		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) = 0,
-	\end{align}
-\end{subequations}
-with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin $. This form, and therefore the entire system of the 
-$ 3+1 $ TEGR equations \eqref{eq.3+1.summary},  is equivalent to the 
-dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evolution 
-equations for the gravity and matter energy-momenta separately).
-
-
-\section{Relation between the torsion and extrinsic curvature}
-
-In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
-\cite[Eq.(7.64)]{RezzollaZanottiBook})
-%$\tilde{\gamma}_{ij} = 
-%\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
-%\begin{equation}\label{eqn.gamma.CCZ4}
-%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
-%	\pd{j}\shift{k}
-%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
-%	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
-%\end{equation} 
-\begin{equation}\label{eqn.K}
-		\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
-	-\gamma_{jl}\pd{i}\shift{l} = - 2 \alpha K_{ij},
-\end{equation}
-%$ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $,
-where  $ K_{ij} $ is the spatial extrinsic 
-curvature.
-On the other hand, contracting \eqref{eq.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} $, one obtains 
-the following evolution equation for the spatial metric:
-\begin{equation}\label{eqn.gamma.PDE}
-	\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
-	-\gamma_{jl}\pd{i}\shift{l} = -\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
-	\Efin{\sB}{i}).
-\end{equation} 
-Therefore, one has the following expression for the extrinsic curvature in terms of $ 
-\Efin{\sA}{i} $ 
-\begin{equation}\label{key}
-	K_{ij} = \frac{1}{2\alpha}\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
-	\Efin{\sB}{i}).
-\end{equation}
-
-To obtain another expression for $ K_{ij} $ in terms of the primary state variable $ \Dfin{\sA}{i} 
-$, one needs to use the the constitutive relationship \eqref{eqn.E} to deduce
-\begin{equation}
-	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
-	=
-	-\frac{\alpha \varkappa}{\detTetr_3}  \mg{\sA\sB}  \bigg( 
-	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
-	-
-	\frac12
-	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
-	\bigg) \Dfin{\sC}{k}.
-\end{equation}
-Therefore, the following expression can be obtained
-\begin{equation}
-	K_{ij} = -\frac{\varkappa}{2 \detTetr_3}\mg{\sA\sB} \bigg( 
-	\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
-	-
-	\frac12
-	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
-	\bigg) \Dfin{\sC}{k},
-\end{equation}
-which, if contracted, gives the relationship for the traces $ K = \gamma^{ij}K_{ji} $ and $ 
-\Dfin{i}{i} =  \Dfin{\sA}{i}\tetr{\sA}{i} $
-\begin{equation}
-	 K = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
-\end{equation}
-
-\IP{put it somewhere\\
-Then, using the evolution equation of the determinant $ \detTetr_3 =\det(\tetr{\sA}{k}) = 
-\sqrt{\det(\gamma_{ij})} $
-\begin{equation}\label{eqn.h.PDE}
-	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
-\end{equation}
-}
 
 %one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
 %conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
