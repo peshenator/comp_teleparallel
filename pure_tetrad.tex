@@ -85,7 +85,7 @@ BCOR5mm, % Binding correction
 \newcommand{\itetrsymbol}{\eta}
 \newcommand{\itetr}[2]{\itetrsymbol^{#1}_{\phantom{#1}#2}}
 \newcommand{\tetr}[2]{\tetrsymbol^{#1}_{\phantom{#1}#2}}
-\newcommand{\stress}[2]{s_{#1}^{\phantom{#1}#2}}
+\newcommand{\stress}[2]{s_{\ #1}^{#2}}
 \newcommand{\detTetr}{\tetrsymbol}
 \newcommand{\rtetr}[2]{h^{#1}_{\mathsmaller{(r)} #2}}
 \newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
@@ -108,6 +108,9 @@ BCOR5mm, % Binding correction
 \newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
 \newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
 \newcommand{\Ufin}{\mathtt{U}}
+\newcommand{\Hfinn}[2]{\hat{\mathtt{H}}_{{#2}{#1}}}	%Torsion decomposition, analog of 
+\newcommand{\Efinn}[2]{\hat{\mathtt{E}}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
+
 %%%Electric 
 %field
 \newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
@@ -116,7 +119,8 @@ BCOR5mm, % Binding correction
 \newcommand{\Bm}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\aB}[2]{\mathcal{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\Bfin}[2]{\mathtt{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
-\newcommand{\Bfinmix}[2]{\mathtt{b}^{#1}_{#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\Bfinmix}[2]{\mathtt{B}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+%Magnetic field
 %\newcommand{\aBmix}[2]{\mathcal{B}^{#1}_{#2}}
 \newcommand{\hT}[2]{H_{#1#2}}	%dual to B
 \newcommand{\W}[2]{\mathcal{W}^{#1}_{\phantom{#1}#2}}
@@ -1643,6 +1647,28 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 %		\tag{\ref{eq.tetr.3+1}} 
 	\end{empheq}
 \end{subequations}
+\begin{subequations}
+	\begin{align}
+		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+		-\frac{\alpha}{\varkappa \detTetr_3} 
+		\mg{\sA\sB}\mg{\sC\sD} 
+		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
+		\Bfin{\sC}{j}
+		- 
+		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
+		\Efin{\indalg{0}}{l}
+		%\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
+		%\Efin{\indalg{0}}{j}
+		,\\[2mm]
+		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+		-\frac{\alpha \varkappa}{\detTetr_3} 
+		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
+		\Dfin{\sB}{j} 
+		- 
+		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+	\end{align}
+\end{subequations}
 with the total energy-momentum $ \rho_i := \rho^\text{(m)}_i + \rho^\text{(g)}_i $ given by
 \begin{equation*}
 	\rho_i := \rho^\text{(m)}_i  -\LCsymb_{ilj} 
@@ -1716,27 +1742,33 @@ then only the constitutive functions $ \Efin{a}{\mu} $ and $ \Hfin{a}{\mu} $ hav
 \subsubsection{Constitutive relations}
 
 For the TEGR Lagrangian \eqref{eq.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ are given by
-\begin{subequations}
-	\begin{align}\label{eqn.H.E}
+\begin{subequations}\label{eqn.H.E}
+	\begin{align}
 		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-		-\frac{\alpha}{\detTetr_3 \varkappa} 
+		-\frac{\alpha}{\varkappa \detTetr_3} 
 		\mg{\sA\sB}\mg{\sC\sD} 
 		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
 		\Bfin{\sC}{j}
 		- 
-		\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
-		\Efin{\indalg{0}}{j},\\[2mm]
+%		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
+%		\Efin{\indalg{0}}{l}
+		%
+		\frac{\detTetr_3}{\varkappa} \LCsymb_{kjl} \itetr{j}{\sA} A^l
+		,\\[2mm]
 		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
 		-\frac{\alpha \varkappa}{\detTetr_3} 
 		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
 		\Dfin{\sB}{j} 
 		- 
-		\frac{\varkappa}{\detTetr_3} \LCsymb^{jil} 
-		\gamma_{jk} \tetr{\sA}{i} \Hfin{\indalg{0}}{l}.
+%		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+		%
+		\varkappa \detTetr_3 \LCsymb_{kjl} 
+		\itetr{j}{\sB} \mg{\sA\sB} \Omega^l.
 		\label{eqn.E}
 	\end{align}
 \end{subequations}
-
+where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$.
 
 
 
@@ -2123,8 +2155,9 @@ equations for the gravity and matter energy-momenta separately).
 \subsection{Evolution of the volume}
 
 As in the computational Newtonian mechanics \cite{DPRZ2016,SIGPR2021}, the evolution of the tetrad 
-field at the numerical level has to be made consistently with the volume/mass conservation law. In 
-TEGR, the equivalent to the mass conservation in the Newtonian mechanics is 
+field at the discrete level has to be performed consistently with the volume/mass conservation law. 
+In 
+TEGR, the equivalent to the volume conservation in the Newtonian mechanics is 
 \begin{equation}\label{eqn.pde.det}
 	\pd{\mu}(\detTetr u^\mu) = -\detTetr \ET{\mu}{\mu} 
 \end{equation} 
@@ -2140,6 +2173,109 @@ After using \eqref{eq.4vel}, \eqref{eqn.h.eta.matrix}, and \eqref{eqn.E}, this b
 where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
 
 
+
+\section{Symmetrization}
+
+The energy is
+\begin{equation}
+	\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
+	-\frac{\alpha}{2\detTetr_3} \left( 
+	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
+	+
+	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+	(\Bfinmix{\sA}{\sA})^2
+	\right)
+	\right).
+\end{equation}
+
+Having this expression for the potential $ \Ufin $ and introducing notations
+\begin{equation}
+	\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
+	\qquad
+	\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
+\end{equation}
+the constitutive relations \eqref{eqn.H.E} can be rewritten as
+\begin{equation}\label{eqn.H.E.split}
+	\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+	\Hfinn{\sA}{k}
+	{ 
+	\color{blue}
+	-
+	\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+	\qquad
+	\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+	\Efinn{\sA}{k}
+	{
+	\color{blue}
+	-
+	\varkappa \detTetr_3 \LCsymb_{kjl} 
+	\itetr{j}{\sB} \mg{\sA\sB} \Omega^l}.
+\end{equation}
+
+In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be written as 
+\begin{subequations}\label{eqn.BD.hat}
+	\begin{align}
+		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+		\Hfinn{\sA}{j}) 
+		&+
+		{\color{red} \pd{k} 
+			\left(
+			\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
+			\right) }
+		-\shift{i}\pd{k} \Dfin{\sA}{k}
+		= - \stress{\sA}{i},
+		\\[2mm]
+		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+		\Efinn{\sA}{j}) 
+		&+
+		{\color{red}\pd{k} 
+			\left(
+			\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} \hat{\Omega}^i
+			\right) \MG{\sA\sB}}
+		-\shift{i}\pd{k} \Bfin{\sA}{k}
+		= 0,
+	\end{align}
+\end{subequations}
+where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ \hat{\Omega}^i = \varkappa 
+\detTetr_3 
+\Omega^i $.} 
+
+This system of 18 equations has \textit{only 10 eigenvectors} for the flat spacetime.
+
+Currently, the main natural idea, also exploited by Buschman et al \cite{Buchman2003} (see eq.(44) 
+or (47)), is to add 
+two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $
+\begin{subequations}
+	\begin{align}
+		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = rhs, 
+		\\[2mm]
+		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} \Hfin{\sA}{i} = rhs,  
+	\end{align}
+\end{subequations}
+or in terms of \eqref{eqn.H.E.split}
+\begin{subequations}\label{eqn.A.Omega}
+	\begin{align}
+		&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} \pd{k} \Efinn{\sA}{i}}
+		{\color{blue}
+		-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
+		\itetr{j}{\sB} \hat{\Omega}^l) \mg{\sA\sB}
+		}
+		 = rhs, 
+		\\[2mm]
+		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + {\color{red}\itetr{k}{\sA} \pd{k} 
+		\Hfinn{\sA}{i}} 
+		{\color{blue}
+		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sA} \hat{A}^l)
+		}= rhs.
+	\end{align}
+\end{subequations}
+Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  $ \{ 
+\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. Therefore, 2 are missing.
+
+\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, \eqref{eqn.A.Omega}. The multipliers are $ 
+\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ \hat{\Omega}^i $}
 
 \section{Relation between the torsion and extrinsic curvature}
 
@@ -2195,10 +2331,10 @@ Therefore, the following expression can be obtained
 	(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
 	\bigg) \Dfin{\sC}{k},
 \end{equation}
-which, if contracted, gives the relationship for the traces $ K = \gamma^{ij}K_{ji} $ and $ 
+which, if contracted, gives the relationship for the traces $ K^i_{\ i} = \gamma^{ij}K_{ji} $ and $ 
 \Dfin{i}{i} =  \Dfin{\sA}{i}\tetr{\sA}{i} $
 \begin{equation}
-	K = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
+	K^i_{\ i} = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
 \end{equation}
 
 
@@ -2224,7 +2360,9 @@ torsion scalar $ \Tscal $, e.g. in \tegr, the Lagrangian density is
 		g^{\mu\lambda} \Tors{\rho}{\mu\rho} \Tors{\gamma}{\lambda\gamma},	  
 	\end{equation}
 \end{subequations}
-where $ \varkappa = 8\pi G $ is the Einstein gravitational constant, $ \Tors{\lambda}{\mu\nu} = 
+where $ \varkappa = 8\pi G c^{-4} $ is the Einstein gravitational constant, $ G $ is the 
+gravitational constant, $ c $ is the speed of light in vacuum, $ 
+\Tors{\lambda}{\mu\nu} = 
 \itetr{\lambda}{a} \Tors{a}{\mu\nu} $, and the metric and its 
 inverse must be computed as $ g_{\mu\nu} = 
 \mg{ab}\tetr{a}{\mu}\tetr{b}{\nu} $ and $ g^{\mu\nu} = \MG{ab}\itetr{\mu}{a}\itetr{\nu}{b}$.
@@ -2330,29 +2468,37 @@ particular, justifies the introduction of the new and final variables
 \end{equation}
 so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = 
 \Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k})$ becomes just
-\begin{subequations}
+%\begin{subequations}
 	\begin{equation}\label{eqn.Ufin}
-		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = \frac{\alpha}{2\detTetr_3} \left( 
-		\varkappa \left( \frac{1}{2} I_{\Dfin{}{}1} -I_{\Dfin{}{}2}\right)  
+		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
+		-\frac{\alpha}{2\detTetr_3} \left( 
+		\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
 		+
-		\frac{1}{\varkappa} \left( \frac{1}{2} I_{\Bfin{}{}1} -I_{\Bfin{}{}2}
+		\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+		(\Bfinmix{\sA}{\sA})^2
 		\right)
-		\right) ,
+		\right),
+%		-\frac{\alpha}{2\detTetr_3} \left( 
+%		\varkappa \left( I_{\Dfin{}{}2} - \frac{1}{2} I_{\Dfin{}{}1}\right)
+%		+
+%		\frac{1}{\varkappa} \left( I_{\Bfin{}{}2} - \frac{1}{2} I_{\Bfin{}{}1}
+%		\right)
+%		\right) ,
 	\end{equation}
-	\begin{equation}
-		I_{\Dfin{}{}1} = (\Dfin{\sA}{\sA})^2 = (\tetr{\sA}{i} \Dfin{\sA}{i})^2,
-		\qquad
-		I_{\Dfin{}{}2} = \Dfin{\sA}{\sB} \Dfin{\sB}{\sA}=\tetr{\sA}{i} \Dfin{\sA}{k} \tetr{\sB}{k} 
-		\Dfin{\sB}{i},
-	\end{equation}
-	
-	\begin{equation}
-		I_{\Bfin{}{}1} = (\Bfin{\sA}{\sD}\mg{\sD\sA})^2 = (\Bfin{\sA}{j}\tetr{\sD}{j}\mg{\sD\sA})^2,
-		\qquad
-		I_{\Bfin{}{}2} = \Bfin{\sA}{\sC}\mg{\sC\sB} \Bfin{\sB}{\sD} \mg{\sD\sA}
-		= \Bfin{\sA}{j}\tetr{\sC}{j}\mg{\sC\sB} \Bfin{\sB}{l} \tetr{\sD}{l} \mg{\sD\sA}.
-	\end{equation}
-\end{subequations}
+%	\begin{equation}
+%		I_{\Dfin{}{}1} = (\Dfin{\sA}{\sA})^2 = (\tetr{\sA}{i} \Dfin{\sA}{i})^2,
+%		\qquad
+%		I_{\Dfin{}{}2} = \Dfin{\sA}{\sB} \Dfin{\sB}{\sA}=\tetr{\sA}{i} \Dfin{\sA}{k} \tetr{\sB}{k} 
+%		\Dfin{\sB}{i},
+%	\end{equation}
+%	
+%	\begin{equation}
+%		I_{\Bfin{}{}1} = (\Bfin{\sA}{\sD}\mg{\sD\sA})^2 = (\Bfin{\sA}{j}\tetr{\sD}{j}\mg{\sD\sA})^2,
+%		\qquad
+%		I_{\Bfin{}{}2} = \Bfin{\sA}{\sC}\mg{\sC\sB} \Bfin{\sB}{\sD} \mg{\sD\sA}
+%		= \Bfin{\sA}{j}\tetr{\sC}{j}\mg{\sC\sB} \Bfin{\sB}{l} \tetr{\sD}{l} \mg{\sD\sA}.
+%	\end{equation}
+%\end{subequations}
 
 
 %one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
