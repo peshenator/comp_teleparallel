@@ -2242,11 +2242,15 @@ where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ \hat{\Omega}
 \detTetr_3 
 \Omega^i $.} 
 
-This system of 18 equations has \textit{only 10 eigenvectors} for the flat spacetime.
+\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 equations has 
+\textit{only 10 eigenvectors} for the flat spacetime.}
 
 Currently, the main natural idea, also exploited by Buschman et al \cite{Buchman2003} (see eq.(44) 
 or (47)), is to add 
-two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $
+two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $. 
+
+\IP{The 
+question is how to find these PDEs. So far, I tested the following simple equations:}
 \begin{subequations}
 	\begin{align}
 		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = rhs, 
@@ -2260,7 +2264,7 @@ or in terms of \eqref{eqn.H.E.split}
 		&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} \pd{k} \Efinn{\sA}{i}}
 		{\color{blue}
 		-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
-		\itetr{j}{\sB} \hat{\Omega}^l) \mg{\sA\sB}
+		\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
 		}
 		 = rhs, 
 		\\[2mm]
