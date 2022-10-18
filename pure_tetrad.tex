@@ -2218,8 +2218,8 @@ In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be writte
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
 		\Hfinn{\sA}{j}) 
-		&+
-		{\color{red} \pd{k} 
+		&
+		{ + \color{red} \pd{k} 
 			\left(
 			\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
 			\right) }
@@ -2229,8 +2229,8 @@ In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be writte
 		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
 		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
 		\Efinn{\sA}{j}) 
-		&+
-		{\color{red}\pd{k} 
+		&
+		{ - \color{red}\pd{k} 
 			\left(
 			\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} \hat{\Omega}^i
 			\right) \MG{\sA\sB}}
@@ -2268,10 +2268,13 @@ or in terms of \eqref{eqn.H.E.split}
 		}
 		 = rhs, 
 		\\[2mm]
-		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + {\color{red}\itetr{k}{\sA} \pd{k} 
-		\Hfinn{\sA}{i}} 
+		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
+		+ 
+		{\color{red}\itetr{k}{\sA} \pd{k} 
+		\Hfinn{\sB}{i} \MG{\sA\sB}
+		} 
 		{\color{blue}
-		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sA} \hat{A}^l)
+		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} \hat{A}^l) \MG{\sA\sB}
 		}= rhs.
 	\end{align}
 \end{subequations}
