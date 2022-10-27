@@ -110,6 +110,9 @@ BCOR5mm, % Binding correction
 \newcommand{\Ufin}{\mathtt{U}}
 \newcommand{\Hfinn}[2]{\hat{\mathtt{H}}_{{#2}{#1}}}	%Torsion decomposition, analog of 
 \newcommand{\Efinn}[2]{\hat{\mathtt{E}}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Kbuch}[2]{\mathtt{K}_{{#1}{#2}}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuch}[2]{\mathtt{N}_{#1}^{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Kbuchmix}[2]{\mathtt{K}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
 
 %%%Electric 
 %field
@@ -120,6 +123,7 @@ BCOR5mm, % Binding correction
 \newcommand{\aB}[2]{\mathcal{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\Bfin}[2]{\mathtt{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
 \newcommand{\Bfinmix}[2]{\mathtt{B}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+\newcommand{\Bfinmixx}[2]{\mathtt{B}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of 
 %Magnetic field
 %\newcommand{\aBmix}[2]{\mathcal{B}^{#1}_{#2}}
 \newcommand{\hT}[2]{H_{#1#2}}	%dual to B
@@ -1619,7 +1623,7 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
 		\Efin{\sA}{j}) & 
 		= 0,
-%		\tag{\ref{eqn.tpo.B}}
+		\label{eqn.3+1.B}
 		\\[2mm]
 		%		
 %		\pd{\mu}\left( \aD{a}{\mu}\aU_{\aD{a}{\nu}}+ 
@@ -2468,6 +2472,40 @@ so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) =
 %Hence, the first outcome is that in order TEGR and GR have the same solutions, one at least has 
 %to 
 %impose that
+
+\section{Relation to the Buchman \& Bardeen 2003}
+
+If we introduce
+\begin{equation}
+	\Kbuch{\sA}{\sB} := -K_{\sA\sB},  
+	\quad
+	\Nbuch{\sA}{\sB} := -\frac{1}{\detTetr_3}\left(  
+		\Bfinmixx{\sA}{\sB} - \frac{1}{2} \Bfinmixx{\sC}{\sC} \KD{\sB}{\sA}
+	\right) 
+\end{equation}
+where $ K_{\sA\sB} = K_{ij} \itetr{i}{\sA}\itetr{j}{\sB} $, then equation \eqref{eqn.3+1.B} can be 
+rewritten as
+\begin{multline}\label{eqn.Npde}
+	\pd{t} \Nbuch{\sA}{\sB} - \shift{k}\pd{k}\Nbuch{\sA}{\sB} + \lapse \LCsymb^{\sB\sC\sD} 
+	\pd{\sC} \Kbuch{\sA}{\sD}
+	-\varkappa \pd{\sA} \Omega^{\sB} = \\
+	- \LCsymb^{\sB\sC\sD} A_{\sC} \Kbuch{\sA}{\sD}
+	+
+	\left(
+		- \Kbuch{\sA}{\sC} \hat{\mathtt{N}}^{\sC\sB} - \Kbuchmix{\sB}{\sC} 
+		\hat{\mathtt{N}}_{\sA}^{\ \sC}
+		+ \frac12 \Kbuch{\sD}{\sC} \hat{\mathtt{N}}^{\sC\sD} \KD{\sB}{\sA}
+		+ \frac12 \Kbuchmix{\sD}{\sC} \hat{\mathtt{N}}_{\sD}^{\ \,\sC} \KD{\sB}{\sA}
+		+ \Kbuchmix{\sC}{\sC} \Nbuch{\sA}{\sB}
+	\right) \\
+	+ \varkappa \LCsymb_{\sA\sC\sD} \Omega^{\sD} \hat{\mathtt{N}}_{\sE}^{\ \sB} \MG{\sC\sE}
+	+ \varkappa \LCsymb_{\sE\sC\sD} \Omega^{\sD} \hat{\mathtt{N}}_{\sA}^{\ \,\sC} \MG{\sB\sE}
+\end{multline}
+where $ \pd{\sC} = \itetr{k}{\sC} \pd{k} $, $ \Omega^{\sA} = \Omega_k \itetr{k}{\sB}\MG{\sB\sA} $,
+and $ \hat{\mathtt{N}}_{\sA}^{\ \,\sB} = \Nbuch{\sA}{\sB} - \Nbuch{\sC}{\sC}\KD{\sB}{\sA} $
+
+
+
 
 
 \section{Conclusion}
