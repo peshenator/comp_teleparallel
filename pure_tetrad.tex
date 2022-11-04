@@ -1937,7 +1937,7 @@ the following algebraic constraints
 		\qquad
 %		\Dfin{\indalg{0}}{k} =-\frac{\detTetr_3}{\varkappa} \LCsymb_{jli} 
 %		\gamma^{jk}\itetr{l}{\sA}\Bfin{\sA}{i},
-		\Dfin{\indalg{0}}{k} =-\detTetr_3^{-1}\varkappa^{-1} \LCsymb^{kli} 
+		\Dfin{\indalg{0}}{k} =-\frac{1}{\varkappa\detTetr_3} \LCsymb^{kli} 
 		\Bfinmix{}{li},
 		\qquad
 		\Dfin{ik}{} = \Dfin{ki}{},
@@ -2133,14 +2133,15 @@ materials [??].
 
 In order to recover the last two missing eigenvectors, we shall use the Hamiltonian constraint 
 \eqref{eqn.div.constrD}$ _1 $ and the symmetry of $ \Dfin{ij}{} $. Thus, we shall turn the potential $ 
-\Ufin =-\rho_{\indalg{0}} \lapse$ in the expression of the stress tensor $ \stress{\sA}{i} $ into the 
+\Ufin =-\lapse \rho_{\indalg{0}} $ in the expression of the stress tensor $ \stress{\sA}{i} $ 
+into the 
 differential term $ \Ufin =-\lapse \pd{k}\Dfin{\indalg{0}}{k} $ according to the Hamiltonian constraint 
 \eqref{eqn.div.constrD}$ _1 $. Additionally, we express $ 
-\Dfin{\indalg{0}}{k} $ as $  \Dfin{\indalg{0}}{k} = -\detTetr_3 \varkappa^{-1} 
+\Dfin{\indalg{0}}{k} $ as $  \Dfin{\indalg{0}}{k} = -\varkappa^{-1}\detTetr_3^{-1} 
 \LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we add a formally zero $ 0 = \pd{k}(\detTetr_3^{-1} 
 \LCsymb^{klj} \Dfin{lj}{}) $ to the equation for the $ \Bfin{\sA}{i} $ field. This expression is zero 
 due to the fact that the contraction of antisymmetric Levi-Civita symbol with the symmetric $ 
-\Dfin{ij}{} $. The resulting equations read
+\Dfin{ij}{} $ is zero. The resulting equations read
 \begin{subequations}\label{eqn.BD.alt2}
 	\begin{align}
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
