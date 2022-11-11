@@ -1,4 +1,4 @@
-<<%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Arsclassica Article
 % LaTeX Template
 % Version 1.1 (1/8/17)
@@ -36,7 +36,7 @@ BCOR5mm, % Binding correction
 \usepackage{bm}
 \usepackage{showlabels}
 
-
+\newcommand{\ERWBB}{ERWBB}
 \newcommand{\xx}{\mathbf{x}}
 \newcommand{\XX}{\mathbf{X}}
 \newcommand{\XXX}{\mathbb{X}}
@@ -113,6 +113,7 @@ BCOR5mm, % Binding correction
 \newcommand{\Efinn}[2]{\hat{\mathtt{E}}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
 \newcommand{\Kbuch}[2]{\mathtt{K}_{{#1}{#2}}}	%Torsion decomposition, analog of 
 \newcommand{\Nbuch}[2]{\mathtt{N}_{#1}^{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuchdown}[2]{\mathtt{N}_{#1#2}}	%Torsion decomposition, analog of 
 \newcommand{\Kbuchmix}[2]{\mathtt{K}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
 
 %%%Electric 
@@ -153,7 +154,7 @@ BCOR5mm, % Binding correction
 \newcommand{\tegr}{TEGR}
 \newcommand{\HDT}[1]{\accentset{\star}{T}^{#1}}
 \newcommand{\HDmix}{\accentset{\star}{T}}
-\newcommand{\KD}[2]{\delta^{\ #1}_{#2}}
+\newcommand{\KD}[2]{\delta^{#1}_{\ #2}}
 \newcommand{\NC}[2]{J^{#2}_{\phantom{#2}#1}}
 \newcommand{\nc}[2]{j^{\phantom{#1}#2}_{#1}}
 \newcommand{\indalg}[1]{\hat{\mathsmaller{#1}}}
@@ -251,7 +252,10 @@ equations
 in the pure-tetrad formulation (no spin connection). We then restrict our attention to the 
 teleparallel equivalent of general relativity (TEGR) and propose a 3+1 decomposition of the governing 
 equations that can be used in a computational code. We demonstrate that for the matter-free 
-space-time the obtained system of first-order equations is hyperbolic. The structure of the 
+space-time the obtained system of first-order equations is equivalent to the tetrad reformulation 
+of general relativity by Estabrook, Robinson, Wahlquist and Buchman and Bardeen and therefore also 
+is symmetric 
+hyperbolic. The structure of the 
 3+1  equations 
 resembles 
 a lot of similarities with the equations of relativistic electrodynamics and recently proposed 
@@ -423,7 +427,7 @@ with $ \tetr{a}{\mu} $ being the inverse of $ \itetr{\mu}{a} $, i.e.
 \begin{equation}\label{eqn.inv.tetr}
 	\tetr{a}{\mu} \itetr{\mu}{b} = \KD{a}{b},
 	\qquad
-	\tetr{a}{\mu} \itetr{\nu}{a} = \KD{\nu}{\mu},
+	\itetr{\nu}{a}\tetr{a}{\mu}  = \KD{\nu}{\mu},
 \end{equation}
 where $ \KD{a}{b} $ and $ \KD{\nu}{\mu} $ are the Kronecker deltas.
 
@@ -920,7 +924,7 @@ This formula will be used later in the $ 3+1 $-split and is analogous to
 
 
 
-\section{Preparation to $ 3+1 $ split}\label{sec.31.prep}
+\section{Preliminaries for $ 3+1 $ split}\label{sec.31.prep}
 
 
 
@@ -951,7 +955,8 @@ decompositions hold
 \end{align}
 \end{subequations}
 
-Furthermore, we assume that the Lagrangian density can be \textit{equivalently} written 
+Furthermore, we assume that the Lagrangian density can be \textit{equivalently} expressed in 
+different sets of variables, i.e. 
 \begin{equation}\label{eqn.Lagrangians2}
 \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
 \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}).
@@ -1645,11 +1650,14 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 		\label{eqn.3+1.e}
 		\\[2mm]
 		%		
-		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i (\pd{i}\tetr{\sA}{k} - 
-		\pd{k}\tetr{\sA}{i})
-		&= 
-		-\Efin{\sA}{k}.
+		\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
+		& = 
+		-\Efin{\sA}{k}
 		\label{eqn.3+1.h}
+%		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i (\pd{i}\tetr{\sA}{k} - 
+%		\pd{k}\tetr{\sA}{i})
+%		&= 
+%		-\Efin{\sA}{k}.
 %		\pd{t} \tetr{a}{k} - \beta^i \pd{i} \tetr{a}{k} - \tetr{a}{i} \pd{k} \beta^i &= 
 %		{\Efin{a}{k}},
 %		\tag{\ref{eqn.tetr.3+1}} 
@@ -2014,22 +2022,93 @@ evolved in an arbitrary but meaningful way.
 
 
 
-\section{Recovering hyperbolicity}
+\section{Symmetric hyperbolicity of the vacuum equations}
 
 Despite the structure of system \eqref{eqn.3+1.summary} shares a lot of similarities with equations 
 for nonlinear electrodynamics of moving media which are belong to the class of symmetric hyperbolic 
-equations \cite{SHTC-GENERIC-CMAT,Rom1998,Rom2001,God1961}, we are not ready to establish symmetric 
-hyperbolicity of the TEGR equations which is left for the future. Instead, we demonstrate a weaker 
-property of system \eqref{eqn.3+1.summary} that is hyperbolicity. We remind that solely hyperbolicity 
+thermodynamically compatible (SHTC) 
+equations \cite{SHTC-GENERIC-CMAT,GodRom1996b,Rom1998,Rom2001,God1961}, we cannot immediately apply 
+the machinery of SHTC systems to symmetrize the TEGR equations because some elements do not fit 
+well to the formalism of SHTC systems yet. Instead, we demonstrate the symmetric hyperbolicity of 
+the 
+TEGR vacuum equations (without momentum \eqref{eqn.3+1.m} and energy \eqref{eqn.3+1.e} equations) 
+via their surprising equivalence to the tetrad reformulation of GR by 
+Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003} which is 
+known to be 
+symmetric hyperbolic, and will be referenced to as \ERWBB\ formulation. We remind that solely 
+hyperbolicity 
 is not enough for well-posedness of the initial value problem for a general quasi-linear system of 
-first-order equations. At least to the best of our knowledge, there is no an existence and uniqueness 
-theorem for such a class of equations. In contrary, such a theorem exists for symmetric hyperbolic 
-systems, e.g. see \cite{Serre2007}. Despite this, for a system describing causal propagation of 
-signals, the hyperbolicity is considered as a minimum requirement for numerical discretization.  
+first-order equations. At least, to the best of our knowledge, there is no an existence and 
+uniqueness 
+theorem for such a class of equations in multiple dimensions\footnote{ Despite this, for a system 
+describing causal 
+propagation of 	signals, the hyperbolicity is considered as a minimum requirement for numerical 
+discretization.}. In contrary, such a theorem exists for symmetric hyperbolic 
+systems, e.g. see \cite{Serre2007}.
 
-Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic and some 
-modifications of the equations are required to make it hyperbolic. In this section, discuss one of 
-the options which relies on the use of the Hamiltonian and momentum constraints 
+Let us first introduce the main elements of the \ERWBB\ formulation which relies on the Ricci 
+rotation coefficients
+\begin{align}\label{eqn.Ricci.rot}
+	\mathcal{R}_{abc} 
+	= & \bm{\itetrsymbol}_a\cdot\nabla_c \bm{\itetrsymbol}_b \nonumber\\
+	= & \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \pd{\lambda} \itetr{\nu}{b} 
+	+   \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \Gamma^{\nu}_{\ \lambda\rho} \itetr{\rho}{b}	
+\end{align}
+where $ \nabla_c = \itetr{\lambda}{c} \nabla_{\lambda} $ and $ \nabla_{\lambda} $ is the standard 
+covariant derivative of GR associated with the symmetric Levi-Civita connection, and $ 
+\Gamma^{\mu}_{\ 
+\nu\lambda} $ are the Christoffel symbols of the Levi-Civita connection.
+
+Then, 24 independent entries of $ \mathcal{R}_{abc} $ are organized into the following state 
+variables
+\begin{equation}\label{eqn.KN}
+	\Kbuch{\sC}{\sA} := \mathcal{R}_{\sA\indalg{0}\sC},
+	\qquad
+	\Nbuch{\sB}{\sA} := \frac{1}{2} \epsilon^{\sA\sC\sD}\mathcal{R}_{\sC\sD\sB}
+\end{equation}
+and 
+\begin{equation}\label{eqn.aw}
+	a_{\sA} = \mathcal{R}_{\sA\indalg{0}\indalg{0}},
+	\qquad
+	\omega^{\sA} = \frac{1}{2} \epsilon^{\sA\sB\sC} \mathcal{R}_{\sC\sB\indalg{0}}
+\end{equation}
+
+It can be shown that the following relations between the \ERWBB\ and TEGR state variables hold
+\begin{subequations}\label{eqn.Buchman.TEGR.KN}
+	\begin{align}
+		\Kbuch{\sA}{\sB} = & \frac{\varkappa}{\detTetr_3} 
+		\left(
+		\Dfin{\sA\sB}{}-\frac{1}{2} \Dfin{\sC}{\sC} \mg{\sA\sB}
+		\right),\\[2mm]
+		-\Nbuch{\sA}{\sB} =&\frac{1}{\detTetr_3}
+		\left(
+		\Bfinmixx{\sA}{\sB} - \frac{1}{2}\Bfinmix{\sC}{\sC}\KD{\sB}{\sA}
+		\right).
+%		\\[2mm]
+%		a_{\sB} = & \frac{1}{\lapse} A_{\sB},\\[2mm]
+%		\omega^{\sB} = & \frac{\varkappa}{\lapse} \MG{\sB\sA} \Omega_{\sA}.
+	\end{align}
+\end{subequations}
+We remark that due to our choice of the $ 3+1 $ split \eqref{eqn.h.eta.matrix}, i.e. that 
+observer's time vector, $ \bm{\itetrsymbol}_{\indalg{0}} $, is align with the normal vector to the 
+spatial hypersurfaces, matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are \textit{symmetric}.
+
+Additionally, we have the relations for $ a_{\sA} $, $ \omega^{\sA} $, and  $ 
+A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ 
+\Omega_{k} = \Hfin{\indalg{0}}{k} $
+\begin{equation}\label{eqn.Buchman.TEGR.AW}
+	a_{\sA} = \lapse^{-1} A_{\sA},
+	\qquad
+	\omega^{\sA} = \varkappa \lapse^{-1} \MG{\sA\sB} \Omega_{\sB}.
+\end{equation}
+
+
+Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic even for the Minkowski 
+spacetime (it is actually only weakly hyperbolic because some eigenvectors are missing), and 
+therefore it can not be equivalent to the symmetric hyperbolic \ERWBB\ formulation 
+of GR. In this section, we discuss what modifications of equations \eqref{eqn.3+1.summary} are 
+necessary in order to make it equivalent to the \ERWBB\ formulation.
+These modifications rely on the use of the Hamiltonian and momentum constraints 
 \eqref{eqn.div.constrD} and symmetry of $ \Dfin{\sA}{i} $. 
 
 Because we are considering an empty space-time, the momentum and energy equations \eqref{eqn.3+1.m}, 
@@ -2045,8 +2124,8 @@ $, without lose of generality.}
 	\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
 \end{equation}
 for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
-\bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors, that is equations 
-are only 
+\bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors, that is the 
+system is only 
 weakly hyperbolic. Here, $ \bm{M}^k =
 \pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
 
@@ -2073,7 +2152,7 @@ for hyperbolic equations.
 %\end{subequations}
 However, this flux-conservative form of equations has a flaw in the eigenvalues already for the 
 flat spacetime with non-zero shift vector $ \shift{k} $. Namely, some characteristic velocities are 
-always 0 despite the non-zero shift vector. The same issue is well known for the 
+always $ 0 $ despite the non-zero shift vector. The same issue is well known for the 
 magnetohydrodynamics 
 equations \cite{Powell1999}. From our experience with the non-relativistic equations 
 of nonlinear electrodynamics of 
@@ -2104,17 +2183,96 @@ such a pathology
 and which is obtained from \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} by turning the momentum $ \rho_\sA 
 $ on the right hand-side of \eqref{eqn.3+1.D} into a differential term according to the momentum 
 constraint $ 
-\rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding zero, $ 0 = \pd{k}\Bfin{\sA}{k} $, to 
-\eqref{eqn.3+1.B}. These modifications are legitimate for smooth solutions thanks to the involution 
+\rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding a formally zero, $ 0 = \pd{k}\Bfin{\sA}{k} $, to 
+\eqref{eqn.3+1.B}. These modifications are legitimate for smooth solutions thanks to involution 
 constraints \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic velocities 
 have the desired values equal to $ \shift{k} $ or $ \shift{k} \pm c $, if $ c $ is the light 
 speed. 
 However, this only allows to fix the issue with the eigenvalues, while some eigenvectors are still 
 missing.
 
+
+
+In order to recover the last two missing eigenvectors, we shall use the Hamiltonian constraint 
+\eqref{eqn.div.constrD}$ _1 $ and the symmetry of $ \Dfin{ij}{} $. Thus, we shall turn the potential $ 
+\Ufin =-\lapse \rho_{\indalg{0}} $ in the expression of the stress tensor $ \stress{\sA}{i} $ 
+into the 
+differential term $ \Ufin =-\lapse \pd{k}\Dfin{\indalg{0}}{k} $ according to the Hamiltonian constraint 
+\eqref{eqn.div.constrD}$ _1 $. Additionally, we use expression \eqref{eqn.D0.tmp3}$_2$ for $ 
+\Dfin{\indalg{0}}{k} $, i.e. $  \Dfin{\indalg{0}}{k} = -\varkappa^{-1}\detTetr_3^{-1} 
+\LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we add a formally zero $ 0 = \pd{k}(\detTetr_3^{-1} 
+\LCsymb^{klj} \Dfin{lj}{}) $ to the equation for the $ \Bfin{\sA}{i} $ field. This expression is zero 
+due to the fact that the contraction of antisymmetric Levi-Civita symbol with the symmetric 
+tensor $ 
+\Dfin{ij}{} $ is zero. The resulting equations read
+\begin{subequations}\label{eqn.BD.alt2}
+	\begin{align}
+		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+		\Hfin{\sA}{j}) 
+		-\shift{i}\pd{k} \Dfin{\sA}{k}
+		&
+		-\lapse\itetr{i}{\sA}\pd{k} \Bfin{k}{} 
+		= - \stress{\sA}{i} - \Ufin \itetr{i}{\sA},
+		\label{eqn.BD.alt2.D}
+		\\[2mm]
+		%		
+		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+		\Efin{\sA}{j}) 
+		-\shift{i}\pd{k} \Bfin{\sA}{k}
+		&
+		+\lapse\itetr{i}{\sB}\pd{k}\Dfin{}{k} 
+		 \MG{\sA\sB}
+		= 0,\\[2mm]
+		\label{eqn.BD.alt2.B}
+		\Dfin{}{k} := \varkappa\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{},
+		\qquad
+		\Bfin{k}{} := \varkappa^{-1}\detTetr_3^{-1} \LCsymb^{klj} \Bfinmix{}{lj}.
+	\end{align}
+\end{subequations}
+%and if combined with \eqref{eqn.AOmega}, this enlarged system of 24 equations has 24 linearly 
+%independent eigenvectors (at least for the flat spacetime). 
+
+Now, using relations \eqref{eqn.Buchman.TEGR.KN}, \eqref{eqn.Buchman.TEGR.AW}, and after a lengthy 
+but 
+rather straightforward sequence of transformations, 
+equations \eqref{eqn.BD.alt2}
+can be written in the \ERWBB\ form
+\begin{subequations}\label{eqn.KN.pde}
+	\begin{align}
+		\pd{\indalg{0}} \Kbuch{\sA}{\sB}
+		- \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
+		- \pd{\sA} a_{\sB} &= \text{l.o.t.}
+		\\[2mm]
+		\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
+		+ \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
+		+ \pd{\sA} \omega_{\sB} &= \text{l.o.t.}
+	\end{align}
+\end{subequations}
+where 'l.o.t.' stands for 'low-order terms' (or algebraic terms that do not contain space and time 
+derivatives) $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
+\lapse^{-1}\pd{t} - 
+\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. The low-order terms are given 
+in the appendix\,\ref{}.
+
+Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are not 
+provided with particular evolution equations and therefore, their governing equations can be chosen 
+in such a way so that to guaranty the well-posedness of the enlarged system for the unknowns $ 
+\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown in 
+\cite{Estabrook1997,Buchman2003}, if coupled with equations whose the differential part is
+\begin{align}\label{eqn.aw.pde}
+	\pd{\indalg{0}} a_\sA - \pd{\sB} \Kbuch{\sB}{\sA} &= 0,
+	\\[2mm]
+	\pd{\indalg{0}} \omega_\sA + \pd{\sB} \Nbuchdown{\sB}{\sA} &= 0,
+\end{align}
+system \eqref{eqn.KN.pde} is symmetric hyperbolic.
+Therefore, we may conclude the same for the TEGR equations \eqref{eqn.BD.alt2}.
+
 The second step to recovering hyperbolicity of the TEGR equations consists in not modifying the 
-equations but extending the set state variables and the set of evolution equations.
-Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge freedoms $ A_k = 
+equations but extending the set of state variables and the set of evolution equations.
+Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge freedoms $ 
+A_k = 
 \Efin{\indalg{0}}{k} $ and $ \Omega_k = \Hfin{\indalg{0}}{k} $ according to
 \begin{subequations}\label{eqn.AOmega}
 	\begin{align}
@@ -2125,50 +2283,12 @@ Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the
 \end{subequations}
 We set the right hand-side of these two equations to zero because it is not important for the 
 hyperbolicity. In general, one may want to chose any other gauge conditions, e.g. see 
-\cite{Buchman2003}. While increasing number of evolution equations this modification drastically 
+\cite{Buchman2003}. While increasing number of evolution equations, this modification 
+drastically 
 improves the situation with the missing eigenvectors. Now, the system of 24 equations 
 \eqref{eqn.3+1.D}, 
 \eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the supplementary 
 materials [??].
-
-In order to recover the last two missing eigenvectors, we shall use the Hamiltonian constraint 
-\eqref{eqn.div.constrD}$ _1 $ and the symmetry of $ \Dfin{ij}{} $. Thus, we shall turn the potential $ 
-\Ufin =-\lapse \rho_{\indalg{0}} $ in the expression of the stress tensor $ \stress{\sA}{i} $ 
-into the 
-differential term $ \Ufin =-\lapse \pd{k}\Dfin{\indalg{0}}{k} $ according to the Hamiltonian constraint 
-\eqref{eqn.div.constrD}$ _1 $. Additionally, we express $ 
-\Dfin{\indalg{0}}{k} $ as $  \Dfin{\indalg{0}}{k} = -\varkappa^{-1}\detTetr_3^{-1} 
-\LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we add a formally zero $ 0 = \pd{k}(\detTetr_3^{-1} 
-\LCsymb^{klj} \Dfin{lj}{}) $ to the equation for the $ \Bfin{\sA}{i} $ field. This expression is zero 
-due to the fact that the contraction of antisymmetric Levi-Civita symbol with the symmetric $ 
-\Dfin{ij}{} $ is zero. The resulting equations read
-\begin{subequations}\label{eqn.BD.alt2}
-	\begin{align}
-		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		\Hfin{\sA}{j}) 
-		-\shift{i}\pd{k} \Dfin{\sA}{k}
-		&
-		+\lapse \varkappa^{-1}\pd{k}(\detTetr_3^{-1} \LCsymb^{klj} \Bfinmix{}{lj}) 
-		\itetr{i}{\sA}
-		= - \stressalt{\sA}{i},
-		\label{eqn.BD.alt2.D}
-		\\[2mm]
-		%		
-		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		\Efin{\sA}{j}) 
-		-\shift{i}\pd{k} \Bfin{\sA}{k}
-		&
-		+\lapse \varkappa\pd{k}(\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{}) 
-		\itetr{i}{\sB} \MG{\sA\sB}
-		= 0,
-		\label{eqn.BD.alt2.B}
-	\end{align}
-\end{subequations}
-and if combined with \eqref{eqn.AOmega}, then this enlarged system of 24 equations has 24 linearly 
-independent eigenvectors (at least for the flat spacetime).
-
 
 \subsection{Alternative form of the energy-momentum equations}
 
