@@ -2250,11 +2250,25 @@ can be written in the \ERWBB\ form
 		+ \pd{\sA} \omega_{\sB} &= \text{l.o.t.}
 	\end{align}
 \end{subequations}
-where 'l.o.t.' stands for 'low-order terms' (or algebraic terms that do not contain space and time 
+where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do not contain space and 
+time 
 derivatives) $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
 \lapse^{-1}\pd{t} - 
-\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. The low-order terms are given 
+\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. Also, $ \LCtens_{\sA\sB\sC} = 
+\detTetr_3 \LCsymb_{ijk}\itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $. The low-order terms are given 
 in the appendix\,\ref{}.
+The constitutive fluxes $ \Efin{}{\sA\sB} $ and $ \Hfin{\sB}{\sA} $ in terms of $ 
+\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $ are given by 
+\begin{align}\label{eqn.const.KN}
+	\Efin{}{\sA\sB} &=
+	- \lapse \,\Kbuch{\sA}{\sB} 
+	+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC 
+	\\[2mm]
+	\Hfin{\sB}{\sA} &= 
+	\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
+	- \frac{\lapse}{\varkappa} 
+	\LCtens_{\sA\sB\sC} a^\sC 
+\end{align}
 
 Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are not 
 provided with particular evolution equations and therefore, their governing equations can be chosen 
