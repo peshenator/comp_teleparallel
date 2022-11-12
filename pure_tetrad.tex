@@ -1363,7 +1363,27 @@ where
 	\Hfin{\sA}{j} = \aU_{\aB{\sA}{j}} =-\alpha \Um_{\Bm{\sA}{j}}.
 \end{equation}
 
-
+In terms of $ \{\Bfin{\sA}{k},\Dfin{\sA}{k}\} $ the potential $  
+\aU(\tetr{a}{\mu},\aD{a}{\mu},\aB{a}{\mu}) $ will be denoted as 
+$
+\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})  
+$ and it reads (see \eqref{eqn.Ufin})
+\begin{subequations}
+	\begin{equation}
+		\Ufin(\tetr{\sA}{k},\Bfin{\sA}{k},\Dfin{\sA}{k}) = 
+		-\frac{\alpha}{2\detTetr_3} \left( 
+		\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
+		+
+		\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+		(\Bfinmix{\sA}{\sA})^2
+		\right)
+		\right),
+	\end{equation}
+\end{subequations}
+Alternatively, it can be computed as
+\begin{equation}\label{eqn.U.bdeh}
+	\Ufin = \frac{1}{2} ( \Dfin{a}{k} \Efin{a}{k} + \Bfin{a}{k} \Hfin{a}{k} ).
+\end{equation} 
 
 
 \paragraph{Case $ \mu = 0 $.} 
@@ -1453,9 +1473,10 @@ We now turn to the energy-momentum evolution equation
 \end{equation}
 and provide its $ 3+1 $ version. Because the Lagrangian density in \eqref{eqn.Lagrangians} 
 represents the sum of the gravitational and matter Lagrangian the energy-momentum tensor is also 
-assumed to be the sum of the gravity and matter parts $ \EMmat{\mu}{\nu} = \mat{\EMmat{\mu}{\nu}} + 
+assumed to be the sum of the gravity and matter parts: $ \EMmat{\mu}{\nu} = \mat{\EMmat{\mu}{\nu}} 
++ 
 \gra{\EMmat{\mu}{\nu}} $. However, in what follows, we shall omit the matter part keeping in mind 
-that energy and momentum equations discussed below are equations for the total (matter+gravity) 
+that the energy and momentum equations discussed below are equations for the total (matter+gravity) 
 energy-momentum. 
 
 We first, explicitly split \eqref{eqn.sigma.31} into the three momentum and one energy equation:
@@ -1493,7 +1514,6 @@ following expressions
 		\beta^k \Bfin{a}{l}\Dfin{a}{j} + (\Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j} 
 		- \Ufin)\KD{k}{i},
 	\end{equation}
-	\IP{define $ \Ufin $ somewhere here}
 	%
 	\item
 	for the energy density:
@@ -1550,33 +1570,12 @@ The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
 	          \pd{k}\shift{\sA}. \label{eqn.f0}
 \end{align}
 \end{subequations}
-Interestingly, that in the right hand side of the energy equation \eqref{eqn.f0}, we have 
-explicitly transport equations for the laps and the shift vector $ \shift{\sA} = \tetr{\sA}{i} 
-\shift{i} $. 
+%Interestingly, that in the right hand side of the energy equation \eqref{eqn.f0}, we have 
+%explicitly transport equations for the laps and the shift vector $ \shift{\sA} = \tetr{\sA}{i} 
+%\shift{i} $. 
 
 
-Finally, in \eqref{eqn.sigma00}, \eqref{eqn.flux.const}, and \eqref{eqn.f0} one needs the potential 
-$
-	 \Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})  
-$ whose
-gravity part is given by (see \eqref{eqn.Ufin})
-\begin{subequations}
-	\begin{equation}
-			\Ufin(\tetr{\sA}{k},\Bfin{\sA}{k},\Dfin{\sA}{k}) = 
-	-\frac{\alpha}{2\detTetr_3} \left( 
-	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
-	+
-	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
-	(\Bfinmix{\sA}{\sA})^2
-	\right)
-	\right),
-	\end{equation}
-\end{subequations}
 
-Alternatively, the potential $ \Ufin$ can be computed as
-\begin{equation}\label{eqn.U.bdeh}
-	\Ufin = \frac{1}{2} ( \Dfin{a}{k} \Efin{a}{k} + \Bfin{a}{k} \Hfin{a}{k} ).
-\end{equation} 
 
 \subsubsection{Noether current}
 
