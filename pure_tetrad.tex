@@ -1653,15 +1653,15 @@ where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
 
 
 
-\subsection{Summary}
-Here, we summarize the $ 3+1 $ TEGR equations and give explicit expressions for $ \Efin{\sA}{k} $, 
-$ \Hfin{\sA}{k} $, and the Noether current $ \NC{\sA}{k} $ corresponding to the TEGR Lagrangian 
-\eqref{eqn.TEGR.Lagr}.
+\section{Summary of the $ 3+1 $ equations}
+Here, we summarize the $ 3+1 $ TEGR equations and give explicit expressions for the constitutive 
+fluxes $ \Efin{\sA}{k} $ and
+$ \Hfin{\sA}{k} $ which then close the specification of the entire system.
 
 
-\subsubsection{Evolution equations}
+\subsection{Evolution equations}
 
-Thus, the system of $ 3+1 $ TEGR governing equations reads
+The system of $ 3+1 $ TEGR governing equations reads
 \begin{subequations}\label{eqn.3+1.summary}
 	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
@@ -1686,13 +1686,17 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 %		-\aU
 %		) \KD{\mu}{\nu}
 %		\right) & = 0,
-		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) &= \rhs{i},
-		\label{eqn.3+1.m}
-		\\[2mm]
-		\pd{t}\rho_0 + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} \Hfin{a}{l} 
-		\Efin{a}{j}) &= \rhs{0},	
-		\label{eqn.3+1.e}
-		\\[2mm]
+		\pd{t} \rho_\sA +  \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) &= 
+		0,\label{eqn.3+1.m}\\[2mm]
+		\pd{t} \rho_{\indalg{0}} + \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
+		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) &= 0,\label{eqn.3+1.e}\\[2mm]
+%		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) &= \rhs{i},
+%		\label{eqn.3+1.m}
+%		\\[2mm]
+%		\pd{t}\rho_0 + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} \Hfin{a}{l} 
+%		\Efin{a}{j}) &= \rhs{0},	
+%		\label{eqn.3+1.e}
+%		\\[2mm]
 		%		
 		\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
 		& = 
@@ -1707,39 +1711,41 @@ Thus, the system of $ 3+1 $ TEGR governing equations reads
 %		\tag{\ref{eqn.tetr.3+1}} 
 	\end{empheq}
 \end{subequations}
-\begin{subequations}
-	\begin{align}
-		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-		-\frac{\alpha}{\varkappa \detTetr_3} 
-		\mg{\sA\sB}\mg{\sC\sD} 
-		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
-		\Bfin{\sC}{j}
-		- 
-		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
-		\Efin{\indalg{0}}{l}
-		%\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
-		%\Efin{\indalg{0}}{j}
-		,\\[2mm]
-		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
-		-\frac{\alpha \varkappa}{\detTetr_3} 
-		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
-		\Dfin{\sB}{j} 
-		- 
-		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
-		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
-	\end{align}
-\end{subequations}
-with the total energy-momentum $ \rho_i := \rho^\text{(m)}_i + \rho^\text{(g)}_i $ given by
+%\begin{subequations}
+%	\begin{align}
+%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+%		-\frac{\alpha}{\varkappa \detTetr_3} 
+%		\mg{\sA\sB}\mg{\sC\sD} 
+%		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
+%		\Bfin{\sC}{j}
+%		- 
+%		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
+%		\Efin{\indalg{0}}{l}
+%		%\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
+%		%\Efin{\indalg{0}}{j}
+%		,\\[2mm]
+%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+%		-\frac{\alpha \varkappa}{\detTetr_3} 
+%		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
+%		\Dfin{\sB}{j} 
+%		- 
+%		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+%	\end{align}
+%\end{subequations}
+with the total (matter+gravity) momentum $ \rho_i := \rho^\text{(m)}_i + \rho^\text{(g)}_i $ given 
+by
 \begin{equation*}
 	\rho_i := \rho^\text{(m)}_i  -\LCsymb_{ilj} 
 	\Bfin{\sA}{l}\Dfin{\sA}{j},
 \end{equation*}
+and the total energy density
 	\begin{equation*}
 	\rho_0 := \beta^i \rho_i - \Ufin,
 \end{equation*}
-and with the momentum flux given by
+The gravitational part of the momentum flux reads
 \begin{gather*}
-	\stress{i}{k} := \mat{\stress{i}{k}} + \gra{\stress{i}{k}} = \mat{\stress{i}{k}} -\Bfin{a}{k} 
+	\stress{i}{k} := -\Bfin{a}{k} 
 	\Hfin{a}{i} - 
 	\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 	\Hfin{a}{j} + 
@@ -1755,30 +1761,30 @@ and with the momentum flux given by
 %	+ \LCsymb^{klj} \Hfin{a}{l}\Efin{a}{j}\pd{k}\ln(\alpha) + s^k_{\ j} \itetr{j}{\sA} 
 %	\pd{k}\shift{\sA}.
 %\end{align*}
-while the source terms in the energy-momentum equations read
-\begin{align*}
-	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
-	+\stress{j}{k} \w{j}{ki}\\[2mm]
-%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} 
-%	\Bfin{\sA}{j} + \rho_\sA \pd{i}\shift{\sA} + (-\shift{k} \rho_{\sA}+ s^k_{\ \sA})  
-%	\pd{i}\tetr{\sA}{k} = 
-%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} \Bfin{\sA}{j}
-%	+ \rho_k\pd{i}\shift{k} + s^k_{\ j} \w{j}{ik},\\[2mm]
-	%
-	\rhs{0} =&
-	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_{\sA}
-	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \stress{\sA}{k} 
-	\pd{k}\shift{\sA}\\[2mm]
-	=&
-	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	+ \rho_j \pd{t} \shift{j} + \stress{j}{k} \pd{k}\shift{j} + \rho_{\sA} \shift{j} \Efin{\sA}{j} 
-	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} \stress{l}{k} \w{l}{kj},
-\end{align*}
-where $ \rho_{\sA} = \itetr{i}{\sA} \rho_i$, 
-%$ s^k_{\ \sA} = \itetr{i}{\sA} s^k_{\ i} $, 
-and $ 
-\w{j}{ik} = \itetr{j}{\sA}\pd{i}\tetr{\sA}{k}$.
+%while the source terms in the energy-momentum equations read
+%\begin{align*}
+%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
+%	+\stress{j}{k} \w{j}{ki}\\[2mm]
+%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} 
+%%	\Bfin{\sA}{j} + \rho_\sA \pd{i}\shift{\sA} + (-\shift{k} \rho_{\sA}+ s^k_{\ \sA})  
+%%	\pd{i}\tetr{\sA}{k} = 
+%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} \Bfin{\sA}{j}
+%%	+ \rho_k\pd{i}\shift{k} + s^k_{\ j} \w{j}{ik},\\[2mm]
+%	%
+%	\rhs{0} =&
+%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
+%	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_{\sA}
+%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \stress{\sA}{k} 
+%	\pd{k}\shift{\sA}\\[2mm]
+%	=&
+%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
+%	+ \rho_j \pd{t} \shift{j} + \stress{j}{k} \pd{k}\shift{j} + \rho_{\sA} \shift{j} \Efin{\sA}{j} 
+%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} \stress{l}{k} \w{l}{kj},
+%\end{align*}
+%where $ \rho_{\sA} = \itetr{i}{\sA} \rho_i$, 
+%%$ s^k_{\ \sA} = \itetr{i}{\sA} s^k_{\ i} $, 
+%and $ 
+%\w{j}{ik} = \itetr{j}{\sA}\pd{i}\tetr{\sA}{k}$.
 
 In particular, the structure of this system resembles very much the structure of the nonlinear 
 electrodynamics of 
@@ -1786,22 +1792,23 @@ moving media already solved numerically in \cite{DPRZ2017} for example, as well 
 the continuum mechanics
 equations with torsion \cite{Torsion2019}. Moreover,
 despite deep conceptual differences,
-it is almost identical to 
-the dGREM formulation of the Einstein equations recently pushed forward in \cite{Olivares2022}.
+it is identical to 
+the new dGREM formulation of the Einstein equations recently pushed forward in \cite{Olivares2022}.
 However, it is important to mention that the Lagrangian approach adopted here
 in principle permits to generalize the formulation to other $f(\Tscal)$ theories.
 A detailed comparison of 
 these two formulations will be a subject of a future paper.
 
-In fact, the structure of system \eqref{eqn.3+1.summary} remains the same independently of the 
+It is also important to note that the structure of system \eqref{eqn.3+1.summary} remains the same 
+independently of the 
 Lagrangian in use as it can be seen from system \eqref{eqn.PDE.4D} where all the constitutive parts 
 are 
 defined through the derivatives of the potential \eqref{eqn.Legendre1}. If the Lagrangian changes, 
 then only the constitutive functions $ \Efin{a}{\mu} $ and $ \Hfin{a}{\mu} $ have to be recomputed.
 
-\subsubsection{Constitutive relations}
+\subsection{Constitutive relations}
 
-For the TEGR Lagrangian \eqref{eqn.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ are given by
+For the TEGR Lagrangian \eqref{eqn.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ read
 \begin{subequations}\label{eqn.H.E}
 	\begin{align}
 		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
@@ -1931,7 +1938,7 @@ where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$.
 
 
 
-\subsubsection{Stationary differential constraints}
+\subsection{Stationary differential constraints}
 
 The $ 0 $-\textit{th} equations ($ \mu=0 $) of \eqref{eT} are not actually time-evolution equations 
 but 
@@ -1963,7 +1970,7 @@ the spatial components of the tetrad field:
 
 
 
-\subsubsection{Algebraic constraints}
+\subsection{Algebraic constraints}
 As a consequence of our choice of the $ 3+1 $-split, \eqref{eqn.4vel}, and the fact 
 that $ \ET{a}{\mu} u^\mu = 0 $ and $ \BT{a}{\mu} u_\mu = 0$, we have 
 the following algebraic constraints 
