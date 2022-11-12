@@ -107,15 +107,16 @@ BCOR5mm, % Binding correction
 \newcommand{\aD}[2]{\mathcal{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Dfin}[2]{\mathtt{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
+\newcommand{\Hfinnmix}[2]{\hat{\mathtt{H}}^{#2}_{\ #1}}	%Torsion decomposition, analog of 
 \newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
 \newcommand{\Ufin}{\mathtt{U}}
 \newcommand{\Hfinn}[2]{\hat{\mathtt{H}}_{{#2}{#1}}}	%Torsion decomposition, analog of 
 \newcommand{\Efinn}[2]{\hat{\mathtt{E}}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
 \newcommand{\Kbuch}[2]{\mathtt{K}_{{#1}{#2}}}	%Torsion decomposition, analog of 
-\newcommand{\Nbuch}[2]{\mathtt{N}_{#1}^{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuch}[2]{\mathtt{N}_{#1}^{\ \,#2}}	%Torsion decomposition, analog of 
 \newcommand{\Nbuchdown}[2]{\mathtt{N}_{#1#2}}	%Torsion decomposition, analog of 
 \newcommand{\Kbuchmix}[2]{\mathtt{K}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
-
+\newcommand{\Nbuchmix}[2]{\mathtt{N}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
 %%%Electric 
 %field
 \newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
@@ -2064,14 +2065,16 @@ variables
 \begin{equation}\label{eqn.KN}
 	\Kbuch{\sC}{\sA} := \mathcal{R}_{\sA\indalg{0}\sC},
 	\qquad
-	\Nbuch{\sB}{\sA} := \frac{1}{2} \epsilon^{\sA\sC\sD}\mathcal{R}_{\sC\sD\sB}
+	\Nbuch{\sB}{\sA} := \frac{1}{2} \LCtens^{\sA\sC\sD}\mathcal{R}_{\sC\sD\sB}
 \end{equation}
 and 
 \begin{equation}\label{eqn.aw}
 	a_{\sA} = \mathcal{R}_{\sA\indalg{0}\indalg{0}},
 	\qquad
-	\omega^{\sA} = \frac{1}{2} \epsilon^{\sA\sB\sC} \mathcal{R}_{\sC\sB\indalg{0}}
+	\omega^{\sA} = \frac{1}{2} \LCtens^{\sA\sB\sC} \mathcal{R}_{\sC\sB\indalg{0}}
 \end{equation}
+Here, $ \LCtens_{\sA\sB\sC} = 
+\detTetr_3 \LCsymb_{ijk}\itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $.
 
 It can be shown that the following relations between the \ERWBB\ and TEGR state variables hold
 \begin{subequations}\label{eqn.Buchman.TEGR.KN}
@@ -2224,7 +2227,10 @@ tensor $
 		&
 		+\lapse\itetr{i}{\sB}\pd{k}\Dfin{}{k} 
 		 \MG{\sA\sB}
-		= 0,\\[2mm]
+		= 0,
+	\end{align}
+where 
+	\begin{align}
 		\label{eqn.BD.alt2.B}
 		\Dfin{}{k} := \varkappa\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{},
 		\qquad
@@ -2254,55 +2260,63 @@ where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do not co
 time 
 derivatives) $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
 \lapse^{-1}\pd{t} - 
-\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. Also, $ \LCtens_{\sA\sB\sC} = 
-\detTetr_3 \LCsymb_{ijk}\itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $. The low-order terms are given 
-in the appendix\,\ref{}.
-The constitutive fluxes $ \Efin{}{\sA\sB} $ and $ \Hfin{\sB}{\sA} $ in terms of $ 
-\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $ are given by 
+\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
+%The low-order terms are given in the appendix\,\ref{}.
+
+To derive \eqref{eqn.KN.pde} from \eqref{eqn.BD.alt2}, one needs to use 
+\eqref{eqn.Buchman.TEGR.KN}, \eqref{eqn.Buchman.TEGR.AW} and the following expression of the 
+constitutive fluxes $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ in terms of $ 
+\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $:
 \begin{align}\label{eqn.const.KN}
 	\Efin{}{\sA\sB} &=
 	- \lapse \,\Kbuch{\sA}{\sB} 
-	+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC 
+	+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC ,
 	\\[2mm]
 	\Hfin{\sB}{\sA} &= 
 	\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
 	- \frac{\lapse}{\varkappa} 
-	\LCtens_{\sA\sB\sC} a^\sC 
+	\LCtens_{\sA\sB\sC} a^\sC .
 \end{align}
 
 Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are not 
 provided with particular evolution equations and therefore, their governing equations can be chosen 
-in such a way so that to guaranty the well-posedness of the enlarged system for the unknowns $ 
+in such a way as to guaranty the well-posedness of the enlarged system for the unknowns $ 
 \{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown in 
-\cite{Estabrook1997,Buchman2003}, if coupled with equations whose the differential part is
+\cite{Estabrook1997,Buchman2003}, if coupled with equations whose differential part is
 \begin{align}\label{eqn.aw.pde}
-	\pd{\indalg{0}} a_\sA - \pd{\sB} \Kbuch{\sB}{\sA} &= 0,
+	\pd{\indalg{0}} a_\sA - \pd{\sB} \Kbuchmix{\sB}{\sA} &= 0,
 	\\[2mm]
-	\pd{\indalg{0}} \omega_\sA + \pd{\sB} \Nbuchdown{\sB}{\sA} &= 0,
+	\pd{\indalg{0}} \omega_\sA + \pd{\sB} \Nbuchmix{\sB}{\sA} &= 0,
 \end{align}
-system \eqref{eqn.KN.pde} is symmetric hyperbolic.
-Therefore, we may conclude the same for the TEGR equations \eqref{eqn.BD.alt2}.
+system \eqref{eqn.KN.pde} is symmetric hyperbolic. However, we can not immediately conclude 
+the same for the TEGR equations \eqref{eqn.3+1.summary} because the differential operators of 
+\eqref{eqn.3+1.summary} and \eqref{eqn.BD.alt2} are different even though the overall equations are 
+equivalent. We recall that the hyperbolicity (well-posedness of the initial value problem) is 
+defined by the leading-order terms of the differential operator (all differential terms in the case 
+of first-order systems). Nevertheless, this is an important result demonstrating that inside of the 
+class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary} there is, at least one, 
+possibility to rewrite TEGR vacuum equations as a symmetric hyperbolic system.
 
-The second step to recovering hyperbolicity of the TEGR equations consists in not modifying the 
-equations but extending the set of state variables and the set of evolution equations.
-Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge freedoms $ 
-A_k = 
-\Efin{\indalg{0}}{k} $ and $ \Omega_k = \Hfin{\indalg{0}}{k} $ according to
-\begin{subequations}\label{eqn.AOmega}
-	\begin{align}
-		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = 0, 
-		\\[2mm]
-		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} \Hfin{\sA}{i} = 0.
-	\end{align}
-\end{subequations}
-We set the right hand-side of these two equations to zero because it is not important for the 
-hyperbolicity. In general, one may want to chose any other gauge conditions, e.g. see 
-\cite{Buchman2003}. While increasing number of evolution equations, this modification 
-drastically 
-improves the situation with the missing eigenvectors. Now, the system of 24 equations 
-\eqref{eqn.3+1.D}, 
-\eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the supplementary 
-materials [??].
+%The second step to recovering hyperbolicity of the TEGR equations consists in not modifying the 
+%equations but extending the set of state variables and the set of evolution equations.
+%Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge freedoms $ 
+%A_k = 
+%\Efin{\indalg{0}}{k} $ and $ \Omega_k = \Hfin{\indalg{0}}{k} $ according to
+%\begin{subequations}\label{eqn.AOmega}
+%	\begin{align}
+%		&\pd{\indalg{0}}A_i      - \pd{k} \Efinn{k}{i} = 0, 
+%		\\[2mm]
+%		&\pd{\indalg{0}}\Omega_i + \pd{k} \Hfinnmix{i}{k} = 0.
+%	\end{align}
+%\end{subequations}
+%We set the right hand-side of these two equations to zero because it is not important for the 
+%hyperbolicity. In general, one may want to chose any other gauge conditions, e.g. see 
+%\cite{Buchman2003}. While increasing number of evolution equations, this modification 
+%drastically 
+%improves the situation with the missing eigenvectors. Now, the system of 24 equations 
+%\eqref{eqn.3+1.D}, 
+%\eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the supplementary 
+%materials [??].
 
 \subsection{Alternative form of the energy-momentum equations}
 
