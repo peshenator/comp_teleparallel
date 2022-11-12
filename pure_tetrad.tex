@@ -1184,7 +1184,7 @@ to distinguish them
 from the indices of the spacetime tensors.  Also recall that observer's 4-velocity 
 $ 
 u^\mu $ is associated with the $ \hat{0} $-th column of the 
-inverse frame $ \itetr{\mu}{a} $, while the covariant components $ u_\mu $ of the 4-velocity with 
+inverse tetrad $ \itetr{\mu}{a} $, while the covariant components $ u_\mu $ of the 4-velocity with 
 the $ 
 \hat{0} $-th row of the frame field for which we standardly assume 
 \cite{Alcubierre2008,RezzollaZanottiBook}:
@@ -1223,7 +1223,7 @@ One can write explicitly $ \tetr{a}{\mu} $ and $ \itetr{\mu}{a} $:
 	\end{array}
 	\right) ,
 \end{equation}
-where $ \beta^{\sA} = \tetr{\sA}{i}\beta^i$, $ \sA = \indalg{1},\indalg{2},\indalg{3}$.
+where $ \beta^{\sA} = \tetr{\sA}{i}\beta^i$.
 The metric tensor and its inverse are (e.g. see \cite{Gourgoulhon2012a})
 \begin{equation}
 	g_{\mu\nu} = \left(
@@ -1243,11 +1243,11 @@ The metric tensor and its inverse are (e.g. see \cite{Gourgoulhon2012a})
 where $ \gamma_{ij} = \kappa_{\sA\sB} \tetr{\sA}{i}\tetr{\sB}{j}$, $ 
 \gamma^{ij} = \left( \gamma_{ij} \right)^{-1}  $, and $ \beta_i =  \gamma_{ij}\beta^j$.
 
-Finally, $ \detTetr_3 $ stands for $ \detTetr_3 := \det(\tetr{\sA}{i}) $ so that
+In the rest of the paper, $ \detTetr_3 $ stands for $ \det(\tetr{\sA}{i}) $ so that
 \begin{equation}\label{eqn.det}
 	\detTetr := \det(\tetr{a}{\mu}) = \alpha \detTetr_3,
 \end{equation}
-as well as we use the following convention for the Levi-Civita symbols
+and we use the following convention for the three-dimensional Levi-Civita symbol
 \begin{equation}\label{eqn.LC.3d}
 	\LCsymb^{0ijk} = \LCsymb^{ijk}, 
 	\qquad
@@ -1289,7 +1289,7 @@ as well as we use the following convention for the Levi-Civita symbols
 
 \paragraph{Case $ \mu = i=1,2,3 $.} 
 
-For our choice of the foliation of the spacetime defined by \eqref{eqn.4vel}, equations \eqref{eT} 
+For our choice of observer's frame \eqref{eqn.4vel}, equations \eqref{eT} 
 and \eqref{bT} read
 \begin{subequations}\label{eqn.tpo.1}
 	\begin{align}
@@ -1368,7 +1368,8 @@ where
 
 \paragraph{Case $ \mu = 0 $.} 
 
-The $ 0 $-th equations \eqref{eT} and \eqref{bT} are pure spatial (stationary) constraints
+The $ 0 $-th equations \eqref{eT} and \eqref{bT} are actually not time-evolution equations but  
+pure spatial (stationary) constraints
 \begin{equation}\label{eqn.div.constr}
 	\pd{k} \Dfin{a}{k} = \NC{a}{0}, 
 	\qquad
@@ -1450,7 +1451,12 @@ We now turn to the energy-momentum evolution equation
 	 = \EMmat{\mu}{\lambda} 
 	\w{\lambda}{\mu\nu}
 \end{equation}
-and provide its $ 3+1 $ version.
+and provide its $ 3+1 $ version. Because the Lagrangian density in \eqref{eqn.Lagrangians} 
+represents the sum of the gravitational and matter Lagrangian the energy-momentum tensor is also 
+assumed to be the sum of the gravity and matter parts $ \EMmat{\mu}{\nu} = \mat{\EMmat{\mu}{\nu}} + 
+\gra{\EMmat{\mu}{\nu}} $. However, in what follows, we shall omit the matter part keeping in mind 
+that energy and momentum equations discussed below are equations for the total (matter+gravity) 
+energy-momentum. 
 
 We first, explicitly split \eqref{eqn.sigma.31} into the three momentum and one energy equation:
 \begin{subequations}\label{eqn.EM.sigma}
@@ -1469,38 +1475,39 @@ Applying the change of variables \eqref{eqn.varDB}, \eqref{eqn.change.alphaU}, a
 following expressions
 \begin{itemize}
 	\item 
-	for the total momentum density, $ \sigma^0_{\ i} = \rho_i = \rho^\text{(m)}_i + 
-	\rho^\text{(g)}_i $:
+	for the total momentum density, $ \sigma^0_{\ i} = \rho_i $ (the matter part is left 
+	unspecified and omitted in this paper):
 	\begin{equation}\label{eqn.sigma0i}
-		\rho^\text{(g)}_i :=-\LCsymb_{ilj} \Bfin{a}{l}\Dfin{a}{j},
+		\rho_i :=-\LCsymb_{ilj} \Bfin{a}{l}\Dfin{a}{j},
 	\end{equation}
-	(with $ \rho^\text{(m)}_i $ being the total momentum of matter fields, e.g. see 
-	\cite{PTRSA2020}, and $ \rho^\text{(g)}_i 
-	$ 
-	being the gravitational momentum)
+%	(with $ \rho^\text{(m)}_i $ being the total momentum of matter fields, e.g. see 
+%	\cite{PTRSA2020}, and $ \rho^\text{(g)}_i 
+%	$ 
+%	being the gravitational momentum)
 	%
 	\item
-	for the momentum flux, $ \EMmat{k}{i} = \mat{\EMmat{k}{i}} + \gra{\EMmat{k}{i}}$:
+	for the momentum flux, $ \EMmat{k}{i}$:
 	\begin{equation}\label{eqn.sigmaki}
-		\gra{\EMmat{k}{i}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + 
+		\EMmat{k}{i} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + 
 		\LCsymb_{ilj} 
 		\beta^k \Bfin{a}{l}\Dfin{a}{j} + (\Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j} 
 		- \Ufin)\KD{k}{i},
 	\end{equation}
+	\IP{define $ \Ufin $ somewhere here}
 	%
 	\item
 	for the energy density:
 	\begin{equation}\label{eqn.sigma00}
-		\rho_0 :=\EMmat{0}{0} = \shift{i} \rho^\text{(m)}_i - \LCsymb_{ilj} 
+		\rho_0 :=\EMmat{0}{0} = - \LCsymb_{ilj} 
 		\beta^i\Bfin{a}{l}\Dfin{a}{j} - \Ufin = \beta^i 
 		\rho_i 
 		- \Ufin,
 	\end{equation}
 	%
 	\item
-	and for the energy flux, $ \EMmat{k}{0} = \mat{\EMmat{k}{0}}+\gra{\EMmat{k}{0}}$:
+	and for the energy flux, $ \EMmat{k}{0} $:
 	\begin{equation}\label{eqn.sigmak0}
-		\gra{\EMmat{k}{0}} = -\beta^j( \Bfin{a}{k} \Hfin{a}{j} + \Dfin{a}{k} \Efin{a}{j})
+		{\EMmat{k}{0}} = -\beta^j( \Bfin{a}{k} \Hfin{a}{j} + \Dfin{a}{k} \Efin{a}{j})
 		+
 		\beta^k( \Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j})
 		+
@@ -1521,7 +1528,7 @@ energy-momentum
 		\pd{t}\rho_0 & + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} \Hfin{a}{l} 
 		\Efin{a}{j}) = \rhs{0},\label{eqn.EM.e}
 	\end{align}
-where $ \stress{i}{k} = \mat{\stress{i}{k}} + \gra{\stress{i}{k}} $ with the gravity part given by
+where the gravity part of $ \stress{i}{k} $ is given by
 \begin{gather}\label{eqn.flux.const}
 	\gra{\stress{i}{k}} := -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 	\Hfin{a}{j} + 
@@ -1544,43 +1551,31 @@ The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
 \end{align}
 \end{subequations}
 Interestingly, that in the right hand side of the energy equation \eqref{eqn.f0}, we have 
-explicitly the transport equations for the laps and the shift vector $ \shift{\sA} = \tetr{\sA}{i} 
+explicitly transport equations for the laps and the shift vector $ \shift{\sA} = \tetr{\sA}{i} 
 \shift{i} $. 
 
 
 Finally, in \eqref{eqn.sigma00}, \eqref{eqn.flux.const}, and \eqref{eqn.f0} one needs the potential 
-\begin{equation}
-	 \Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu},\ldots) = 
-	\Ufin^\text{(m)}(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu},\ldots) + 
-	\Ufin^\text{(g)}(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu}) 
-\end{equation}whose 
+$
+	 \Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})  
+$ whose
 gravity part is given by (see \eqref{eqn.Ufin})
 \begin{subequations}
 	\begin{equation}
-		\Ufin^\text{(g)} = \frac{\alpha}{2\detTetr_3} \left( 
-		\varkappa \left( \frac{1}{2} I_{\Dfin{}{}1} -I_{\Dfin{}{}2}\right)  
-		+
-		\frac{1}{\varkappa} \left( \frac{1}{2} I_{\Bfin{}{}1} -I_{\Bfin{}{}2}
-		\right)
-		\right) ,
-	\end{equation}
-	\begin{equation}
-		I_{\Dfin{}{}1} = (\Dfin{\sA}{\sA})^2 = (\tetr{\sA}{i} \Dfin{\sA}{i})^2,
-		\qquad
-		I_{\Dfin{}{}2} = \Dfin{\sA}{\sB} \Dfin{\sB}{\sA}=\tetr{\sA}{i} \Dfin{\sA}{k} \tetr{\sB}{k} 
-		\Dfin{\sB}{i},
-	\end{equation}
-	\begin{equation}
-		I_{\Bfin{}{}1} = (\Bfin{\sA}{\sD}\mg{\sD\sA})^2 = (\Bfin{\sA}{j}\tetr{\sD}{j}\mg{\sD\sA})^2,
-		\qquad
-		I_{\Bfin{}{}2} = \Bfin{\sA}{\sC}\mg{\sC\sB} \Bfin{\sB}{\sD} \mg{\sD\sA}
-		= \Bfin{\sA}{j}\tetr{\sC}{j}\mg{\sC\sB} \Bfin{\sB}{l} \tetr{\sD}{l} \mg{\sD\sA}.
+			\Ufin(\tetr{\sA}{k},\Bfin{\sA}{k},\Dfin{\sA}{k}) = 
+	-\frac{\alpha}{2\detTetr_3} \left( 
+	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
+	+
+	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+	(\Bfinmix{\sA}{\sA})^2
+	\right)
+	\right),
 	\end{equation}
 \end{subequations}
 
-Alternatively, the potential $ \Ufin^\text{(g)} $ can be computed as
+Alternatively, the potential $ \Ufin$ can be computed as
 \begin{equation}\label{eqn.U.bdeh}
-	\Ufin^\text{(g)} = \frac{1}{2} ( \Dfin{a}{k} \Efin{a}{k} + \Bfin{a}{k} \Hfin{a}{k} ).
+	\Ufin = \frac{1}{2} ( \Dfin{a}{k} \Efin{a}{k} + \Bfin{a}{k} \Hfin{a}{k} ).
 \end{equation} 
 
 \subsubsection{Noether current}
@@ -1965,10 +1960,10 @@ As already noted in \cite{AldrovandiPereiraBook}, the gravitational part of the 
 	\gra{\EMmat{\mu}{\mu}} = 0.
 \end{equation}
 
-\subsubsection{Free parameters}
-
-The lapse $\alpha$  an shift vector $\shift{k}$ are not subjected to any constraints and can be 
-evolved in an arbitrary but meaningful way. 
+%\subsubsection{Free parameters}
+%
+%The lapse $\alpha$  an shift vector $\shift{k}$ are not subjected to any constraints and can be 
+%evolved in an arbitrary but meaningful way. 
 
 %$ \LCsymb_{\sA\sB\sC} = \LCsymb_{ijk} \itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $
 
