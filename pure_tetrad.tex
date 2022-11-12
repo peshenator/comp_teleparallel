@@ -2294,8 +2294,9 @@ the same for the TEGR equations \eqref{eqn.3+1.summary} because the differential
 equivalent. We recall that the hyperbolicity (well-posedness of the initial value problem) is 
 defined by the leading-order terms of the differential operator (all differential terms in the case 
 of first-order systems). Nevertheless, this is an important result demonstrating that inside of the 
-class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary} there is, at least one, 
-possibility to rewrite TEGR vacuum equations as a symmetric hyperbolic system.
+class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary} there is a 
+possibility, at least one \eqref{eqn.BD.alt2},  to rewrite TEGR vacuum equations as a symmetric 
+hyperbolic system.
 
 %The second step to recovering hyperbolicity of the TEGR equations consists in not modifying the 
 %equations but extending the set of state variables and the set of evolution equations.
@@ -2367,115 +2368,119 @@ where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
 
 
 
-\section{Symmetrization}
+%\section{Symmetrization}
+%
+%The energy is
+%\begin{equation}
+%	\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
+%	-\frac{\alpha}{2\detTetr_3} \left( 
+%	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
+%	+
+%	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+%	(\Bfinmix{\sA}{\sA})^2
+%	\right)
+%	\right).
+%\end{equation}
+%
+%Having this expression for the potential $ \Ufin $ and introducing notations
+%\begin{equation}
+%	\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
+%	\qquad
+%	\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
+%\end{equation}
+%the constitutive relations \eqref{eqn.H.E} can be rewritten as
+%\begin{equation}\label{eqn.H.E.split}
+%	\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+%	\Hfinn{\sA}{k}
+%	{ 
+%	\color{blue}
+%	-
+%	\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+%	\qquad
+%	\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+%	\Efinn{\sA}{k}
+%	{
+%	\color{blue}
+%	-
+%	\varkappa \detTetr_3 \LCsymb_{kjl} 
+%	\itetr{j}{\sB} \mg{\sA\sB} \Omega^l}.
+%\end{equation}
+%
+%In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be written as 
+%\begin{subequations}\label{eqn.BD.hat}
+%	\begin{align}
+%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+%		\Hfinn{\sA}{j}) 
+%		&
+%		{ + \color{red} \pd{k} 
+%			\left(
+%			\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
+%			\right) }
+%		-\shift{i}\pd{k} \Dfin{\sA}{k}
+%		= - \stress{\sA}{i},
+%		\\[2mm]
+%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+%		\Efinn{\sA}{j}) 
+%		&
+%		{ - \color{red}\pd{k} 
+%			\left(
+%			\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} \hat{\Omega}^i
+%			\right) \MG{\sA\sB}}
+%		-\shift{i}\pd{k} \Bfin{\sA}{k}
+%		= 0,
+%	\end{align}
+%\end{subequations}
+%where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ \hat{\Omega}^i = \varkappa 
+%\detTetr_3 
+%\Omega^i $.} 
+%
+%\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 equations has 
+%\textit{only 10 eigenvectors} for the flat spacetime.}
+%
+%Currently, the main natural idea, also exploited by Buschman et al \cite{Buchman2003} (see eq.(44) 
+%or (47)), is to add 
+%two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $. 
+%
+%\IP{The 
+%question is how to find these PDEs. So far, I tested the following simple equations:}
+%\begin{subequations}
+%	\begin{align}
+%		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = rhs, 
+%		\\[2mm]
+%		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} \Hfin{\sA}{i} = rhs,  
+%	\end{align}
+%\end{subequations}
+%or in terms of \eqref{eqn.H.E.split}
+%\begin{subequations}\label{eqn.A.Omega}
+%	\begin{align}
+%		&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} \pd{k} \Efinn{\sA}{i}}
+%		{\color{blue}
+%		-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
+%		\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
+%		}
+%		 = rhs, 
+%		\\[2mm]
+%		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
+%		+ 
+%		{\color{red}\itetr{k}{\sA} \pd{k} 
+%		\Hfinn{\sB}{i} \MG{\sA\sB}
+%		} 
+%		{\color{blue}
+%		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} \hat{A}^l) \MG{\sA\sB}
+%		}= rhs.
+%	\end{align}
+%\end{subequations}
+%Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  $ \{ 
+%\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. Therefore, 2 are missing.
+%
+%\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, \eqref{eqn.A.Omega}. The multipliers are 
+%$ 
+%\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ \hat{\Omega}^i $}
 
-The energy is
-\begin{equation}
-	\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
-	-\frac{\alpha}{2\detTetr_3} \left( 
-	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
-	+
-	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
-	(\Bfinmix{\sA}{\sA})^2
-	\right)
-	\right).
-\end{equation}
 
-Having this expression for the potential $ \Ufin $ and introducing notations
-\begin{equation}
-	\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
-	\qquad
-	\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
-\end{equation}
-the constitutive relations \eqref{eqn.H.E} can be rewritten as
-\begin{equation}\label{eqn.H.E.split}
-	\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-	\Hfinn{\sA}{k}
-	{ 
-	\color{blue}
-	-
-	\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
-	\qquad
-	\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
-	\Efinn{\sA}{k}
-	{
-	\color{blue}
-	-
-	\varkappa \detTetr_3 \LCsymb_{kjl} 
-	\itetr{j}{\sB} \mg{\sA\sB} \Omega^l}.
-\end{equation}
 
-In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be written as 
-\begin{subequations}\label{eqn.BD.hat}
-	\begin{align}
-		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		\Hfinn{\sA}{j}) 
-		&
-		{ + \color{red} \pd{k} 
-			\left(
-			\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
-			\right) }
-		-\shift{i}\pd{k} \Dfin{\sA}{k}
-		= - \stress{\sA}{i},
-		\\[2mm]
-		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		\Efinn{\sA}{j}) 
-		&
-		{ - \color{red}\pd{k} 
-			\left(
-			\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} \hat{\Omega}^i
-			\right) \MG{\sA\sB}}
-		-\shift{i}\pd{k} \Bfin{\sA}{k}
-		= 0,
-	\end{align}
-\end{subequations}
-where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ \hat{\Omega}^i = \varkappa 
-\detTetr_3 
-\Omega^i $.} 
-
-\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 equations has 
-\textit{only 10 eigenvectors} for the flat spacetime.}
-
-Currently, the main natural idea, also exploited by Buschman et al \cite{Buchman2003} (see eq.(44) 
-or (47)), is to add 
-two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $. 
-
-\IP{The 
-question is how to find these PDEs. So far, I tested the following simple equations:}
-\begin{subequations}
-	\begin{align}
-		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = rhs, 
-		\\[2mm]
-		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} \Hfin{\sA}{i} = rhs,  
-	\end{align}
-\end{subequations}
-or in terms of \eqref{eqn.H.E.split}
-\begin{subequations}\label{eqn.A.Omega}
-	\begin{align}
-		&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} \pd{k} \Efinn{\sA}{i}}
-		{\color{blue}
-		-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
-		\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
-		}
-		 = rhs, 
-		\\[2mm]
-		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
-		+ 
-		{\color{red}\itetr{k}{\sA} \pd{k} 
-		\Hfinn{\sB}{i} \MG{\sA\sB}
-		} 
-		{\color{blue}
-		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} \hat{A}^l) \MG{\sA\sB}
-		}= rhs.
-	\end{align}
-\end{subequations}
-Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  $ \{ 
-\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. Therefore, 2 are missing.
-
-\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, \eqref{eqn.A.Omega}. The multipliers are $ 
-\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ \hat{\Omega}^i $}
 
 \section{Relation between the torsion and extrinsic curvature}
 
@@ -2685,82 +2690,10 @@ so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) =
 %		\right)
 %		\right) ,
 	\end{equation}
-%	\begin{equation}
-%		I_{\Dfin{}{}1} = (\Dfin{\sA}{\sA})^2 = (\tetr{\sA}{i} \Dfin{\sA}{i})^2,
-%		\qquad
-%		I_{\Dfin{}{}2} = \Dfin{\sA}{\sB} \Dfin{\sB}{\sA}=\tetr{\sA}{i} \Dfin{\sA}{k} \tetr{\sB}{k} 
-%		\Dfin{\sB}{i},
-%	\end{equation}
-%	
-%	\begin{equation}
-%		I_{\Bfin{}{}1} = (\Bfin{\sA}{\sD}\mg{\sD\sA})^2 = (\Bfin{\sA}{j}\tetr{\sD}{j}\mg{\sD\sA})^2,
-%		\qquad
-%		I_{\Bfin{}{}2} = \Bfin{\sA}{\sC}\mg{\sC\sB} \Bfin{\sB}{\sD} \mg{\sD\sA}
-%		= \Bfin{\sA}{j}\tetr{\sC}{j}\mg{\sC\sB} \Bfin{\sB}{l} \tetr{\sD}{l} \mg{\sD\sA}.
-%	\end{equation}
-%\end{subequations}
-
-
-%one can derive from \eqref{eqn.gamma.PDE} and \eqref{eqn.h.PDE} an evolution equation for the 
-%conformal metric $ \tilde{\gamma}_{ij} $ in TEGR:
-%\begin{equation}\label{eqn.gamma.TEGR}
-%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
-%	\pd{j}\shift{k}
-%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = 
-%	-\phi^2 \mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
-%	+
-%	\phi^5 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} \gamma_{ij}.
-%\end{equation} 
-%
-%Because the left hand-sides in \eqref{eqn.gamma.CCZ4} and \eqref{eqn.gamma.TEGR} coincide, we 
-%conclude that 
-%\begin{equation}
-%	\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
-%	-
-%	\phi^3 \frac{\alpha \varkappa}{3} \Dfin{\sA}{\sA} {\gamma}_{ij}
-%	=
-%	-2\alpha K_{ij} + \frac{2\alpha K}{3} \gamma_{ij}.
-%\end{equation}
-%Hence, the first outcome is that in order TEGR and GR have the same solutions, one at least has 
-%to 
-%impose that
-
-\section{Relation to the Buchman \& Bardeen 2003}
-
-If we introduce
-\begin{equation}
-	\Kbuch{\sA}{\sB} := -K_{\sA\sB},  
-	\quad
-	\Nbuch{\sA}{\sB} := -\frac{1}{\detTetr_3}\left(  
-		\Bfinmixx{\sA}{\sB} - \frac{1}{2} \Bfinmixx{\sC}{\sC} \KD{\sB}{\sA}
-	\right) 
-\end{equation}
-where $ K_{\sA\sB} = K_{ij} \itetr{i}{\sA}\itetr{j}{\sB} $, then equation \eqref{eqn.3+1.B} can be 
-rewritten as
-\begin{multline}\label{eqn.Npde}
-	\pd{t} \Nbuch{\sA}{\sB} - \shift{k}\pd{k}\Nbuch{\sA}{\sB} + \lapse \LCsymb^{\sB\sC\sD} 
-	\pd{\sC} \Kbuch{\sA}{\sD}
-	-\varkappa \pd{\sA} \Omega^{\sB} = \\
-	- \LCsymb^{\sB\sC\sD} A_{\sC} \Kbuch{\sA}{\sD}
-	+
-	\left(
-		- \Kbuch{\sA}{\sC} \hat{\mathtt{N}}^{\sC\sB} - \Kbuchmix{\sB}{\sC} 
-		\hat{\mathtt{N}}_{\sA}^{\ \sC}
-		+ \frac12 \Kbuch{\sD}{\sC} \hat{\mathtt{N}}^{\sC\sD} \KD{\sB}{\sA}
-		+ \frac12 \Kbuchmix{\sD}{\sC} \hat{\mathtt{N}}_{\sD}^{\ \,\sC} \KD{\sB}{\sA}
-		+ \Kbuchmix{\sC}{\sC} \Nbuch{\sA}{\sB}
-	\right) \\
-	+ \varkappa \LCsymb_{\sA\sC\sD} \Omega^{\sD} \hat{\mathtt{N}}_{\sE}^{\ \sB} \MG{\sC\sE}
-	+ \varkappa \LCsymb_{\sE\sC\sD} \Omega^{\sD} \hat{\mathtt{N}}_{\sA}^{\ \,\sC} \MG{\sB\sE}
-\end{multline}
-where $ \pd{\sC} = \itetr{k}{\sC} \pd{k} $, $ \Omega^{\sA} = \Omega_k \itetr{k}{\sB}\MG{\sB\sA} $,
-and $ \hat{\mathtt{N}}_{\sA}^{\ \,\sB} = \Nbuch{\sA}{\sB} - \Nbuch{\sC}{\sC}\KD{\sB}{\sA} $
 
 
 
-
-
-\section{Conclusion}
+\section{Conclusion and discussion}
 
 We have presented a $ 3+1 $-split of the TEGR equations in their historical pure tetrad version, 
 i.e. the spin connection is set to zero. To the best of our knowledge there were no attempt to 
