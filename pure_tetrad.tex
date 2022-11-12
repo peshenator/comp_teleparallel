@@ -2076,7 +2076,7 @@ As already noted in \cite{AldrovandiPereiraBook}, the gravitational part of the 
 \section{Symmetric hyperbolicity of the vacuum equations}
 
 Despite the structure of system \eqref{eqn.3+1.summary} shares a lot of similarities with equations 
-for nonlinear electrodynamics of moving media which are belong to the class of symmetric hyperbolic 
+of nonlinear electrodynamics of moving media which belong to the class of symmetric hyperbolic 
 thermodynamically compatible (SHTC) 
 equations \cite{SHTC-GENERIC-CMAT,GodRom1996b,Rom1998,Rom2001,God1961}, we cannot immediately apply 
 the machinery of SHTC systems to symmetrize the TEGR equations because some elements do not fit 
@@ -2159,12 +2159,14 @@ A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $
 Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic even for the Minkowski 
 spacetime (it is actually only weakly hyperbolic because some eigenvectors are missing), and 
 therefore it can not be equivalent to the symmetric hyperbolic \ERWBB\ formulation 
-of GR. In this section, we discuss what modifications of equations \eqref{eqn.3+1.summary} are 
+of GR right away. In this section, we discuss what modifications of equations 
+\eqref{eqn.3+1.summary} are 
 necessary in order to make it equivalent to the \ERWBB\ formulation.
-These modifications rely on the use of the Hamiltonian and momentum constraints 
-\eqref{eqn.div.constrD} and symmetry of $ \Dfin{\sA}{i} $. 
+These modifications rely on the use of Hamiltonian and momentum constraints 
+\eqref{eqn.div.constrD} and symmetry of $ \Dfin{\sA\sB}{} $. 
 
-Because we are considering an empty space-time, the momentum and energy equations \eqref{eqn.3+1.m}, 
+Because we are considering a vacuum space-time, the momentum and energy equations 
+\eqref{eqn.3+1.m}, 
 \eqref{eqn.3+1.e} can be omitted. Moreover, modifications concern only torsion equations 
 \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and 
 therefore for the sake of simplicity, we also omit the tetrad equations \eqref{eqn.3+1.h}
@@ -2239,7 +2241,8 @@ constraint $
 \rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding a formally zero, $ 0 = \pd{k}\Bfin{\sA}{k} $, to 
 \eqref{eqn.3+1.B}. These modifications are legitimate for smooth solutions thanks to involution 
 constraints \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic velocities 
-have the desired values equal to $ \shift{k} $ or $ \shift{k} \pm c $, if $ c $ is the light 
+have the desired values equal to $ \sim\shift{k} $ or $ \sim \shift{k} \pm c $, if $ c $ is the 
+light 
 speed. 
 However, this only allows to fix the issue with the eigenvalues, while some eigenvectors are still 
 missing.
@@ -2308,9 +2311,9 @@ can be written in the \ERWBB\ form
 \end{subequations}
 where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do not contain space and 
 time 
-derivatives) $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
+derivatives), $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
 \lapse^{-1}\pd{t} - 
-\lapse^{-1}\shift{k}\pd{k}$ and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
+\lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
 %The low-order terms are given in the appendix\,\ref{}.
 
 To derive \eqref{eqn.KN.pde} from \eqref{eqn.BD.alt2}, one needs to use 
@@ -2338,14 +2341,17 @@ in such a way as to guaranty the well-posedness of the enlarged system for the u
 	\\[2mm]
 	\pd{\indalg{0}} \omega_\sA + \pd{\sB} \Nbuchmix{\sB}{\sA} &= 0,
 \end{align}
-system \eqref{eqn.KN.pde} is symmetric hyperbolic. However, we can not immediately conclude 
-the same for the TEGR equations \eqref{eqn.3+1.summary} because the differential operators of 
+system \eqref{eqn.KN.pde} is symmetric hyperbolic, and thus \eqref{eqn.BD.alt2} can also be put 
+into a symmetric hyperbolic form. However, we can not immediately conclude 
+the same for the original TEGR equations \eqref{eqn.3+1.summary} because the differential operators 
+of 
 \eqref{eqn.3+1.summary} and \eqref{eqn.BD.alt2} are different even though the overall equations are 
 equivalent. We recall that the hyperbolicity (well-posedness of the initial value problem) is 
 defined by the leading-order terms of the differential operator (all differential terms in the case 
 of first-order systems). Nevertheless, this is an important result demonstrating that inside of the 
 class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary} there is a 
-possibility, at least one \eqref{eqn.BD.alt2},  to rewrite TEGR vacuum equations as a symmetric 
+possibility, at least one given by \eqref{eqn.BD.alt2},  to rewrite the TEGR vacuum equations as a 
+symmetric 
 hyperbolic system.
 
 %The second step to recovering hyperbolicity of the TEGR equations consists in not modifying the 
