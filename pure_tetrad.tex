@@ -1576,7 +1576,6 @@ The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
 
 
 
-
 \subsubsection{Noether current}
 
 Because the energy-momentum $ \EMmat{k}{i} $ was defined as $ \EMmat{k}{i} = \tetr{a}{i} 
@@ -1600,6 +1599,56 @@ hence
 	\end{array} 
 	\right.
 \end{equation}
+
+
+\subsubsection{Alternative form of the energy-momentum equations}
+
+In \eqref{eqn.sigma.31}, we deliberately use the energy-momentum tensor with both spacetime 
+indices because we would like to use the SHTC and Hamiltonian structure \cite{SHTC-GENERIC-CMAT} of 
+these equations for designing numerical schemes in the future, e.g. \cite{HTC2022,SPH_SHTC}. 
+However, the resulting PDEs 
+\eqref{eqn.EM.PDE} do not have a fully 
+conservative form preferable for example when dealing with the shock waves in the matter fields.
+Therefore, one may want to use the true conservation law \eqref{eqn.Noether.cons} for the total 
+(matter+gravity) Noether 
+current $ \NC{a}{\mu} $ instead of \eqref{eqn.EM.PDE}. Thus, in the new 
+notations introduced above, conservation law $ \pd{\mu}\NC{a}{\mu} = 0 
+$ now reads
+\begin{subequations}
+	\begin{align}
+		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
+		\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
+		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) = 0,
+	\end{align}
+\end{subequations}
+with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin $. 
+%This form, and therefore the entire system of the 
+%$ 3+1 $ TEGR equations \eqref{eqn.3+1.summary},  is equivalent to the 
+%dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evolution 
+%equations for the gravity and matter energy-momenta separately).
+
+
+
+\subsubsection{Evolution of the space volume}
+
+As in the computational Newtonian mechanics \cite{DPRZ2016,SIGPR2021}, the evolution of the tetrad 
+field at the discrete level has to be performed consistently with the volume/mass conservation law. 
+In 
+TEGR, the equivalent to the volume conservation in the Newtonian mechanics is 
+\begin{equation}\label{eqn.pde.det}
+	\pd{\mu}(\detTetr u^\mu) = -\detTetr \ET{\mu}{\mu} 
+\end{equation} 
+which can be obtained after contracting \eqref{tetr} with $ \partial \detTetr/\partial 
+\tetr{a}{\mu} 
+= \detTetr
+\itetr{\mu}{a} $, and where $ \ET{\mu}{\mu} = \itetr{\mu}{a} \ET{a}{\mu}$.
+
+
+After using \eqref{eqn.4vel}, \eqref{eqn.h.eta.matrix}, and \eqref{eqn.E}, this balance law becomes
+\begin{equation}\label{eqn.h.PDE}
+	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
+\end{equation}
+where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
 
 
 
@@ -2312,53 +2361,6 @@ hyperbolic system.
 %\eqref{eqn.3+1.D}, 
 %\eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the supplementary 
 %materials [??].
-
-\subsection{Alternative form of the energy-momentum equations}
-
-In \eqref{eqn.3+1.summary} we deliberately use the energy-momentum tensor with both spacetime 
-indices because we would like to use the SHTC and Hamiltonian structure \cite{SHTC-GENERIC-CMAT} of 
-these equations for designing numerical schemes in the future, e.g. \cite{HTC2022,SPH_SHTC}. 
-However, the resulting PDEs 
-\eqref{eqn.3+1.m} and \eqref{eqn.3+1.e} do not have a fully 
-conservative form preferable for example when dealing with the shock waves in the matter fields.
-Therefore, one may want to use the true conservation law \eqref{eqn.Noether.cons} for the total 
-(matter+gravity) Noether 
-current $ \NC{a}{\mu} $ instead of \eqref{eqn.3+1.m} and \eqref{eqn.3+1.e}. Thus, in the new 
-notations introduced in Sec.\,\ref{sec.energymomentum}, conservation law $ \pd{\mu}\NC{a}{\mu} = 0 
-$ now reads
-\begin{subequations}
-	\begin{align}
-		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
-		\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
-		\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) = 0,
-	\end{align}
-\end{subequations}
-with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin $. This form, and therefore the entire system of the 
-$ 3+1 $ TEGR equations \eqref{eqn.3+1.summary},  is equivalent to the 
-dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evolution 
-equations for the gravity and matter energy-momenta separately).
-
-
-
-\subsection{Evolution of the volume}
-
-As in the computational Newtonian mechanics \cite{DPRZ2016,SIGPR2021}, the evolution of the tetrad 
-field at the discrete level has to be performed consistently with the volume/mass conservation law. 
-In 
-TEGR, the equivalent to the volume conservation in the Newtonian mechanics is 
-\begin{equation}\label{eqn.pde.det}
-	\pd{\mu}(\detTetr u^\mu) = -\detTetr \ET{\mu}{\mu} 
-\end{equation} 
-which can be obtained after contracting \eqref{tetr} with $ \partial \detTetr/\partial \tetr{a}{\mu} 
-= \detTetr
-\itetr{\mu}{a} $, and where $ \ET{\mu}{\mu} = \itetr{\mu}{a} \ET{a}{\mu}$.
-
-   
-After using \eqref{eqn.4vel}, \eqref{eqn.h.eta.matrix}, and \eqref{eqn.E}, this balance law becomes
-\begin{equation}\label{eqn.h.PDE}
-	\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
-\end{equation}
-where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
 
 
 
