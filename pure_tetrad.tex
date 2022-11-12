@@ -2493,6 +2493,9 @@ hyperbolic system.
 
 \section{Relation between the torsion and extrinsic curvature}
 
+It is useful to relate the state variables of TEGR to the conventional quantities used in numerical 
+general relativity. In this section, we relate $ \Dfin{\sA}{k} $ to the extrinsic curvature.
+
 In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
 \cite[Eq.(7.64)]{RezzollaZanottiBook})
 %$\tilde{\gamma}_{ij} = 
@@ -2517,8 +2520,8 @@ the following evolution equation for the spatial metric:
 	-\gamma_{jl}\pd{i}\shift{l} = -\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
 	\Efin{\sB}{i}).
 \end{equation} 
-Therefore, one has the following expression for the extrinsic curvature in terms of $ 
-\Efin{\sA}{i} $ 
+Therefore, one can deduce an expression for the extrinsic curvature in terms of $ 
+\Efin{\sA}{i} $: 
 \begin{equation}\label{key}
 	K_{ij} = \frac{1}{2\alpha}\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
 	\Efin{\sB}{i}).
@@ -2714,28 +2717,40 @@ so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) =
 \section{Conclusion and discussion}
 
 We have presented a $ 3+1 $-split of the TEGR equations in their historical pure tetrad version, 
-i.e. the spin connection is set to zero. To the best of our knowledge there were no attempt to 
+i.e. with the spin connection set to zero. To the best of our knowledge there were no attempt to 
 obtain a $ 3+1 $-split of the TEGR equations and therefore no attempts to solve numerically the 
-full TEGR system of equations for general spacetimes. 
+full TEGR system of equations for general spacetimes. This paper, therefore, may help to cover this 
+gap.
 
 The derivation was done for a general Lagrangian and therefore extensions of the TEGR such as $ 
 f(\Tscal) $-teleparallel theories also can be covered in the future. 
 
 The $ 3+1 $ governing partial differential equations have appeared to have the same structure as 
 equations of nonlinear electrodynamics \cite{DPRZ2017} and equations for continuum fluid and solid 
-mechanics with torsion \cite{Torsion2019}. Moreover, we showed that the derived equations are 
+mechanics with torsion \cite{Torsion2019}. Moreover, it has appeared that the derived equations are 
 equivalent to the recently proposed dGREM tetrad formulation of GR \cite{Olivares2022}. 
 
-Additionally, the equations have the structure of the so-called Symmetric Hyperbolic 
-Thermodynamically 
-Compatible (SHTC) class of equations \cite{God1961,SHTC-GENERIC-CMAT}, however the hyperbolicity of 
-the proposed formulation is left unexplored in this paper. Furthermore, as any SHTC equations, the 
-proposed model likely to have also a Hamiltonian structure and underlying Poisson bracket 
-formulation \cite{SHTC-GENERIC-CMAT,PKG_Book2018}. This would be very important for developing of 
-so-called structure-preserving integrators \cite{HTC2022} in order to respect various continuous 
-properties of the 
-governing equations, such as involutions \eqref{eqn.div.constr}, at the discrete level, see also the 
-discussion on this topic in \cite{Olivares2022}.
+The derived $ 3+1 $ TEGR equations are not immediately hyperbolic as usually the case for many 
+first-order reductions of the Einstein equations. We demonstrated that the differential operator of 
+the equations can be transformed into a different but equivalent form which, in turn and 
+surprisingly is equivalent to the symmetric hyperbolic tetrad reformulation of GR by 
+Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003}. The main 
+idea of these transformations relies on the use of multiple stationary identities of the theory, 
+e.g. Hamiltonian and momentum constraints. It, therefore, should be very critical to fulfill these 
+constraints on the discrete level.
+
+%Additionally, the equations have the structure of the so-called Symmetric Hyperbolic 
+%Thermodynamically 
+%Compatible (SHTC) class of equations \cite{God1961,SHTC-GENERIC-CMAT}, however the hyperbolicity 
+%of 
+%the proposed formulation is left unexplored in this paper. Furthermore, as any SHTC equations, the 
+%proposed model likely to have also a Hamiltonian structure and underlying Poisson bracket 
+%formulation \cite{SHTC-GENERIC-CMAT,PKG_Book2018}. This would be very important for developing of 
+%so-called structure-preserving integrators \cite{HTC2022} in order to respect various continuous 
+%properties of the 
+%governing equations, such as involutions \eqref{eqn.div.constr}, at the discrete level, see also 
+%the 
+%discussion on this topic in \cite{Olivares2022}.
 
 Despite it is argued that the TEGR is fully equivalent to Einstein's general relativity the 
 proposed $ 3+1 $ TEGR equations have yet to be carefully tested in a computational code and have 
@@ -2743,17 +2758,21 @@ yet to be proved to pass all the standard benchmark tests of GR. Therefore, furt
 concern implementation of the TEGR equations in a high-order discontinuous Galerkin code 
 \cite{Dumbser2018a,Busto2020}, with a possibility of constraint cleaning  \cite{Dumbser2019} and 
 well-balancing 
-\cite{Gaburro2021}. This in particular would allow a direct comparison of the TEGR and FO-CCZ4 by 
+\cite{Gaburro2021}. This in particular would allow a direct comparison of the TEGR with other $ 3+1 
+$ equations of GR, such as Z4 formulations \cite{Alic2012} forwarded by Bona \textit{et al} in 
+\cite{Z4}, and FO-CCZ4 by 
 Dumbser \textit{et al} \cite{FO-CCZ4}, a
-strongly hyperbolic formulation of GR, within the same computational code.  Another 
+strongly hyperbolic formulations of GR, within the same computational code.  Another 
 numerical 
 strategy would be to use staggered grids and to develop a
-structure-preserving discretization \cite{SIGPR2021,Olivares2022,Fambri2020a}. 
+structure-preserving discretization \cite{SIGPR2021,Olivares2022,Fambri2020a} that should allow to 
+keep errors of div and curl-type involution constraints of TEGR at the machine precision.
 
 
 \paragraph{Acknowledgments}
 I.P. is grateful to A.~Golovnev for sharing his thoughts about various aspects of teleparallel 
-gravity that were important for the appearance of this work.
+gravity that were important for the appearance of this work. Also, I.P. would like to thank 
+M.~Dumbser and O.~Zanotti for their support and insightful discussions.
 I.P. is a member of the Gruppo Nazionale per il Calcolo Scientifico of the Istituto Nazionale di 
 Alta Matematica (INdAM GNCS) and acknowledges the financial support received from the Italian 
 Ministry of Education, University and Research (MIUR) in the frame of the Departments of Excellence 
