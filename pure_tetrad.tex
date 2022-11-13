@@ -1162,7 +1162,8 @@ unknowns $ \{\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}\} $  reads
 	\end{empheq}
 \end{subequations}
 with $ \NC{a}{\mu} $ given by \eqref{eqn.J}. After we introduce a particular choice of the 
-observer's 4-velocity at the beginning of the next section, we shall finalize transformation of 
+observer's 4-velocity $ u^\mu $ at the beginning of the next section, we shall finalize 
+transformation of 
 system \eqref{eqn.PDE.4D} to 
 present the final $ 3+1 $ equations of TEGR.
 
@@ -1198,7 +1199,7 @@ $
 u^\mu $ is associated with the $ \hat{0} $-th column of the 
 inverse tetrad $ \itetr{\mu}{a} $, while the covariant components $ u_\mu $ of the 4-velocity with 
 the $ 
-\hat{0} $-th row of the frame field for which we standardly assume 
+\hat{0} $-th row of the frame field. For $ u^\mu $ and $ u_\mu $ we standardly assume 
 \cite{Alcubierre2008,RezzollaZanottiBook}:
 \begin{subequations}\label{eqn.4vel}
 	\begin{align}
@@ -1215,7 +1216,7 @@ the $
 %	\end{equation}
 \end{subequations}
 with $ \lapse $ being the \emph{lapse function}, and $ \shift{i} $ being the \emph{shift vector}. 
-One can write explicitly $ \tetr{a}{\mu} $ and $ \itetr{\mu}{a} $:
+One can write down $ \tetr{a}{\mu} $ and $ \itetr{\mu}{a} $ explicitly :
 \begin{equation}\label{eqn.h.eta.matrix}
 	\bm{\tetrsymbol} = \left(
 	\begin{array}{cccc}
@@ -1301,7 +1302,7 @@ and we use the following convention for the three-dimensional Levi-Civita symbol
 
 \paragraph{Case $ \mu = i=1,2,3 $.} 
 
-For our choice of observer's frame \eqref{eqn.4vel}, equations \eqref{eT} 
+For our choice of observer's velocity \eqref{eqn.4vel}, equations \eqref{eT} 
 and \eqref{bT} read
 \begin{subequations}\label{eqn.tpo.1}
 	\begin{align}
@@ -1408,7 +1409,8 @@ pure spatial (stationary) constraints
 	\pd{k} \Bfin{a}{k} = 0.
 \end{equation}
 Their possible violation during the numerical integration of the time-evolution equations 
-\eqref{eqn.PDE.BD.final} is a well-known problem in numerical analysis and different strategies to 
+\eqref{eqn.PDE.BD.final} is a well-known problem in the numerical analysis of hyperbolic equations 
+with involution constraints. Different strategies to 
 preserve such stationary constraints   
 are known, e.g. constraint-cleaning approach \cite{Munz2000,Dedneretal,Dumbser2019} or 
 constraint-preserving 
@@ -1484,7 +1486,7 @@ We now turn to the energy-momentum evolution equation
 	\w{\lambda}{\mu\nu}
 \end{equation}
 and provide its $ 3+1 $ version. Because the Lagrangian density in \eqref{eqn.Lagrangians} 
-represents the sum of the gravitational and matter Lagrangian the energy-momentum tensor is also 
+represents the sum of the gravitational and matter Lagrangian, the energy-momentum tensor is also 
 assumed to be the sum of the gravity and matter parts: $ \EMmat{\mu}{\nu} = \mat{\EMmat{\mu}{\nu}} 
 + 
 \gra{\EMmat{\mu}{\nu}} $. However, in what follows, we shall omit the matter part keeping in mind 
@@ -1562,7 +1564,7 @@ energy-momentum
 	\end{align}
 where the gravity part of $ \stress{i}{k} $ is given by
 \begin{gather}\label{eqn.flux.const}
-	\gra{\stress{i}{k}} := -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
+	{\stress{i}{k}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 	\Hfin{a}{j} + 
 	\Dfin{a}{j} \Efin{a}{j} 
 	- \Ufin)\delta^k_{\ i}.
@@ -1624,8 +1626,8 @@ conservative form preferable for example when dealing with the shock waves in th
 Therefore, one may want to use the true conservation law \eqref{eqn.Noether.cons} for the total 
 (matter+gravity) Noether 
 current $ \NC{a}{\mu} $ instead of \eqref{eqn.EM.PDE}. Thus, in the new 
-notations introduced above, conservation law $ \pd{\mu}\NC{a}{\mu} = 0 
-$ now reads
+notations introduced above, four conservation laws $ \pd{\mu}\NC{a}{\mu} = 0 
+$ now read
 \begin{subequations}
 	\begin{align}
 		\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
@@ -1952,11 +1954,13 @@ where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$.
 
 \subsection{Stationary differential constraints}
 
-The $ 0 $-\textit{th} equations ($ \mu=0 $) of \eqref{eT} are not actually time-evolution equations 
+System \eqref{eqn.3+1.summary} is supplemented by several differential constraints. Thus, as 
+already was mentioned, the $ 0 $-\textit{th} equations ($ \mu=0 $) of \eqref{eT} are not actually 
+time-evolution equations 
 but 
 reduce to the so-called Hamiltonian and momentum stationary divergence-type constraints that must 
 hold on the 
-solution to \eqref{eqn.3+1.summary}:
+solution to \eqref{eqn.3+1.summary} at every time instant:
 \begin{equation}\label{eqn.div.constrD}
 	\pd{k} \Dfin{\indalg{0}}{k} = \rho_{\indalg{0}},
 	\qquad
