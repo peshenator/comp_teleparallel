@@ -330,7 +330,26 @@ develop an efficient computational framework for numerical relativity. Thus, the
 paper is 
 to derive a $ 3+1 $-split of the so-called 
 \emph{teleparallel equivalent of general relativity} (TEGR) 
-\cite{AldrovandiPereiraBook,Krssak2019} which is know to pass all standard tests of GR. The linear 
+\cite{AldrovandiPereiraBook,Krssak2019} which is know to pass all standard tests of GR. 
+
+From the numerical view point, a proposed $ 3+1 $ formulation has to have well-posed initial value 
+problem (i.e. a solution exists, the solution is unique and changes continuously with changes in 
+the initial data) in order to compute stable evolution of the numerical solution. In other words, 
+the system of governing equations has to be hyperbolic\footnote{Note that in the numerical 
+relativity the term ``strong hyperbolicity'' is used emphasizing that not only eigenvalues must be 
+real but that the full basis of eigenvectors must exist}.
+Therefore, the second goal of the paper is to test if the proposed $ 3+1 $ formulation of TEGR is 
+hyperbolic. As is the case with other first-order reductions of the Einstein equations 
+\cite{Baumgarte2003a}, the 
+question of hyperbolicity of $ 3+1 $ TEGR equations considered here is not trivial and 
+depends on the delicate use of multiple involution constraints (stationary identities). In 
+particular, for a vacuum space-time, we have found that the proposed $ 3+1 $ TEGR equations admits 
+an equivalent reformulation which is in turn equivalent to the symmetric hyperbolic tetrad 
+formulation of GR by
+Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003}.
+
+We note that we do not consider the most general TEGR formulation as for example presented in 
+\cite{AldrovandiPereiraBook}. The linear 
 connection of TEGR is the sum of the two 
 parts: the \We\ connection (which is the historical connection of TEGR) and the spin 
 connection (parametrized by Lorentz matrices) representing the inertial content of the tetrad. The 
