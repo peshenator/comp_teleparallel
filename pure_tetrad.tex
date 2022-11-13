@@ -2171,6 +2171,21 @@ A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $
 	\omega^{\sA} = \varkappa \lapse^{-1} \MG{\sA\sB} \Omega_{\sB}.
 \end{equation}
 
+Finally, expression of the 
+constitutive fluxes $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ in terms of $ 
+\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $ read
+\begin{subequations}\label{eqn.const.KN}
+	\begin{align}
+		\Efin{}{\sA\sB} &=
+		- \lapse \,\Kbuch{\sA}{\sB} 
+		+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC ,
+		\\[2mm]
+		\Hfin{\sB}{\sA} &= 
+		\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
+		- \frac{\lapse}{\varkappa} 
+		\LCtens_{\sA\sB\sC} a^\sC .
+	\end{align}
+\end{subequations}
 
 Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic even for the Minkowski 
 spacetime (it is actually only weakly hyperbolic because some eigenvectors are missing), and 
@@ -2187,8 +2202,7 @@ Because we are considering a vacuum space-time, the momentum and energy equation
 \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and 
 therefore for the sake of simplicity, we also omit the tetrad equations \eqref{eqn.3+1.h}
 
-As it is demonstrated in the supplementary materials [??] \IP{think if we want to provide 
-Mathemtica files}, if one considers 18 equations written in a 
+If one considers 18 equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B} written in a 
 quasilinear form\footnote{Due to the rotational invariance, 
 it is actually sufficient to consider the system in any preferred coordinate direction, say in $ x^1 
 $, without lose of generality.}
@@ -2196,7 +2210,8 @@ $, without lose of generality.}
 	\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
 \end{equation}
 for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
-\bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors, that is the 
+\bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors already for the 
+flat Minkowski spacetime, that is the 
 system is only 
 weakly hyperbolic. Here, $ \bm{M}^k =
 \pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
@@ -2266,7 +2281,7 @@ missing.
 
 
 
-In order to recover the last two missing eigenvectors, we shall use the Hamiltonian constraint 
+In order to recover all missing eigenvectors, we shall use the Hamiltonian constraint 
 \eqref{eqn.div.constrD}$ _1 $ and the symmetry of $ \Dfin{ij}{} $. Thus, we shall turn the potential $ 
 \Ufin =-\lapse \rho_{\indalg{0}} $ in the expression of the stress tensor $ \stress{\sA}{i} $ 
 into the 
@@ -2310,7 +2325,7 @@ where
 %and if combined with \eqref{eqn.AOmega}, this enlarged system of 24 equations has 24 linearly 
 %independent eigenvectors (at least for the flat spacetime). 
 
-Now, using relations \eqref{eqn.Buchman.TEGR.KN}, \eqref{eqn.Buchman.TEGR.AW}, and after a lengthy 
+Now, using relations \eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN} and after a lengthy 
 but 
 rather straightforward sequence of transformations, 
 equations \eqref{eqn.BD.alt2}
@@ -2333,20 +2348,7 @@ derivatives), $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu
 \lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
 %The low-order terms are given in the appendix\,\ref{}.
 
-To derive \eqref{eqn.KN.pde} from \eqref{eqn.BD.alt2}, one needs to use 
-\eqref{eqn.Buchman.TEGR.KN}, \eqref{eqn.Buchman.TEGR.AW} and the following expression of the 
-constitutive fluxes $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ in terms of $ 
-\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $:
-\begin{align}\label{eqn.const.KN}
-	\Efin{}{\sA\sB} &=
-	- \lapse \,\Kbuch{\sA}{\sB} 
-	+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC ,
-	\\[2mm]
-	\Hfin{\sB}{\sA} &= 
-	\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
-	- \frac{\lapse}{\varkappa} 
-	\LCtens_{\sA\sB\sC} a^\sC .
-\end{align}
+
 
 Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are not 
 provided with particular evolution equations and therefore, their governing equations can be chosen 
@@ -2360,7 +2362,8 @@ in such a way as to guaranty the well-posedness of the enlarged system for the u
 \end{align}
 system \eqref{eqn.KN.pde} is symmetric hyperbolic, and thus \eqref{eqn.BD.alt2} can also be put 
 into a symmetric hyperbolic form. However, we can not immediately conclude 
-the same for the original TEGR equations \eqref{eqn.3+1.summary} because the differential operators 
+the same for the original $ 3+1 $ TEGR equations \eqref{eqn.3+1.summary} because the differential 
+operators 
 of 
 \eqref{eqn.3+1.summary} and \eqref{eqn.BD.alt2} are different even though the overall equations are 
 equivalent. We recall that the hyperbolicity (well-posedness of the initial value problem) is 
