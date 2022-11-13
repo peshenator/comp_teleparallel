@@ -1003,8 +1003,8 @@ By abusing a little bit notations for $ \BT{a}{\mu} $ (we shall use the same let
 \BT{a}{\mu} $ and $ -\Bm{a}{\mu} $, this is an intermediate change 
 of variables and will not appear in the final formulation), we introduce the new state variables
 \begin{equation}\label{eqn.Legendre2}
-\Dm{a}{\mu} = \LagBE_{\ET{a}{\mu}}, \qquad \Bm{a}{\mu} = -\BT{a}{\mu}, \qquad 
-\tetr{a}{\mu}.
+\Dm{a}{\mu} := \LagBE_{\ET{a}{\mu}}, \qquad \Bm{a}{\mu} := -\BT{a}{\mu}, \qquad 
+\tetr{a}{\mu} := \tetr{a}{\mu}.
 \end{equation}
 Note 
 that both $ \Dm{a}{\mu} $ and $ \Bm{a}{\mu} $ are 
@@ -1090,7 +1090,8 @@ latter equation can be rewritten as
 that later will be used in the $ 3+1 $-split.
 
 \subsection{Transformation of the energy-momentum}
-Finally, we express the energy-momentum tensor $ \gra{\EMmat{\mu}{\nu}} $ \eqref{eqn.TEGR.vacuum} 
+Finally, we express the gravitational part of the energy-momentum tensor $ {\EMmat{\mu}{\nu}} $ 
+\eqref{eqn.TEGR.vacuum} 
 in 
 terms of 
 new 
@@ -1099,7 +1100,7 @@ variables
 the potential $ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) $, while we keep energy-momentum 
 equation \eqref{eqn.EM2} unchanged. It reads
 \begin{align}\label{eqn.sigma.BD}
-	\gra{\EMmat{\mu}{\nu}} =
+	{\EMmat{\mu}{\nu}} =
 	& -\Bm{a}{\mu}\Um_{\Bm{a}{\nu}} - \Dm{a}{\nu}\Um_{\Dm{a}{\mu}} \\
 	%
 	& - u^\lambda u_\nu \Bm{a}{\mu} \Um_{\Bm{a}{\lambda}} 
@@ -1160,8 +1161,9 @@ unknowns $ \{\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}\} $  reads
 		\label{tetr}
 	\end{empheq}
 \end{subequations}
-with $ \NC{a}{\mu} $ given by \eqref{eqn.J}. After we introduce a particular foliation of the 
-spacetime at the beginning of the next section, we shall transform system \eqref{eqn.PDE.4D} to 
+with $ \NC{a}{\mu} $ given by \eqref{eqn.J}. After we introduce a particular choice of the 
+observer's 4-velocity at the beginning of the next section, we shall finalize transformation of 
+system \eqref{eqn.PDE.4D} to 
 present the final $ 3+1 $ equations of TEGR.
 
 
