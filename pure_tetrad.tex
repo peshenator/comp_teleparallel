@@ -254,9 +254,9 @@ in the pure-tetrad formulation (no spin connection). We then restrict our attent
 teleparallel equivalent of general relativity (TEGR) and propose a 3+1 decomposition of the governing 
 equations that can be used in a computational code. We demonstrate that for the matter-free 
 space-time the obtained system of first-order equations is equivalent to the tetrad reformulation 
-of general relativity by Estabrook, Robinson, Wahlquist and Buchman and Bardeen and therefore also 
-is symmetric 
-hyperbolic. The structure of the 
+of general relativity by Estabrook, Robinson, Wahlquist, and Buchman and Bardeen and therefore also 
+admits a symmetric 
+hyperbolic formulation. The structure of the 
 3+1  equations 
 resembles 
 a lot of similarities with the equations of relativistic electrodynamics and recently proposed 
@@ -386,7 +386,8 @@ space.
 In the $ 3+1 $ split, the letters $ i,j,k,\ldots =1,2,3$ from the middle of the Latin alphabet are 
 used 
 to denote spatial components of the spacetime tensors, and the upper case Latin letters $ 
-\sA,\sB,\sC,\ldots=1,2,3 $ index spatial components of the tensors written in a chosen frame of the 
+\sA,\sB,\sC,\ldots=\indalg{1},\indalg{2},\indalg{3} $ index spatial components of the tensors 
+written in a chosen frame of the 
 tangent space.
 
 
@@ -407,7 +408,7 @@ Recall that the frames $ \pdd{\mu} $ and $ \dx{\mu} $ are \emph{holonomic}
 %basis, so it may cause some confusion to use it here for a coordinate frame.}
 
 In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent space 
-which is a Minkowski space spanned by an orthonormal frame (tetrad) $ \{ \bas{a} \}$ and equipped 
+which is a Minkowski space spanned by an orthonormal frame (tetrad) $ \bas{a} $ and equipped 
 with 
 the 
 Minkowski metric 
@@ -415,7 +416,7 @@ Minkowski metric
 	\mg{ab} = \text{diag}(-1,1,1,1).
 \end{equation}
 Similarly, there is the 
-corresponding cotangent space spanned by the co-frames $ \{ \cobas{a} \}$. It is assumed 
+corresponding cotangent space spanned by the co-frames $ \cobas{a} $. It is assumed 
 that the frames $ \cobas{a} $ and $ \bas{a} $ are independent of the coordinates $ x^\mu $ and, 
 therefore, are non-holonomic in general.
 
@@ -450,16 +451,17 @@ if $ g = \det(g_{\mu\nu}) $.
 
 \subsection{Observer's 4-velocity}
 
-Let us introduce observer's 4-velocity as
+Observer's 4-velocity is associated with the $ 0 $-\textit{th} vector of the tetrad basis 
 \begin{equation}\label{eqn.4v}
-	u^\mu := \itetr{\mu}{\indalg{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu,
+	u^\mu := \itetr{\mu}{\indalg{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu.
 \end{equation}
-then, due to
+Also, due to
 \begin{equation}
 	u_\mu = g_{\mu\nu} u^\nu = \mg{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{\indalg{0}} = 
 	\mg{a\indalg{0}}\tetr{a}{\mu} = -\tetr{\indalg{0}}{\mu},
 \end{equation}\label{eqn.4v.cov}
-the covariant components are
+the covariant components of the 4-velocity equal to entries of the $ 0 $-\textit{th} vector of the 
+co-basis with the opposite sign
 \begin{equation}
 	u_\mu = -\tetr{\indalg{0}}{\mu}.
 \end{equation}
@@ -605,7 +607,8 @@ into the gravity (g) and matter (m) parts (unless it is explicitly mentioned oth
 but the 
 derivation will be performed for the total unspecified Lagrangian $ \Lag $, so that in principle 
 the derivation 
-is valid for the extensions of the teleparallel gravity such as $ f(\Tscal) $-teleparallel gravity, 
+can be adopted for the extensions of the teleparallel gravity such as $ f(\Tscal) $-teleparallel 
+gravity, 
 where $ f(\Tscal) $ is some function of the torsion scalar $ \Tscal $, see 
 Section\,\ref{sec.closure}. We shall utilize the explicit form 
 of the TEGR Lagrangian only in the last part of the paper.
@@ -725,8 +728,9 @@ condition
 %\eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability 
 %condition. Most likely it is 
 %only possible to get it in the tangent Minkowski space!}
-which is a trivial consequence of the definition of the  Hodge dual \eqref{eqn.Hodge.def}, the 
-commutativity of the standard spacetime derivative $ \D{\mu} $, and the 
+which is a trivial consequence of the definition of the  Hodge dual \eqref{eqn.Hodge.def}, i.e. of 
+the 
+commutativity property of the standard spacetime derivative $ \D{\mu} $, and the 
 identity \eqref{eqn.diff.LCsymb}.
 We note that if the Hodge dual was defined using the Levi-Civita tensor $ 
 \LCtens^{\mu\nu\rho\sigma} $ instead of the Levi-Civita symbol, then one would 
@@ -851,29 +855,35 @@ $, balance law \eqref{eqn.EM2} can be rewritten as a covariant divergence with a
 \end{equation*}
 and hence, $ \EMmat{\mu}{\nu} $ does not conserved also in the covariant sense.
 
-In what follows, it is always implied that $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
-\Laghodge^\text{(m)}(\tetr{a}{\mu},\HDT{a\mu\nu},\ldots) + 
-\Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu})$ and therefore, $ \EMmat{\mu}{\nu} = 
-%(\EMmat{\mu}{\nu})^\text{(m)} + (\EMmat{\mu}{\nu})^\text{(g)} 
-\mat{\EMmat{\mu}{\nu}} + \gra{\EMmat{\mu}{\nu}}$ with
-\begin{equation}\label{eqn.sigmas}
-	\mat{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(m)}_{\tetr{a}{\mu}},
-	\qquad
-	\gra{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(g)}_{\tetr{a}{\mu}}.
-\end{equation}
-Furthermore, it can be shown by cumbersome but straightforward calculations that for the TEGR 
-Lagrangian\footnote{This is true 
-	also for the case when $ \Laghodge^\text{(g)}$ is a generic 
-	function of the torsion scalar $ \Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu}) = f(\Tscal) 
-	$.} $ \Laghodge^\text{(g)} $ (quadratic form 
-in $ \HDT{a\mu\nu} $) the gravity part of $ \EMmat{\mu}{\nu} $ can be 
-expressed as
+%In what follows, it is always implied that $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+%\Laghodge^\text{(m)}(\tetr{a}{\mu},\HDT{a\mu\nu},\ldots) + 
+%\Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu})$ and therefore, $ \EMmat{\mu}{\nu} = 
+%%(\EMmat{\mu}{\nu})^\text{(m)} + (\EMmat{\mu}{\nu})^\text{(g)} 
+%\mat{\EMmat{\mu}{\nu}} + \gra{\EMmat{\mu}{\nu}}$ with
+%\begin{equation}\label{eqn.sigmas}
+%	\mat{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(m)}_{\tetr{a}{\mu}},
+%	\qquad
+%	\gra{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(g)}_{\tetr{a}{\mu}}.
+%\end{equation}
+
+
+%t can be shown by cumbersome but straightforward calculations that for the TEGR 
+%Lagrangian\footnote{This is true 
+%	also for the case when $ \Laghodge^\text{(g)}$ is a generic 
+%	function of the torsion scalar $ \Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu}) = f(\Tscal) 
+%	$.} $ \Laghodge^\text{(g)} $ (quadratic form 
+%in $ \HDT{a\mu\nu} $) the gravity part of $ \EMmat{\mu}{\nu} $ can be 
+%expressed as
+For later needs, the following expression of the energy momentum $ \EMmat{\mu}{\nu} =
+\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}} $ is required
 \begin{equation}\label{eqn.TEGR.vacuum}
-	\tetr{a}{\nu} \Laghodge^\text{(g)}_{\tetr{a}{\mu}} = 
-	2 \HDT{a\lambda\mu}\Laghodge^\text{(g)}_{\HDT{a\lambda\nu}} - 
-	(\HDT{a\lambda\rho}\Laghodge^\text{(g)}_{\HDT{a\lambda\rho}} - \Laghodge^\text{(g)}) 
+	 \EMmat{\mu}{\nu} 
+	  = 
+	2 \HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}} - 
+	(\HDT{a\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}} - \Laghodge ) 
 	\delta^\mu_{\ \nu}.
 \end{equation}
+which is valid for the TEGR Lagrangian discussed in Sec.\,\ref{sec.closure}. 
 This formula will be used later in the $ 3+1 $-split and is analogous to
 \cite[Eq.(10.13)]{AldrovandiPereiraBook}. 
 
@@ -2143,7 +2153,7 @@ It can be shown that the following relations between the \ERWBB\ and TEGR state 
 	\end{align}
 \end{subequations}
 We remark that due to our choice of the $ 3+1 $ split \eqref{eqn.h.eta.matrix}, i.e. that 
-observer's time vector, $ \bm{\itetrsymbol}_{\indalg{0}} $, is align with the normal vector to the 
+observer's time vector, $ \bas{\indalg{0}} $, is align with the normal vector to the 
 spatial hypersurfaces, matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are \textit{symmetric}.
 
 Additionally, we have the relations for $ a_{\sA} $, $ \omega^{\sA} $, and  $ 
@@ -2171,7 +2181,8 @@ Because we are considering a vacuum space-time, the momentum and energy equation
 \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and 
 therefore for the sake of simplicity, we also omit the tetrad equations \eqref{eqn.3+1.h}
 
-As it is demonstrated in the supplementary materials [??], if one considers 18 equations written in a 
+As it is demonstrated in the supplementary materials [??] \IP{think if we want to provide 
+Mathemtica files}, if one considers 18 equations written in a 
 quasilinear form\footnote{Due to the rotational invariance, 
 it is actually sufficient to consider the system in any preferred coordinate direction, say in $ x^1 
 $, without lose of generality.}
@@ -3022,8 +3033,7 @@ This formula, in particular, can be used to get the following expression for the
 \section{Expression for the energy-momentum}\label{app.energymomentum}
 
 In this section, we derive expression \eqref{eqn.sigma.BD} for the gravitational part fof the 
-energy-momentum (in what follows we shall omit the subscript `$ \gra{} $\,' at $ 
-\gra{\EMmat{\mu}{\nu}} $ and $ \Laghodge^{\text{(g)}} $)
+energy-momentum
 \begin{equation}\label{eqn.EM.hodge}
 	\EMmat{\mu}{\nu} =
 	 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} - 
