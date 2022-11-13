@@ -2589,7 +2589,7 @@ introduced in
 
 
 
-In the \tegr\ and its $ f(\Tscal) $-extensions the Lagrangian density is a function of the 
+In \tegr\ and its $ f(\Tscal) $-extensions, the Lagrangian density is a function of the 
 torsion scalar $ \Tscal $, e.g. in \tegr, the Lagrangian density is
 \begin{subequations}\label{eqn.TEGR.Lagr}
 	\begin{equation}
@@ -2606,11 +2606,7 @@ torsion scalar $ \Tscal $, e.g. in \tegr, the Lagrangian density is
 	\end{equation}
 \end{subequations}
 where $ \varkappa = 8\pi G c^{-4} $ is the Einstein gravitational constant, $ G $ is the 
-gravitational constant, $ c $ is the speed of light in vacuum, $ 
-\Tors{\lambda}{\mu\nu} = 
-\itetr{\lambda}{a} \Tors{a}{\mu\nu} $, and the metric and its 
-inverse must be computed as $ g_{\mu\nu} = 
-\mg{ab}\tetr{a}{\mu}\tetr{b}{\nu} $ and $ g^{\mu\nu} = \MG{ab}\itetr{\mu}{a}\itetr{\nu}{b}$.
+gravitational constant, $ c $ is the speed of light in vacuum.
 
 
 
@@ -2654,7 +2650,7 @@ Thus, we have
 	+ \BTmix{\lambda}{\ \,\lambda}\BTmix{\beta}{\ \,\beta}
 	- 2\BTmix{\lambda}{\ \,\beta}\BTmix{\beta}{\ \,\lambda}
 	)
-	\bigg)
+	\bigg).
 \end{multline}
 %or, using algebraic constraints \eqref{eqn.constr.alg.EB}
 %\begin{multline}\label{eqn.Tscal.EB1}
@@ -2681,11 +2677,10 @@ Thus, we have
 %particular $ \LCsymb_{0123} = -\LCsymb_{123} $).
 %
 
-However, to close system \eqref{eqn.3+1.summary}, we need not the Lagrangian $ 
-\LagBE(\tetr{\sA}{k},\ET{\sA}{k},\BT{\sA}{k}) $ but we need to express another 
-potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = \ET{a}{\mu} 
+In turn, if we perform the Legendre transform $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = 
+\ET{a}{\mu} 
 \Dm{a}{\mu} - \LagBE$
-in terms of $ \{\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}\} $. It reads
+then the new potential $ \Um $ reads
 \begin{multline}\label{eqn.Lagr.DB}
 	\Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = 
 	\frac{1}{4\,h} \bigg( \varkappa \left(
@@ -2701,14 +2696,14 @@ in terms of $ \{\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}\} $. It reads
 	\bigg),
 \end{multline}
 where $ \Dm{k}{i} = \Dm{\sA}{i} \tetr{\sA}{k} $ and $ \Bmmix{k}{\ i} = \Bm{\sA}{j} \itetr{k}{\sA} 
-\gamma_{ji} $, and in the last two terms, one should pay attention that there appear new variable 
-$ \Dfin{j}{k} = \tetr{\sA}{j} \Dfin{\sA}{k}$ with $ \Dfin{\sA}{k} $ introduced in \eqref{eqn.db}.
+\gamma_{ji} $, and in the last two terms, one should pay attention that the new field $ 
+\Dfin{\sA}{k} $ introduced in \eqref{eqn.varDB.final} appears there.
 
 Apparently, apart from the last terms in \eqref{eqn.Lagr.DB} depending on $ \Dm{k}{0} $, the 
 potential 
 $ \Um $ is more symmetric in the variables $ \Dm{a}{\mu} $ and $ 
-\Bm{a}{\mu} $ than the Lagrangian $ \LagBE $ in $ \ET{a}{\mu} $ and $ \BT{a}{\mu} $. This in 
-particular, justifies the introduction of the new and final variables 
+\Bm{a}{\mu} $ rather than the Lagrangian $ \LagBE $ in $ \ET{a}{\mu} $ and $ \BT{a}{\mu} $. This in 
+particular, justifies the introduction of the new and final variables \eqref{eqn.varDB.final}
 \begin{equation}\label{eqn.db}
 	\Dfin{\sA}{k} = \Dm{\sA}{k} + \beta^k \Dm{\sA}{0}, \qquad \Bfin{\sA}{k} = \Bm{\sA}{k},
 \end{equation}
@@ -2742,7 +2737,7 @@ obtain a $ 3+1 $-split of the TEGR equations and therefore no attempts to solve 
 full TEGR system of equations for general spacetimes. This paper, therefore, may help to cover this 
 gap.
 
-The derivation was done for a general Lagrangian and therefore extensions of the TEGR such as $ 
+The derivation was done for a general Lagrangian and therefore extensions of TEGR such as $ 
 f(\Tscal) $-teleparallel theories also can be covered in the future. 
 
 The $ 3+1 $ governing partial differential equations have appeared to have the same structure as 
@@ -2772,7 +2767,7 @@ constraints on the discrete level.
 %the 
 %discussion on this topic in \cite{Olivares2022}.
 
-Despite it is argued that the TEGR is fully equivalent to Einstein's general relativity the 
+Despite it is argued that TEGR is fully equivalent to Einstein's general relativity, the 
 proposed $ 3+1 $ TEGR equations have yet to be carefully tested in a computational code and have 
 yet to be proved to pass all the standard benchmark tests of GR. Therefore, further research will 
 concern implementation of the TEGR equations in a high-order discontinuous Galerkin code 
@@ -2792,7 +2787,7 @@ keep errors of div and curl-type involution constraints of TEGR at the machine p
 \paragraph{Acknowledgments}
 I.P. is grateful to A.~Golovnev for sharing his thoughts about various aspects of teleparallel 
 gravity that were important for the appearance of this work. Also, I.P. would like to thank 
-M.~Dumbser and O.~Zanotti for their support and insightful discussions.
+M.~Dumbser, O.~Zanotti, E.R. Most  for their support and insightful discussions.
 I.P. is a member of the Gruppo Nazionale per il Calcolo Scientifico of the Istituto Nazionale di 
 Alta Matematica (INdAM GNCS) and acknowledges the financial support received from the Italian 
 Ministry of Education, University and Research (MIUR) in the frame of the Departments of Excellence 
@@ -3218,7 +3213,7 @@ $,  and the expression \eqref{eqn.Lambda.W}, one can derive that
 	 \right).
 \end{equation}
 
-Finally, plugging these expressions for $ \Hbb{a}{\mu} $ and $ \Dbb{a}{\mu} $ in 
+Finally, plugging these expressions in 
 \eqref{app.eqn.Deqn2}, one obtains the desired result 
 \begin{equation}
 	\D{\nu}( u^\mu\LagBE_{\ET{a}{\nu}} - u^\nu \LagBE_{\ET{a}{\mu}} + 
@@ -3294,7 +3289,7 @@ Quadratic in $ \BT{a}{\mu} $ (constant in  $ \ET{a}{\mu} $)
 
 In terms of the Hodge dual $ \HDT{a\mu\nu} $, the torsion scalar $ \Tscal $ can be rewritten as
 \begin{equation}\label{eqn.tors.scal.hodge}
-	\Tscal = \Hscal_1 + \Hscal_2 + \Hscal_3 + \Hscal_4
+	\Tscal = \Hscal_1 + \Hscal_2 + \Hscal_3 + \Hscal_4,
 \end{equation}
 where 
 \begin{subequations}
@@ -3345,7 +3340,7 @@ Finally, in terms of the \We\ connection, the torsion scalar reads:
 		\mathcal{W}_8 = 2 g^{\mu\lambda} w^{1}_{\mu} w^{2}_{\lambda},
 	\end{equation}
 where $ w^{1}_\mu = \itetr{\lambda}{a} \w{a}{\mu\lambda}$, $ w^{2}_\mu = \itetr{\lambda}{a} 
-\w{a}{\lambda\mu} $
+\w{a}{\lambda\mu} $.
 \end{subequations}
 
 
