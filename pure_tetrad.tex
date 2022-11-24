@@ -99,7 +99,7 @@ BCOR5mm, % Binding correction
 %\newcommand{\D}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
 \newcommand{\D}[1]{\partial_{#1}} % Fock-Ivanencko cov derivative
 \newcommand{\DW}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
-\newcommand{\Tors}[2]{T^{#1}_{\phantom{a}#2}}
+\newcommand{\Tors}[2]{T^{#1}_{\phantom{#1}#2}}
 \newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
 \newcommand{\Torsl}[1]{T_{#1}}
 \newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
@@ -108,6 +108,7 @@ BCOR5mm, % Binding correction
 \newcommand{\aD}[2]{\mathcal{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Dfin}[2]{\mathtt{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
 \newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
+\newcommand{\Hfinmix}[2]{\mathtt{H}^{#2}_{\phantom{#2}#1}}	%Torsion decomposition, analog of 
 \newcommand{\Hfinnmix}[2]{\hat{\mathtt{H}}^{#2}_{\ #1}}	%Torsion decomposition, analog of 
 \newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
 \newcommand{\Ufin}{\mathtt{U}}
@@ -757,10 +758,12 @@ BCOR5mm, % Binding correction
 	system. 
 	This is achieved in this section.
 	
-	From now on, we shall formally treat the frame field $ \tetr{a}{\mu} $ and its gradients (the 
+	From now on, we shall treat the frame field $ \tetr{a}{\mu} $ and its 
+	gradients (the 
 	\We\ 
 	connection) $ 
-	\pd{\lambda}\tetr{a}{\mu} $ as independent variables and in what follows, we shall rewrite 
+	\pd{\lambda}\tetr{a}{\mu} $ formally as independent variables and in what 
+	follows, we shall rewrite 
 	system 
 	of second-order PDEs \eqref{eqn.EL} as a larger system of first-order PDEs for the extended set 
 	of  
@@ -1483,7 +1486,8 @@ BCOR5mm, % Binding correction
 		\end{align}
 	\end{subequations}
 	
-	Finally, formally extending the shift vector as $ \bm{\beta}=(-1,\beta^{k}) $ and introducing 
+	Finally, extending formally the shift vector as $ \bm{\beta}=(-1,\beta^{k}) 
+	$ and introducing 
 	the 
 	change of variables
 	\begin{equation}\label{eqn.varDB.final}
@@ -1873,7 +1877,7 @@ BCOR5mm, % Binding correction
 			%		
 			\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
 			& = 
-			-\Efin{\sA}{k}
+			-\Efin{\sA}{k},
 			\label{eqn.3+1.h}
 			%		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i 
 			%(\pd{i}\tetr{\sA}{k} - 
@@ -2320,6 +2324,19 @@ BCOR5mm, % Binding correction
 	\Gamma^{\mu}_{\ 
 		\nu\lambda} $ are the Christoffel symbols of the Levi-Civita connection.
 	
+	If $ \Tors{a}{bc} = \Tors{a}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $ and $ \Tors{}{abc} = \mg{ad} 
+	\Tors{d}{bc} $ is the torsion written in the tetrad basis, then the relation between the Ricci 
+	rotation coefficient and torsion can be expressed by the formula
+	\begin{equation}\label{eqn.Ricci.Tors}
+		\mathcal{R}_{abc} = \frac{1}{2} 
+		\left(  
+			\Tors{}{abc} + \Tors{}{bca} - \Tors{}{cab}
+		\right),
+	\end{equation}
+	which also shows that the Ricci rotation coefficients equal exactly to the so-called contortion 
+	tensor with the opposite sign $ \mathcal{R}_{abc} =-K_{abc} $, e.g. see 
+	\cite[Eq.(1.63)]{AldrovandiPereiraBook}.
+	
 	Then, 24 independent entries of $ \mathcal{R}_{abc} $ are organized into the following state 
 	variables
 	\begin{equation}\label{eqn.KN}
@@ -2473,7 +2490,8 @@ BCOR5mm, % Binding correction
 	$ on the right hand-side of \eqref{eqn.3+1.D} into a differential term according to the 
 	momentum 
 	constraint $ 
-	\rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding a formally zero, $ 0 = \pd{k}\Bfin{\sA}{k} $, to 
+	\rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding formally a zero, $ 0 = 
+	\pd{k}\Bfin{\sA}{k} $, to 
 	\eqref{eqn.3+1.B}. These modifications are legitimate for smooth solutions thanks to involution 
 	constraints \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic 
 	velocities 
@@ -2495,8 +2513,11 @@ BCOR5mm, % Binding correction
 	constraint 
 	\eqref{eqn.div.constrD}$ _1 $. Additionally, we use expression \eqref{eqn.D0.tmp3}$_2$ for $ 
 	\Dfin{\indalg{0}}{k} $, i.e. $  \Dfin{\indalg{0}}{k} = -\varkappa^{-1}\detTetr_3^{-1} 
-	\LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we add a formally zero $ 0 = \pd{k}(\detTetr_3^{-1} 
-	\LCsymb^{klj} \Dfin{lj}{}) $ to the equation for the $ \Bfin{\sA}{i} $ field. This expression 
+	\LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we are adding formally a zero $ 0 = 
+	\pd{k}(\detTetr_3^{-1} 
+	\LCsymb^{klj} \Dfin{lj}{}) = -\Bfin{\indalg{0}}{k} $ to the equation for the 
+	$ 
+	\Bfin{\sA}{i} $ field. This expression 
 	is zero 
 	due to the fact that the contraction of antisymmetric Levi-Civita symbol with the symmetric 
 	tensor $ 
@@ -2507,7 +2528,7 @@ BCOR5mm, % Binding correction
 			\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
 			\Hfin{\sA}{j}) \\
 			-\shift{i}\pd{k} \Dfin{\sA}{k}
-			-\lapse\itetr{i}{\sA}\pd{k} \Bfin{k}{} 
+			+\lapse\itetr{i}{\sA}\pd{k} \Hfinmix{}{k} 
 			= - \stress{\sA}{i} - \Ufin \itetr{i}{\sA},
 			\label{eqn.BD.alt2.D}
 		\end{multline}
@@ -2517,16 +2538,16 @@ BCOR5mm, % Binding correction
 			\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
 			\Efin{\sA}{j}) \\
 			-\shift{i}\pd{k} \Bfin{\sA}{k}
-			+\lapse\itetr{i}{\sB}\pd{k}\Dfin{}{k} 
+			-\lapse\itetr{i}{\sB}\pd{k}\Efin{k}{} 
 			\MG{\sA\sB}
 			= 0,
 		\end{multline}
-		where 
+		where we have defined new vectors
 		\begin{align}
 			\label{eqn.BD.alt2.B}
-			\Dfin{}{k} := \varkappa\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{},
+			\Efin{k}{}    :=-\varkappa\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{},
 			\qquad
-			\Bfin{k}{} := \varkappa^{-1}\detTetr_3^{-1} \LCsymb^{klj} \Bfinmix{}{lj}.
+			\Hfinmix{}{k} :=-\varkappa^{-1}\detTetr_3^{-1} \LCsymb^{klj} \Bfinmix{}{lj}.
 		\end{align}
 	\end{subequations}
 	%and if combined with \eqref{eqn.AOmega}, this enlarged system of 24 equations has 24 linearly 
@@ -2540,12 +2561,14 @@ BCOR5mm, % Binding correction
 	\begin{subequations}\label{eqn.KN.pde}
 		\begin{align}
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
+			&
 			- \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
-			- \pd{\sA} a_{\sB} &= \text{l.o.t.}
+			- \pd{\sA} a_{\sB} = \text{l.o.t.}
 			\\[2mm]
 			\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
+			&
 			+ \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
-			+ \pd{\sA} \omega_{\sB} &= \text{l.o.t.}
+			+ \pd{\sA} \omega_{\sB} = \text{l.o.t.}
 		\end{align}
 	\end{subequations}
 	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do not contain space and 
@@ -2559,8 +2582,8 @@ BCOR5mm, % Binding correction
 	
 	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are 
 	not 
-	provided with particular evolution equations and therefore, their governing equations can be 
-	chosen 
+	provided with particular evolution equations and therefore, one could try to choose their 
+	evolution equations 
 	in such a way as to guaranty the well-posedness of the enlarged system for the unknowns $ 
 	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown in 
 	\cite{Estabrook1997,Buchman2003}, if coupled with equations whose differential part is
@@ -2614,121 +2637,138 @@ BCOR5mm, % Binding correction
 	
 	
 	
-	%\section{Symmetrization}
-	%
-	%The energy is
-	%\begin{equation}
-	%	\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
-	%	-\frac{\alpha}{2\detTetr_3} \left( 
-	%	\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)
-	%	+
-	%	\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
-	%	(\Bfinmix{\sA}{\sA})^2
-	%	\right)
-	%	\right).
-	%\end{equation}
-	%
-	%Having this expression for the potential $ \Ufin $ and introducing notations
-	%\begin{equation}
-	%	\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
-	%	\qquad
-	%	\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
-	%\end{equation}
-	%the constitutive relations \eqref{eqn.H.E} can be rewritten as
-	%\begin{equation}\label{eqn.H.E.split}
-	%	\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-	%	\Hfinn{\sA}{k}
-	%	{ 
-		%	\color{blue}
-		%	-
-		%	\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
-	%	\qquad
-	%	\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
-	%	\Efinn{\sA}{k}
-	%	{
-		%	\color{blue}
-		%	-
-		%	\varkappa \detTetr_3 \LCsymb_{kjl} 
-		%	\itetr{j}{\sB} \mg{\sA\sB} \Omega^l}.
-	%\end{equation}
-	%
-	%In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be written as 
-	%\begin{subequations}\label{eqn.BD.hat}
-	%	\begin{align}
-		%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		%		\Hfinn{\sA}{j}) 
-		%		&
-		%		{ + \color{red} \pd{k} 
-			%			\left(
-			%			\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
-			%			\right) }
-		%		-\shift{i}\pd{k} \Dfin{\sA}{k}
-		%		= - \stress{\sA}{i},
-		%		\\[2mm]
-		%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		%		\Efinn{\sA}{j}) 
-		%		&
-		%		{ - \color{red}\pd{k} 
-			%			\left(
-			%			\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} \hat{\Omega}^i
-			%			\right) \MG{\sA\sB}}
-		%		-\shift{i}\pd{k} \Bfin{\sA}{k}
-		%		= 0,
-		%	\end{align}
-	%\end{subequations}
-	%where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ \hat{\Omega}^i = \varkappa 
-		%\detTetr_3 
-		%\Omega^i $.} 
-	%
-	%\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 equations has 
-		%\textit{only 10 eigenvectors} for the flat spacetime.}
-	%
-	%Currently, the main natural idea, also exploited by Buschman et al \cite{Buchman2003} (see 
-	%eq.(44) 
-	%or (47)), is to add 
-	%two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = \Hfin{\indalg{0}}{k} $. 
-	%
-	%\IP{The 
-		%question is how to find these PDEs. So far, I tested the following simple equations:}
-	%\begin{subequations}
-	%	\begin{align}
-		%		&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} \Efin{\sA}{i} = rhs, 
-		%		\\[2mm]
-		%		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} \Hfin{\sA}{i} = 
-		%rhs,  
-		%	\end{align}
-	%\end{subequations}
-	%or in terms of \eqref{eqn.H.E.split}
-	%\begin{subequations}\label{eqn.A.Omega}
-	%	\begin{align}
-		%		&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} \pd{k} \Efinn{\sA}{i}}
-		%		{\color{blue}
-			%		-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
-			%		\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
-			%		}
-		%		 = rhs, 
-		%		\\[2mm]
-		%		&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
-		%		+ 
-		%		{\color{red}\itetr{k}{\sA} \pd{k} 
-			%		\Hfinn{\sB}{i} \MG{\sA\sB}
-			%		} 
-		%		{\color{blue}
-			%		- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} \hat{A}^l) \MG{\sA\sB}
-			%		}= rhs.
-		%	\end{align}
-	%\end{subequations}
-	%Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  $ \{ 
-	%\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. Therefore, 2 are 
-	%missing.
-	%
-	%\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, \eqref{eqn.A.Omega}. The multipliers 
-	%are 
-		%$ 
-		%\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ \hat{\Omega}^i $}
-	
+%	\section{Symmetrization}
+%	
+%	The energy is
+%	\begin{equation}
+%		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
+%		-\frac{\alpha}{2\detTetr_3} \left( 
+%		\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} 
+%(\Dfin{\sA}{\sA})^2\right)
+%		+
+%		\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - 
+%\frac{1}{2} 
+%		(\Bfinmix{\sA}{\sA})^2
+%		\right)
+%		\right).
+%	\end{equation}
+%	
+%	Having this expression for the potential $ \Ufin $ and introducing notations
+%	\begin{equation}
+%		\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
+%		\qquad
+%		\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
+%	\end{equation}
+%	the constitutive relations \eqref{eqn.H.E} can be rewritten as
+%	\begin{equation}\label{eqn.H.E.split}
+%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+%		\Hfinn{\sA}{k}
+%		{ 
+%			\color{blue}
+%			-
+%			\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+%		\qquad
+%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+%		\Efinn{\sA}{k}
+%		{
+%			\color{blue}
+%			-
+%			\varkappa \detTetr_3 \LCsymb_{kjl} 
+%			\itetr{j}{\sB} \MG{\sA\sB} \Omega^l}.
+%	\end{equation}
+%	
+%	In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be 
+%written as 
+%	\begin{subequations}\label{eqn.BD.hat}
+%		\begin{align}
+%				\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+%				\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+%				\Hfinn{\sA}{j}) 
+%				&
+%				{ + \color{red} \pd{k} 
+%						\left(
+%						\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
+%						\right) }
+%				-\shift{i}\pd{k} \Dfin{\sA}{k}
+%				= - \stress{\sA}{i},
+%				\\[2mm]
+%				\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+%				\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+%				\Efinn{\sA}{j}) 
+%				&
+%				{ - \color{red}\pd{k} 
+%						\left(
+%						\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} 
+%\hat{\Omega}^i
+%						\right) \MG{\sA\sB}}
+%				-\shift{i}\pd{k} \Bfin{\sA}{k}
+%				= 0,
+%			\end{align}
+%	\end{subequations}
+%	where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ 
+%\hat{\Omega}^i = \varkappa 
+%		\detTetr_3 
+%		\Omega^i $.} 
+%	
+%	\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 
+%equations has 
+%		\textit{only 10 eigenvectors} for the flat spacetime.}
+%	
+%	Currently, the main natural idea, also exploited by Buchman et al 
+%\cite{Buchman2003} (see 
+%	eq.(44) 
+%	or (47)), is to add 
+%	two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = 
+%\Hfin{\indalg{0}}{k} $. 
+%	
+%	\IP{The 
+%		question is how to find these PDEs. So far, I tested the following 
+%simple equations:}
+%	\begin{subequations}
+%		\begin{align}
+%				&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} 
+%\Efin{\sA}{i} = rhs, 
+%				\\[2mm]
+%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} 
+%\Hfin{\sA}{i} = 
+%		rhs,  
+%			\end{align}
+%	\end{subequations}
+%	or in terms of \eqref{eqn.H.E.split}
+%	\begin{subequations}\label{eqn.A.Omega}
+%		\begin{align}
+%				&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} 
+%\pd{k} \Efinn{\sA}{i}}
+%				{\color{blue}
+%					-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
+%					\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
+%					}
+%				 = rhs, 
+%				\\[2mm]
+%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
+%				+ 
+%				{\color{red}\itetr{k}{\sA} \pd{k} 
+%					\Hfinn{\sB}{i} \MG{\sA\sB}
+%					} 
+%				{\color{blue}
+%					- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} 
+%\hat{A}^l) \MG{\sA\sB}
+%					}= rhs.
+%			\end{align}
+%	\end{subequations}
+%	Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  
+%$ \{ 
+%	\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. 
+%Therefore, 2 are 
+%	missing.
+%	
+%	\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, 
+%\eqref{eqn.A.Omega}. The multipliers 
+%	are 
+%		$ 
+%		\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ 
+%\hat{\Omega}^i $}
+%	
 	
 	
 	
@@ -2736,7 +2776,11 @@ BCOR5mm, % Binding correction
 	
 	It is useful to relate the state variables of TEGR to the conventional quantities used in 
 	numerical 
-	general relativity. In this section, we relate $ \Dfin{\sA}{k} $ to the extrinsic curvature.
+	general relativity. In this section, we relate $ \Dfin{\sA}{k} $ to the extrinsic curvature. In 
+	what follows, we relate the extrinsic curvature of GR to the $ \Dfin{\sA}{k} $ field. We remark 
+	that the two fields are conceptually different due to the different geometry interpretations in 
+	GR and TEGR. Therefore, the obtained relation is possibly only due to the equivalence of TEGR 
+	and GR. 
 	
 	In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
 	\cite[Eq.(7.64)]{RezzollaZanottiBook})
@@ -2755,7 +2799,8 @@ BCOR5mm, % Binding correction
 	%$ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $,
 	where  $ K_{ij} $ is the spatial extrinsic 
 	curvature.
-	On the other hand, contracting \eqref{eqn.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} $, one 
+	On the other hand, in TEGR, contracting \eqref{eqn.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} 
+	$, one 
 	obtains 
 	the following evolution equation for the spatial metric:
 	\begin{multline}\label{eqn.gamma.PDE}
