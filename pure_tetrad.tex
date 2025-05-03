@@ -337,9 +337,18 @@ BCOR5mm, % Binding correction
 	paper is 
 	to derive a $ 3+1 $-split of the so-called 
 	\emph{teleparallel equivalent of general relativity} (TEGR) 
-	\cite{AldrovandiPereiraBook,Krssak2019} which is know to pass all standard tests of GR. 
+	\cite{AldrovandiPereiraBook,Krssak2019} which is known to pass all standard tests of GR. Up to 
+	now, not 
+	many attempts have been done to obtaine a $ 3+1 $ formulation of the TEGR equations, e.g. 
+	\cite{Capozziello2021,Pati2022}. A Hamiltonian formulation of TEGR was used in \cite{Pati2022} 
+	to obtain evolution equations for the tetrads and conjugate momenta. In \cite{Capozziello2021}, 
+	the spatial tetrad and their first order Lie derivative along the normal vector to the 
+	foliations were chosen as the state variables. Here, we explore another line of deriving $ 3+1 
+	$ formulation of TEGR which is rather aligned with the relativistic electrodynamics. As the 
+	result, the obtained equations are complitelly different from the mentioned papers.
 	
-	From the numerical view point, a proposed $ 3+1 $ formulation has to have well-posed initial 
+	From the numerical view point, a proposed $ 3+1 $ formulation has to have the well-posed 
+	initial 
 	value 
 	problem (i.e. a solution exists, the solution is unique and changes continuously with changes 
 	in 
@@ -378,15 +387,17 @@ BCOR5mm, % Binding correction
 	degrees of freedom which do not have evolution equations and therefore can be treated as 
 	parameters (not state variables) of the theory. Since we are interested in developing a 
 	computational framework for GR, the consideration of this paper is, therefore, 
-	restricted to the frames for which the spin connection is set to zero globally, that is we 
+	restricted to the frames for which the spin connection is set to zero globally (\We\ gauge), 
+	that is we 
 	deliberately work in the class of inertial frames. We thus consider 
 	TEGR in its historical, or \emph{pure tetrad}, formulation \cite{Golovnev2017a}.
 	
 	
 	Interestingly that another motivation to study the mathematical structure of the teleparallel 
 	gravity is coming from the continuum fluid and solid mechanics. In particular, the role of the 
-	torsion to describe defects in solids has been known for decades now, i.e. see 
-	\cite{VolovichKatanaev1992,Hehl2007,Yavari2012,NguyenLeMarrec2022,Bohmer2020}. Moreover, the 
+	torsion to describe defects in solids has been known for decades now, e.g. see 
+	\cite{VolovichKatanaev1992,Hehl2007,Yavari2012,NguyenLeMarrec2022,Bohmer2020,Lychev2022}. 
+	Moreover, the 
 	material
 	tetrad field (called also the distortion field in our papers) is the key field for the unified 
 	hyperbolic
@@ -531,7 +542,8 @@ BCOR5mm, % Binding correction
 	
 	\subsection{Connection and torsion}
 	
-	Because we work in the framework of the pure-tetrad formulation of TEGR, the linear connection 
+	Because we work in the framework of the pure-tetrad 
+	formulation of TEGR (\We\ gauge), the linear connection 
 	is set to the pure \We\ connection\footnote{Note that we use a different convention on the 
 		positioning of the lower indices of the \We\ connection $ \w{a}{\mu\nu} = 
 		\pd{\mu}\tetr{a}{\nu} $ 
@@ -562,7 +574,7 @@ BCOR5mm, % Binding correction
 		\D{b}(\D{c} V^a) - \D{c}(\D{b} V^a) = 
 		-\Tors{d}{b c}\D{d}V^a,
 	\end{equation}
-	where $ \Tors{d}{bc} = \Tors{d}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $.
+	where $  \Tors{d}{bc} = \Tors{d}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $.
 	
 	%\subsection{Reference tetrad}
 	%
@@ -1213,7 +1225,7 @@ BCOR5mm, % Binding correction
 	equation \eqref{eqn.EM2} unchanged. It reads
 	\begin{align}\label{eqn.sigma.BD}
 		{\EMmat{\mu}{\nu}} =
-		& -\Bm{a}{\mu}\Um_{\Bm{a}{\nu}} - \Dm{a}{\nu}\Um_{\Dm{a}{\mu}} \nonumber\\
+		& -\Bm{a}{\mu}\Um_{\Bm{a}{\nu}} - \Dm{a}{\mu}\Um_{\Dm{a}{\nu}} \nonumber\\
 		%
 		& - u^\lambda u_\nu \Bm{a}{\mu} \Um_{\Bm{a}{\lambda}} 
 		- u^\mu u_\lambda \Dm{a}{\lambda} \Um_{\Dm{a}{\nu}}
@@ -1516,7 +1528,7 @@ BCOR5mm, % Binding correction
 	$
 	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})  
 	$ and it reads (see \eqref{eqn.Ufin})
-	\begin{align}
+	\begin{align}\label{eqn.Ufin0}
 		\Ufin(\tetr{\sA}{k},\Bfin{\sA}{k},\Dfin{\sA}{k}) & =  \nonumber\\
 		 -\frac{\alpha}{2\detTetr_3} \bigg( 
 		& \varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} 
@@ -1708,7 +1720,7 @@ BCOR5mm, % Binding correction
 			\Hfin{a}{l} 
 			\Efin{a}{j}) = \rhs{0},\label{eqn.EM.e}
 		\end{align}
-		where the gravity part of $ \stress{i}{k} $ is given by
+		where the non-matter (gravity + inertia) part of $ \stress{i}{k} $ is given by
 		\begin{gather}\label{eqn.flux.const}
 			{\stress{i}{k}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
 			\Hfin{a}{j} + 
@@ -1821,7 +1833,7 @@ BCOR5mm, % Binding correction
 	
 	
 	
-	\section{Summary of the $ 3+1 $ equations}
+	\section{Summary of the $ 3+1 $ TEGR equations}
 	Here, we summarize the $ 3+1 $ TEGR equations and give explicit expressions for the 
 	constitutive 
 	fluxes $ \Efin{\sA}{k} $ and
@@ -1904,26 +1916,18 @@ BCOR5mm, % Binding correction
 		%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
 		%	\end{align}
 	%\end{subequations}
-	with the total (matter+gravity) momentum $ \rho_i := \rho^\text{(m)}_i + \rho^\text{(g)}_i $ 
-	given 
-	by
-	\begin{equation*}
-		\rho_i := \rho^\text{(m)}_i  -\LCsymb_{ilj} 
-		\Bfin{\sA}{l}\Dfin{\sA}{j},
-	\end{equation*}
-	and the total energy density
-	\begin{equation*}
-		\rho_0 := \beta^i \rho_i - \Ufin,
-	\end{equation*}
-	The gravitational part of the momentum flux reads
-	\begin{gather*}
-		\stress{i}{k} := -\Bfin{a}{k} 
-		\Hfin{a}{i} - 
-		\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
-		\Hfin{a}{j} + 
-		\Dfin{a}{j} \Efin{a}{j} 
-		- \Ufin)\delta^k_{\ i},
-	\end{gather*}
+	with the total (matter+gravity) momentum $ \rho_{\sA} = \itetr{i}{\sA}\rho_i $ and the total 
+	energy density $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin = \NC{\indalg{0}}{0} $ computed from 
+	\eqref{eqn.Ja0}, and the gravitational part of the momentum flux $ \stress{i}{\sA} = 
+	\itetr{k}{\sA} \stress{i}{k}$  computed from \eqref{eqn.flux.const}.
+%	\begin{gather*}
+%		\stress{i}{k} := -\Bfin{a}{k} 
+%		\Hfin{a}{i} - 
+%		\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
+%		\Hfin{a}{j} + 
+%		\Dfin{a}{j} \Efin{a}{j} 
+%		- \Ufin)\delta^k_{\ i},
+%	\end{gather*}
 	%\begin{align*}
 	%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ k} \itetr{k}{\sA} 
 	%	\Bfin{\sA}{j} + s^l_{\ k} \itetr{k}{\sA} \pd{i}\tetr{\sA}{l} + \rho_j 
@@ -2000,11 +2004,10 @@ BCOR5mm, % Binding correction
 			\Bfin{\sC}{j}
 			\\
 			- 
-			%		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} 
-			%\tetr{\sB}{j} 
-			%		\Efin{\indalg{0}}{l}
-			%
-			\frac{\detTetr_3}{\varkappa} \LCsymb_{kjl} \itetr{j}{\sA} A^l,
+					\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} 
+			\tetr{\sB}{j} 
+					\Efin{\indalg{0}}{l}
+			% \frac{\detTetr_3}{\varkappa} \LCsymb_{kjl} \itetr{j}{\sA} A^l,
 		\end{multline}
 		\begin{multline}
 			\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
@@ -2013,16 +2016,30 @@ BCOR5mm, % Binding correction
 			\Dfin{\sB}{j} 
 			\\
 			- 
-			%		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
-			%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
-			%
-			\varkappa \detTetr_3 \LCsymb_{kjl} 
-			\itetr{j}{\sB} \MG{\sA\sB} \Omega^l.
+					\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+					\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+			% \varkappa \detTetr_3 \LCsymb_{kjl} 
+			% \itetr{j}{\sB} \MG{\sA\sB} \Omega^l.
 			\label{eqn.E}
 		\end{multline}
 	\end{subequations}
 	where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$.
-	
+	Note that these relations can also be written as
+	\begin{align}\label{eqn.H.E.split}
+		\Hfin{\sA}{k} &= %\Ufin_{\Bfin{\sA}{k}} =
+		\frac{\pd{}\Ufin\hfill}{\pd{}\Bfin{\sA}{k}}
+		{ 
+			-
+			\frac{1}{\varkappa}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+		\\[2mm]
+		\Efin{\sA}{k} &= %\Ufin_{\Dfin{\sA}{k}}=
+		\frac{\pd{}\Ufin\hfill}{\pd{}\Dfin{\sA}{k}}
+		{
+			-
+			\varkappa \detTetr_3 \LCsymb_{kjl} 
+			\itetr{j}{\sB} \Omega^l}\MG{\sA\sB},
+	\end{align}
+	with the potential $ \Ufin $ given by \eqref{eqn.Ufin0}.
 	
 	
 	%Noether current \eqref{eqn.J} becomes:
@@ -2904,7 +2921,7 @@ BCOR5mm, % Binding correction
 	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) $ $ \longrightarrow $ $ \ET{a}{\mu} 
 	\Dm{a}{\mu} - \LagBE = 
 	\Um(\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}) = 
-	\aU(\tetr{a}{\mu},\aD{a}{\mu},\aB{a}{\mu}) $. 
+	\Ufin(\tetr{a}{\mu},\Dfin{a}{\mu},\Bfin{a}{\mu}) $. 
 	%in terms of 
 	%the state vector $ \vec{Q} = \{ 
 	%\tetr{a}{\mu}, \aD{a}{i}, \aB{a}{\mu} \} $ which can be obtained from the following expresion 
@@ -3017,9 +3034,11 @@ BCOR5mm, % Binding correction
 	
 	We have presented a $ 3+1 $-split of the TEGR equations in their historical pure tetrad 
 	version, 
-	i.e. with the spin connection set to zero. To the best of our knowledge there were no attempt 
-	to 
-	obtain a $ 3+1 $-split of the TEGR equations and therefore no attempts to solve numerically the 
+	i.e. with the spin connection set to zero. To the best of our 
+	knowledge, there were not many attempts 
+	to obtain a $ 3+1 $-split of the TEGR equations, e.g. 
+	\cite{Capozziello2021,Pati2022}, and we are not aware of any attempts 
+	to solve numerically the 
 	full TEGR system of equations for general spacetimes. This paper, therefore, may help to cover 
 	this 
 	gap.
@@ -3551,26 +3570,32 @@ BCOR5mm, % Binding correction
 	
 	Denoting the scalars in the right-hand side of \eqref{eqn.tors.scal0} as ($ \Tscal = \Tscal_1 + 
 	\Tscal_2 + \Tscal_3 $)
-	\begin{align}\label{eqn.tors.scal}
-		\Tscal_1 = & \frac14 \mg{ab}g^{\beta\lambda }g^{\mu\gamma 
-		}\Tors{a}{\lambda\gamma} \Tors{b}{\beta\mu },\\[2mm]
-		%
-		\Tscal_2 = & \frac12 g^{\mu\gamma} \itetr{\lambda}{a} \itetr{\beta}{b} \Tors{a}{\mu\beta} 
-		\Tors{b}{\gamma\lambda},\\[2mm]
-		%
-		\quad
-		\Tscal_3 = & -g^{\mu\lambda} \itetr{\rho}{a} \itetr{\gamma}{b} \Tors{a}{\mu\rho} 
-		\Tors{b}{\lambda\gamma},	  
-	\end{align}
+	\begin{subequations}
+		\begin{align}\label{eqn.tors.scal}
+			\Tscal_1 = & \frac14 \mg{ab}g^{\beta\lambda }g^{\mu\gamma 
+			}\Tors{a}{\lambda\gamma} \Tors{b}{\beta\mu },\\[2mm]
+			%
+			\Tscal_2 = & \frac12 g^{\mu\gamma} \itetr{\lambda}{a} \itetr{\beta}{b} 
+			\Tors{a}{\mu\beta} 
+			\Tors{b}{\gamma\lambda},\\[2mm]
+			%
+			\quad
+			\Tscal_3 = & -g^{\mu\lambda} \itetr{\rho}{a} \itetr{\gamma}{b} \Tors{a}{\mu\rho} 
+			\Tors{b}{\lambda\gamma},	  
+		\end{align}
+	\end{subequations}
 	we can also write 
-	\begin{align}\label{eqn.tors.scal.TQLC}
-		\mathcal{T}_1 &= Q_3 + \frac12 C_4, \\
-		\mathcal{T}_2 &=- Q_1 + Q_4 + L_1 -C_1 + C_2 + \frac12 C_4, \\[2mm]
-		\mathcal{T}_3 &= 2 Q_1 + Q_2 + L_2 + 2 C_1 + C_3 - C_4,
-	\end{align}
+	\begin{subequations}
+		\begin{align}\label{eqn.tors.scal.TQLC}
+			\mathcal{T}_1 &= Q_3 + \frac12 C_4, \\
+			\mathcal{T}_2 &=- Q_1 + Q_4 + L_1 -C_1 + C_2 + \frac12 C_4, \\[2mm]
+			\mathcal{T}_3 &= 2 Q_1 + Q_2 + L_2 + 2 C_1 + C_3 - C_4,
+		\end{align}
+	\end{subequations}
 	where the scalars $ Q $, $ L $, and $ C $ are scalars made of $ \ET{a}{\mu} $ and 
-	$ \BT{a}{\mu} $.
+	$ \BT{a}{\mu} $ as follows.
 	
+	\begin{subequations}
 	Quadratic in $ \ET{a}{\mu} $:
 	\begin{align}\label{eqn.tors.scal2.Q}
 		Q_1 &= -\frac12 \ET{\indalg{0}}{\alpha} g^{\alpha\beta} \ET{\indalg{0}}{\beta},\\[2mm]
@@ -3615,13 +3640,14 @@ BCOR5mm, % Binding correction
 %		=h^{-2} \BT{\varphi}{\sigma} g_{\varphi\lambda} 
 %		\BT{\lambda}{\beta} g_{\beta\sigma}.
 	\end{align}
+	\end{subequations}
 	
 	In terms of the Hodge dual $ \HDT{a\mu\nu} $, the torsion scalar $ \Tscal $ can be rewritten as
+	\begin{subequations}
 	\begin{equation}\label{eqn.tors.scal.hodge}
 		\Tscal = \Hscal_1 + \Hscal_2 + \Hscal_3 + \Hscal_4,
 	\end{equation}
 	where 
-	\begin{subequations}
 		\begin{align}\label{eqn.hodge.scal}
 			\Hscal_1 &= \frac{1}{2 h^2} \mg{ac}\mg{bd}\tetr{c}{\lambda}\tetr{d}{\sigma} 
 			g_{\tau\rho} 
