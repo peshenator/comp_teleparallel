@@ -37,7 +37,7 @@ BCOR5mm, % Binding correction
 \usepackage{bm}
 %\usepackage{showlabels}
 
-\newcommand{\ERWBB}{ERWBB}
+\newcommand{\ERWBB}{{ERWBB}}
 \newcommand{\xx}{\mathbf{x}}
 \newcommand{\XX}{\mathbf{X}}
 \newcommand{\XXX}{\mathbb{X}}
@@ -250,19 +250,22 @@ BCOR5mm, % Binding correction
 	
 	\section*{Abstract} % This section will not appear in the table of contents due to the star 
 	% (\section*)
-	\small
-	Motivated by numerically solving the Einstein field equations, we derive a
-	first-order reduction of the second-order $ f(T) $-teleparallel gravity
-	field equations in the pure-tetrad formulation (no spin connection). We then
-	restrict our attention to the teleparallel equivalent of general relativity
-	(TEGR) and propose a 3+1 decomposition of the governing equations that can
-	be used in a computational code. We demonstrate that for the matter-free
-	space-time the obtained system of first-order equations is equivalent to the
-	tetrad reformulation of general relativity by Estabrook, Robinson,
-	Wahlquist, and Buchman and Bardeen and therefore also admits a symmetric
-	hyperbolic formulation. The structure of the 3+1  equations resembles a lot
-	of similarities with the equations of relativistic electrodynamics and the
+	\noindent
+	\textit{
+	Driven by the need for numerical solutions to the Einstein field equations,
+	we derive a first-order reduction of the second-order $ f(T) $-teleparallel
+	gravity equations in the pure-tetrad formulation (no spin connection).
+	We then restrict our attention to the teleparallel equivalent of general
+	relativity (TEGR) and propose a 3+1 decomposition of these equations
+	suitable for computational implementation. We demonstrate that in vacuum 	(matter-free spacetime) the obtained system of first-order equations is
+	equivalent to the tetrad reformulation of general relativity by Estabrook,
+	Robinson, Wahlquist, and Buchman and Bardeen, and therefore also admits a
+	symmetric hyperbolic formulation. However, the question of hyperbolicity of
+	the 3+1 TEGR equations for arbitrary spacetimes remains unaddressed so far.
+	Furthermore, the structure of the 3+1  equations resembles a lot of
+	similarities with the equations of relativistic electrodynamics and the
 	recently proposed dGREM tetrad-reformulation of general relativity.
+	}
 	%----------------------------------------------------------------------------------------
 	%	AUTHOR AFFILIATIONS
 	%----------------------------------------------------------------------------------------
@@ -357,7 +360,7 @@ BCOR5mm, % Binding correction
 	route, we demonstrate that the resulting 3+1 equations are equivalent to
 	tetrad reformulations of the GR such as the one by
 	Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
-	\cite{Buchman2003} (the ERWBB formulation for brevity), and recent dGREM formulation of GR \cite{Olivares2022}. 
+	\cite{Buchman2003} (the \ERWBB\ formulation for brevity), and recent dGREM formulation of GR \cite{Olivares2022}. 
 	
 	From the numerical view point, any $ 3+1 $ formulation has to have the
 	well-posed initial value problem (i.e. a solution exists, the solution is
@@ -1714,7 +1717,7 @@ BCOR5mm, % Binding correction
 		\end{gather}
 		Drawing parallels between electrodynamics and TEGR, one can note the
 		presence of the Poynting vector in two forms in \eqref{eqn.EM.PDE}:
-		$\boldsymbol{\mathtt{D}}\times\boldsymbol{\mathtt{B}}$ in the momentum density in \eqref{eqn.EM.m} and $\boldsymbol{\mathtt{E}}\times\boldsymbol{\mathtt{H}}$ in the energy flux in \eqref{eqn.EM.e}.
+		$\Dfin{}{}\times\Bfin{}{}$ in the momentum density in \eqref{eqn.EM.m} and $\Efin{}{}\times\Hfin{}{}$ in the energy flux in \eqref{eqn.EM.e}.
 
 		The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
 		\begin{align}\label{eqn.source.rhoi}
@@ -1858,8 +1861,9 @@ BCOR5mm, % Binding correction
 			%		\right) & = 0,
 			\pd{t} \rho_\sA +  \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) &= 
 			0,\label{eqn.3+1.m}\\[2mm]
-			\pd{t} \rho_{\indalg{0}} + \pd{k} (-\shift{k} \rho_{\indalg{0}} + \alpha^{-1} 
-			\LCsymb^{klj}\Hfin{a}{l}\Efin{a}{j}) &= 0,\label{eqn.3+1.e}\\[2mm]
+			\pd{t} \rho_{\indalg{0}} + \pd{k} (-\shift{k} \rho_{\indalg{0}} 
+			- \alpha^{-1} 
+			\LCsymb^{kjl}\Efin{a}{j}\Hfin{a}{l}) &= 0,\label{eqn.3+1.e}\\[2mm]
 			%		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) &= \rhs{i},
 			%		\label{eqn.3+1.m}
 			%		\\[2mm]
@@ -2012,7 +2016,6 @@ BCOR5mm, % Binding correction
 			\label{eqn.E}
 		\end{multline}
 	\end{subequations}
-	where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$.
 	Note that these relations can also be written as
 	\begin{align}\label{eqn.H.E.split}
 		\Hfin{\sA}{k} &= %\Ufin_{\Bfin{\sA}{k}} =
@@ -2028,7 +2031,7 @@ BCOR5mm, % Binding correction
 			\varkappa \detTetr_3 \LCsymb_{kjl} 
 			\itetr{j}{\sB} \Omega^l}\MG{\sA\sB},
 	\end{align}
-	with the potential $ \Ufin $ given by \eqref{eqn.Ufin0}.
+	where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$, and with the potential $ \Ufin $ given by \eqref{eqn.Ufin0}.
 	
 	
 	%Noether current \eqref{eqn.J} becomes:
@@ -2277,7 +2280,7 @@ BCOR5mm, % Binding correction
 	
 	
 	\section{Hyperbolicity of the vacuum equations}
-	
+	\textbf{\color{red} This section will be edited. The equations will be untouched but I need to put accents slightly differently.}
 	Despite the structure of system \eqref{eqn.3+1.summary} shares a lot of similarities with 
 	equations 
 	of nonlinear electrodynamics of moving media which belong to the class of symmetric hyperbolic 
@@ -2373,13 +2376,14 @@ BCOR5mm, % Binding correction
 	spatial hypersurfaces, matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are 
 	\textit{symmetric}.
 	
-	Additionally, we have the relations for $ a_{\sA} $, $ \omega^{\sA} $, and  $ 
-	A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ 
-	\Omega_{k} = \Hfin{\indalg{0}}{k} $
+	Additionally, we have the following relations between the \ERWBB\ vectors $
+	a_{\sA} $, $ \omega^{\sA} $ and the \tegr\ vectors $
+	A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ \Omega_{k} =
+	\Hfin{\indalg{0}}{k} $
 	\begin{equation}\label{eqn.Buchman.TEGR.AW}
 		a_{\sA} = \lapse^{-1} A_{\sA},
 		\qquad
-		\omega^{\sA} = \varkappa \lapse^{-1} \MG{\sA\sB} \Omega_{\sB}.
+		\omega^{\sA} =-\varkappa \lapse^{-1} \MG{\sA\sB} \Omega_{\sB}.
 	\end{equation}
 	
 	Finally, expression of the 
@@ -2503,60 +2507,11 @@ BCOR5mm, % Binding correction
 	
 	
 	
-	In order to recover all missing eigenvectors, we shall use the Hamiltonian constraint 
-	\eqref{eqn.div.constrD}$ _1 $ and the symmetry of $ \Dfin{ij}{} $. Thus, we shall turn the 
-	potential $ 
-	\Ufin =-\lapse \rho_{\indalg{0}} $ in the expression of the stress tensor $ \stress{\sA}{i} $ 
-	into the 
-	differential term $ \Ufin =-\lapse \pd{k}\Dfin{\indalg{0}}{k} $ according to the Hamiltonian 
-	constraint 
-	\eqref{eqn.div.constrD}$ _1 $. Additionally, we use expression \eqref{eqn.D0.tmp3}$_2$ for $ 
-	\Dfin{\indalg{0}}{k} $, i.e. $  \Dfin{\indalg{0}}{k} = -\varkappa^{-1}\detTetr_3^{-1} 
-	\LCsymb^{klj}\Bfinmix{}{lj}$. Similarly, we are adding formally a zero $ 0 = 
-	\pd{k}(\detTetr_3^{-1} 
-	\LCsymb^{klj} \Dfin{lj}{}) = -\Bfin{\indalg{0}}{k} $ to the equation for the 
-	$ 
-	\Bfin{\sA}{i} $ field. This expression 
-	is zero 
-	due to the fact that the contraction of antisymmetric Levi-Civita symbol with the symmetric 
-	tensor $ 
-	\Dfin{ij}{} $ is zero. The resulting equations read
-	\begin{subequations}\label{eqn.BD.alt2}
-		\begin{multline}
-			\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-			\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-			\Hfin{\sA}{j}) \\
-			-\shift{i}\pd{k} \Dfin{\sA}{k}
-			+\lapse\itetr{i}{\sA}\pd{k} \Hfinmix{}{k} 
-			= - \stress{\sA}{i} - \Ufin \itetr{i}{\sA},
-			\label{eqn.BD.alt2.D}
-		\end{multline}
-		\begin{multline}	
-			%		
-			\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-			\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-			\Efin{\sA}{j}) \\
-			-\shift{i}\pd{k} \Bfin{\sA}{k}
-			-\lapse\itetr{i}{\sB}\pd{k}\Efin{k}{} 
-			\MG{\sA\sB}
-			= 0,
-		\end{multline}
-		where we have defined new vectors
-		\begin{align}
-			\label{eqn.BD.alt2.B}
-			\Efin{k}{}    :=-\varkappa\detTetr_3^{-1} \LCsymb^{klj} \Dfin{lj}{},
-			\qquad
-			\Hfinmix{}{k} :=-\varkappa^{-1}\detTetr_3^{-1} \LCsymb^{klj} \Bfinmix{}{lj}.
-		\end{align}
-	\end{subequations}
-	%and if combined with \eqref{eqn.AOmega}, this enlarged system of 24 equations has 24 linearly 
-	%independent eigenvectors (at least for the flat spacetime). 
 	
-	Now, using relations \eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN} and after a lengthy 
-	but 
-	rather straightforward sequence of transformations, 
-	equations \eqref{eqn.BD.alt2}
-	can be written in the \ERWBB\ form
+	
+	Now, using relations \eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN} and
+	after a lengthy but rather straightforward sequence of transformations,
+	equations \eqref{eqn.BD.alt2} can be written in the \ERWBB\ form
 	\begin{subequations}\label{eqn.KN.pde}
 		\begin{align}
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
@@ -2568,31 +2523,34 @@ BCOR5mm, % Binding correction
 			&
 			+ \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
 			+ \pd{\sA} \omega_{\sB} = \text{l.o.t.}
+			\label{eqn.KN.pde.N}
 		\end{align}
 	\end{subequations}
-	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do not contain space and 
-	time 
-	derivatives), $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = 
-	\lapse^{-1}\pd{t} - 
+	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do
+	not contain space and time derivatives), $ \pd{\indalg{0}} =
+	\itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = \lapse^{-1}\pd{t} -
 	\lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
+	We note the opposite order of the subscripts $\sA$ and $\sB$ in \eqref{eqn.KN.pde.N} in the second term with respect to \cite[eq.(40)]{Buchman2003}. This however does not affect the symmetric hyperbolicity of the system discussed in what follows.
 	%The low-order terms are given in the appendix\,\ref{}.
 	
 	
 	
-	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $ \omega_{\sA} $ are 
-	not 
-	provided with particular evolution equations and therefore, one could try to choose their 
-	evolution equations 
-	in such a way as to guaranty the well-posedness of the enlarged system for the unknowns $ 
-	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown in 
-	\cite{Estabrook1997,Buchman2003}, if coupled with equations whose differential part is
-	\begin{align}\label{eqn.aw.pde}
-		\pd{\indalg{0}} a_\sA - \pd{\sB} \Kbuchmix{\sB}{\sA} &= 0,
-		\\[2mm]
-		\pd{\indalg{0}} \omega_\sA + \pd{\sB} \Nbuchmix{\sB}{\sA} &= 0,
-	\end{align}
-	system \eqref{eqn.KN.pde} is symmetric hyperbolic, and thus \eqref{eqn.BD.alt2} can also be put 
-	into a symmetric hyperbolic form. However, we can not immediately conclude 
+	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $
+	\omega_{\sA} $ are not provided with particular evolution equations and
+	therefore, one could try to choose their evolution equations in such a way
+	as to guaranty the well-posedness of the enlarged system for the unknowns $
+	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown
+	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge conditions on $a_\sA$ and $\omega_\sA$:
+	\begin{subequations}\label{eqn.aw.pde}
+		\begin{align}
+			\pd{\indalg{0}} a_\sA - \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
+			\\[2mm]
+			\pd{\indalg{0}} \omega_\sA + \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
+		\end{align}
+	\end{subequations}
+	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric hyperbolic. To see this, one needs to order the entries of $\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way $\{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
+	
+	\textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude 
 	the same for the original $ 3+1 $ TEGR equations \eqref{eqn.3+1.summary} because the 
 	differential 
 	operators 
