@@ -2491,9 +2491,13 @@ BCOR5mm, % Binding correction
 	
 	
 	
-	Now, using relations \eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN} and
-	after a lengthy but rather straightforward sequence of transformations,
-	equations \eqref{eqn.BD.alt2} can be written in the \ERWBB\ form
+	Now, rewriting the 3+1 TEGR equations on $\Dfin{\sA}{i}$ and $\Bfin{\sA}{i}$
+	(eqs.~\eqref{eqn.3+1.D} and \eqref{eqn.3+1.B}) in terms of $\Dfin{\sA}{\sB}
+	= \tetr{\sB}{i}\Dfin{\sA}{i}$ and $\Bfin{\sA}{\sB} =
+	\tetr{\sB}{i}\Bfin{\sA}{i}$, then applying transformations
+	\eqref{eqn.Buchman.TEGR.KN} to these equations and using relations
+	\eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN}, after a lengthy but
+	rather straightforward sequence of transformations, one obtains the following equations
 	\begin{subequations}\label{eqn.KN.pde}
 		\begin{align}
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
@@ -2514,15 +2518,16 @@ BCOR5mm, % Binding correction
 	\lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
 	We note the opposite order of the subscripts $\sA$ and $\sB$ in \eqref{eqn.KN.pde.N} in the second term with respect to \cite[eq.(40)]{Buchman2003}. This however does not affect the symmetric hyperbolicity of the system discussed in what follows.
 	%The low-order terms are given in the appendix\,\ref{}.
-	
-	
-	
+
 	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $
-	\omega_{\sA} $ are not provided with particular evolution equations and
-	therefore, one could try to choose their evolution equations in such a way
-	as to guaranty the well-posedness of the enlarged system for the unknowns $
+	\omega_{\sA} $ in the \ERWBB\ formulation of GR are not provided with
+	particular evolution equations following from the variational formulation,
+	and therefore they are considered as gauge conditions. Hence, one could try
+	to choose their evolution equations in such a way as to guaranty the
+	well-posedness of the enlarged system for the unknowns $
 	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown
-	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge conditions on $a_\sA$ and $\omega_\sA$:
+	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge
+	conditions on $a_\sA$ and $\omega_\sA$:
 	\begin{subequations}\label{eqn.aw.pde}
 		\begin{align}
 			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
@@ -2530,25 +2535,35 @@ BCOR5mm, % Binding correction
 			\pd{\indalg{0}} \omega_\sA + \alpha \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
 		\end{align}
 	\end{subequations}
-	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric hyperbolic. To see this, one needs to order the entries of $\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way $\{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
+	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric
+	hyperbolic, i.e. it can be written in a quasi-linear form
+	\begin{equation}\label{eqn.quasi.lin}
+		\pd{t} \bm{Q} + \bm{M}^k\pd{k} \bm{Q} = \text{l.o.t.}
+	\end{equation}
+	with matrices $ \bm{M}^k = \bm{M}^k(\alpha,\itetr{i}{\sA})$ being symmetric for arbitrary $\itetr{i}{\sA}$.
+	To see this, one needs to order the entries of
+	$\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way
+	$\bm{Q} = \{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
 	
-	\textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude 
-	the same for the original $ 3+1 $ TEGR equations \eqref{eqn.3+1.summary} because the 
-	differential 
-	operators 
-	of 
-	\eqref{eqn.3+1.summary} and \eqref{eqn.BD.alt2} are different even though the overall equations 
-	are 
-	equivalent. We recall that the hyperbolicity (well-posedness of the initial value problem) is 
-	defined by the leading-order terms of the differential operator (all differential terms in the 
-	case 
-	of first-order systems). Nevertheless, this is an important result demonstrating that inside of 
-	the 
-	class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary} there is a 
-	possibility, at least one given by \eqref{eqn.BD.alt2},  to rewrite the TEGR vacuum equations 
-	as a 
-	symmetric 
-	hyperbolic system.
+	In summary, the 3+1 \tegr\ equations in vacuum, eqs. \eqref{eqn.3+1.D} and
+	\eqref{eqn.3+1.B}, if coupled with the proper gauge conditions on $A_k$ and
+	$\Omega_k$, are equivalent to a symmetric-hyperbolic system
+	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde}. However, this is a very preliminary
+	results for further investigation of hyperbolicity of the entire 3+1 TEGR
+	system because even the time evolution on the tetrad field $\tetr{\sA}{i}$
+	was excluded from our consideration.
+
+	% \textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude the
+	% same for the original $ 3+1 $ TEGR equations \eqref{eqn.3+1.summary} because
+	% the differential operators of \eqref{eqn.3+1.summary} and
+	% \eqref{eqn.BD.alt2} are different even though the overall equations are
+	% equivalent. We recall that the hyperbolicity (well-posedness of the initial
+	% value problem) is defined by the leading-order terms of the differential
+	% operator (all differential terms in the case of first-order systems).
+	% Nevertheless, this is an important result demonstrating that inside of the
+	% class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary}
+	% there is a possibility, at least one given by \eqref{eqn.BD.alt2},  to
+	% rewrite the TEGR vacuum equations as a symmetric hyperbolic system.
 	
 	%The second step to recovering hyperbolicity of the TEGR equations consists in not modifying 
 	%the 
