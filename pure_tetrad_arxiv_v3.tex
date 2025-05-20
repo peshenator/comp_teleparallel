@@ -2281,40 +2281,36 @@ BCOR5mm, % Binding correction
 	
 	\section{Hyperbolicity of the vacuum 3+1 TEGR equations}
 
-	The 3+1 TEGR system \eqref{eqn.3+1.summary} is a strongly overdetermined 
-
-	Despite the structure of system \eqref{eqn.3+1.summary} shares a lot of
-	similarities with equations of nonlinear electrodynamics of moving media
-	which belong to the class of symmetric hyperbolic thermodynamically
-	compatible (SHTC) equations
-	\cite{SHTC-GENERIC-CMAT,GodRom1996b,Rom1998,Rom2001,God1961}, we cannot
-	immediately apply the machinery of SHTC systems to symmetrize the TEGR
-	equations because some elements do not fit well to the formalism of SHTC
-	systems yet. Instead, we demonstrate the symmetric hyperbolicity of the TEGR
-	vacuum equations (without momentum \eqref{eqn.3+1.m} and energy
-	\eqref{eqn.3+1.e} equations) via their surprising equivalence to the tetrad
-	reformulation of GR by Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and
-	Buchman-Bardeen \cite{Buchman2003} which is known to be symmetric
-	hyperbolic, and will be referenced to as \ERWBB\ formulation. We remind that
-	solely hyperbolicity is not enough for well-posedness of the initial value
-	problem for a general quasi-linear system of first-order equations. At
-	least, to the best of our knowledge, there is no an existence and uniqueness
-	theorem for such a class of equations in multiple dimensions\footnote{
-	Despite this, for a system describing causal propagation of 	signals, the
-	hyperbolicity is considered as a minimum requirement for numerical
-	discretization.}. In contrary, such a theorem exists for symmetric
-	hyperbolic systems, e.g. see \cite{Serre2007}.
+	The 3+1 TEGR system \eqref{eqn.3+1.summary} is an overdetermined system due
+	the presence of the momentum and energy equations \eqref{eqn.3+1.m} and
+	\eqref{eqn.3+1.e}. The question of hyperbolicity of \eqref{eqn.3+1.summary},
+	therefore, requires considering a model for matter, which goes beyond the
+	scope of this paper. However, we can still analyze the hyperbolicity of the
+	vacuum equations \eqref{eqn.3+1.summary} without the momentum and energy
+	equations which might be considered as a starting point of further research.
+	In particular, we shall show that the vacuum 3+1 TEGR equations are
+	equivalent to the tetrad reformulation of GR by Estabrook-Robinson-Wahlquist
+	\cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003} which is known
+	to be symmetric hyperbolic, and will be referenced to as \ERWBB\
+	formulation. We remind that solely hyperbolicity is not enough for
+	well-posedness of the initial value problem for a general quasi-linear
+	system of first-order equations. At least, to the best of our knowledge,
+	there is no an existence and uniqueness theorem for such a class of
+	equations in multiple dimensions\footnote{ Despite this, for a system
+	describing causal propagation of 	signals, the hyperbolicity is considered
+	as a minimum requirement for numerical discretization.}. In contrary, such a
+	theorem exists for symmetric hyperbolic systems, e.g. see \cite{Serre2007}.
 	
 	Let us first introduce the main elements of the \ERWBB\ formulation which relies on the Ricci 
 	rotation coefficients
 	\begin{align}\label{eqn.Ricci.rot}
 		\mathcal{R}_{abc} 
-		= & \bm{\itetrsymbol}_a\cdot\nabla_c \bm{\itetrsymbol}_b \nonumber\\
+		:= & \bm{\itetrsymbol}_a\cdot\nabla_c \bm{\itetrsymbol}_b \nonumber\\
 		= & \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \pd{\lambda} \itetr{\nu}{b} 
 		+   \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \Gamma^{\nu}_{\ \lambda\rho} 
 		\itetr{\rho}{b}	
 	\end{align}
-	where $ \nabla_c = \itetr{\lambda}{c} \nabla_{\lambda} $ and $ \nabla_{\lambda} $ is the 
+	where $ \nabla_c := \itetr{\lambda}{c} \nabla_{\lambda} $ and $ \nabla_{\lambda} $ is the 
 	standard 
 	covariant derivative of GR associated with the symmetric Levi-Civita connection, and $ 
 	\Gamma^{\mu}_{\ 
@@ -2367,7 +2363,7 @@ BCOR5mm, % Binding correction
 	\end{subequations}
 	We remark that due to our choice of the $ 3+1 $ split \eqref{eqn.h.eta.matrix}, i.e. that 
 	observer's time vector, $ \bas{\indalg{0}} $, is align with the normal vector to the 
-	spatial hypersurfaces, matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are 
+	spatial hypersurfaces, the matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are 
 	\textit{symmetric}.
 	
 	Additionally, we have the following relations between the \ERWBB\ vectors $
@@ -2392,112 +2388,104 @@ BCOR5mm, % Binding correction
 			\Hfin{\sB}{\sA} &= 
 			\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
 			- \frac{\lapse}{\varkappa} 
-			\LCtens_{\sA\sB\sC} a^\sC .
+			\LCtens_{\sA\sB\sC} a^\sC ,
 		\end{align}
 	\end{subequations}
+	where $\Efin{}{\sA\sB} = \mg{\sA\sC}\itetr{k}{\sB}\Efin{\sC}{k}$ and $\Hfin{\sA}{\sB} = \itetr{k}{\sA}\Hfin{k}{\sB}$.
 	
-	Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic even for the 
-	Minkowski 
-	spacetime (it is actually only weakly hyperbolic because some eigenvectors are missing), and 
-	therefore it can not be equivalent to the symmetric hyperbolic \ERWBB\ formulation 
-	of GR right away. In this section, we discuss what modifications of equations 
-	\eqref{eqn.3+1.summary} are 
-	necessary in order to make it equivalent to the \ERWBB\ formulation.
-	These modifications rely on the use of Hamiltonian and momentum constraints 
-	\eqref{eqn.div.constrD} and symmetry of $ \Dfin{\sA\sB}{} $. 
+	% Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic
+	% even for the Minkowski spacetime (it is actually only weakly hyperbolic
+	% because some eigenvectors are missing), and therefore it can not be
+	% equivalent to the symmetric hyperbolic \ERWBB\ formulation of GR right away.
+	% In this section, we discuss what modifications of equations
+	% \eqref{eqn.3+1.summary} are necessary in order to make it equivalent to the
+	% \ERWBB\ formulation. These modifications rely on the use of Hamiltonian and
+	% momentum constraints \eqref{eqn.div.constrD} and symmetry of $
+	% \Dfin{\sA\sB}{} $. 
 	
-	Because we are considering a vacuum space-time, the momentum and energy equations 
-	\eqref{eqn.3+1.m}, 
-	\eqref{eqn.3+1.e} can be omitted. Moreover, modifications concern only torsion equations 
-	\eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and 
-	therefore for the sake of simplicity, we also omit the tetrad equations \eqref{eqn.3+1.h}
+	% Because we are considering a vacuum space-time, the momentum and energy
+	% equations \eqref{eqn.3+1.m}, \eqref{eqn.3+1.e} can be omitted. Moreover,
+	% modifications concern only torsion equations \eqref{eqn.3+1.D},
+	% \eqref{eqn.3+1.B}, and therefore for the sake of simplicity, we also omit
+	% the tetrad equations \eqref{eqn.3+1.h}
 	
-	If one considers 18 equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B} written in a 
-	quasilinear form\footnote{Due to the rotational invariance, 
-		it is actually sufficient to consider the system in any preferred coordinate direction, say 
-		in $ x^1 
-		$, without lose of generality.}
-	\begin{equation}\label{eqn.quasi.lin}
-		\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
-	\end{equation}
-	for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
-	\bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors already for 
-	the 
-	flat Minkowski spacetime, that is the 
-	system is only 
-	weakly hyperbolic. Here, $ \bm{M}^k =
-	\pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
+	% If one considers 18 equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B} written in a 
+	% quasilinear form\footnote{Due to the rotational invariance, 
+	% 	it is actually sufficient to consider the system in any preferred coordinate direction, say 
+	% 	in $ x^1 
+	% 	$, without lose of generality.}
+	% \begin{equation}\label{eqn.quasi.lin}
+	% 	\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
+	% \end{equation}
+	% for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
+	% \bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors already for 
+	% the 
+	% flat Minkowski spacetime, that is the 
+	% system is only 
+	% weakly hyperbolic. Here, $ \bm{M}^k =
+	% \pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
 	
 	
-	Evolution equations \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} for the torsion fields have a 
-	conservative form (i.e. their differential 
-	terms are the 4-divergence) which is in particular convenient for developing of high-order 
-	methods 
-	for hyperbolic equations.
-	%\begin{subequations}\label{eqn.BD.alt0}
-	%	\begin{align}
-		%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-		%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-		%		\Hfin{\sA}{j}) & 
-		%		= \shift{i}\rho_\sA - \stress{\sA}{i},
-		%		\label{eqn.BD.alt0.D}
-		%		\\[2mm]
-		%		%		
-		%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-		%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-		%		\Efin{\sA}{j}) & 
-		%		= 0.
-		%		\label{eqn.BD.alt0.B}
-		%	\end{align}
-	%\end{subequations}
-	However, this flux-conservative form of equations has a flaw in the eigenvalues already for the 
-	flat spacetime with non-zero shift vector $ \shift{k} $. Namely, some characteristic velocities 
-	are 
-	always $ 0 $ despite the non-zero shift vector. The same issue is well known for the 
-	magnetohydrodynamics 
-	equations \cite{Powell1999}. From our experience with the non-relativistic equations 
-	of nonlinear electrodynamics of 
-	moving media \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that have 
-	the 
-	same structure as \eqref{eqn.3+1.summary}. 
-	Instead, the following non-conservative form does not have 
-	such a pathology
-	\begin{subequations}\label{eqn.BD.alt}
-		\begin{align}
-			\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-			\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-			\Hfin{\sA}{j}) 
-			-\shift{i}\pd{k} \Dfin{\sA}{k}
-			& 
-			= - \stress{\sA}{i},
-			\label{eqn.BD.alt.D}
-			\\[2mm]
-			%		
-			\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-			\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-			\Efin{\sA}{j}) 
-			-\shift{i}\pd{k} \Bfin{\sA}{k}
-			& 
-			= 0,
-			\label{eqn.BD.alt.B}
-		\end{align}
-	\end{subequations}
-	and which is obtained from \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} by turning the momentum $ 
-	\rho_\sA 
-	$ on the right hand-side of \eqref{eqn.3+1.D} into a differential term according to the 
-	momentum 
-	constraint $ 
-	\rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding formally a zero, $ 0 = 
-	\pd{k}\Bfin{\sA}{k} $, to 
-	\eqref{eqn.3+1.B}. These modifications are legitimate for smooth solutions thanks to involution 
-	constraints \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic 
-	velocities 
-	have the desired values equal to $ \sim\shift{k} $ or $ \sim \shift{k} \pm c $, if $ c $ is the 
-	light 
-	speed. 
-	However, this only allows to fix the issue with the eigenvalues, while some eigenvectors are 
-	still 
-	missing.
+	% Evolution equations \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} for the torsion
+	% fields have a conservative form (i.e. their differential terms are the
+	% 4-divergence) which is in particular convenient for developing of high-order
+	% methods for hyperbolic equations.
+	% %\begin{subequations}\label{eqn.BD.alt0}
+	% %	\begin{align}
+	% 	%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+	% 	%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+	% 	%		\Hfin{\sA}{j}) & 
+	% 	%		= \shift{i}\rho_\sA - \stress{\sA}{i},
+	% 	%		\label{eqn.BD.alt0.D}
+	% 	%		\\[2mm]
+	% 	%		%		
+	% 	%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+	% 	%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+	% 	%		\Efin{\sA}{j}) & 
+	% 	%		= 0.
+	% 	%		\label{eqn.BD.alt0.B}
+	% 	%	\end{align}
+	% %\end{subequations}
+	% However, this flux-conservative form of equations has a flaw in the
+	% eigenvalues already for the flat spacetime with non-zero shift vector $
+	% \shift{k} $. Namely, some characteristic velocities are always $ 0 $ despite
+	% the non-zero shift vector. The same issue is well known for the
+	% magnetohydrodynamics equations \cite{Powell1999}. From our experience with
+	% the non-relativistic equations of nonlinear electrodynamics of moving media
+	% \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that
+	% have the same structure as \eqref{eqn.3+1.summary}. Instead, the following
+	% non-conservative form does not have such a pathology
+	% \begin{subequations}\label{eqn.BD.alt}
+	% 	\begin{align}
+	% 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+	% 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+	% 		\Hfin{\sA}{j}) 
+	% 		-\shift{i}\pd{k} \Dfin{\sA}{k}
+	% 		& 
+	% 		= - \stress{\sA}{i},
+	% 		\label{eqn.BD.alt.D}
+	% 		\\[2mm]
+	% 		%		
+	% 		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+	% 		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+	% 		\Efin{\sA}{j}) 
+	% 		-\shift{i}\pd{k} \Bfin{\sA}{k}
+	% 		& 
+	% 		= 0,
+	% 		\label{eqn.BD.alt.B}
+	% 	\end{align}
+	% \end{subequations}
+	% and which is obtained from \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} by
+	% turning the momentum $ \rho_\sA $ on the right hand-side of
+	% \eqref{eqn.3+1.D} into a differential term according to the momentum
+	% constraint $ \rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding formally a zero, $
+	% 0 = \pd{k}\Bfin{\sA}{k} $, to \eqref{eqn.3+1.B}. These modifications are
+	% legitimate for smooth solutions thanks to involution constraints
+	% \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic
+	% velocities have the desired values equal to $ \sim\shift{k} $ or $ \sim
+	% \shift{k} \pm c $, if $ c $ is the light speed. However, this only allows to
+	% fix the issue with the eigenvalues, while some eigenvectors are still
+	% missing.
 	
 	
 	
@@ -2510,13 +2498,13 @@ BCOR5mm, % Binding correction
 		\begin{align}
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
 			&
-			- \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
-			- \pd{\sA} a_{\sB} = \text{l.o.t.}
+			- \alpha \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
+			- \alpha \pd{\sA} a_{\sB} = \text{l.o.t.}
 			\\[2mm]
 			\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
 			&
-			+ \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
-			+ \pd{\sA} \omega_{\sB} = \text{l.o.t.}
+			+ \alpha \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
+			+ \alpha \pd{\sA} \omega_{\sB} = \text{l.o.t.}
 			\label{eqn.KN.pde.N}
 		\end{align}
 	\end{subequations}
@@ -2537,9 +2525,9 @@ BCOR5mm, % Binding correction
 	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge conditions on $a_\sA$ and $\omega_\sA$:
 	\begin{subequations}\label{eqn.aw.pde}
 		\begin{align}
-			\pd{\indalg{0}} a_\sA - \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
+			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
 			\\[2mm]
-			\pd{\indalg{0}} \omega_\sA + \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
+			\pd{\indalg{0}} \omega_\sA + \alpha \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
 		\end{align}
 	\end{subequations}
 	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric hyperbolic. To see this, one needs to order the entries of $\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way $\{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
