@@ -1,0 +1,3658 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Arsclassica Article
+% LaTeX Template
+% Version 1.1 (1/8/17)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Lorenzo Pantieri (http://www.lorenzopantieri.net) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[
+10pt, % Main document font size
+a4paper, % Paper type, use 'letterpaper' for US Letter paper
+oneside, % One page layout (no page indentation)
+%twoside, % Two page layout (page indentation for binding and different headers)
+twocolumn,
+headinclude,footinclude, % Extra spacing for the header and footer
+BCOR5mm, % Binding correction
+]{scrartcl}
+
+\input{structure.tex} % Include the structure.tex file which specified the document structure and 
+%layout
+
+\usepackage[hmarginratio=1:1,top=25mm,left=17mm,columnsep=20pt]{geometry}
+\usepackage{relsize} % e.g. used for \mathsmaller
+\usepackage{bm}
+%\usepackage{showlabels}
+
+\newcommand{\ERWBB}{{ERWBB}}
+\newcommand{\xx}{\mathbf{x}}
+\newcommand{\XX}{\mathbf{X}}
+\newcommand{\XXX}{\mathbb{X}}
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\Id}{\mathbf{I}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\CC}{\mathbf{C}}
+\newcommand{\mm}{\mathbf{m}}
+\newcommand{\vv}{\mathbf{v}}
+\newcommand{\MM}{\mathbf{M}}
+\newcommand{\OBig}{\mathcal{O}}
+\newcommand{\FF}{\mathbf{F}}
+\renewcommand{\AA}{\mathbf{A}}
+\newcommand{\BB}{\mathbf{B}}
+\newcommand{\qq}{\mathbf{q}}
+\newcommand{\QQ}{\mathbf{Q}}
+\newcommand{\LL}{\mathbf{L}}
+\newcommand{\Lie}{\mathfrak{L}}
+
+\newcommand{\MP}[1]{{\color{Green}MP:\ \ #1}}
+\newcommand{\IP}[1]{{\color{Red}[IP:\ \ #1]}}
+\newcommand{\MH}[1]{{\color{Red}MH:\ \ #1}}
+
+\newcommand{\sA}{\mathsmaller A}
+\newcommand{\sB}{\mathsmaller B}
+\newcommand{\sC}{\mathsmaller C}
+\newcommand{\sD}{\mathsmaller D}
+\newcommand{\sE}{\mathsmaller E}
+\newcommand{\sM}{\mathsmaller M}
+\newcommand{\sN}{\mathsmaller N}
+\newcommand{\sL}{\mathsmaller L}
+\newcommand{\sr}{\mathsmaller r}
+
+\newcommand{\pd}[1]{\partial_{#1}}
+\newcommand{\F}[2]{F^{\ #1}_{\mathsmaller#2}}
+\newcommand{\hatF}[2]{\hat{F}^{\ #1}_{\mathsmaller#2}}
+\newcommand{\A}[2]{A^{\mathsmaller#1}_{\ #2}}
+\newcommand{\mg}[1]{\kappa_{#1}}			% Minkowski metric
+\newcommand{\MG}[1]{\kappa^{#1}}			% inverse Minkowski metric
+
+\newcommand{\pdd}[1]{{\bm{\partial}_{#1}}}
+\newcommand{\dx}[1]{{\bm{\mathrm{d}x}^{#1}}}
+
+
+\newcommand{\tetrsymbol}{h}
+\newcommand{\itetrsymbol}{\eta}
+\newcommand{\itetr}[2]{\itetrsymbol^{#1}_{\phantom{#1}#2}}
+\newcommand{\tetr}[2]{\tetrsymbol^{#1}_{\phantom{#1}#2}}
+\newcommand{\stress}[2]{s_{\ #1}^{#2}}
+\newcommand{\stressalt}[2]{\hat{s}_{\ #1}^{#2}}
+\newcommand{\detTetr}{\tetrsymbol}
+\newcommand{\rtetr}[2]{h^{#1}_{\mathsmaller{(r)} #2}}
+\newcommand{\spin}[2]{\omega^{#1}_{\phantom{#1}#2}}
+\newcommand{\Lor}[2]{\Lambda^{#1'}_{\phantom{#1}#2}}
+\newcommand{\iLor}[2]{\Lambda^{#1}_{\phantom{#1}#2'}}
+\newcommand{\cobas}[1]{\bm{\tetrsymbol}^{#1}}
+\newcommand{\bas}[1]{\bm{\itetrsymbol}_{#1}}
+
+%\newcommand{\D}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
+\newcommand{\D}[1]{\partial_{#1}} % Fock-Ivanencko cov derivative
+\newcommand{\DW}[1]{\mathcal{D}_{#1}} % Fock-Ivanencko cov derivative
+\newcommand{\Tors}[2]{T^{#1}_{\phantom{#1}#2}}
+\newcommand{\Supp}[2]{S_{#1}^{\phantom{a}#2}}	%supepotential
+\newcommand{\Torsl}[1]{T_{#1}}
+\newcommand{\ET}[2]{E^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\ETmix}[2]{E^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\Dm}[2]{D_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\aD}[2]{\mathcal{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
+\newcommand{\Dfin}[2]{\mathtt{D}_{\phantom{#2}#1}^{#2}}	%Torsion decomposition, analog of 
+\newcommand{\Hfin}[2]{\mathtt{H}_{#2#1}}	%Torsion decomposition, analog of 
+\newcommand{\Hfinmix}[2]{\mathtt{H}^{#2}_{\phantom{#2}#1}}	%Torsion decomposition, analog of 
+\newcommand{\Hfinnmix}[2]{\hat{\mathtt{H}}^{#2}_{\ #1}}	%Torsion decomposition, analog of 
+\newcommand{\Efin}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+\newcommand{\Ufin}{\mathtt{U}}
+\newcommand{\Hfinn}[2]{\hat{\mathtt{H}}_{{#2}{#1}}}	%Torsion decomposition, analog of 
+\newcommand{\Efinn}[2]{\hat{\mathtt{E}}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Kbuch}[2]{\mathtt{K}_{{#1}{#2}}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuch}[2]{\mathtt{N}_{#1}^{\ \,#2}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuchdown}[2]{\mathtt{N}_{#1#2}}	%Torsion decomposition, analog of 
+\newcommand{\Kbuchmix}[2]{\mathtt{K}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
+\newcommand{\Nbuchmix}[2]{\mathtt{N}^{#1}_{\ #2}}	%Torsion decomposition, analog of 
+%%%Electric 
+%field
+\newcommand{\BT}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\BTmix}[2]{B^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\Bmmix}[2]{B^{#1}_{#2}}	%Torsion decomposition, analog of Electric field
+\newcommand{\Bm}[2]{B^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\aB}[2]{\mathcal{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\Bfin}[2]{\mathtt{B}^{#1#2}}	%Torsion decomposition, analog of Magnetic field
+\newcommand{\Bfinmix}[2]{\mathtt{B}^{#1}_{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+\newcommand{\Bfinmixx}[2]{\mathtt{B}_{#1}^{\phantom{#1}#2}}	%Torsion decomposition, analog of 
+%Magnetic field
+%\newcommand{\aBmix}[2]{\mathcal{B}^{#1}_{#2}}
+\newcommand{\hT}[2]{H_{#1#2}}	%dual to B
+\newcommand{\W}[2]{\mathcal{W}^{#1}_{\phantom{#1}#2}}
+\newcommand{\w}[2]{W^{#1}_{\phantom{#1}#2}}
+\newcommand{\FI}{Fock-Ivanenko}
+\newcommand{\We}{Weitzenb\"ock}
+%\newcommand{\Lag}{\mathcal{L}}	% Lagrangian which depends on ordinary derivatives
+\newcommand{\Lag}{\Lambda}	% Lagrangian which depends on ordinary derivatives
+\newcommand{\Lagcov}{\pounds}% Lagrangian which depends on gauge covariant derivatives
+\newcommand{\Laghodge}{L}% Lagrangian which depends on the Hodge dual of the torsion
+\newcommand{\Lagtors}{\mathfrak{L}}% Lagrangian which depends on torsion
+\newcommand{\LagBE}{\mathcal{L}}% Lagrangian which depends on the B and E fields
+\newcommand{\Um}{U}% Final spacetime potetnial
+\newcommand{\aU}{\mathcal{U}}% potential for 3+1
+\newcommand{\veps}{\varepsilon}
+\newcommand{\EM}[2]{\Sigma^{#1}_{\phantom{#1}#2}}
+\newcommand{\EMmat}[2]{\sigma^{#1}_{\ \,#2}}
+\newcommand{\EMgrav}[2]{t^{#1}_{\phantom{#1}#2}}
+\newcommand{\LCsymb}{\bm{\in}}    % Levi-Civita symbol (tensor-density)
+\newcommand{\LCtens}{\varepsilon} % Levi-Civita ordinary tensor
+\newcommand{\rhs}[1]{f_{#1}}
+\newcommand{\mat}[1]{\prescript{\text{(m)}}{}{\hspace{-0.1cm}#1}}
+\newcommand{\gra}[1]{\prescript{\text{(g)}}{}{\hspace{-0.1cm}#1}}
+
+\newcommand{\tegr}{TEGR}
+\newcommand{\HDT}[1]{\accentset{\star}{T}^{#1}}
+\newcommand{\HDmix}{\accentset{\star}{T}}
+\newcommand{\KD}[2]{\delta^{#1}_{\ #2}}
+\newcommand{\NC}[2]{J^{#2}_{\phantom{#2}#1}}
+\newcommand{\nc}[2]{j^{\phantom{#1}#2}_{#1}}
+\newcommand{\indalg}[1]{\hat{\mathsmaller{#1}}}
+\newcommand{\aE}[2]{\mathtt{E}^{#1}_{\phantom{#1}#2}}
+\newcommand{\aH}[2]{\mathtt{H}_{#1#2}}
+
+\newcommand{\TorsConj}[2]{\mathbb{T}_{#1}^{\phantom{#1}#2}}
+\newcommand{\HTConj}[1]{\accentset{\star}{\mathbb{T}}_{#1}}
+\newcommand{\Dbb}[2]{\mathbb{D}_{#1}^{\phantom{#1}#2}}
+\newcommand{\Hbb}[2]{\mathbb{H}_{#1#2}}
+\newcommand{\lapse}{\alpha}
+\newcommand{\shift}[1]{\beta^{#1}}
+\newcommand{\Tscal}{\mathcal{T}}		% torsion scalar
+\newcommand{\projector}[2]{\Delta^{#1}_{\ #2}}
+\newcommand{\Hscal}{\mathcal{H}}		% torsion scalar
+
+
+\newcommand{\ho}[1]{\textcolor{magenta}{HO: #1}}
+
+\hyphenation{Fortran hy-phen-ation} % Specify custom hyphenation points in 
+%words with dashes where 
+%you would like hyphenation to occur, or alternatively, don't put any dashes in a word to stop 
+%hyphenation altogether
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	TITLE AND AUTHOR(S)
+%----------------------------------------------------------------------------------------
+
+\title{\large\normalfont\spacedallcaps{
+		First-order 
+		hyperbolic 
+		formulation of the \\
+		%pure tetrad 
+		teleparallel gravity theory}} % The article 
+%title
+
+%\subtitle{Subtitle} % Uncomment to display a subtitle
+
+\author{\normalsize\textsc{Ilya Peshkov}$^{*,1}$,\ 
+	\normalsize\textsc{Héctor Olivares}$^{2,3}$
+	\& 
+	\normalsize\textsc{Evgeniy Romenski}$^{4}$
+	%\normalsize\textsc{Michael Dumbser}$^{1}$ \ldots
+} % The article author(s) - author affiliations 
+%need to be 
+%specified in the 
+%AUTHOR AFFILIATIONS block
+
+\date{\small\today} % An optional date to appear under the author(s)
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+	
+	%----------------------------------------------------------------------------------------
+	%	HEADERS
+	%----------------------------------------------------------------------------------------
+	
+	\renewcommand{\sectionmark}[1]{\markright{\spacedlowsmallcaps{#1}}} % The header for all pages 
+	%(oneside) or for even pages (twoside)
+	%\renewcommand{\subsectionmark}[1]{\markright{\thesubsection~#1}} % Uncomment when using the 
+	%%twoside option - this modifies the header on odd pages
+	\lehead{\mbox{\llap{\small\thepage\kern1em\color{halfgray} 
+				\vline}\color{halfgray}\hspace{0.5em}\rightmark\hfil}} % The header style
+	
+	\pagestyle{scrheadings} % Enable the headers specified in this block
+	
+	%----------------------------------------------------------------------------------------
+	%	TABLE OF CONTENTS & LISTS OF FIGURES AND TABLES
+	%----------------------------------------------------------------------------------------
+	
+	\maketitle % Print the title/author/date block
+	
+	\setcounter{tocdepth}{2} % Set the depth of the table of contents to show sections and 
+	%subsections 
+	%only
+	
+	%\tableofcontents % Print the table of contents
+	
+	% \listoffigures % Print the list of figures
+	
+	% \listoftables % Print the list of tables
+	
+	%----------------------------------------------------------------------------------------
+	%	ABSTRACT
+	%----------------------------------------------------------------------------------------
+	
+	\section*{Abstract} % This section will not appear in the table of contents due to the star 
+	% (\section*)
+	\noindent
+	\textit{
+	Driven by the need for numerical solutions to the Einstein field equations,
+	we derive a first-order reduction of the second-order $ f(T) $-teleparallel
+	gravity equations in the pure-tetrad formulation (no spin connection).
+	We then restrict our attention to the teleparallel equivalent of general
+	relativity (TEGR) and propose a 3+1 decomposition of these equations
+	suitable for computational implementation. We demonstrate that in vacuum 	(matter-free spacetime) the obtained system of first-order equations is
+	equivalent to the tetrad reformulation of general relativity by Estabrook,
+	Robinson, Wahlquist, and Buchman and Bardeen, and therefore also admits a
+	symmetric hyperbolic formulation. However, the question of hyperbolicity of
+	the 3+1 TEGR equations for arbitrary spacetimes remains unaddressed so far.
+	Furthermore, the structure of the 3+1  equations resembles a lot of
+	similarities with the equations of relativistic electrodynamics and the
+	recently proposed dGREM tetrad-reformulation of general relativity.
+	}
+	%----------------------------------------------------------------------------------------
+	%	AUTHOR AFFILIATIONS
+	%----------------------------------------------------------------------------------------
+	%\let\thee\relax\footnotetext{* \textit{ilya.peshkov@unitn.it}}
+	%\let\thefootnote\relax\footnotetext{\textsuperscript{1} \textit{University of Trento, Trento, 
+			%Italy}}
+	%\let\thefootnote\relax\footnotetext{\textsuperscript{2} \textit{Sobolev Institute of 
+	%Mathematics, 
+			%Novosibirsk, Russia}}
+	%\let\thefootnote\relax\footnotetext{\textsuperscript{3} \textit{Novosibirsk State University, 
+			%Novosibirsk, Russia}}
+	\footnotetext{* Corresponding author, \textit{ilya.peshkov@unitn.it}}
+	\footnotetext{\textsuperscript{1} \textit{Department of Civil, Environmental and Mechanical 
+			Engineering, University of Trento, Via
+			Mesiano 77, 38123, Trento, 
+			Italy}}
+	\footnotetext{\textsuperscript{2} \textit{
+			Department of Astrophysics/IMAPP, Radboud University Nijmegen, P.O. Box 9010, NL-6500 
+			GL Nijmegen, 
+			Netherlands}}
+	\footnotetext{\textsuperscript{3} \textit{
+			Center for Research and Development in Mathematics and Applications (CIDMA), 
+			Department of Mathematics, University of Aveiro, 3810-193 Aveiro, Portugal}}
+	\footnotetext{\textsuperscript{4} \textit{Sobolev Institute of Mathematics, Novosibirsk, 
+	Russia}}
+	%\footnotetext{\textsuperscript{4} \textit{Novosibirsk State University, 
+			%		Novosibirsk, Russia}}
+	\renewcommand{\thefootnote}{\arabic{footnote}}
+	%----------------------------------------------------------------------------------------
+	
+	%\newpage % Start the article content on the second page, remove this if you have a longer 
+	%%abstract 
+	%that goes onto the second page
+	
+	% PARAGRAPH OPTIONS:
+	\setlength\parindent{10pt} % sets indent to zero
+	\setlength{\parskip}{5pt} % changes vertical space between paragraphs
+	% PARAGRAPH OPTIONS.
+	
+	%----------------------------------------------------------------------------------------
+	%	INTRODUCTION
+	%----------------------------------------------------------------------------------------
+	
+	\section{Introduction}
+	
+	The class of teleparallel gravity theories is one of the alternative
+	reformulations of Einstein's general relativity (GR)
+	\cite{Hehl1976,AldrovandiPereiraBook,Cai2016}. While for GR gravitational
+	interaction is a manifestation of the curvature of a torsion-free spacetime,
+	for the teleparallel framework it is realized as a curvature-free linear
+	connection with non-zero torsion (or/and non-zero nonmetricity which is not
+	considered in this paper, e.g. \cite{Adak2006}). Although different variables can be taken as the
+	main dynamical fields in GR (tetrad fields, soldering forms, etc.), the most
+	extended choice is the metric tensor accompanied by the Levi-Civita
+	connection. In contrast, for teleparallel theory the metric is trivial and
+	the main dynamical field is usually the space-time tetrad (or frame) field.
+	%\ho{I changed the first paragraph. Using the metric and Levi-Civita connection
+		%as main dynamical fields is not a feature of GR, but just the result of expressing
+		%it in a coordinate basis.
+		%There are infinite possible connections for GR, some with trivial metric or trivial
+		%tetrad fields, but the features that really define GR are interpreting gravity as curvature
+		%and making the torsion zero.}
+	
+	Despite the teleparallel geometries are considered as an alternative
+	framework\footnote{Yet, it is guaranteed that simplest realizations of teleparallel geometries, such as TEGR for example, produce all the
+	classical results of general relativity
+	\cite{AldrovandiPereiraBook,Bahamonde2021a}.} to Einstein's gravity with
+	several promising features missing in GR, e.g. see the discussion in
+	\cite[Sec.18]{AldrovandiPereiraBook} and \cite{Cai2016}, in this paper, we
+	are interested in the teleparallel gravity only from a pure computational
+	viewpoint and our goal is to use its mathematical structure to develop an
+	efficient computational framework for numerical relativity. Thus, the main
+	goal of this paper is to derive a 3+1-split of the so-called
+	\emph{teleparallel equivalent of general relativity} (TEGR)
+	\cite{AldrovandiPereiraBook,Krssak2019} which is known to pass all standard
+	tests of GR. Up to now, not many attempts have been done to obtain a $ 3+1
+	$ formulation of the TEGR equations, e.g. \cite{Capozziello2021,Pati2022}. A
+	Hamiltonian formulation of TEGR was used in \cite{Pati2022} to obtain
+	evolution equations for the tetrads and conjugate momenta. In
+	\cite{Capozziello2021}, the spatial tetrad and their first order Lie
+	derivative along the normal vector to the foliations were chosen as the
+	state variables. Here, we explore another line of deriving 3+1
+	formulation of TEGR which is rather aligned with the relativistic
+	electrodynamics. As the result, the obtained equations are complitelly
+	different from the mentioned papers.
+
+	A second objective of this paper is to develop a 3+1 formulation entirely
+	independent of the Einstein's theory, i.e. our development avoids
+	foundational GR tools like the Levi-Civita connection and the
+	Hilbert-Einstein action. Instead, we start from an arbitrary Lagrangian
+	density which is a function of the torsion scalar and obtain corresponding
+	Euler-Lagrange equations coupled with some constraints (differential
+	identities). The obtained equations are then reduced to the first-order form
+	and the 3+1 decomposition is performed. However, despite this independent
+	route, we demonstrate that the resulting 3+1 equations are equivalent to
+	tetrad reformulations of the GR such as the one by
+	Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
+	\cite{Buchman2003} (the \ERWBB\ formulation for brevity), and recent dGREM formulation of GR \cite{Olivares2022}. 
+	
+	From the numerical view point, any 3+1 formulation has to have the
+	well-posed initial value problem (i.e. a solution exists, the solution is
+	unique and changes continuously with changes in the initial data) in order
+	to compute stable evolution of the numerical solution. In other words, the
+	system of governing equations has to be hyperbolic\footnote{Note that in the
+	numerical relativity the term ``strong hyperbolicity'' is used emphasizing
+	that not only eigenvalues must be real but that the full basis of
+	eigenvectors must exist}. Therefore, the third objective of the paper is to
+	test if the proposed 3+1 formulation of TEGR is hyperbolic. As is the
+	case with other first-order reductions of the Einstein equations
+	\cite{Baumgarte2003a}, the question of hyperbolicity of 3+1 TEGR
+	equations considered here is not trivial and depends on the delicate use of
+	multiple involution constraints (stationary identities), e.g. see
+	\cite{FO-CCZ4}. In particular, for a vacuum space-time, we have found that
+	the proposed 3+1 TEGR equations (if written in the tetrad frame) are
+	equivalent to ERWBB \cite{Estabrook1997,Buchman2003} which is known to by
+	symmetric hyperbolic for a certain choice of gauge conditions.
+	
+	We note that we do not consider the most general TEGR formulation as for
+	example presented in \cite{AldrovandiPereiraBook}. The linear connection of
+	TEGR is the sum of the two parts: the \We\ connection (which is the
+	historical connection of TEGR) and the spin connection (parametrized by
+	Lorentz matrices) representing the inertial content of the tetrad. The spin
+	connection is necessary to separate the inertial effect of a chosen frame
+	from its gravity content as well as for establishing the full covariance of
+	the theory \cite{AldrovandiPereiraBook,Golovnev2017a,Krssak2019}, i.e. with
+	respect to both the diffeomorphisms of the spacetime and the Lorentz
+	transformations of tangent spaces. However, being important from the
+	theoretical viewpoint and for extensions of teleparallel gravity
+	\cite{Golovnev2017a}, the spin connection of TEGR introduces extra degrees
+	of freedom which do not have evolution equations and therefore can be
+	treated as parameters (not state variables) of the theory. Since we are
+	interested in developing a computational framework for GR, the consideration
+	of this paper is, therefore, restricted to the frames for which the spin
+	connection is set to zero globally (\We\ gauge). We thus consider TEGR in
+	its historical, or \emph{pure tetrad}, formulation \cite{Golovnev2017a}.
+	
+	
+	Interestingly that another motivation to study the mathematical structure of
+	the teleparallel gravity is coming from the continuum fluid and solid
+	mechanics. In particular, the role of the torsion to describe defects in
+	solids has been known for decades now, e.g. see
+	\cite{VolovichKatanaev1992,Hehl2007,Yavari2012,NguyenLeMarrec2022,Bohmer2020,Lychev2022}.
+	Moreover, the material tetrad field (called also the distortion field in our
+	papers) is the key field for the unified hyperbolic model of fluid and solid
+	mechanics \cite{HPR2016,DPRZ2016}. In such a theory, the concept of torsion
+	can be connected with the inertial effect of small-scale eddies in turbulent
+	flows and with dispersion effects in heterogeneous solids (e.g. acoustic
+	metamaterials) as discussed in \cite{Torsion2019}. Interestingly, that the $
+	3+1 $ equations we obtain in this paper resemble very closely the structure
+	of the equations for continuum fluid and solid mechanics with torsion
+	\cite{Torsion2019}. Furthermore, the unified theory of fluids and solids has
+	been also extended in the general relativistic settings \cite{PTRSA2020} and
+	therefore, as being a tetrad theory by its nature, it can be
+	straightforwardly coupled with the 3+1 TEGR equations discussed in this
+	paper.
+	
+	\section{Definitions}
+	
+	\subsection{Non-holonomic frame field}
+	
+	Throughout this paper, we use the following index convention. Greek letters $ \alpha, 
+	\beta\,\gamma$, 
+	$\ldots, \lambda,\mu,\nu,... 
+	=0,1,2,3
+	$ are used to index quantities related to the spacetime manifold, the Latin letters from the 
+	beginning of the alphabet $ a,b,c,... 
+	=\hat{0},\hat{1},\hat{2},\hat{3}$ are used to index quantities related to the tangent Minkowski 
+	space.
+	In the 3+1 split, the letters $ i,j,k,\ldots =1,2,3$ from the middle of the Latin alphabet 
+	are 
+	used 
+	to denote spatial components of the spacetime tensors, and the upper case Latin letters $ 
+	\sA,\sB,\sC,\ldots=\indalg{1},\indalg{2},\indalg{3} $ index spatial components of the tensors 
+	written in a chosen frame of the 
+	tangent space.
+	
+	
+	
+	We shall consider a spacetime manifold $ M $ equipped with a general Riemannian metric $ 
+	g_{\mu\nu} 
+	$ and a coordinate system $ x^\mu $. At each 
+	point of 
+	the spacetime, there is the tangent space $ T_{x}M $ spanned by the frame (or tetrad) $ 
+	\pdd{\mu} $ which is the standard coordinate basis. 
+	There is also the cotangent space $ T_x^*M $ spanned by the coframe field $ \dx{\mu} $. 
+	Recall that the frames $ \pdd{\mu} $ and $ \dx{\mu} $ are \emph{holonomic} 
+	\cite{AldrovandiPereiraBook}.
+	
+	%\ho{I have always seen the tangent space $ T_{x}M $ spanned by the basis vectors
+		%$ \pdd{\mu} $ and the cotangent space $ T_x^*M $ spanned by the basis 1-forms $ \dx{\mu} $.
+		%However, I am not sure if it makes a difference, since I don't recall the definition of 
+		%tangent
+		%and co-tangent spaces. Also, in the literature, `tetrad' usually implies an orthonormal
+		%basis, so it may cause some confusion to use it here for a coordinate frame.}
+	
+	In addition to $ T_{x}M $, we assume that at each point of $ M $, there is a soldered tangent 
+	space 
+	which is a Minkowski space spanned by an orthonormal frame (tetrad) $ \bas{a} $ and equipped 
+	with 
+	the 
+	Minkowski metric 
+	\begin{equation}\label{eqn.mg}
+		\mg{ab} = \text{diag}(-1,1,1,1).
+	\end{equation}
+	Similarly, there is the 
+	corresponding cotangent space spanned by the co-frames $ \cobas{a} $. It is assumed 
+	that the frames $ \cobas{a} $ and $ \bas{a} $ are independent of the coordinates $ x^\mu $ and, 
+	therefore, are non-holonomic in general.
+	
+	The components of the non-holonomic frames $ \cobas{a} $ and $ \bas{a} $ in the holonomic 
+	frames $ \dx{\mu} $ and $ \pdd{\mu} $ are denoted by $ \tetr{a}{\mu} $ and $ \itetr{\mu}{a} $, 
+	i.e. 
+	\begin{equation}
+		\cobas{a} = \tetr{a}{\mu}\dx{\mu}, \qquad \text{or} \qquad \bas{a} = \itetr{\mu}{a}\pdd{\mu}
+	\end{equation}
+	with $ \tetr{a}{\mu} $ being the inverse of $ \itetr{\mu}{a} $, i.e.
+	\begin{equation}\label{eqn.inv.tetr}
+		\tetr{a}{\mu} \itetr{\mu}{b} = \KD{a}{b},
+		\qquad
+		\itetr{\nu}{a}\tetr{a}{\mu}  = \KD{\nu}{\mu},
+	\end{equation}
+	where $ \KD{a}{b} $ and $ \KD{\nu}{\mu} $ are the Kronecker deltas.
+	
+	The soldering of the spacetime and the tangent Minkowski space means that the metrics $ 
+	g_{\mu\nu} 
+	$ and $ \mg{ab} $ are related by  
+	\begin{equation}
+		g_{\mu\nu} = \mg{ab} \tetr{a}{\mu}\tetr{b}{\nu}.
+	\end{equation}
+	
+	%\ho{Using the notation $\eta$ for the transformation coefficients can be
+		%confusing, since in a lot of the literature $\eta_{\mu\nu}$ is used
+		%for the Minkowski metric (e.g. Misner-Thorne-Wheeler and Aldrovandi \& Pereira).}
+	
+	Note that 
+	\begin{equation}\label{eqn.det}
+		\detTetr := \det(\tetr{a}{\mu}) = \sqrt{-g},
+	\end{equation}
+	if $ g = \det(g_{\mu\nu}) $.
+	
+	\subsection{Observer's 4-velocity}
+	
+	Observer's 4-velocity is associated with the $ 0 $-\textit{th} vector of the tetrad basis 
+	\begin{equation}\label{eqn.4v}
+		u^\mu := \itetr{\mu}{\indalg{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu.
+	\end{equation}
+	Also, due to
+	\begin{equation}
+		u_\mu = g_{\mu\nu} u^\nu = \mg{ab}\tetr{a}{\mu}\tetr{b}{\nu}\itetr{\nu}{\indalg{0}} = 
+		\mg{a\indalg{0}}\tetr{a}{\mu} = -\tetr{\indalg{0}}{\mu},
+	\end{equation}\label{eqn.4v.cov}
+	the covariant components of the 4-velocity equal to entries of the $ 0 $-\textit{th} vector of 
+	the 
+	co-basis with the opposite sign
+	\begin{equation}
+		u_\mu = -\tetr{\indalg{0}}{\mu}.
+	\end{equation}
+	%
+	%Of course, we may need these velocities expressed in the frames themselves:
+	%\begin{subequations}\label{eqn.4v.Lagr}
+	%	\begin{gather}\label{eqn.4v.a}
+		%		u^a := u^\mu \tetr{a}{\mu} = \itetr{\mu}{\indalg{0}}\tetr{a}{\mu} = 
+		%\KD{a}{\indalg{0}} 
+		%= 
+		%		(1,0,0,0),
+		%		\\[2mm]
+		%		u_a := u_\mu \itetr{\mu}{a} =-\tetr{\indalg{0}}{\mu}\itetr{\mu}{a} 
+		%=-\KD{a}{\indalg{0}} 
+		%= 
+		%		(-1,0,0,0).\label{eqn.4v.b}
+		%	\end{gather}
+	%\end{subequations}
+	
+	
+	
+	
+	\subsection{Connection and torsion}
+	
+	Because we work in the framework of the pure-tetrad formulation of TEGR
+	(\We\ gauge), the linear connection is set to the pure \We\
+	connection\footnote{Note that we use a different convention on the
+	positioning of the lower indices of the \We\ connection $ \w{a}{\mu\nu} =
+	\pd{\mu}\tetr{a}{\nu} $ than in \cite{AldrovandiPereiraBook}. Precisely, the
+	derivative index goes first.}
+	\cite{AldrovandiPereiraBook,KleinertMultivalued}: 
+	\begin{equation}\label{eqn.We}
+		\w{a}{\mu\nu} := \pd{\mu}\tetr{a}{\nu}, 
+		\qquad
+		\text{or}
+		\qquad
+		\w{\lambda}{\mu\nu} := \itetr{\lambda}{a}\pd{\mu}\tetr{a}{\nu}.
+	\end{equation}
+	The torsion is then defined as
+	\begin{equation}\label{eqn.def.tors}
+		\Tors{a}{\mu\nu}:=\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} = 
+		\w{a}{\mu\nu} - \w{a}{\nu\mu}.
+	\end{equation}
+	
+	Note that while the spacetime derivatives commute
+	\begin{align}\label{eqn.commut.D}
+		\D{\mu}(\D{\nu} V^\lambda) - \D{\nu}(\D{\mu} V^\lambda) &= 0, 
+		\\[2mm] 
+		\D{\mu}(\D{\nu} V^a) - \D{\nu}(\D{\mu} V^a) &= 0,
+	\end{align}
+	their tangent space counterparts $\D{a} =  \itetr{\mu}{a}\D{\mu}$ do not (for non-vanishing 
+	torsion)
+	\begin{equation}
+		\D{b}(\D{c} V^a) - \D{c}(\D{b} V^a) = 
+		-\Tors{d}{b c}\D{d}V^a,
+	\end{equation}
+	where $  \Tors{d}{bc} = \Tors{d}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $.
+	
+	%\subsection{Reference tetrad}
+	%
+	%We also define the \textit{reference} tetrad $ \rtetr{a}{\mu}$ as the one for which 
+	%the torsion 
+	%vanishes
+	%\begin{equation}
+	%\Tors{a}{\mu\nu}(\rtetr{a}{\mu},\spin{a}{\mu c}) = 0
+	%\end{equation}
+	%which means that this tetrad does not contain any gravity effect but only inertia.
+	
+	
+	\subsection{Levi-Civita symbol (tensor density)}
+	
+	%This 
+	%\href{https://physics.stackexchange.com/questions/429434/lorentz-covariant-derivative-of-the-vielbein-determinant}{discussion}
+	% is very relevant.
+	
+	We shall also need the Levi-Civita symbol (tensor-density\footnote{We 
+		use the 
+		sign convention for the tensor density weight according to \cite{Ryder2009,Grinfeld2013}, 
+		i.e.
+		under a 
+		general 
+		coordinate change $ x^\mu \to x^{\mu'} $ the determinant $ \det(\tetr{a}{\mu}) = \detTetr $ 
+		transforms as $ \detTetr' = \det \left(\frac{\partial x^\mu}{\partial x^{\mu'}} \right)^W 
+		\cdot \detTetr $ with $ W=+1 $. Therefore, the tetrad's determinant $ \detTetr $ and the 
+		square root of the metric determinant $ \detTetr = \sqrt{-g} $ have weights $ +1 $, as well 
+		as 
+		the Lagrangian density in the action integral.} of weight $ +1 $)
+	\begin{equation}\label{eqn.LCsymbol.def}
+		\LCsymb^{\lambda\mu\nu\rho} = 
+		\left\{ 
+		\begin{array}{ll}
+			+1,	& \text{if \ }\lambda\mu\nu\rho \text{ is an even permutation of } 0123,\\[2mm]
+			-1,	& \text{if \ }\lambda\mu\nu\rho \text{ is an odd \ permutation of } 0123,\\[2mm]
+			\phantom{-}0,	& \text{otehrwise}.
+		\end{array}
+		\right.
+	\end{equation}
+	Its covariant components $ \LCsymb_{\lambda\mu\nu\rho} $ define a tensor density of weight $ -1 
+	$ 
+	with the reference value $ \LCsymb_{0123} = -1 $. One could define an absolute 
+	Levi-Civita 
+	contravariant $ \LCtens^{\lambda\mu\nu\rho} = h^{-1} \LCsymb^{\lambda\mu\nu\rho} $ 
+	and covariant $ \LCtens_{\lambda\mu\nu\rho} = h \LCsymb_{\lambda\mu\nu\rho} $ ordinary tensors  
+	but for our further considerations (see Sec.\,\ref{sec.PDEs}), it is important that 
+	the derivatives $ \D{\sigma}\LCsymb^{\lambda\mu\nu\rho} $ vanish:
+	\begin{equation}\label{eqn.diff.LCsymb}
+		\D{\sigma}\LCsymb^{\lambda\mu\nu\rho} = 0,
+	\end{equation}
+	whereas for $ \LCtens^{\lambda\mu\nu\rho} $ one has
+	\begin{multline}\label{eqn.diff.LeviCivita}
+		\D{\sigma}\LCtens^{\lambda\mu\nu\rho} = 
+		\pd{\sigma}(\detTetr^{-1}\LCsymb^{\lambda\mu\nu\rho}) = 
+		\LCsymb^{\lambda\mu\nu\rho}\pd{\sigma}\detTetr^{-1}   = \\[2mm] 
+		-\LCsymb^{\lambda\mu\nu\rho}\detTetr^{-1}\itetr{\eta}{a}\pd{\sigma}\tetr{a}{\eta} = 
+		-\LCtens^{\lambda\mu\nu\rho}\w{\eta}{\sigma\eta},
+	\end{multline}
+	which is not zero in general.
+	
+	
+	
+	%Similarly, we introduce the Levi-Civita tensor in the tangent Minkowski space
+	%\begin{equation}
+	%\LCtens^{abcd} =\frac{1}{ \sqrt{-\eta}}\LCsymb^{abcd} = \LCsymb^{abcd}, \qquad 
+	%\LCtens_{abcd} = 
+	%\sqrt{-\eta}\LCsymb_{abcd} = \LCsymb_{abcd}.
+	%\end{equation}
+	%
+	%It can be straightforwardly verified that the Levi-Civita tensors $ 
+	%\LCtens^{\lambda\mu\nu\rho} $ and 
+	%$ \LCtens^{abcd} $ are 
+	%related as
+	%\begin{equation}
+	%\LCtens^{abcd} = 
+	%\tetr{a}{\lambda}\tetr{b}{\mu}\tetr{c}{\nu}\tetr{d}{\rho}\LCtens^{\lambda\mu\nu\rho}.
+	%\end{equation}
+	
+	
+	
+	
+	\section{Variational formulation}
+	
+	We consider a general Lagrangian (scalar-density) $ 
+	\Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) $ 
+	of the teleparallel gravity which is a function of the frame field $ \tetr{a}{\mu} $ and its 
+	first 
+	gradients $ \w{a}{\lambda\nu} = \pd{\lambda}\tetr{a}{\nu} $. In what follows, we shall not 
+	explicitly split $ \Lag $ 
+	into the gravity (g) and matter (m) parts (unless it is explicitly mentioned otherwise), i.e. 
+	\begin{equation}\label{eqn.Lagr.split}
+		\Lag = \Lag^\text{(m)}(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\mu},\ldots) + 
+		\Lag^\text{(g)}(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) 
+	\end{equation}
+	but the 
+	derivation will be performed for the total unspecified Lagrangian $ \Lag $, so that in 
+	principle 
+	the derivation 
+	can be adopted for the extensions of the teleparallel gravity such as $ f(\Tscal) 
+	$-teleparallel 
+	gravity, 
+	where $ f(\Tscal) $ is some function of the torsion scalar $ \Tscal $, see 
+	Section\,\ref{sec.closure}. We shall utilize the explicit form 
+	of the TEGR Lagrangian only in the last part of the paper.
+	
+	Varying the action of the teleparallel gravity $ \int 
+	\Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\mu}) 
+	\bm{\dx{}}$ 
+	with respect to 
+	the tetrad, one obtains the Euler-Lagrange equations 
+	\begin{equation}\label{eqn.EL}
+		\frac{\delta \Lambda}{\delta\tetr{a}{\mu}} = \pd{\lambda}(\Lag_{\pd{\lambda}\tetr{a}{\mu}}) 
+		- 
+		\Lag_{\tetr{a}{\mu}} = 0,
+	\end{equation}
+	where $ \Lag_{\pd{\lambda}\tetr{a}{\mu}} = \frac{\partial 
+		\Lag}{\partial(\pd{\lambda}\tetr{a}{\mu})} $ and $ 
+	\Lag_{\tetr{a}{\mu}} = \frac{\partial \Lag}{\partial\tetr{a}{\mu}} $. Equations \eqref{eqn.EL} 
+	form a system of 16 \emph{second-order} partial differential equations for 
+	16 unknowns $ \tetr{a}{\mu} $. Our goal is to replace this second-order system by an equivalent 
+	but 
+	larger system of only first-order partial differential equations.
+	
+	\section{Equivalence to GR}
+	
+	Before writing system \eqref{eqn.EL} as a system of first-order equations let us first make a 
+	comment on the equivalence of the GR and TEGR formulations. 
+	
+	The Lagrangian density of TEGR (and its extensions) is formed from the torsion scalar $ \Tscal 
+	$, see \eqref{eqn.TEGR.Lagr}. As it is known, e.g. see \cite[Eq.(9.30)]{AldrovandiPereiraBook}, 
+	the 
+	torsion scalar can be written as
+	\begin{equation}\label{eqn.TR}
+		h \Tscal = -\sqrt{-g} R - \pd{\mu}(2 h \Tors{\nu}{\lambda\nu}g^{\lambda
+			\mu}),
+	\end{equation}
+	where $ R $ is the Ricci scalar and $ \Tors{\nu}{\lambda\mu} = \itetr{\nu}{a} 
+	\Tors{a}{\lambda\mu} 
+	$. In other words, the Lagrangians of TEGR and GR differ by the four-divergence term (surface 
+	term). The latter does not affect the Euler-Lagrange equations if there are no boundaries which 
+	is 
+	implied in this paper. 
+	Therefore, Euler-Lagrange equations of TEGR \eqref{eqn.EL} in vacuum is nothing else but the 
+	Euler-Lagrange 
+	equations of GR written in terms of the tetrads and hence, their physical solutions must be 
+	equivalent because the information about the physical interaction is contained in the 
+	Euler-Lagrange equations of a theory. What is different in GR and TEGR is the 
+	way one interprets the tetrads and their first derivatives, i.e. the way one defines the linear 
+	connection of the spacetime from the gradients of tetrads, e.g. torsion-free Levi-Civita 
+	connection 
+	of GR and curvature-free \We\ connection of TEGR. These different geometrical 
+	interpretations then define extra evolution equations (\emph{compatibility 
+	constraints/identities}, 
+	e.g. see \eqref{integr.HT}) 
+	that are merely consequences of the geometrical definitions but do not define the physics of 
+	the 
+	gravitational interaction. % and must be solved simultaneously with the Euler-Lagrange 
+	%equations. 
+	The critical point for the numerical relativity, though, is that these extra evolution 
+	equations 
+	must be solved simultaneously with the Euler-Lagrange equations and may affect the mathematical 
+	regularity (well-posedness of the Cauchy problem) of the resulting system. 
+	
+	%In particular, different 
+	%from the  it has 
+	%appeared that, thanks to changing the geometrical interpretation of the spacetime manifold, 
+	%the 
+	%governing 3+1
+	%TEGR equations presented in this paper have more regular mathematical structure expressed only 
+	%in 
+	%terms of div, grad, and curl differential operators, similar to
+	%the equations of electrodynamics of 
+	%moving media \cite{Obukhov2008,DPRZ2017,Hohmann2018a} and Yang-Mills gauge theories 
+	%\cite{RakotomananaBook}.
+	
+	%The mentioned theories usually have well posed Cauchy problem 
+	%
+	%Other tetrad formulations \cite{Buchman2003}
+	%\IP{needs to be finished...}
+	
+	
+	\section{First-order extension}\label{sec.PDEs}
+	
+	Our first goal is to replace second-order system \eqref{eqn.EL} by a larger but first-order 
+	system. 
+	This is achieved in this section.
+	
+	From now on, we shall treat the frame field $ \tetr{a}{\mu} $ and its 
+	gradients (the 
+	\We\ 
+	connection) $ 
+	\pd{\lambda}\tetr{a}{\mu} $ formally as independent variables and in what 
+	follows, we shall rewrite 
+	system 
+	of second-order PDEs \eqref{eqn.EL} as a larger system of first-order PDEs for the extended set 
+	of  
+	unknowns $ \{ \tetr{a}{\mu},\pd{\lambda}\tetr{a}{\mu} \} $, or actually, for their equivalents.
+	
+	In the setting of the teleparallel gravity, $ \Lag $ is not a function of a general combination 
+	of 
+	the gradients $ \pd{\lambda}\tetr{a}{\nu} $ but of their special combination, that is torsion. 
+	Yet, 
+	we shall employ not the torsion directly but its Hodge dual, i.e. we assume that
+	
+	\begin{equation}\label{eqn.Lagrangians}
+		\Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
+		\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}),
+	\end{equation}
+	where $ \HDT{a\mu\nu} $ is the Hodge dual to the 
+	torsion, i.e.
+	\begin{subequations}
+		\begin{align}\label{eqn.Hodge.def}
+			\HDT{a\mu\nu} &:= \frac{1}{2}\LCsymb^{\mu\nu\rho\sigma}\Tors{a}{\rho\sigma} = 
+			\LCsymb^{\mu\nu\rho\sigma}\D{\rho}\tetr{a}{\sigma}, \\[2mm] 
+			\Tors{a}{\mu\nu} &= 
+			-\frac{1}{2}\LCsymb_{\mu\nu\rho\sigma}\HDT{a\rho\sigma}.
+		\end{align}	
+	\end{subequations}
+	It is important to emphasize that we deliberately chose to define the Hodge dual using the 
+	Levi-Civita symbol $ 
+	\LCsymb^{\lambda\mu\nu\rho} $ and \emph{not} the Levi-Civita tensor $ 
+	\LCtens^{\lambda\mu\nu\rho} = 
+	\detTetr^{-1} 
+	\LCsymb^{\lambda\mu\nu\rho} $ that will be important later for 
+	the so-called integrability condition \eqref{integr.HT}.
+	Remark that according to definition \eqref{eqn.Hodge.def}, $ \HDT{a\mu\nu} $ is a  
+	\emph{tensor-density} of weight $ +1 $.
+	
+	
+	In terms of the Lagrangian density $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) 
+	$, using notations 
+	\eqref{eqn.Lagrangians} and definitions 
+	\eqref{eqn.Hodge.def}, we can instead
+	rewrite Euler-Lagrange equations \eqref{eqn.EL} as
+	\begin{equation}\label{eqn.EM.Hodge}
+		\D{\nu}(\LCsymb^{\mu\nu\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}}) 
+		=-\Laghodge_{\tetr{a}{\mu}}.
+	\end{equation}
+	
+	The latter has to be supplemented by the integrability 
+	condition
+	\begin{equation}\label{integr.HT}
+		\D{\nu}\HDT{a\mu\nu} = 0,
+	\end{equation}
+	%\IP{this is WRONG, it can't be zero!!! :( because $ 
+		%\D{\nu}\LCtens^{\mu\nu\sigma\rho} \neq 0 $, see 
+		%\eqref{eqn.diff.LeviCivita}, and thus, we still NEED the integrability 
+		%condition. Most likely it is 
+		%only possible to get it in the tangent Minkowski space!}
+	which is a trivial consequence of the definition of the  Hodge dual \eqref{eqn.Hodge.def}, i.e. 
+	of 
+	the 
+	commutativity property of the standard spacetime derivative $ \D{\mu} $, and the 
+	identity \eqref{eqn.diff.LCsymb}.
+	We note that if the Hodge dual was defined using the Levi-Civita tensor $ 
+	\LCtens^{\mu\nu\rho\sigma} $ instead of the Levi-Civita symbol, then one would 
+	have that $ \D{\mu}\HDT{a\mu\nu} \neq 0 $.
+	
+	Another consequence of the commutative property of $ \pd{\mu} $ and the definition of the Hodge 
+	dual (based on the Levi-Civita symbol) is that the Noether energy-momentum 
+	current density
+	\begin{equation}\label{eqn.Noether.current}
+		\NC{a}{\mu} := \Laghodge_{\tetr{a}{\mu}}
+	\end{equation}
+	is conserved in the ordinary sense:
+	\begin{equation}\label{eqn.Noether.cons}
+		\D{\mu} \NC{a}{\mu} = 0.
+	\end{equation}
+	If  equations \eqref{eqn.EM.Hodge}, \eqref{integr.HT} and \eqref{eqn.Noether.cons} are 
+	accompanied 
+	with the 
+	torsion definition
+	\begin{subequations}
+		\begin{align}\label{eqn.tetr}
+			\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},
+			\qquad
+			%		\\[2mm]
+			%		\qquad
+			%		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &=-\frac12 
+			%		\LCsymb_{\mu\nu\rho\sigma} \HDT{a\rho\sigma},
+		\end{align}	
+	\end{subequations}
+	they form the following system of \emph{first-order} partial differential
+	equations (only first-order derivatives are involved)
+	\begin{subequations}\label{eqn.1st.order.TEGR}
+		\begin{align}	
+			\D{\nu}(\LCsymb^{\mu\nu\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}}) 
+			&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.TEGR0.EL}\\[2mm]
+			%		
+			\D{\nu}\HDT{a\mu\nu} & = 0,\label{eqn.TEGR0.integr}\\[2mm]
+			%		
+			\D{\mu}\Laghodge_{\tetr{a}{\mu}} & = 0,\label{eqn.TEGR0.enermomen}\\[2mm]
+			%		
+			\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= \Tors{a}{\mu\nu},\label{eqn.TEGR0.tetrad}
+		\end{align}
+	\end{subequations}
+	for the unknowns $ \{\tetr{a}{\mu},\HDT{a\mu\nu}\} $.
+	
+	This system forms a base on which we shall build our 3+1-split of TEGR in 
+	Sections\,\ref{sec.31.prep} and \ref{sec.31}.
+	
+	
+	
+	
+	
+	%Therefore, the first-order form of the teleparallel gravity field equations to be written in 
+	%the 
+	%3+1 form  
+	%is
+	%\begin{subequations}\label{eqn.1st.order.TEGR}
+	%	\begin{empheq}[box={\mycreambox[2pt][2pt]}]{align}
+		%		\D{\nu}(\LCsymb^{\mu\nu\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}}) 
+		%		&=-\Laghodge_{\tetr{a}{\mu}},\label{eqn.1st.order.EL}\\[2mm]
+		%%		
+		%		\D{\nu}\HDT{a\mu\nu} & = 0,\label{eqn.1st.order.integr}\\[2mm]
+		%%		
+		%			\pd{\mu}\left( 
+		%		\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}} - 2 
+		%\HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}} 
+		%		+ 
+		%		(\HDT{a\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}} - \Laghodge) \delta^\mu_{\ \nu}
+		%		\right) & = 0,\label{eqn.1st.order.enermomen}\\[2mm]
+		%%		
+		%		\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu} &= 
+		%\Tors{a}{\mu\nu}.\label{eqn.1st.order.tetrad}
+		%	\end{empheq}
+	%\end{subequations}
+	
+	\section{Energy-momentum balance laws}
+	
+	Any conservation law written as a  4-\emph{ordinary} divergence is a
+	true conservation law, meaning that it yields a time-conserved 
+	``charge'' \cite{AldrovandiPereiraBook}. Hence, the Noether current $ \NC{a}{\mu} 
+	=\Laghodge_{\tetr{a}{\mu}}$ is a conserved charge in the ordinary sense, see 
+	\eqref{eqn.Noether.cons}, \eqref{eqn.TEGR0.enermomen}. It expresses the conservation of the 
+	total\footnote{The ``total'' here 
+		means the gravitational + matter/electromagnetic energy-momentum current, i.e. $ 
+		\NC{\mu}{a} = \Laghodge^\text{(g)}_{\tetr{a}{\mu}} + \Laghodge^\text{(m)}_{\tetr{a}{\mu}} 
+		$.} 
+	energy-momentum current density. 
+	
+	However, its spacetime counterpart 
+	\begin{equation}\label{eqn.stress}
+		\EMmat{\mu}{\nu}:=\tetr{a}{\nu} L_{\tetr{a}{\mu}},
+	\end{equation}
+	which can be called the total energy-momentum tensor density, does not
+	conserved in the ordinary sense nor in the covariant one.
+	
+	Indeed, after contracting with $ \tetr{a}{\nu} $ and adding to it $ 0\equiv
+	\Laghodge_{\tetr{a}{\mu}}\pd{\mu} \tetr{a}{\nu} -
+	\Laghodge_{\tetr{a}{\mu}}\pd{\mu} \tetr{a}{\nu}  =
+	\Laghodge_{\tetr{a}{\mu}}\pd{\mu} \tetr{a}{\nu} - \Laghodge_{\tetr{a}{\mu}}
+	\tetr{a}{\lambda}\w{\lambda}{\mu\nu} $, Noether current conservation law
+	\eqref{eqn.Noether.cons} can be rewritten in a pure spacetime form:	
+	\begin{equation}\label{eqn.EM2}
+		\pd{\mu}\EMmat{\mu}{\nu} = \EMmat{\mu}{\lambda} 
+		\w{\lambda}{\mu\nu},
+	\end{equation}
+	which has a production term on the right hand-side and, therefore, $
+	\EMmat{\mu}{\nu} $ is not a conserved quantity in the ordinary sense.
+	Both forms \eqref{eqn.TEGR0.enermomen} and \eqref{eqn.EM2} will be put into a 3+1 form in Section \ref{sec.31}.
+
+	On the other hand, if 
+	\begin{subequations}
+		\begin{align}\label{eqn.cov.W}
+			\DW{\lambda} V^{\mu} &= \pd{\lambda} V^\mu + V^\rho \w{\mu}{\lambda\rho}, 
+			\\[2mm] 
+			\DW{\lambda} V_{\mu} &= \pd{\lambda} V_\mu - V_\rho \w{\rho}{\lambda\mu}
+		\end{align}
+	\end{subequations}
+	is the covariant derivative of the \We\ connection, and 
+	keeping in mind that $ \tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} $ is a tensor density of weight $ 
+	+1 
+	$, balance law \eqref{eqn.EM2} can be rewritten as a covariant divergence with a production term
+	\begin{equation*}\label{eqn.EM.cov}
+		\DW{\mu}\EMmat{\mu}{\nu} = -\EMmat{\mu}{\nu} \Tors{\rho}{\mu\rho},
+	\end{equation*}
+	and hence, $ \EMmat{\mu}{\nu} $ does not conserved also in the covariant sense.
+	
+	%In what follows, it is always implied that $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+	%\Laghodge^\text{(m)}(\tetr{a}{\mu},\HDT{a\mu\nu},\ldots) + 
+	%\Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu})$ and therefore, $ \EMmat{\mu}{\nu} = 
+	%%(\EMmat{\mu}{\nu})^\text{(m)} + (\EMmat{\mu}{\nu})^\text{(g)} 
+	%\mat{\EMmat{\mu}{\nu}} + \gra{\EMmat{\mu}{\nu}}$ with
+	%\begin{equation}\label{eqn.sigmas}
+	%	\mat{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(m)}_{\tetr{a}{\mu}},
+	%	\qquad
+	%	\gra{\EMmat{\mu}{\nu}} = \tetr{a}{\nu} L^\text{(g)}_{\tetr{a}{\mu}}.
+	%\end{equation}
+	
+	
+	%t can be shown by cumbersome but straightforward calculations that for the TEGR 
+	%Lagrangian\footnote{This is true 
+		%	also for the case when $ \Laghodge^\text{(g)}$ is a generic 
+		%	function of the torsion scalar $ \Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+		%f(\Tscal) 
+		%	$.} $ \Laghodge^\text{(g)} $ (quadratic form 
+	%in $ \HDT{a\mu\nu} $) the gravity part of $ \EMmat{\mu}{\nu} $ can be 
+	%expressed as
+	For later needs, the following expression of the energy momentum $ \EMmat{\mu}{\nu} =
+	\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}} $ is required
+	\begin{equation}\label{eqn.TEGR.vacuum}
+		\EMmat{\mu}{\nu} 
+		= 
+		2 \HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}} - 
+		(\HDT{a\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}} - \Laghodge ) 
+		\delta^\mu_{\ \nu}.
+	\end{equation}
+	which is valid for the TEGR Lagrangian discussed in Sec.\,\ref{sec.closure}. 
+	This formula will be used later in the 3+1-split and is analogous to
+	\cite[Eq.(10.13)]{AldrovandiPereiraBook}. 
+	
+	%Yet, an interesting ordinary conservation law can be obtained  (see 
+	%Appendix~\ref{app.sec.EM})
+	%\begin{equation}\label{eqn.EM3}
+	%	\pd{\mu}\left( 
+	%	\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}} - 2 \HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}} 
+	%+ 
+	%	(\HDT{a\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}} - \Laghodge) \delta^\mu_{\ \nu}
+	%	\right) = 0
+	%\end{equation}
+	%for the quantity
+	%\begin{equation}\label{eqn.EM4}
+	%	\EM{\mu}{\nu} := \EMmat{\mu}{\nu} + \EMgrav{\mu}{\nu},
+	%\end{equation}
+	%where 
+	%\begin{equation}\label{eqn.EM.mat.grav}	
+	%	\EMmat{\mu}{\nu}:=\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}}, 
+	%	\qquad 
+	%	\EMgrav{\mu}{\nu} := -2 \HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}} + 
+	%	(\HDT{a\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}} - \Laghodge) \delta^\mu_{\ \nu}.
+	%\end{equation}
+	%However, it can be shown, that the gravity part of $ \EM{\mu}{\nu} $, i.e. that which is 
+	%coming 
+	%from the TEGR Lagrangian $ \Laghodge^\text{(g)} $ (quadratic form in torsion\footnote{This is 
+	%true 
+		%also for the case when $ \Laghodge^\text{(g)}$ is a generic 
+		%	function of the torsion scalar $ \Laghodge^\text{(g)}(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+		%f(\Tscal) 
+		%	$.}) is 
+	%identically $ 0 $, i.e.
+	%\begin{equation}\label{eqn.TEGR.vacuum}
+	%	\tetr{a}{\nu} \Laghodge^\text{(g)}_{\tetr{a}{\mu}} = 
+	%	2 \HDT{a\lambda\mu}\Laghodge^\text{(g)}_{\HDT{a\lambda\nu}} - 
+	%	(\HDT{a\lambda\rho}\Laghodge^\text{(g)}_{\HDT{a\lambda\rho}} - \Laghodge^\text{(g)}) 
+	%	\delta^\mu_{\ \nu}.
+	%\end{equation}
+	%The later formula is analogous to equation (10.13) in \cite{AldrovandiPereiraBook}. 
+	%
+	%Therefore, the conservation law \eqref{eqn.EM3} makes sens only in the presence of matter, in 
+	%which 
+	%case it is nothing else
+	%but the conservation of the matter energy-momentum
+	%\begin{equation}\label{eqn.EM3.matter}
+	%	\pd{\mu}\left( 
+	%	\tetr{a}{\nu} L^\text{(m)}_{\tetr{a}{\mu}} - 2 
+	%	\HDT{a\lambda\mu}L^\text{(m)}_{\HDT{a\lambda\nu}} + 
+	%	(\HDT{a\lambda\rho}L^\text{(m)}_{\HDT{a\lambda\rho}} - L^\text{(m)}) \delta^\mu_{\ \nu}
+	%	\right) = 0,
+	%\end{equation}
+	%and it expresses interaction of the matter and gravity fields.
+	
+	
+	
+	\section{Preliminaries for the 3+1 split}\label{sec.31.prep}
+	
+	
+	
+	\subsection{Transformation of the torsion equations}\label{sec.transform.potential}
+	
+	
+	Before performing a 3+1-split \cite{Alcubierre2008} of system \eqref{eqn.1st.order.TEGR}, 
+	we 
+	need to do some preliminary transformations of every equation in \eqref{eqn.1st.order.TEGR}. 
+	
+	
+	Similar to electromagnetism, we introduce the ``electric'' and ``magnetic''
+	fields:
+	\begin{equation}
+		\ET{a}{\mu} := \Tors{a}{\mu\nu} u^\nu, \qquad  \BT{a}{\mu} := \HDT{a\mu\nu} u_\nu
+	\end{equation}
+	Note that $ \ET{a}{\mu} $ is a tensor, while $ \BT{a}{\mu}
+	$ is a tensor-density.
+	
+	It is known that for any skew-symmetric tensor, its Hodge dual, and a time-like vector $ u^\mu 
+	$ 
+	the following 
+	decompositions hold
+	\begin{subequations}\label{eqn.T.decompos}
+		\begin{align}
+			\HDT{a\mu\nu} &= u^\mu \BT{a}{\nu} - u^\nu \BT{a}{\mu} + 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
+			\ET{a}{\rho},\\[2mm]
+			\Tors{a}{\mu\nu} &= u_\mu \ET{a}{\nu} - u_\nu \ET{a}{\mu} - 
+			\LCsymb_{\mu\nu\lambda\rho}u^\lambda 
+			\BT{a}{\rho}.
+		\end{align}
+	\end{subequations}
+	
+	Furthermore, we assume that the Lagrangian density can be \textit{equivalently} expressed in 
+	different sets of variables, i.e. 
+	\begin{equation}\label{eqn.Lagrangians2}
+		\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
+		\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}).
+	\end{equation}
+	It then can be shown that the derivatives of these different representations of the Lagrangian 
+	are 
+	related as
+	\begin{subequations}
+		\begin{align}
+			\Laghodge_{\HDT{a\mu\nu}}u^\nu &= -\frac12\left( \LagBE_{\BT{a}{\mu}} +u_\mu 
+			\LagBE_{\BT{a}{\lambda}} u^\lambda \right), \label{eqn.1st.order.EL}
+			\\[2mm]
+			\Lagtors_{\Tors{a}{\mu\nu}}u_\nu &= -\frac12\left( \LagBE_{\ET{a}{\mu}} + u^\mu 
+			\LagBE_{\ET{a}{\lambda}} u_\lambda \right),
+		\end{align}
+	\end{subequations}
+	and hence, \eqref{eqn.TEGR0.EL} and \eqref{eqn.TEGR0.integr} 
+	can be written as (see Appendix~\eqref{app.sec.Deqn})
+	\begin{subequations}\label{eqn.tors.BE}
+		\begin{align}
+			\D{\nu}( u^\mu\LagBE_{\ET{a}{\nu}} - u^\nu \LagBE_{\ET{a}{\mu}} + 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda\LagBE_{\BT{a}{\rho}}) 
+			&= \NC{a}{\mu}\label{eqn.tors.BE.a} \\[2mm]
+			%		
+			\D{\nu}(u^\mu \BT{a}{\nu} - u^\nu\BT{a}{\mu} + 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda\ET{a}{\rho}) &= 0,
+		\end{align}
+	\end{subequations}
+	where the source $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ has yet to be developed.
+	
+	Let us now introduce a new potential $ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) $ as a 
+	partial 
+	Legendre transform of the Lagrangian $ \LagBE $
+	\begin{equation}\label{eqn.Legendre1}
+		\Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) := \ET{a}{\lambda}\LagBE_{\ET{a}{\lambda}} - 
+		\LagBE.
+	\end{equation}
+	By abusing a little bit notations for $ \BT{a}{\mu} $ (we shall use the same letter for $ 
+	\BT{a}{\mu} $ and $ -\Bm{a}{\mu} $, this is an intermediate change 
+	of variables and will not appear in the final formulation), we introduce the new state variables
+	\begin{equation}\label{eqn.Legendre2}
+		\Dm{a}{\mu} := \LagBE_{\ET{a}{\mu}}, \qquad \Bm{a}{\mu} := -\BT{a}{\mu}, \qquad 
+		\tetr{a}{\mu} := \tetr{a}{\mu}.
+	\end{equation}
+	Note 
+	that both $ \Dm{a}{\mu} $ and $ \Bm{a}{\mu} $ are 
+	\emph{tensor-densities}. For derivatives of the new potential, we have the following relations
+	\begin{equation}\label{eqn.Legendre3}
+		\Um_{\Dm{a}{\mu}} = \ET{a}{\mu}, \quad \Um_{\Bm{a}{\mu}} = \LagBE_{\BT{a}{\mu}},
+		\quad \Um_{\tetr{a}{\mu}} = - \LagBE_{\tetr{a}{\mu}}.
+	\end{equation}
+	This allows us to rewrite equations \eqref{eqn.tors.BE} in 
+	the form similar to the non-linear 
+	electrodynamics of moving media~\cite{Obukhov2008,DPRZ2017,Hohmann2018a}
+	\begin{subequations}
+		\begin{align}
+			\D{\nu}(u^\mu\Dm{a}{\nu} - u^\nu \Dm{a}{\mu} + 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
+			\Um_{\Bm{a}{\rho}})
+			& =	\NC{a}{\mu},\\[2mm]
+			\D{\nu}(u^\mu \Bm{a}{\nu} - u^\nu \Bm{a}{\mu} - 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
+			\Um_{\Dm{a}{\rho}}) 
+			& = 0,
+		\end{align}
+	\end{subequations}
+	with $\Bm{a}{\mu}$ and $\Dm{a}{\mu}$ being the analogs of the magnetic and
+	electric displacement fields, accordingly.
+	
+	
+	Finally, we need to express also the Noether current $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} 
+	$ in 
+	terms of the 
+	new potential $ \Um $ and the fields $ \Dm{a}{\mu} $ and $ \Bm{a}{\mu} $. One has (see details 
+	in Appendix~\ref{app.sec.NC})
+	\begin{subequations}\label{eqn.JiA}
+		\begin{multline}\label{eqn.Ji0}
+			\NC{\indalg{0}}{\mu} = 
+				-\Um_{\tetr{\indalg{0}}{\mu}}
+				+ u^\lambda \Bm{b}{\mu} \Um_{\Bm{b}{\lambda}} 
+				- u^\mu \Bm{b}{\lambda} \Um_{\Bm{b}{\lambda}}\\ 
+				- u^\mu \Dm{b}{\lambda} \Um_{\Dm{b}{\lambda}}
+				+ \LCsymb^{\mu\lambda\rho\sigma} u_\rho \Um_{\Bm{b}{\lambda}}
+				\Um_{\Dm{b}{\sigma}},
+		\end{multline}
+		\begin{multline}
+				\NC{\sA}{\mu} = -\Um_{\tetr{\sA}{\mu}}	\\
+				- \itetr{\nu}{\sA}u^\mu
+				\left(
+				u_\lambda \Dm{b}{\lambda} \Um_{\Dm{b}{\nu}} 
+				- \LCsymb_{\nu\lambda\rho\sigma}u^\rho\Bm{b}{\sigma}\Dm{b}{\lambda}
+				\right).
+		\end{multline}
+	\end{subequations}	
+
+
+	\subsection{Transformation of the tetrad equations}
+	
+	%Let us introduce a pure spacetime energy-momentum tensor-density
+	%\begin{equation}\label{def.energymom.spacetime}
+	%\EM{\mu}{\nu} := \tetr{a}{\nu} \Um_{\tetr{a}{\mu}} - \Um \delta^\mu_{\ \nu}.
+	%\end{equation}
+	%
+	%
+	%\Umsing definition \eqref{def.energymom.spacetime}, the energy-momentum 
+	%conservation law \eqref{eqn.1st.order.enermomen} can be 
+	%rewritten in a pure spacetime form
+	%\begin{equation}
+	%\D{\mu} (\tetr{a}{\nu} \Um_{\tetr{a}{\mu}} - \Um \delta^\mu_{\ \nu}) - 
+	%\Um_{\tetr{a}{\mu}} 
+	%\Tors{a}{\mu\nu} = 0.
+	%\end{equation}
+	
+	
+	Contracting \eqref{eqn.TEGR0.tetrad} with the 4-velocity $ u^\mu $, and then after 
+	change of variables \eqref{eqn.Legendre2} and \eqref{eqn.Legendre3}, the 
+	resulting equation reads as
+	\begin{equation}
+		(\D{\mu}\tetr{a}{\nu} - \D{\nu}\tetr{a}{\mu}) u^\nu = \Um_{\Dm{a}{\mu}}.
+	\end{equation}
+	Furthermore, using the identity $ \itetr{\mu}{b}\D{\nu}\tetr{a}{\nu} = - 
+	\tetr{a}{\nu}\D{\nu}\itetr{\mu}{b}$ and the definition $ u^\mu = \itetr{\mu}{\indalg{0}} 
+	$, the 
+	latter equation can be rewritten as
+	\begin{equation}
+		u^\nu\D{\nu}\tetr{a}{\mu} + \tetr{a}{\nu}\D{\mu}u^\nu =-\Um_{\Dm{a}{\mu}},
+	\end{equation}
+	that later will be used in the 3+1-split.
+	
+	\subsection{Transformation of the energy-momentum}
+	Finally, we express the gravitational part of the energy-momentum tensor $ {\EMmat{\mu}{\nu}} $ 
+	\eqref{eqn.TEGR.vacuum} 
+	in 
+	terms of 
+	new 
+	variables 
+	\eqref{eqn.Legendre2} and 
+	the potential $ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) $, while we keep energy-momentum 
+	equation \eqref{eqn.EM2} unchanged. It reads
+	\begin{align}\label{eqn.sigma.BD}
+		{\EMmat{\mu}{\nu}} =
+		& -\Bm{a}{\mu}\Um_{\Bm{a}{\nu}} - \Dm{a}{\mu}\Um_{\Dm{a}{\nu}} \nonumber\\
+		%
+		& - u^\lambda u_\nu \Bm{a}{\mu} \Um_{\Bm{a}{\lambda}} 
+		- u^\mu u_\lambda \Dm{a}{\lambda} \Um_{\Dm{a}{\nu}}
+		\nonumber\\
+		%
+		& + u^\mu u_\nu \Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} 
+		+ u^\mu u_\nu \Dm{a}{\lambda} \Um_{\Dm{a}{\lambda}}
+		\nonumber \\
+		%
+		& + \LCsymb_{\nu\sigma\lambda\rho} u^\mu u^\sigma \Bm{a}{\lambda} \Dm{a}{\rho} 
+		+ \LCsymb^{\mu\sigma\lambda\rho} u_\nu u_\sigma \Um_{\Bm{a}{\lambda}} 
+		\Um_{\Dm{a}{\rho}} 
+		\nonumber \\
+		& + (\Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} + \Dm{a}{\lambda} \Um_{\Dm{a}{\lambda}} - 
+		\Um) \KD{\mu}{\nu}. 
+	\end{align}
+	We shall need this expression for $ \EMmat{\mu}{\nu} $ in the last part of the derivation of 
+	the $ 
+	3+1 $ equations.
+	
+	%\begin{equation}\label{eqn.EM.BD}
+	%	\EM{\mu}{\nu} = 
+	%	- \tetr{a}{\nu} \Um_{\tetr{a}{\mu}}
+	%	+ \Dm{a}{\mu}\Um_{\Dm{a}{\nu}} + \Bm{a}{\mu}\Um_{\Bm{a}{\nu}}
+	%	- (
+	%	\Dm{a}{\lambda}\Um_{\Dm{a}{\lambda}}+ \Bm{a}{\lambda}\Um_{\Bm{a}{\lambda}}
+	%	-\Um
+	%	) \KD{\mu}{\nu}.
+	%\end{equation}
+	
+	Therefore, the TEGR system in its intermediate form for the 
+	unknowns $ \{\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}\} $  reads
+	\begin{subequations}\label{eqn.PDE.4D}
+		\begin{align}%[box={\mycreambox[2pt][2pt]}]{align}
+			\D{\nu}(u^\mu\Dm{a}{\nu} - u^\nu \Dm{a}{\mu} + 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
+			\Um_{\Bm{a}{\rho}})
+			& =	\NC{a}{\mu},\label{eT}\\[2mm]
+			%		
+			\D{\nu}(u^\mu \Bm{a}{\nu} - u^\nu \Bm{a}{\mu} - 
+			\LCsymb^{\mu\nu\lambda\rho}u_\lambda 
+			\Um_{\Dm{a}{\rho}}) 
+			& = 0,\label{bT}\\[2mm]
+			%		
+			%		\pd{\mu}\left( 
+			%			  \tetr{a}{\nu} \Um_{\tetr{a}{\mu}}
+			%        	- \Dm{a}{\mu}\Um_{\Dm{a}{\nu}} - \Bm{a}{\mu}\Um_{\Bm{a}{\nu}}
+			%        	+ (
+			%        	\Dm{a}{\lambda}\Um_{\Dm{a}{\lambda}}+ \Bm{a}{\lambda}\Um_{\Bm{a}{\lambda}}
+			%        	-\Um
+			%        	) \KD{\mu}{\nu}
+			%        \right) & = 0
+			%        \pd{\mu}\EMmat{\mu}{\nu} 
+			%        & = \EMmat{\mu}{\lambda} 
+			%		\w{\lambda}{\mu\nu},\\[2mm]
+			\pd{\mu}\NC{a}{\mu}
+			& = 0, \\[2mm] 
+			%		
+			u^\nu\D{\nu}\tetr{a}{\mu} + \tetr{a}{\nu}\D{\mu}u^\nu &=-\Um_{\Dm{a}{\mu}},
+			\label{tetr}
+		\end{align}
+	\end{subequations}
+	with $ \NC{a}{\mu} $ given by \eqref{eqn.JiA}. After we introduce a particular choice of the 
+	observer's 4-velocity $ u^\mu $ at the beginning of the next section, we shall finalize 
+	transformation of 
+	system \eqref{eqn.PDE.4D} to 
+	present the final 3+1 equations of TEGR.
+	
+	
+	%\IP{Interestingly, the energy-momentum PDE is exactly like we use for the 
+		%symmetrization 
+		%in the non-relativistic settings, i.e. when we add the torsion multiplied by $ 
+		%\Um_{\tetr{a}{\mu}} $ 
+		%to the momentum equation. However, when we usually du the summation, we don't 
+		%need this 
+		%non-conservative terms.... hm-m....}
+	
+	
+	%-------------------------------------------------------
+	\section{3+1 split of the TEGR equations}	\label{sec.31}
+	%-------------------------------------------------------
+	
+	
+	In this section, we derive a 3+1 version of system \eqref{eqn.PDE.4D} that can be used in a 
+	computational code for numerical relativity.
+	
+	We first recall that Latin indices from the middle of the alphabet $ i,j,k,\ldots=1,2,3 $ are 
+	used 
+	to 
+	denote the spatial components of the 
+	spacetime 
+	tensors, and Latin indices $ \sA,\sB,\sC,\ldots = \indalg{1},\indalg{2},\indalg{3} $ to denote 
+	the 
+	spatial 
+	directions in the tangent Minkowski space. Additionally, we use the hat on top of a number, 
+	e.g. $ 
+	\indalg{0} $, for the indices   marking the time and space direction in the tangent space in 
+	order 
+	to distinguish them 
+	from the indices of the spacetime tensors.  Also recall that observer's 4-velocity 
+	$ 
+	u^\mu $ is associated with the $ \hat{0} $-th column of the 
+	inverse tetrad $ \itetr{\mu}{a} $, while the covariant components $ u_\mu $ of the 4-velocity 
+	with 
+	the $ 
+	\hat{0} $-th row of the frame field. For $ u^\mu $ and $ u_\mu $ we standardly assume 
+	\cite{Alcubierre2008,RezzollaZanottiBook}:
+	\begin{subequations}\label{eqn.4vel}
+		\begin{align}
+			u^{\mu} &= \itetr{\mu}{\indalg{0}}  = \lapse^{-1}(1,-\shift{i}), %= \lapse^{-1}(1,v^i)
+			\\
+			u_\mu   &= - \tetr{\indalg{0}}{\mu} = (-\lapse,0,0,0),
+		\end{align}
+		%	\begin{equation}
+			%		\tetr{\hat{i}}{\mu} = 
+			%		(\shift{\hat{i}},\tetr{\hat{i}}{i})
+			%	\end{equation}
+		%	\begin{equation}
+			%		\itetr{\mu}{\hat{i}} = (0,\tetr{i}{\hat{i}})
+			%	\end{equation}
+	\end{subequations}
+	with $ \lapse $ being the \emph{lapse function}, and $ \shift{i} $ being the \emph{shift 
+	vector}. 
+	One can write down $ \tetr{a}{\mu} $ and $ \itetr{\mu}{a} $ explicitly :
+	\begin{subequations}\label{eqn.h.eta.matrix}
+		\begin{equation}
+			\bm{\tetrsymbol} = \left(
+			\begin{array}{cccc}
+				\alpha          & 0 & 0 & 0 \\[1mm]
+				\beta^{\indalg{1}} &  &  &  \\
+				\beta^{\indalg{2}} &  & \tetr{\sA}{i} &  \\
+				\beta^{\indalg{3}} &  &  & 
+			\end{array}
+			\right) ,
+		\end{equation}
+		\begin{equation}
+			\bm{h}^{-1} = \bm{\itetrsymbol} = \left(
+			\begin{array}{rlcl}
+				1/\alpha          & 0 & 0 & 0 \\[1mm]
+				-\beta^{1}/\alpha &  &  &  \\
+				-\beta^{2}/\alpha &  & \left (\tetr{\sA}{i}\right )^{-1} &  \\
+				-\beta^{3}/\alpha &  &  & 
+			\end{array}
+			\right) ,
+		\end{equation}
+	\end{subequations}
+	where $ \beta^{\sA} = \tetr{\sA}{i}\beta^i$.
+	The metric tensor and its inverse are (e.g. see \cite{Gourgoulhon2012a})
+	\begin{subequations}
+		\begin{align}
+			g_{\mu\nu} &= \left(
+			\begin{array}{cc}
+				-\alpha^2 + \beta_i\beta^i & \beta_i \\[1mm]
+				\beta_i & \gamma_{ij}  \\
+			\end{array}
+			\right) ,
+			\\[2mm]
+			g^{\mu\nu} &= \left(
+			\begin{array}{cc}
+				-1/\alpha^2       & \beta^i/\alpha^2 \\[1mm]
+				\beta^{i}/\alpha^2 & \gamma^{ij} - \beta^i\beta^j/\alpha^2  \\
+			\end{array}
+			\right) ,
+		\end{align}
+	\end{subequations}
+	where $ \gamma_{ij} = \kappa_{\sA\sB} \tetr{\sA}{i}\tetr{\sB}{j}$, $ 
+	\gamma^{ij} = \left( \gamma_{ij} \right)^{-1}  $, and $ \beta_i =  \gamma_{ij}\beta^j$.
+	
+	In the rest of the paper, $ \detTetr_3 $ stands for $ \det(\tetr{\sA}{i}) $ so that
+	\begin{equation}\label{eqn.det}
+		\detTetr := \det(\tetr{a}{\mu}) = \alpha \detTetr_3,
+	\end{equation}
+	and we use the following convention for the three-dimensional Levi-Civita symbol
+	\begin{equation}\label{eqn.LC.3d}
+		\LCsymb^{0ijk} = \LCsymb^{ijk}, 
+		\qquad
+		\LCsymb_{0ijk} =-\LCsymb_{ijk}.
+	\end{equation}
+	
+	
+	%Also, because $ \Um $ is a quadratic form in $ \Dm{\sA}{k} $ and $ \Bm{\sA}{k} $, 
+	%one can write 
+	%\begin{equation}\label{eqn.Tscal.HBDE}
+	%	\Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = \frac12 
+	%\BT{a}{\mu}\LagBE_{\BT{a}{\mu}} - 
+	%	\frac12 \ET{a}{\mu}\LagBE_{\ET{a}{\mu}} 
+	%	=
+	%	\frac12 \BT{a}{\mu}\hT{a}{\mu} - \frac12 \ET{a}{\mu}\Dm{a}{\mu},
+	%\end{equation}
+	%or
+	%\begin{equation}
+	%	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu})
+	%	=
+	%	\frac12 \BT{a}{i}\hT{a}{i} - \frac12 \ET{a}{i}\Dm{a}{i},
+	%\end{equation}
+	%where $ \hT{a}{\mu} = \LagBE_{\BT{a}{\mu}} $ and $ \Dm{a}{\mu} = \LagBE_{\ET{a}{\mu}} $.
+	
+	
+	%\IP{Decide what variables are finally to be used $ \{\Dm{}{},\Bm{}{}\} $ or the re-scaled ones 
+	%$ 
+		%	\{\aD{}{},\aB{}{}\} $ }
+	%
+	%\IP{Not clear why we don't have a mixed invariant kinda $ \Dm{i}{k} B^i_{\ k} $ in the 
+		%	Lagrangian $ \Um $. Should we?}
+	
+	%-------------------------------------------------------------------
+	\subsection{3+1 split of the torsion PDEs}	\label{ssec.31.tors}
+	%-------------------------------------------------------------------
+	
+	%\IP{check the sign when you do replacement of $ \LCsymb^{0ijk} $ by $ \LCsymb^{ijk} $. It 
+	%should 
+		%be 
+		%$ \LCsymb^{0ijk} = \LCsymb^{ijk} $.}
+	
+	\paragraph{Case $ \mu = i=1,2,3 $.} 
+	
+	For our choice of observer's velocity \eqref{eqn.4vel}, equations \eqref{eT} 
+	and \eqref{bT} read
+	\begin{subequations}\label{eqn.tpo.1}
+		\begin{multline}
+			\pd{t} (\lapse^{-1}\Dm{a}{i}) + \pd{k}(\shift{i} 
+			\lapse^{-1}\Dm{a}{k} - \shift{k}\lapse^{-1}\Dm{a}{i} \\
+			- \LCsymb^{ikj} \lapse \,
+			\Um_{\Bm{a}{j}}) 
+			= -\NC{a}{i},
+		\end{multline}
+		\begin{multline}
+			-\pd{t} (\lapse^{-1}\Bm{a}{i}) + \pd{k}(\shift{k} 
+			\lapse^{-1}\Bm{a}{i} - \shift{i}\lapse^{-1}\Bm{a}{k}  \\
+			+ \LCsymb^{ikj} \lapse \,
+			\Um_{\Dm{a}{j}}) 
+			= 0 .
+		\end{multline}
+	\end{subequations}
+	Because of the factor $ \alpha^{-1} $ everywhere in these equations, it is convenient to 
+	rescale 
+	the 
+	variables:
+	\begin{equation}\label{eqn.varDB}
+		\aD{a}{\mu} := \lapse^{-1} \Dm{a}{\mu}, \qquad \aB{a}{\mu} := -\lapse^{-1}\Bm{a}{\mu}
+	\end{equation}
+	so that the derivatives of the potential $ \aU(\tetr{a}{\mu},\aD{a}{\mu},\aB{a}{\mu}) := 
+	\Um(\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu})
+	$ 
+	transform as
+	\begin{equation}\label{eqn.change.alphaU}
+		\aU_{\aD{a}{\mu}} =  \lapse \, \Um_{\Dm{a}{\mu}},
+		\qquad
+		\aU_{\aB{a}{\mu}} = -\lapse \, \Um_{\Bm{a}{\mu}}.
+	\end{equation}
+	Hence, \eqref{eqn.tpo.1} can be rewritten as
+	\begin{subequations}\label{eqn.tpo.2}
+		\begin{align}
+			\pd{t} \aD{a}{i} + \pd{k}(\shift{i} 
+			\aD{a}{k} - \shift{k}\aD{a}{i}  - \LCsymb^{ikj} \,
+			\aU_{\aB{a}{j}}) & 
+			= -\NC{a}{i},\\[2mm]
+			%
+			\pd{t} \aB{a}{i} + \pd{k}(\,\shift{i} 
+			\aB{a}{k} - \shift{k}\aB{a}{i}  + \LCsymb^{ikj} 
+			\aU_{\aD{a}{j}}) & 
+			= 0.
+		\end{align}
+	\end{subequations}
+	
+	Finally, extending formally the shift vector as $ \bm{\beta}=(-1,\beta^{k}) 
+	$ and introducing 
+	the 
+	change of variables
+	\begin{equation}\label{eqn.varDB.final}
+		\Dfin{a}{\mu} := \aD{a}{\mu} + \beta^{\mu} \aD{a}{0}, \qquad \Bfin{a}{\mu} := \aB{a}{\mu}
+	\end{equation}
+	which are essentially $ 3 $-by-$ 3 $ matrices ($ \Dfin{a}{0} = 0$, $ \Bfin{a}{0} = 
+	\Bfin{\indalg{0}}{\mu} = 0 $, and $ \Dfin{\indalg{0}}{k} $ are given by \eqref{eqn.D0.tmp3}),
+	we arrive at the final form of the 3+1 equations for the fields $ \Dfin{\sA}{i} $ and $ 
+	\Bfin{\sA}{i} $
+	\begin{subequations}\label{eqn.PDE.BD.final}
+		\begin{align}
+			\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+			\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+			\Hfin{\sA}{j}) & 
+			= -\NC{\sA}{i}, \label{eqn.tpo.D}\\[2mm]
+			%
+			\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+			\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+			\Efin{\sA}{j}) & 
+			= 0\label{eqn.tpo.B} .
+		\end{align}
+	\end{subequations}
+	where
+	\begin{subequations}
+		\begin{align}\label{eqn.HE.fin}
+			&\Efin{\sA}{j} = \aU_{\aD{\sA}{j}} = \alpha \Um_{\Dm{\sA}{j}}= \alpha \ET{\sA}{j},
+			\\
+			&\Hfin{\sA}{j} = \aU_{\aB{\sA}{j}} =-\alpha \Um_{\Bm{\sA}{j}}.
+		\end{align}
+	\end{subequations}
+	In terms of $ \{\Bfin{\sA}{k},\Dfin{\sA}{k}\} $ the potential $  
+	\aU(\tetr{a}{\mu},\aD{a}{\mu},\aB{a}{\mu}) $ will be denoted as 
+	$
+	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})  
+	$ and, in the case of TEGR, it reads (see \eqref{eqn.Ufin})
+	\begin{align}\label{eqn.Ufin0}
+		\Ufin(\tetr{\sA}{k},\Bfin{\sA}{k},\Dfin{\sA}{k}) & =  \nonumber\\
+		 -\frac{\alpha}{2\detTetr_3} \bigg( 
+		& \varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} 
+		(\Dfin{\sA}{\sA})^2\right) \nonumber\\
+		 +
+		&\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+		(\Bfinmix{\sA}{\sA})^2
+		\right)
+		\bigg),
+	\end{align}
+	Alternatively, it can be computed as
+	\begin{equation}\label{eqn.U.bdeh}
+		\Ufin = \frac{1}{2} ( \Dfin{a}{k} \Efin{a}{k} + \Bfin{a}{k} \Hfin{a}{k} ).
+	\end{equation} 
+	
+	
+	\paragraph{Case $ \mu = 0 $.} 
+	
+	The $ 0 $-th equations \eqref{eT} and \eqref{bT} are actually not time-evolution equations but  
+	pure spatial (stationary) constraints
+	\begin{equation}\label{eqn.div.constr}
+		\pd{k} \Dfin{a}{k} = \NC{a}{0}, 
+		\qquad
+		\pd{k} \Bfin{a}{k} = 0.
+	\end{equation}
+	Their possible violation during the numerical integration of the time-evolution equations 
+	\eqref{eqn.PDE.BD.final} is a well-known problem in the numerical analysis of hyperbolic 
+	equations 
+	with involution constraints. Different strategies to 
+	preserve such stationary constraints   
+	are known, e.g. constraint-cleaning approach
+	\cite{Munz2000,Dedneretal,Dumbser2019} or constraint-preserving integrators
+	\cite{Olivares2022,SIGPR2021,oliynyk2025}.
+	
+	
+	\subsection{Tetrad PDE}
+	
+	Because of our choice of the tetrad \eqref{eqn.h.eta.matrix}, we are only interested in the  
+	evolution equations for the components $ \tetr{\sA}{k} $. Thus, using the definition of 
+	the 4-velocity \eqref{eqn.4vel}, equation \eqref{tetr} can be written as
+	\begin{equation}\label{eqn.tetr.3+1}
+		\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
+		= 
+		-\Efin{\sA}{k}.
+		% \aU_{\aD{\sA}{k}}.
+	\end{equation}
+	
+	This equation can be also written in a slightly different form. After adding $ 0\equiv - 
+	\beta^i 
+	\pd{k}\tetr{\sA}{i} + \beta^i \pd{k}\tetr{\sA}{i} $ to the left hand-side of 
+	\eqref{eqn.tetr.3+1}, 
+	one 
+	has  
+	\begin{equation}\label{eqn.tetr.3+1.2}
+		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i (\pd{i}\tetr{\sA}{k} - 
+		\pd{k}\tetr{\sA}{i})
+		= 
+		-\Efin{\sA}{k}.
+		%	\aU_{\aD{\sA}{k}}.
+	\end{equation}
+	Finally, using the definition of $ \BT{\sA}{\mu} $ and $ u_\mu $, we have that 
+	\begin{multline}
+		\BT{\sA}{\mu} = \HDT{\sA\mu\nu} u_\nu = u_\nu \LCsymb^{\mu\nu\alpha\beta} 
+		\pd{\alpha}\tetr{\sA}{\beta} = \\
+		-
+		u_\nu \LCsymb^{\nu\mu\alpha\beta} \pd{\alpha}\tetr{\sA}{\beta} =
+		\alpha \LCsymb^{0\mu\alpha\beta} \pd{\alpha}\tetr{\sA}{\beta} 
+	\end{multline}
+	and hence (use that $ \LCsymb^{0ijk} =\LCsymb^{ijk} $)
+	\begin{equation}\label{eqn.B.curlh}
+		\Bfin{\sA}{k} = \LCsymb^{kij}\pd{i}\tetr{\sA}{j},
+	\end{equation}
+	or
+	\begin{equation}
+		-\beta^i (\pd{i}\tetr{\sA}{k} - 
+		\pd{k}\tetr{\sA}{i})
+		%	=
+		%	\alpha^{-1}\LCsymb_{klj}\beta^l \BT{\sA}{j}
+		=
+		%-
+		\LCsymb_{klj}\beta^l \Bfin{\sA}{j}.
+	\end{equation}
+	Therefore, \eqref{eqn.tetr.3+1.2} can be also rewritten as 
+	\begin{equation}\label{eqn.tetr.3+1.3}
+		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) =  
+		-\Efin{\sA}{k} - \LCsymb_{klj} \beta^l \Bfin{\sA}{j}.
+	\end{equation}
+	It is not clear yet which one of these equivalent forms
+	\eqref{eqn.tetr.3+1}, \eqref{eqn.tetr.3+1.2}, or \eqref{eqn.tetr.3+1.3} at
+	the continuous level is more suited for the numerical discretization.
+	However, for a structure-preserving integrator, e.g.
+	\cite{SIGPR2021,Olivares2022,oliynyk2025}, which is able  to preserve \eqref{eqn.B.curlh}
+	up to the machine precision, all these forms are equivalent.
+	
+	
+	
+	
+	
+	\subsection{Energy-momentum PDE}\label{sec.energymomentum}
+	
+	We now turn to the energy-momentum evolution equation
+	\begin{equation}\label{eqn.sigma.31}
+		\pd{\mu}\EMmat{\mu}{\nu} 
+		= \EMmat{\mu}{\lambda} 
+		\w{\lambda}{\mu\nu}
+	\end{equation}
+	and provide its 3+1 version. Because the Lagrangian density in \eqref{eqn.Lagrangians} 
+	represents the sum of the gravitational and matter Lagrangian, the energy-momentum tensor is 
+	also 
+	assumed to be the sum of the gravity and matter parts: $ \EMmat{\mu}{\nu} = 
+	\mat{\EMmat{\mu}{\nu}} 
+	+ 
+	\gra{\EMmat{\mu}{\nu}} $. However, in what follows, we shall omit the matter part keeping in 
+	mind 
+	that the energy and momentum equations discussed below are equations for the total 
+	(matter+gravity) 
+	energy-momentum. 
+	
+	We first, explicitly split \eqref{eqn.sigma.31} into the three momentum and one energy equation:
+	\begin{subequations}\label{eqn.EM.sigma}
+		\begin{align}
+			\pd{t}\EMmat{0}{i} + \pd{k}\EMmat{k}{i}
+			& = \EMmat{\mu}{\lambda} 
+			\w{\lambda}{\mu i},\\[2mm]
+			%
+			\pd{t}\EMmat{0}{0} + \pd{k}\EMmat{k}{0}
+			& = \EMmat{\mu}{\lambda} 
+			\w{\lambda}{\mu 0}.
+		\end{align}
+	\end{subequations}
+	Applying the change of variables \eqref{eqn.varDB}, \eqref{eqn.change.alphaU}, and 
+	\eqref{eqn.varDB.final}, expression \eqref{eqn.sigma.BD} for the energy-momentum reduces to the 
+	following expressions
+	\begin{itemize}
+		\item 
+		for the total momentum density, $ \sigma^0_{\ i} = \rho_i $ (the matter part is left 
+		unspecified and omitted in this paper):
+		\begin{equation}\label{eqn.sigma0i}
+			\rho_i :=\LCsymb_{ijl}\Dfin{a}{j}\Bfin{a}{l},
+		\end{equation}
+		%	(with $ \rho^\text{(m)}_i $ being the total momentum of matter fields, e.g. see 
+		%	\cite{PTRSA2020}, and $ \rho^\text{(g)}_i 
+		%	$ 
+		%	being the gravitational momentum)
+		%
+		\item
+		for the momentum flux, $ \EMmat{k}{i}$:
+		\begin{multline}\label{eqn.sigmaki}
+			\EMmat{k}{i} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i}  
+			- \LCsymb_{ijl} 
+			\beta^k \Dfin{a}{j}\Bfin{a}{l} \\
+			+ (\Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j} 
+			- \Ufin)\KD{k}{i},
+		\end{multline}
+		%
+		\item
+		for the energy density:
+		\begin{equation}\label{eqn.sigma00}
+			\rho_0 :=\EMmat{0}{0} = \LCsymb_{ijl} 
+			\beta^i\Dfin{a}{j}\Bfin{a}{l} - \Ufin = \beta^i 
+			\rho_i 
+			- \Ufin,
+		\end{equation}
+		%
+		\item
+		and for the energy flux, $ \EMmat{k}{0} $:
+		\begin{multline}\label{eqn.sigmak0}
+			{\EMmat{k}{0}} = -\beta^j( \Bfin{a}{k} \Hfin{a}{j} + \Dfin{a}{k} \Efin{a}{j}) \\
+			+
+			\beta^k( \Bfin{a}{j} \Hfin{a}{j} + \Dfin{a}{j} \Efin{a}{j}) \\
+			-
+			\LCsymb_{ijl}\beta^k\beta^i\Dfin{a}{j}\Bfin{a}{l}
+			-
+			\LCsymb^{kjl} \Efin{a}{j}\Hfin{a}{l}.
+		\end{multline}
+	\end{itemize}
+	It is convenient to split the momentum flux $ \EMmat{k}{i} $ and energy
+	flux $ \EMmat{k}{0} $ in \eqref{eqn.EM.sigma} into advective and
+	constitutive parts, so that the finale form of the 3+1 equations for the
+	total energy-momentum \eqref{eqn.EM.sigma} reads
+	\begin{subequations}\label{eqn.EM.PDE}
+		\begin{align}
+			\pd{t}\rho_i & + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) = 
+			\rhs{i},\label{eqn.EM.m}\\[2mm]
+			\pd{t}\rho_0 & + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} 
+			- \LCsymb^{kjl} \Efin{a}{j}\Hfin{a}{l} ) = \rhs{0},\label{eqn.EM.e}
+		\end{align}
+		where the non-matter (gravity + inertia) part of $ \stress{i}{k} $ is given by
+		\begin{gather}\label{eqn.flux.const}
+			{\stress{i}{k}} = -\Bfin{a}{k} \Hfin{a}{i} - \Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
+			\Hfin{a}{j} + 
+			\Dfin{a}{j} \Efin{a}{j} 
+			- \Ufin)\delta^k_{\ i}.
+		\end{gather}
+		Drawing parallels between electrodynamics and TEGR, one can note the
+		presence of the Poynting vector in two forms in \eqref{eqn.EM.PDE}:
+		$\Dfin{}{}\times\Bfin{}{}$ in the momentum density in \eqref{eqn.EM.m} and $\Efin{}{}\times\Hfin{}{}$ in the energy flux in \eqref{eqn.EM.e}.
+
+		The source terms in \eqref{eqn.EM.m} and \eqref{eqn.EM.e} are given by
+		\begin{align}\label{eqn.source.rhoi}
+			\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
+			+\stress{j}{k} \w{j}{ki}
+			%	- \LCsymb_{ilj} s^l_{\ k} \itetr{k}{\sA} 
+			%	\Bfin{\sA}{j} + s^l_{\ k} \itetr{k}{\sA} \pd{i}\tetr{\sA}{l} 
+			,\\[2mm]
+			\rhs{0} =&- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin 
+			\nonumber\\
+			& + \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_j 
+			\itetr{j}{\sA} \nonumber\\
+			&- \LCsymb^{kjl} \Efin{a}{j}\Hfin{a}{l}\pd{k}\ln(\alpha) + \stress{j}{k} 
+			\itetr{j}{\sA} 
+			\pd{k}\shift{\sA}. \label{eqn.f0}
+		\end{align}
+	\end{subequations}
+	%Interestingly, that in the right hand side of the energy equation \eqref{eqn.f0}, we have 
+	%explicitly transport equations for the laps and the shift vector $ \shift{\sA} = \tetr{\sA}{i} 
+	%\shift{i} $. 
+	
+	
+	
+	\subsubsection{Noether current}
+	
+	Because the energy-momentum $ \EMmat{k}{i} $ was defined as $ \EMmat{k}{i} = \tetr{a}{i} 
+	\NC{a}{k} = \tetr{\sA}{i} \NC{\sA}{k} $, we can use the expression for $ \EMmat{k}{i} $ to have 
+	an 
+	explicit formula for the Noether current. Thus, we have
+	\begin{equation}\label{eqn.J.new}
+		\NC{\sA}{k} = \itetr{i}{\sA} \EMmat{k}{i} = \itetr{i}{\sA} (-\shift{k} \rho_i + 
+		\stress{i}{k} ) 
+		= 
+		-\shift{k} \rho_{\sA} + \stress{\sA}{k}.
+	\end{equation}
+	
+	In the same way we can find $ \NC{a}{0} $ necessary in \eqref{eqn.div.constr}: $ \NC{a}{0} = 
+	\itetr{\lambda}{a} \EMmat{0}{\lambda} = \itetr{0}{a} \EMmat{0}{0} + \itetr{i}{a} \EMmat{0}{i}$, 
+	and 
+	hence
+	\begin{equation}\label{eqn.Ja0}
+		\NC{a}{0} = \left\{
+		\begin{array}{rl}
+			-\alpha^{-1} \Ufin=\rho_{\indalg{0}},	& a=\indalg{0},  \\[3mm] 
+			%
+			\itetr{i}{\sA} \rho_i = \rho_{\sA}, & \sA=\indalg{1},\indalg{2},\indalg{3}. \\ 
+		\end{array} 
+		\right.
+	\end{equation}
+	
+
+	\subsubsection{Alternative form of the energy-momentum equations}
+	
+	In \eqref{eqn.sigma.31}, we deliberately use the energy-momentum tensor with
+	both spacetime indices because we would like to use the SHTC and Hamiltonian
+	structure \cite{SHTC-GENERIC-CMAT} of these equations for designing
+	numerical schemes in the future, e.g. \cite{HTC2022,SPH_SHTC}. However, the
+	resulting PDEs \eqref{eqn.EM.PDE} do not have a fully conservative form
+	preferable for example when dealing with the shock waves in the matter
+	fields. Therefore, one may want to use the true conservation law
+	\eqref{eqn.Noether.cons} for the total (matter+gravity) Noether current $
+	\NC{a}{\mu} $ instead of \eqref{eqn.EM.PDE}. Thus, in 	notations
+	\eqref{eqn.J.new}, \eqref{eqn.Ja0}, four conservation laws $
+	\pd{\mu}\NC{a}{\mu} = 0 $ now read
+	\begin{subequations}
+		\begin{align}
+			\pd{t} \rho_\sA + & \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) = 0,\\[2mm]
+			\pd{t} \rho_{\indalg{0}} + & \pd{k} (-\shift{k} \rho_{\indalg{0}} 
+			- \alpha^{-1} 
+			\LCsymb^{kjl}\Efin{a}{j}\Hfin{a}{l} ) = 0.
+		\end{align}
+	\end{subequations}
+	% with $ \rho_{\indalg{0}} = \NC{\indalg{0}}{0} = -\alpha^{-1} \Ufin $. 
+	%This form, and therefore the entire system of the 
+	%3+1 TEGR equations \eqref{eqn.3+1.summary},  is equivalent to the 
+	%dGREM formulation obtained in \cite{Olivares2022} (there, however, we write evolution 
+	%equations for the gravity and matter energy-momenta separately).
+	
+	
+	
+	\subsubsection{Evolution of the space volume}
+	
+	As in the computational Newtonian mechanics \cite{DPRZ2016,SIGPR2021}, the evolution of the 
+	tetrad 
+	field at the discrete level has to be performed consistently with the volume/mass conservation 
+	law. 
+	In 
+	TEGR, the equivalent to the volume conservation in the Newtonian mechanics is 
+	\begin{equation}\label{eqn.pde.det}
+		\pd{\mu}(\detTetr u^\mu) = -\detTetr \ET{\mu}{\mu} 
+	\end{equation} 
+	which can be obtained after contracting \eqref{tetr} with $ \partial \detTetr/\partial 
+	\tetr{a}{\mu} 
+	= \detTetr
+	\itetr{\mu}{a} $, and where $ \ET{\mu}{\mu} = \itetr{\mu}{a} \ET{a}{\mu}$.
+	
+	
+	After using \eqref{eqn.4vel}, \eqref{eqn.h.eta.matrix}, and \eqref{eqn.E}, this balance law 
+	becomes
+	\begin{equation}\label{eqn.h.PDE}
+		\pd{t}\detTetr_3 - \pd{k}(\detTetr_3\shift{k} ) =-\frac{\alpha \varkappa}{2} \Dfin{i}{i},
+	\end{equation}
+	where $ \detTetr_3 =\det(\tetr{\sA}{k}) = \sqrt{\det(\gamma_{ij})} $.
+	
+	
+	
+	
+	\section{Summary of the 3+1 TEGR equations}
+	Here, we summarize the 3+1 TEGR equations and give explicit expressions for the 
+	constitutive 
+	fluxes $ \Efin{\sA}{k} $ and
+	$ \Hfin{\sA}{k} $ which then close the specification of the entire system.
+	
+	
+	\subsection{Evolution equations}
+	
+	The system of 3+1 TEGR governing equations reads
+	\begin{subequations}\label{eqn.3+1.summary}
+		\begin{align}%[box={\mycreambox[2pt][2pt]}]{align}
+			\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+			\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+			\Hfin{\sA}{j}) & 
+			= \shift{i} \rho_{\sA} - \stress{\sA}{i},
+			\label{eqn.3+1.D}
+			\\[2mm]
+			%		
+			\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+			\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+			\Efin{\sA}{j}) & 
+			= 0,
+			\label{eqn.3+1.B}
+			\\[2mm]
+			%		
+			%		\pd{\mu}\left( \aD{a}{\mu}\aU_{\aD{a}{\nu}}+ 
+			%		\aB{a}{\mu}\aU_{\aB{a}{\nu}}
+			%		-\tetr{a}{\nu} \aU_{\tetr{a}{\mu}} 
+			%		+ (
+			%		\aD{a}{\lambda}\aU_{\aD{a}{\lambda}}+ \aB{a}{\lambda}\aU_{\aB{a}{\lambda}}
+			%		-\aU
+			%		) \KD{\mu}{\nu}
+			%		\right) & = 0,
+			\pd{t} \rho_\sA +  \pd{k} (-\shift{k} \rho_\sA + \stress{\sA}{k}) &= 
+			0,\label{eqn.3+1.m}\\[2mm]
+			\pd{t} \rho_{\indalg{0}} + \pd{k} (-\shift{k} \rho_{\indalg{0}} 
+			- \alpha^{-1} 
+			\LCsymb^{kjl}\Efin{a}{j}\Hfin{a}{l}) &= 0,\label{eqn.3+1.e}\\[2mm]
+			%		\pd{t}\rho_i + \pd{k}(-\beta^k \rho_i + \stress{i}{k}) &= \rhs{i},
+			%		\label{eqn.3+1.m}
+			%		\\[2mm]
+			%		\pd{t}\rho_0 + \pd{k}(-\beta^k \rho_0 + \beta^i \stress{i}{k} + \LCsymb^{klj} 
+			%\Hfin{a}{l} 
+			%		\Efin{a}{j}) &= \rhs{0},	
+			%		\label{eqn.3+1.e}
+			%		\\[2mm]
+			%		
+			\pd{t} \tetr{\sA}{k} - \beta^i \pd{i} \tetr{\sA}{k} - \tetr{\sA}{i} \pd{k} \beta^i 
+			& = 
+			-\Efin{\sA}{k},
+			\label{eqn.3+1.h}
+			%		\pd{t} \tetr{\sA}{k} - \pd{k} (\beta^i \tetr{\sA}{i}) - \beta^i 
+			%(\pd{i}\tetr{\sA}{k} - 
+			%		\pd{k}\tetr{\sA}{i})
+			%		&= 
+			%		-\Efin{\sA}{k}.
+			%		\pd{t} \tetr{a}{k} - \beta^i \pd{i} \tetr{a}{k} - \tetr{a}{i} \pd{k} \beta^i &= 
+			%		{\Efin{a}{k}},
+			%		\tag{\ref{eqn.tetr.3+1}} 
+		\end{align}
+	\end{subequations}
+	%\begin{subequations}
+	%	\begin{align}
+		%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+		%		-\frac{\alpha}{\varkappa \detTetr_3} 
+		%		\mg{\sA\sB}\mg{\sC\sD} 
+		%		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
+		%		\Bfin{\sC}{j}
+		%		- 
+		%		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
+		%		\Efin{\indalg{0}}{l}
+		%		%\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
+		%		%\Efin{\indalg{0}}{j}
+		%		,\\[2mm]
+		%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+		%		-\frac{\alpha \varkappa}{\detTetr_3} 
+		%		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
+		%		\Dfin{\sB}{j} 
+		%		- 
+		%		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+		%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+		%	\end{align}
+	%\end{subequations}
+	with the total (matter+gravity) momentum $ \rho_{\sA} = \itetr{i}{\sA}\rho_i $ and the total 
+	energy density $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin = \NC{\indalg{0}}{0} $ computed from 
+	\eqref{eqn.Ja0}, and the gravitational part of the momentum flux $ \stress{i}{\sA} = 
+	\itetr{k}{\sA} \stress{i}{k}$  computed from \eqref{eqn.flux.const}.
+%	\begin{gather*}
+%		\stress{i}{k} := -\Bfin{a}{k} 
+%		\Hfin{a}{i} - 
+%		\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
+%		\Hfin{a}{j} + 
+%		\Dfin{a}{j} \Efin{a}{j} 
+%		- \Ufin)\delta^k_{\ i},
+%	\end{gather*}
+	%\begin{align*}
+	%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ k} \itetr{k}{\sA} 
+	%	\Bfin{\sA}{j} + s^l_{\ k} \itetr{k}{\sA} \pd{i}\tetr{\sA}{l} + \rho_j 
+	%\pd{i}\shift{j},\\[2mm]
+	%	\rhs{0} =&- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
+	%	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_j 
+	%	\itetr{j}{\sA}
+	%	+ \LCsymb^{klj} \Hfin{a}{l}\Efin{a}{j}\pd{k}\ln(\alpha) + s^k_{\ j} \itetr{j}{\sA} 
+	%	\pd{k}\shift{\sA}.
+	%\end{align*}
+	%while the source terms in the energy-momentum equations read
+	%\begin{align*}
+	%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
+	%	+\stress{j}{k} \w{j}{ki}\\[2mm]
+	%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} 
+	%%	\Bfin{\sA}{j} + \rho_\sA \pd{i}\shift{\sA} + (-\shift{k} \rho_{\sA}+ s^k_{\ \sA})  
+	%%	\pd{i}\tetr{\sA}{k} = 
+	%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} \Bfin{\sA}{j}
+	%%	+ \rho_k\pd{i}\shift{k} + s^k_{\ j} \w{j}{ik},\\[2mm]
+	%	%
+	%	\rhs{0} =&
+	%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
+	%	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_{\sA}
+	%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \stress{\sA}{k} 
+	%	\pd{k}\shift{\sA}\\[2mm]
+	%	=&
+	%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
+	%	+ \rho_j \pd{t} \shift{j} + \stress{j}{k} \pd{k}\shift{j} + \rho_{\sA} \shift{j} 
+	%\Efin{\sA}{j} 
+	%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} \stress{l}{k} 
+	%\w{l}{kj},
+	%\end{align*}
+	%where $ \rho_{\sA} = \itetr{i}{\sA} \rho_i$, 
+	%%$ s^k_{\ \sA} = \itetr{i}{\sA} s^k_{\ i} $, 
+	%and $ 
+	%\w{j}{ik} = \itetr{j}{\sA}\pd{i}\tetr{\sA}{k}$.
+	
+	In particular, the structure of this system resembles very much the structure of the nonlinear 
+	electrodynamics of 
+	moving media already solved numerically in \cite{DPRZ2017} for example, as well as the 
+	structure of 
+	the continuum mechanics
+	equations with torsion \cite{Torsion2019}. Moreover,
+	despite deep conceptual differences,
+	it is identical to 
+	the new dGREM formulation of the Einstein equations recently pushed forward in 
+	\cite{Olivares2022}.
+	However, it is important to mention that the Lagrangian approach adopted here
+	in principle permits to generalize the formulation to other $f(\Tscal)$ theories.
+	A detailed comparison of 
+	these two formulations will be a subject of a future paper.
+	
+	It is also important to note that the structure of system \eqref{eqn.3+1.summary} remains the 
+	same 
+	independently of the 
+	Lagrangian in use as it can be seen from system \eqref{eqn.PDE.4D} where all the constitutive 
+	parts 
+	are 
+	defined through the derivatives of the potential \eqref{eqn.Legendre1}. If the Lagrangian 
+	changes, 
+	then only the constitutive functions $ \Efin{a}{\mu} $ and $ \Hfin{a}{\mu} $ have to be 
+	recomputed.
+	
+	\subsection{Constitutive relations}
+	
+	For the TEGR Lagrangian \eqref{eqn.TEGR.Lagr}, $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ read
+	\begin{subequations}\label{eqn.H.E}
+		\begin{multline}
+			\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+			-\frac{\alpha}{\varkappa \detTetr_3} 
+			\mg{\sA\sB}\mg{\sC\sD} 
+			\left( \tetr{\sD}{k} \tetr{\sB}{j}
+			- \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
+			\Bfin{\sC}{j}
+			\\
+			- 
+					\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} 
+			\tetr{\sB}{j} 
+					\Efin{\indalg{0}}{l}
+			% \frac{\detTetr_3}{\varkappa} \LCsymb_{kjl} \itetr{j}{\sA} A^l,
+		\end{multline}
+		\begin{multline}
+			\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+			-\frac{\alpha \varkappa}{\detTetr_3} 
+			\left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
+			\Dfin{\sB}{j} 
+			\\
+			- 
+					\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
+					\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
+			% \varkappa \detTetr_3 \LCsymb_{kjl} 
+			% \itetr{j}{\sB} \MG{\sA\sB} \Omega^l.
+			\label{eqn.E}
+		\end{multline}
+	\end{subequations}
+	Note that these relations can also be written as
+	\begin{align}\label{eqn.H.E.split}
+		\Hfin{\sA}{k} &= %\Ufin_{\Bfin{\sA}{k}} =
+		\frac{\pd{}\Ufin\hfill}{\pd{}\Bfin{\sA}{k}}
+		{ 
+			-
+			\frac{1}{\varkappa}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+		\\[2mm]
+		\Efin{\sA}{k} &= %\Ufin_{\Dfin{\sA}{k}}=
+		\frac{\pd{}\Ufin\hfill}{\pd{}\Dfin{\sA}{k}}
+		{
+			-
+			\varkappa \detTetr_3 \LCsymb_{kjl} 
+			\itetr{j}{\sB} \Omega^l}\MG{\sA\sB},
+	\end{align}
+	where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$, and with the potential $ \Ufin $ given by \eqref{eqn.Ufin0}.
+	
+	
+	%Noether current \eqref{eqn.J} becomes:
+	%\begin{subequations}
+	%\begin{equation}\label{eqn.J_Ai}
+	%	\NC{\sA}{i} =-\nc{\sA}{i} 
+	%	-\frac{1}{2\alpha}  \beta^i \left( \tetr{\sB}{j} \itetr{k}{\sA} \Dfin{\sB}{j} 
+	%	- \frac{\detTetr_3}{\alpha \varkappa} \itetr{j}{\sA} 
+	%	\itetr{k}{\sB} \Efin{\sB}{j} \right) \Efin{\indalg{0}}{k}
+	%	+ \beta^i \LCsymb_{jkl} \itetr{j}{\sA} \Bfin{\sB}{k} \Dfin{\sB}{l},
+	%\end{equation}
+	%
+	%\begin{equation}\label{eqn.J_A0}
+	%	\NC{\sA}{0} =-\nc{\sA}{0}
+	%	+ \frac{1}{2\alpha} 
+	%	\left(
+	%	\itetr{i}{\sA} \tetr{\sB}{k} \Dfin{\sB}{k} - \frac{\detTetr_3}{\alpha \varkappa} 
+	%\itetr{k}{\sA} 
+	%	\itetr{i}{\sB} \Efin{\sB}{k} 
+	%	\right) \Efin{\indalg{0}}{i} - \LCsymb_{ijl} \itetr{i}{\sA} \Bfin{\sB}{j} \Dfin{\sB}{l},
+	%\end{equation}
+	%
+	%\begin{align}\label{eqn.J_0i}
+	%	\NC{\indalg{0}}{i} =-\nc{\indalg{0}}{i}
+	%	&+ \frac{1}{\alpha} 
+	%	\left(
+	%	  \Bfin{\sB}{i} \Hfin{\sB}{0}
+	%	+ \beta^i \Bfin{\sB}{l} \Hfin{\sB}{l} 
+	%	- \beta^l \Bfin{\sB}{i} \Hfin{\sB}{l} \right) \nonumber\\
+	%	& + \frac{1}{\alpha} \beta^i
+	%	\left(
+	%	  \Dfin{\sB}{l} \Efin{\sB}{l} 
+	%	+ \Dfin{\indalg{0}}{l} \Efin{\indalg{0}}{l} 
+	%	\right) \nonumber\\ 
+	%	& + \frac{\detTetr_3}{2\alpha\varkappa}
+	%	\left( \itetr{k}{\sB} \gamma^{ij} - \itetr{i}{\sB} \gamma^{kj} \right) \Efin{\sB}{j} 
+	%	\Efin{\indalg{0}}{k} \nonumber\\
+	%	& + \frac{1}{\alpha} \LCsymb^{ilk} \Hfin{\sB}{l} \Efin{\sB}{k},
+	%\end{align}
+	%
+	%\begin{equation}\label{eqn.J_00}
+	%	\NC{\indalg{0}}{0} =-\nc{\indalg{0}}{0} 
+	%	- \frac{1}{\alpha} 
+	%	\left( 
+	%	  \Bfin{\sA}{i} \Hfin{\sA}{i} 
+	%	+ \Dfin{\sA}{i} \Efin{\sA}{i}
+	%	\right)
+	%	+ \frac{\detTetr_3}{\alpha \varkappa} \LCsymb_{ijk} \gamma^{il} \itetr{j}{\sA}\Bfin{\sA}{k} 
+	%	\Efin{\indalg{0}}{l}
+	%\end{equation}
+	%
+	%\end{subequations}
+	%
+	%\begin{subequations}
+	%	\begin{align}\label{eqn.j_Ai}
+		%		\nc{\sA}{i} =&
+		%		\frac{\detTetr}{2\varkappa}\Bigg[
+		%		\phantom{+} \frac{2}{\alpha^2} \Bigg( 
+		%		\frac{1}{4} \left( \itetr{j}{\sA}\gamma^{ki} - 
+		%		\itetr{k}{\sA} 
+		%		\gamma^{ij} \right)  
+		%		\Efin{\indalg{0}}{j}\Efin{\indalg{0}}{k} %\nonumber\\
+		%		%
+		%		%&\phantom{ \frac{2}{\alpha^2} \Bigg(} 
+		%		+ 
+		%		\frac{1}{\alpha} \shift{i} 
+		%		\itetr{jk}{\sC\sA} \Efin{\sC}{j} \Efin{\indalg{0}}{k}
+		%		-	
+		%		\itetr{i}{\sC} \itetr{kj}{\sB\sA} \Efin{\sC}{j}\Efin{\sB}{k}
+		%		+
+		%		\frac{1}{2} \mg{\sC\sB}\gamma^{ik}\itetr{j}{\sA} \Efin{\sC}{j}\Efin{\sB}{k}
+		%		\Bigg) 
+		%		\nonumber\\
+		%		%
+		%		&\phantom{\phantom{+} \frac{2}{\alpha^2} \Bigg(}
+		%		+ \frac{2}{\detTetr_3^2} 
+		%		\Bigg( 
+		%		\tetr{\sD}{k}\mg{\sA\sB\sC\sD} - \itetr{i}{\sA} \tetr{\sE\sD}{kj} 
+		%\mg{\sC\sE}\mg{\sB\sD}
+		%		\Bigg) \Bfin{\sB}{k}\Bfin{\sC}{i} 
+		%		\nonumber\\
+		%		%
+		%		&\phantom{\phantom{+} \frac{2}{\alpha^2} \Bigg(}
+		%		- \frac{2}{\alpha} \LCsymb_{jnk} 
+		%		\left(
+		%		\gamma^{in}\itetr{l}{\sA}\itetr{j}{\sC} +
+		%		\gamma^{il}\itetr{n}{\sA}\itetr{j}{\sC} -
+		%		\gamma^{jl}\itetr{n}{\sA}\itetr{i}{\sC}
+		%		\right) \Bfin{\sC}{k} \Efin{\indalg{0}}{l} \Bigg]
+		%		+ (\Dfin{a}{k} \Efin{a}{k} - \Ufin) \itetr{i}{\sA}
+		%	\end{align}
+	%where we have used the following notations
+	%	\begin{equation}
+		%		\itetr{jk}{\sC\sA} = \itetr{j}{\sC} \itetr{k}{\sA} - \frac12 \itetr{j}{\sA} 
+		%\itetr{k}{\sC},
+		%		\quad
+		%		\tetr{\sC\sD}{kj} = \tetr{\sC}{k}\tetr{\sD}{j} - \frac12 \tetr{\sC}{j}\tetr{\sD}{k},
+		%		\quad
+		%		\mg{\sA\sB\sC\sD} = \mg{\sA\sB} \mg{\sC\sD} - \frac12 \mg{\sA\sC} \mg{\sB\sD}.
+		%	\end{equation}
+	%\end{subequations}
+	
+	
+	
+	\subsection{Stationary differential constraints}
+	
+	System \eqref{eqn.3+1.summary} is supplemented by several differential constraints. Thus, as 
+	already was mentioned, the $ 0 $-\textit{th} equations ($ \mu=0 $) of \eqref{eT} are not 
+	actually 
+	time-evolution equations 
+	but 
+	reduce to the so-called Hamiltonian and momentum stationary divergence-type constraints that 
+	must 
+	hold on the 
+	solution to \eqref{eqn.3+1.summary} at every time instant:
+	\begin{equation}\label{eqn.div.constrD}
+		\pd{k} \Dfin{\indalg{0}}{k} = \rho_{\indalg{0}},
+		\qquad
+		\pd{k} \Dfin{\sA}{k} = \rho_{\sA}, 
+	\end{equation}
+	with $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin = \NC{\indalg{0}}{0} $.
+	
+	Accordingly, the $ 0 $-\textit{th} equation of \eqref{bT} gives the divergence constraint on 
+	the $ 
+	\Bfin{\sA}{i} $ field
+	\begin{equation}\label{eqn.div.constrB}
+		\pd{k} \Bfin{\sA}{k} = 0,
+	\end{equation}
+	
+	Finally, from the definition of $ \Bfin{\sA}{i} $, we also have a curl-type constraint on 
+	the spatial components of the tetrad field:
+	\begin{equation}\label{eqn.constrh}
+		\LCsymb^{kij}\pd{i}\tetr{\sA}{j} = \Bfin{\sA}{k} .	
+	\end{equation}
+	
+	%	\begin{equation}
+		%		\LCsymb_{ikj}\pd{k} \aE{\indalg{0}}{j} = 0,
+		%	\end{equation}
+	
+	
+	
+	\subsection{Algebraic constraints}
+	As a consequence of our choice of observer's reference frame \eqref{eqn.4vel}, and the fact 
+	that $ \ET{a}{\mu} u^\mu = 0 $ and $ \BT{a}{\mu} u_\mu = 0$, we have 
+	the following algebraic constraints 
+	\begin{subequations}\label{eqn.constr.alg.EB}
+		\begin{equation}
+			\Bfin{\indalg{0}}{\mu} = 0, \qquad \Bfin{a}{0} = 0,
+		\end{equation}
+		\begin{equation}\label{eqn.alg.constrE}
+			\Efin{\indalg{0}}{0} = \beta^k \Efin{\indalg{0}}{k}, 
+			\qquad 
+			\Efin{\indalg{0}}{k} = \pd{k} \alpha,
+			\qquad  
+			\Efin{\sA}{0} = \beta^j \Efin{\sA}{j},
+		\end{equation}
+		%	\begin{equation}
+			%		W := \beta^k N_k, \qquad 	N_k := \pd{k} \alpha.
+			%	\end{equation}
+	\end{subequations}
+	
+	\begin{subequations}
+		\begin{gather}\label{eqn.D0.tmp3}
+			\Dfin{a}{0} = 0,
+			\qquad
+			%		\Dfin{\indalg{0}}{k} =-\frac{\detTetr_3}{\varkappa} \LCsymb_{jli} 
+			%		\gamma^{jk}\itetr{l}{\sA}\Bfin{\sA}{i},
+			\Dfin{\indalg{0}}{k} =-\frac{1}{\varkappa\detTetr_3} \LCsymb^{kli} 
+			\Bfinmix{}{li},
+			\qquad
+			\Dfin{ik}{} = \Dfin{ki}{},
+			\\
+			\Hfin{\sA}{0} = \shift{k} \Hfin{\sA}{k},
+			%	\qquad
+			%	\Hfin{\indalg{0}}{k} = \frac{\detTetr_3}{2\varkappa} \LCsymb_{\sA\sB\sC} 
+			%\MG{\sC\sD} 
+			%	\tetr{\sA}{i} 
+			%	\itetr{j}{\sD} \Efin{\sB}{j}
+		\end{gather}
+	\end{subequations}
+	where $ \Dfin{ik}{} = \gamma_{ij} \Dfin{\sA}{j} \tetr{\sA}{k}$.
+	As already noted in \cite{AldrovandiPereiraBook}, the gravitational part of the energy-momentum 
+	$ 
+	\EMmat{\mu}{\nu} $  is trace-free:
+	\begin{equation}%\label{key}
+		{\EMmat{\mu}{\mu}} = 0.
+	\end{equation}
+	
+	%\subsubsection{Free parameters}
+	%
+	%The lapse $\alpha$  an shift vector $\shift{k}$ are not subjected to any constraints and can 
+	%be 
+	%evolved in an arbitrary but meaningful way. 
+	
+	%$ \LCsymb_{\sA\sB\sC} = \LCsymb_{ijk} \itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $
+	
+	%\subsection{Summary of change of variables and potentials}
+	%
+	%\begin{itemize}
+	%	\item[$ \left\langle 1 \right\rangle $] 
+	%	$ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
+	%	\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $,  
+	%	\quad 
+	%	$ \{\tetr{a}{\mu},\pd{\mu}\tetr{a}{\nu}\} \to \{\tetr{a}{\mu},\HDT{a\mu\nu}\}$,
+	%	\quad
+	%	eqs. \eqref{eqn.EL}$ \to $ \eqref{eqn.1st.order.TEGR}
+	%	\\[1mm]
+	%	%
+	%	\item[$ \left\langle 2 \right\rangle $] 
+	%	$ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
+	%	\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu})$,
+	%	\quad
+	%	$ \{\tetr{a}{\mu},\HDT{a\mu\nu}\} \to \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} $,
+	%	\quad
+	%	eqs. \eqref{eqn.1st.order.TEGR}$ \to $\eqref{eqn.tors.BE}
+	%	\\[1mm]
+	%	%
+	%	\item[$ \left\langle 3 \right\rangle $] 
+	%	$ \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}) \to 
+	%	\Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu})$,
+	%	\quad
+	%	$ \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} \to \{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\}$,
+	%	\quad
+	%	eqs. \eqref{eqn.tors.BE}$ \to $\eqref{eqn.PDE.4D}
+	%	\\[1mm]
+	%	%
+	%	\item[$ \left\langle 4 \right\rangle $] 
+	%	$ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) = \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu})$,
+	%	\quad
+	%	$\{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\} \to 
+	%	\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\}$,
+	%	\quad
+	%	eqs. \eqref{eqn.PDE.4D}$ \to $\eqref{eqn.tpo.2}
+	%	\\[1mm]
+	%	%
+	%	\item[$ \left\langle 5 \right\rangle $] 
+	%	$ \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}) = 
+	%	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})$,
+	%	\quad
+	%	$\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\} \to 
+	%	\{\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu}\}$,
+	%	\quad
+	%	eqs. \eqref{eqn.tpo.2}$ \to $\eqref{eqn.3+1.summary}
+	%\end{itemize}
+	
+	
+	
+	\section{Hyperbolicity of the vacuum 3+1 TEGR equations}
+
+	The 3+1 TEGR system \eqref{eqn.3+1.summary} is an overdetermined system due
+	the presence of the momentum and energy equations \eqref{eqn.3+1.m} and
+	\eqref{eqn.3+1.e}. The question of hyperbolicity of \eqref{eqn.3+1.summary},
+	therefore, requires considering a model for matter, which goes beyond the
+	scope of this paper. However, we can still analyze the hyperbolicity of the
+	vacuum equations \eqref{eqn.3+1.summary} without the momentum and energy
+	equations which might be considered as a starting point of further research.
+	In particular, we shall show that the vacuum 3+1 TEGR equations are
+	equivalent to the tetrad reformulation of GR by Estabrook-Robinson-Wahlquist
+	\cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003} which is known
+	to be symmetric hyperbolic, and will be referenced to as \ERWBB\
+	formulation. We remind that solely hyperbolicity is not enough for
+	well-posedness of the initial value problem for a general quasi-linear
+	system of first-order equations. At least, to the best of our knowledge,
+	there is no an existence and uniqueness theorem for such a class of
+	equations in multiple dimensions\footnote{ Despite this, for a system
+	describing causal propagation of 	signals, the hyperbolicity is considered
+	as a minimum requirement for numerical discretization.}. In contrary, such a
+	theorem exists for symmetric hyperbolic systems, e.g. see \cite{Serre2007}.
+	
+	Let us first introduce the main elements of the \ERWBB\ formulation which relies on the Ricci 
+	rotation coefficients
+	\begin{align}\label{eqn.Ricci.rot}
+		\mathcal{R}_{abc} 
+		:= & \bm{\itetrsymbol}_a\cdot\nabla_c \bm{\itetrsymbol}_b \nonumber\\
+		= & \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \pd{\lambda} \itetr{\nu}{b} 
+		+   \itetr{\mu}{a} g_{\mu\nu} \itetr{\lambda}{c} \Gamma^{\nu}_{\ \lambda\rho} 
+		\itetr{\rho}{b}	
+	\end{align}
+	where $ \nabla_c := \itetr{\lambda}{c} \nabla_{\lambda} $ and $ \nabla_{\lambda} $ is the 
+	standard 
+	covariant derivative of GR associated with the symmetric Levi-Civita connection, and $ 
+	\Gamma^{\mu}_{\ 
+		\nu\lambda} $ are the Christoffel symbols of the Levi-Civita connection.
+	
+	If $ \Tors{a}{bc} = \Tors{a}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $ and $ \Tors{}{abc} = \mg{ad} 
+	\Tors{d}{bc} $ is the torsion written in the tetrad basis, then the relation between the Ricci 
+	rotation coefficient and torsion can be expressed by the formula
+	\begin{equation}\label{eqn.Ricci.Tors}
+		\mathcal{R}_{abc} = \frac{1}{2} 
+		\left(  
+			\Tors{}{abc} + \Tors{}{bca} - \Tors{}{cab}
+		\right),
+	\end{equation}
+	which also shows that the Ricci rotation coefficients equal exactly to the so-called contortion 
+	tensor with the opposite sign $ \mathcal{R}_{abc} =-K_{abc} $, e.g. see 
+	\cite[Eq.(1.63)]{AldrovandiPereiraBook}.
+	
+	Then, 24 independent entries of $ \mathcal{R}_{abc} $ are organized into the following state 
+	variables
+	\begin{equation}\label{eqn.KN}
+		\Kbuch{\sC}{\sA} := \mathcal{R}_{\sA\indalg{0}\sC},
+		\qquad
+		\Nbuch{\sB}{\sA} := \frac{1}{2} \LCtens^{\sA\sC\sD}\mathcal{R}_{\sC\sD\sB}
+	\end{equation}
+	and 
+	\begin{equation}\label{eqn.aw}
+		a_{\sA} = \mathcal{R}_{\sA\indalg{0}\indalg{0}},
+		\qquad
+		\omega^{\sA} = \frac{1}{2} \LCtens^{\sA\sB\sC} \mathcal{R}_{\sC\sB\indalg{0}}
+	\end{equation}
+	Here, $ \LCtens_{\sA\sB\sC} = 
+	\detTetr_3 \LCsymb_{ijk}\itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $.
+	
+	It can be shown that the following relations between the \ERWBB\ and TEGR state variables hold
+	\begin{subequations}\label{eqn.Buchman.TEGR.KN}
+		\begin{align}
+			\Kbuch{\sA}{\sB} = & \frac{\varkappa}{\detTetr_3} 
+			\left(
+			\Dfin{\sA\sB}{}-\frac{1}{2} \Dfin{\sC}{\sC} \mg{\sA\sB}
+			\right),\\[2mm]
+			-\Nbuch{\sA}{\sB} =&\frac{1}{\detTetr_3}
+			\left(
+			\Bfinmixx{\sA}{\sB} - \frac{1}{2}\Bfinmix{\sC}{\sC}\KD{\sB}{\sA}
+			\right).
+			%		\\[2mm]
+			%		a_{\sB} = & \frac{1}{\lapse} A_{\sB},\\[2mm]
+			%		\omega^{\sB} = & \frac{\varkappa}{\lapse} \MG{\sB\sA} \Omega_{\sA}.
+		\end{align}
+	\end{subequations}
+	We remark that due to our choice of the 3+1 split \eqref{eqn.h.eta.matrix}, i.e. that 
+	observer's time vector, $ \bas{\indalg{0}} $, is align with the normal vector to the 
+	spatial hypersurfaces, the matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are 
+	\textit{symmetric}.
+	
+	Additionally, we have the following relations between the \ERWBB\ vectors $
+	a_{\sA} $, $ \omega^{\sA} $ and the \tegr\ vectors $
+	A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ \Omega_{k} =
+	\Hfin{\indalg{0}}{k} $
+	\begin{equation}\label{eqn.Buchman.TEGR.AW}
+		a_{\sA} = \lapse^{-1} A_{\sA},
+		\qquad
+		\omega^{\sA} =-\varkappa \lapse^{-1} \MG{\sA\sB} \Omega_{\sB}.
+	\end{equation}
+	
+	Finally, expression of the 
+	constitutive fluxes $ \Efin{\sA}{k} $ and $ \Hfin{\sA}{k} $ in terms of $ 
+	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_{\sA},\omega_{\sA}\} $ read
+	\begin{subequations}\label{eqn.const.KN}
+		\begin{align}
+			\Efin{}{\sA\sB} &=
+			- \lapse \,\Kbuch{\sA}{\sB} 
+			+ \lapse \LCtens_{\sA\sB\sC} \omega^\sC ,
+			\\[2mm]
+			\Hfin{\sB}{\sA} &= 
+			\phantom{-}\frac{\lapse}{\varkappa} \Nbuchdown{\sA}{\sB} 
+			- \frac{\lapse}{\varkappa} 
+			\LCtens_{\sA\sB\sC} a^\sC ,
+		\end{align}
+	\end{subequations}
+	where $\Efin{}{\sA\sB} = \mg{\sA\sC}\itetr{k}{\sB}\Efin{\sC}{k}$ and $\Hfin{\sA}{\sB} = \itetr{k}{\sA}\Hfin{k}{\sB}$.
+	
+	% Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic
+	% even for the Minkowski spacetime (it is actually only weakly hyperbolic
+	% because some eigenvectors are missing), and therefore it can not be
+	% equivalent to the symmetric hyperbolic \ERWBB\ formulation of GR right away.
+	% In this section, we discuss what modifications of equations
+	% \eqref{eqn.3+1.summary} are necessary in order to make it equivalent to the
+	% \ERWBB\ formulation. These modifications rely on the use of Hamiltonian and
+	% momentum constraints \eqref{eqn.div.constrD} and symmetry of $
+	% \Dfin{\sA\sB}{} $. 
+	
+	% Because we are considering a vacuum space-time, the momentum and energy
+	% equations \eqref{eqn.3+1.m}, \eqref{eqn.3+1.e} can be omitted. Moreover,
+	% modifications concern only torsion equations \eqref{eqn.3+1.D},
+	% \eqref{eqn.3+1.B}, and therefore for the sake of simplicity, we also omit
+	% the tetrad equations \eqref{eqn.3+1.h}
+	
+	% If one considers 18 equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B} written in a 
+	% quasilinear form\footnote{Due to the rotational invariance, 
+	% 	it is actually sufficient to consider the system in any preferred coordinate direction, say 
+	% 	in $ x^1 
+	% 	$, without lose of generality.}
+	% \begin{equation}\label{eqn.quasi.lin}
+	% 	\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
+	% \end{equation}
+	% for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
+	% \bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors already for 
+	% the 
+	% flat Minkowski spacetime, that is the 
+	% system is only 
+	% weakly hyperbolic. Here, $ \bm{M}^k =
+	% \pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
+	
+	
+	% Evolution equations \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} for the torsion
+	% fields have a conservative form (i.e. their differential terms are the
+	% 4-divergence) which is in particular convenient for developing of high-order
+	% methods for hyperbolic equations.
+	% %\begin{subequations}\label{eqn.BD.alt0}
+	% %	\begin{align}
+	% 	%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+	% 	%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+	% 	%		\Hfin{\sA}{j}) & 
+	% 	%		= \shift{i}\rho_\sA - \stress{\sA}{i},
+	% 	%		\label{eqn.BD.alt0.D}
+	% 	%		\\[2mm]
+	% 	%		%		
+	% 	%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+	% 	%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+	% 	%		\Efin{\sA}{j}) & 
+	% 	%		= 0.
+	% 	%		\label{eqn.BD.alt0.B}
+	% 	%	\end{align}
+	% %\end{subequations}
+	% However, this flux-conservative form of equations has a flaw in the
+	% eigenvalues already for the flat spacetime with non-zero shift vector $
+	% \shift{k} $. Namely, some characteristic velocities are always $ 0 $ despite
+	% the non-zero shift vector. The same issue is well known for the
+	% magnetohydrodynamics equations \cite{Powell1999}. From our experience with
+	% the non-relativistic equations of nonlinear electrodynamics of moving media
+	% \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that
+	% have the same structure as \eqref{eqn.3+1.summary}. Instead, the following
+	% non-conservative form does not have such a pathology
+	% \begin{subequations}\label{eqn.BD.alt}
+	% 	\begin{align}
+	% 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+	% 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+	% 		\Hfin{\sA}{j}) 
+	% 		-\shift{i}\pd{k} \Dfin{\sA}{k}
+	% 		& 
+	% 		= - \stress{\sA}{i},
+	% 		\label{eqn.BD.alt.D}
+	% 		\\[2mm]
+	% 		%		
+	% 		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+	% 		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+	% 		\Efin{\sA}{j}) 
+	% 		-\shift{i}\pd{k} \Bfin{\sA}{k}
+	% 		& 
+	% 		= 0,
+	% 		\label{eqn.BD.alt.B}
+	% 	\end{align}
+	% \end{subequations}
+	% and which is obtained from \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} by
+	% turning the momentum $ \rho_\sA $ on the right hand-side of
+	% \eqref{eqn.3+1.D} into a differential term according to the momentum
+	% constraint $ \rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding formally a zero, $
+	% 0 = \pd{k}\Bfin{\sA}{k} $, to \eqref{eqn.3+1.B}. These modifications are
+	% legitimate for smooth solutions thanks to involution constraints
+	% \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic
+	% velocities have the desired values equal to $ \sim\shift{k} $ or $ \sim
+	% \shift{k} \pm c $, if $ c $ is the light speed. However, this only allows to
+	% fix the issue with the eigenvalues, while some eigenvectors are still
+	% missing.
+	
+	
+	
+	
+	
+	Now, rewriting the 3+1 TEGR equations on $\Dfin{\sA}{i}$ and $\Bfin{\sA}{i}$
+	(eqs.~\eqref{eqn.3+1.D} and \eqref{eqn.3+1.B}) in terms of $\Dfin{\sA}{\sB}
+	= \tetr{\sB}{i}\Dfin{\sA}{i}$ and $\Bfin{\sA}{\sB} =
+	\tetr{\sB}{i}\Bfin{\sA}{i}$, then applying transformations
+	\eqref{eqn.Buchman.TEGR.KN} to these equations and using relations
+	\eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN}, after a lengthy but
+	rather straightforward sequence of transformations, one obtains the following equations
+	\begin{subequations}\label{eqn.KN.pde}
+		\begin{align}
+			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
+			&
+			- \alpha \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
+			- \alpha \pd{\sA} a_{\sB} = \text{l.o.t.}
+			\\[2mm]
+			\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
+			&
+			+ \alpha \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
+			+ \alpha \pd{\sA} \omega_{\sB} = \text{l.o.t.}
+			\label{eqn.KN.pde.N}
+		\end{align}
+	\end{subequations}
+	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do
+	not contain space and time derivatives), $ \pd{\indalg{0}} =
+	\itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = \lapse^{-1}\pd{t} -
+	\lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
+	We note the opposite order of the subscripts $\sA$ and $\sB$ in \eqref{eqn.KN.pde.N} in the second term with respect to \cite[eq.(40)]{Buchman2003}. This however does not affect the symmetric hyperbolicity of the system discussed in what follows.
+	%The low-order terms are given in the appendix\,\ref{}.
+
+	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $
+	\omega_{\sA} $ in the \ERWBB\ formulation of GR are not provided with
+	particular evolution equations following from the variational formulation,
+	and therefore they are considered as gauge conditions. Hence, one could try
+	to choose their evolution equations in such a way as to guaranty the
+	well-posedness of the enlarged system for the unknowns $
+	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown
+	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge
+	conditions on $a_\sA$ and $\omega_\sA$:
+	\begin{subequations}\label{eqn.aw.pde}
+		\begin{align}
+			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
+			\\[2mm]
+			\pd{\indalg{0}} \omega_\sA + \alpha \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
+		\end{align}
+	\end{subequations}
+	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric
+	hyperbolic, i.e. it can be written in a quasi-linear form
+	\begin{equation}\label{eqn.quasi.lin}
+		\pd{t} \bm{Q} + \bm{M}^k\pd{k} \bm{Q} = \text{l.o.t.}
+	\end{equation}
+	with matrices $ \bm{M}^k = \bm{M}^k(\alpha,\itetr{i}{\sA})$ being symmetric for arbitrary $\itetr{i}{\sA}$.
+	To see this, one needs to order the entries of
+	$\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way
+	$\bm{Q} = \{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
+	
+	In summary, the 3+1 \tegr\ equations in vacuum, eqs. \eqref{eqn.3+1.D} and
+	\eqref{eqn.3+1.B}, if coupled with the proper gauge conditions on $A_k$ and
+	$\Omega_k$, are equivalent to a symmetric-hyperbolic system
+	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde}. However, this is a very preliminary
+	result for further investigation of the well-posedness of the entire 3+1 TEGR
+	system because even the time evolution on the tetrad field $\tetr{\sA}{i}$
+	was excluded from the consideration.
+
+	% \textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude the
+	% same for the original 3+1 TEGR equations \eqref{eqn.3+1.summary} because
+	% the differential operators of \eqref{eqn.3+1.summary} and
+	% \eqref{eqn.BD.alt2} are different even though the overall equations are
+	% equivalent. We recall that the hyperbolicity (well-posedness of the initial
+	% value problem) is defined by the leading-order terms of the differential
+	% operator (all differential terms in the case of first-order systems).
+	% Nevertheless, this is an important result demonstrating that inside of the
+	% class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary}
+	% there is a possibility, at least one given by \eqref{eqn.BD.alt2},  to
+	% rewrite the TEGR vacuum equations as a symmetric hyperbolic system.
+	
+	%The second step to recovering hyperbolicity of the TEGR equations consists in not modifying 
+	%the 
+	%equations but extending the set of state variables and the set of evolution equations.
+	%Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge 
+	%freedoms $ 
+	%A_k = 
+	%\Efin{\indalg{0}}{k} $ and $ \Omega_k = \Hfin{\indalg{0}}{k} $ according to
+	%\begin{subequations}\label{eqn.AOmega}
+	%	\begin{align}
+		%		&\pd{\indalg{0}}A_i      - \pd{k} \Efinn{k}{i} = 0, 
+		%		\\[2mm]
+		%		&\pd{\indalg{0}}\Omega_i + \pd{k} \Hfinnmix{i}{k} = 0.
+		%	\end{align}
+	%\end{subequations}
+	%We set the right hand-side of these two equations to zero because it is not important for the 
+	%hyperbolicity. In general, one may want to chose any other gauge conditions, e.g. see 
+	%\cite{Buchman2003}. While increasing number of evolution equations, this modification 
+	%drastically 
+	%improves the situation with the missing eigenvectors. Now, the system of 24 equations 
+	%\eqref{eqn.3+1.D}, 
+	%\eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the 
+	%supplementary 
+	%materials [??].
+	
+	
+	
+%	\section{Symmetrization}
+%	
+%	The energy is
+%	\begin{equation}
+%		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
+%		-\frac{\alpha}{2\detTetr_3} \left( 
+%		\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} 
+%(\Dfin{\sA}{\sA})^2\right)
+%		+
+%		\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - 
+%\frac{1}{2} 
+%		(\Bfinmix{\sA}{\sA})^2
+%		\right)
+%		\right).
+%	\end{equation}
+%	
+%	Having this expression for the potential $ \Ufin $ and introducing notations
+%	\begin{equation}
+%		\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
+%		\qquad
+%		\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
+%	\end{equation}
+%	the constitutive relations \eqref{eqn.H.E} can be rewritten as
+%	\begin{equation}\label{eqn.H.E.split}
+%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
+%		\Hfinn{\sA}{k}
+%		{ 
+%			\color{blue}
+%			-
+%			\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
+%		\qquad
+%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
+%		\Efinn{\sA}{k}
+%		{
+%			\color{blue}
+%			-
+%			\varkappa \detTetr_3 \LCsymb_{kjl} 
+%			\itetr{j}{\sB} \MG{\sA\sB} \Omega^l}.
+%	\end{equation}
+%	
+%	In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be 
+%written as 
+%	\begin{subequations}\label{eqn.BD.hat}
+%		\begin{align}
+%				\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
+%				\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
+%				\Hfinn{\sA}{j}) 
+%				&
+%				{ + \color{red} \pd{k} 
+%						\left(
+%						\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
+%						\right) }
+%				-\shift{i}\pd{k} \Dfin{\sA}{k}
+%				= - \stress{\sA}{i},
+%				\\[2mm]
+%				\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
+%				\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
+%				\Efinn{\sA}{j}) 
+%				&
+%				{ - \color{red}\pd{k} 
+%						\left(
+%						\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} 
+%\hat{\Omega}^i
+%						\right) \MG{\sA\sB}}
+%				-\shift{i}\pd{k} \Bfin{\sA}{k}
+%				= 0,
+%			\end{align}
+%	\end{subequations}
+%	where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ 
+%\hat{\Omega}^i = \varkappa 
+%		\detTetr_3 
+%		\Omega^i $.} 
+%	
+%	\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 
+%equations has 
+%		\textit{only 10 eigenvectors} for the flat spacetime.}
+%	
+%	Currently, the main natural idea, also exploited by Buchman et al 
+%\cite{Buchman2003} (see 
+%	eq.(44) 
+%	or (47)), is to add 
+%	two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = 
+%\Hfin{\indalg{0}}{k} $. 
+%	
+%	\IP{The 
+%		question is how to find these PDEs. So far, I tested the following 
+%simple equations:}
+%	\begin{subequations}
+%		\begin{align}
+%				&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} 
+%\Efin{\sA}{i} = rhs, 
+%				\\[2mm]
+%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} 
+%\Hfin{\sA}{i} = 
+%		rhs,  
+%			\end{align}
+%	\end{subequations}
+%	or in terms of \eqref{eqn.H.E.split}
+%	\begin{subequations}\label{eqn.A.Omega}
+%		\begin{align}
+%				&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} 
+%\pd{k} \Efinn{\sA}{i}}
+%				{\color{blue}
+%					-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
+%					\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
+%					}
+%				 = rhs, 
+%				\\[2mm]
+%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
+%				+ 
+%				{\color{red}\itetr{k}{\sA} \pd{k} 
+%					\Hfinn{\sB}{i} \MG{\sA\sB}
+%					} 
+%				{\color{blue}
+%					- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} 
+%\hat{A}^l) \MG{\sA\sB}
+%					}= rhs.
+%			\end{align}
+%	\end{subequations}
+%	Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  
+%$ \{ 
+%	\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. 
+%Therefore, 2 are 
+%	missing.
+%	
+%	\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, 
+%\eqref{eqn.A.Omega}. The multipliers 
+%	are 
+%		$ 
+%		\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ 
+%\hat{\Omega}^i $}
+%	
+	
+	
+	
+	\section{Relation between the torsion and extrinsic curvature}
+	
+	It is useful to relate the state variables of TEGR to the conventional quantities used in 
+	numerical 
+	general relativity \cite{ADM2008,Baumgarte2003a,Gourgoulhon2012a}. In 
+	what follows, we relate the spatial extrinsic curvature of GR to the $ \Dfin{\sA}{k} $ field. 
+	We remark 
+	that the two fields are conceptually different due to the different geometry interpretations in 
+	GR and TEGR. Therefore, the obtained relation is possible only due to the equivalence of TEGR 
+	and GR. 
+	
+	In GR, the evolution equation of the spatial metric $ \gamma_{ij} $ is (see 
+	\cite[Eq.(7.64)]{RezzollaZanottiBook})
+	%$\tilde{\gamma}_{ij} = 
+	%\phi^{2}\gamma_{ij} $ reads \cite{CCZ4,FO-CCZ4}
+	%\begin{equation}\label{eqn.gamma.CCZ4}
+	%	\pd{t}\tilde{\gamma}_{ij} - \shift{k} \pd{k} \tilde{\gamma}_{ij} - \tilde{\gamma}_{ki} 
+	%	\pd{j}\shift{k}
+	%	-\tilde{\gamma}_{kj}\pd{i}\shift{k} + \frac{2}{3} \tilde{\gamma}_{ij} \pd{k}\shift{k} = -2 
+	%	\alpha \phi^2 (K_{ij} - \frac13 K \gamma_{ij}),
+	%\end{equation} 
+	\begin{equation}\label{eqn.K}
+		\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+		-\gamma_{jl}\pd{i}\shift{l} = - 2 \alpha K_{ij},
+	\end{equation}
+	%$ \phi = \det(\gamma_{ij})^{-1/6} = \detTetr_3^{-1/3} $,
+	where  $ K_{ij} $ is the spatial extrinsic 
+	curvature.
+	On the other hand, in TEGR, contracting \eqref{eqn.tetr.3+1} with $ \mg{\sA\sB} \tetr{\sB}{j} 
+	$, one 
+	obtains 
+	the following evolution equation for the spatial metric:
+	\begin{multline}\label{eqn.gamma.PDE}
+		\pd{t} \gamma_{ij} - \shift{l}\pd{l}\gamma_{ij} - \gamma_{il}\pd{j}\shift{l}
+		-\gamma_{jl}\pd{i}\shift{l} = \\
+		-\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+		\Efin{\sB}{i}).
+	\end{multline} 
+	Therefore, one can deduce an expression for the extrinsic curvature in terms of $ 
+	\Efin{\sA}{i} $: 
+	\begin{equation}\label{key}
+		K_{ij} = \frac{1}{2\alpha}\mg{\sA\sB}(\tetr{\sA}{i} \Efin{\sB}{j} + \tetr{\sA}{j} 
+		\Efin{\sB}{i}).
+	\end{equation}
+	
+	To obtain another expression for $ K_{ij} $ in terms of the primary state variable $ 
+	\Dfin{\sA}{i} 
+	$, one needs to use the the constitutive relationship \eqref{eqn.E} to deduce
+%	\begin{align}
+%		&\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
+%		=\\
+%		&-\frac{\alpha \varkappa}{\detTetr_3}  \mg{\sA\sB}  \bigg( 
+%		\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+%		-
+%		\frac12
+%		(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+%		\bigg) \Dfin{\sC}{k}.
+%	\end{align}
+%	Therefore, the following expression can be obtained
+%	\begin{equation}
+%		K_{ij} = -\frac{\varkappa}{2 \detTetr_3}\mg{\sA\sB} \bigg( 
+%		\tetr{\sB}{k} (\tetr{\sA}{i}\tetr{\sC}{j} + \tetr{\sA}{j}\tetr{\sC}{i})
+%		-
+%		\frac12
+%		(\tetr{\sA}{i}\tetr{\sB}{j} + \tetr{\sA}{j}\tetr{\sB}{i})\tetr{\sC}{k}
+%		\bigg) \Dfin{\sC}{k},
+%	\end{equation}
+	\begin{equation}
+		K_{ij} = -\frac{\varkappa}{\detTetr_3} 
+		\left ( 
+		\Dfin{ij}{} - \frac{1}{2} \Dfin{k}{k} \gamma_{ij}
+		\right ) ,
+	\end{equation}
+	which, if contracted, gives the relationship for the traces $ K^i_{\ i} = \gamma^{ij}K_{ji} $ 
+	and $ 
+	\Dfin{i}{i} =  \Dfin{\sA}{i}\tetr{\sA}{i} $
+	\begin{equation}
+		K^i_{\ i} = \frac{\varkappa}{2\detTetr_3}\Dfin{i}{i}.
+	\end{equation}
+	
+	Remark that if written in the tetrad frame $ K_{\sA\sB} = 
+	\itetr{i}{\sA}\itetr{j}{\sA} K_{ij}$ then the extrinsic curvature is exactly $ \Kbuch{\sA}{\sB} 
+	$ 
+	introduced in 
+	\eqref{eqn.Buchman.TEGR.KN} apart from the opposite sign
+	\begin{equation}
+		K_{\sA\sB} = -\Kbuch{\sA}{\sB}.
+	\end{equation}  
+	
+	
+	
+	
+	\section{Torsion scalar}\label{sec.closure}
+	
+	
+	
+	In \tegr\ and its $ f(\Tscal) $-extensions, the Lagrangian density is a function of the 
+	torsion scalar $ \Tscal $, e.g. in \tegr, the Lagrangian density is
+	\begin{subequations}\label{eqn.TEGR.Lagr}
+		\begin{equation}
+			\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = \frac{\detTetr}{2 \, \varkappa} \Tscal,
+		\end{equation}
+		\begin{align}\label{eqn.tors.scal0}
+			\Tscal(\tetr{a}{\mu},\Tors{a}{\mu\nu}) &:= \\
+			&\frac14 g^{\beta\lambda} g^{\mu\gamma} g_{\alpha\eta} \Tors{\alpha}{\lambda\gamma}
+			\Tors{\eta}{\beta\mu} \\
+			&+
+			%
+			\frac12 g^{\mu\gamma} \Tors{\lambda}{\mu\beta} \Tors{\beta}{\gamma\lambda} \\
+			&- 
+			%
+			g^{\mu\lambda} \Tors{\rho}{\mu\rho} \Tors{\gamma}{\lambda\gamma},	  
+		\end{align}
+	\end{subequations}
+	where $ \varkappa = 8\pi G c^{-4} $ is the Einstein gravitational constant, $ G $ is the 
+	gravitational constant, $ c $ is the speed of light in vacuum.
+	
+	
+	
+	
+	
+	%If one needs the Lagrangian density $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $ as a function 
+	%of 
+	%the 
+	%Hodge dual, then the torsion scalar $ \Tscal $ can be expressed as
+	%\eqref{eqn.Lagrangians2}
+	%\begin{equation}\label{eqn.Tscal.Hodge}
+	%	\Tscal(\tetr{a}{\mu},\HDT{a\mu\nu}) = \frac12 \HDT{\mu\nu\lambda} (\HDmix_{\lambda\mu\nu} + 
+	%	\HDmix_{\nu\lambda\mu} + g_{\mu\lambda} \HDmix^{\gamma}_{\phantom{\gamma\,} \nu\gamma})
+	%\end{equation}
+	
+	
+	However, to close system \eqref{eqn.3+1.summary}, we need not the Lagrangian $ 
+	\Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu})  $ directly but we need to perform a sequence of 
+	variable 
+	and potential changes: $ \Lagtors(\tetr{a}{\mu},\Tors{a}{\mu\nu}) = 
+	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) $ $ \longrightarrow $ $ \ET{a}{\mu} 
+	\Dm{a}{\mu} - \LagBE = 
+	\Um(\tetr{a}{\mu},\Dm{a}{\mu},\Bm{a}{\mu}) = 
+	\Ufin(\tetr{a}{\mu},\Dfin{a}{\mu},\Bfin{a}{\mu}) $. 
+	%in terms of 
+	%the state vector $ \vec{Q} = \{ 
+	%\tetr{a}{\mu}, \aD{a}{i}, \aB{a}{\mu} \} $ which can be obtained from the following expresion 
+	%in 
+	%terms of $ \{ \tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}\} $:
+	Thus, we have
+	\begin{align}\label{eqn.Tscal.EB}
+		&\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = \nonumber\\
+		&\frac{\detTetr}{2 \, \varkappa}
+		\bigg(
+		- \frac12(\ETmix{\indalg{0}\lambda}{}\ETmix{\indalg{0}}{\ \lambda} -  
+		2\ETmix{\lambda}{\ \,\lambda}\ETmix{\beta}{\ \,\beta} +
+		\ETmix{\ \,\lambda}{\beta} \ETmix{\beta}{\ \,\lambda}  +
+		\ETmix{\lambda}{\ \,\beta}\ETmix{\beta}{\ \,\lambda} )
+		\nonumber
+		\\
+		& + \LCsymb_{\lambda\gamma\eta\rho} u^\eta 
+		(\ETmix{\lambda\gamma}{}\BTmix{\indalg{0}\rho}{} + 2 
+		\ET{\indalg{0}\lambda}{}\BTmix{\gamma\rho}{})
+		\nonumber
+		\\
+		&- \frac12 h^{-2} ( \BTmix{\indalg{0}\lambda}{}\BTmix{\indalg{0}}{\ \lambda}
+		+ \BTmix{\lambda}{\ \,\lambda}\BTmix{\beta}{\ \,\beta}
+		- 2\BTmix{\lambda}{\ \,\beta}\BTmix{\beta}{\ \,\lambda}
+		)
+		\bigg).
+	\end{align}
+	%or, using algebraic constraints \eqref{eqn.constr.alg.EB}
+	%\begin{multline}\label{eqn.Tscal.EB1}
+	%	\LagBE(\tetr{a}{\mu},\ET{a}{\mu},\BT{a}{\mu}) = \frac{h}{2\,\varkappa} \bigg( 
+	%	\ETmix{k}{\ \,k}\ETmix{i}{\ \,i} 
+	%	-\frac12 \ETmix{k}{\ \,i} \ETmix{i}{\ \,k}
+	%	-\frac12 \ETmix{\ \,k}{i} \ETmix{i}{\ \,k} 
+	%	%
+	%	-\frac12 \detTetr^{-2} 
+	%	\BTmix{i}{\ \,i}\BTmix{k}{\ \,k}
+	%	+ \detTetr^{-2} \BTmix{i}{\ \,k}\BTmix{k}{\ \,i} 
+	%	\\
+	%	%
+	%	{\color{red}-} 2 \, \alpha^{-1} \LCsymb_{kli} N^k \BTmix{l i}{}
+	%	\bigg),
+	%\end{multline}
+	%where  $ N^k = N_j \gamma^{jk} $, $ \ET{i}{j} = 
+	%\itetr{i}{\sA} \ET{\sA}{j}$, $ \ETmix{\ \,k}{i} = \gamma_{ij} \ET{j}{l} \gamma^{lk} 
+	%$, $ \BT{i}{j} = \itetr{i}{\sA} 
+	%\BT{\sA}{j} $,  and $ \BTmix{i}{\ \,k} = 
+	%\BT{i}{j} \gamma_{jk}$. Also, in \eqref{eqn.Tscal.EB1}, $ \LCsymb_{ijk} $ is the pure spatial 
+	%Levi-Civita symbol with the reference $ \LCsymb_{123}=1 $ and $ \LCsymb_{ijk} = \LCsymb^{ijk} 
+	%$ 
+	%(in 
+	%particular $ \LCsymb_{0123} = -\LCsymb_{123} $).
+	%
+	
+	In turn, if we perform the Legendre transform $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = 
+	\ET{a}{\mu} 
+	\Dm{a}{\mu} - \LagBE$
+	then the new potential $ \Um $ reads
+	\begin{align}\label{eqn.Lagr.DB}
+		\Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) &= \nonumber\\ 
+	  	\frac{1}{4\,h} \bigg( &\varkappa \left(
+		\Dm{i}{i}\Dm{k}{k} - 2 \Dm{i}{k}\Dm{k}{i}
+		\right)\nonumber\\
+		% 
+		 + &\frac{1}{\varkappa} \left ( 
+		\Bmmix{i}{\ \,i}\Bmmix{k}{\ \,k}
+		- 2 \Bmmix{i}{\ \,k}\Bmmix{k}{\ \,i}
+		\right ) \nonumber\\
+		+ \varkappa (\beta^j \Dm{j}{0} + &2 \beta^j \Dm{j}{0}\Dfin{k}{k} - 4 \beta^j \Dm{k}{0} 
+		\Dfin{j}{k}) 
+		\bigg),
+	\end{align}
+	where $ \Dm{k}{i} = \Dm{\sA}{i} \tetr{\sA}{k} $ and $ \Bmmix{k}{\ i} = \Bm{\sA}{j} 
+	\itetr{k}{\sA} 
+	\gamma_{ji} $, and in the last two terms, one should pay attention that the new field $ 
+	\Dfin{\sA}{k} $ introduced in \eqref{eqn.varDB.final} appears there.
+	
+	Apparently, apart from the last terms in \eqref{eqn.Lagr.DB} depending on $ \Dm{k}{0} $, the 
+	potential 
+	$ \Um $ is more symmetric in the variables $ \Dm{a}{\mu} $ and $ 
+	\Bm{a}{\mu} $ rather than the Lagrangian $ \LagBE $ in $ \ET{a}{\mu} $ and $ \BT{a}{\mu} $. 
+	This in 
+	particular, justifies the introduction of the new and final variables \eqref{eqn.varDB.final}
+	\begin{equation}\label{eqn.db}
+		\Dfin{\sA}{k} = \Dm{\sA}{k} + \beta^k \Dm{\sA}{0}, \qquad \Bfin{\sA}{k} = \Bm{\sA}{k},
+	\end{equation}
+	so that the potential $ \Um(\tetr{\sA}{k},\Dm{\sA}{k},\Bm{\sA}{k}) = 
+	\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k})$ becomes just
+	%\begin{subequations}
+	\begin{align}\label{eqn.Ufin}
+		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) &= \nonumber\\
+		-\frac{\alpha}{2\detTetr_3} \bigg( 
+		&\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} 
+		- \frac{1}{2} (\Dfin{\sA}{\sA})^2\right)\nonumber\\
+		+
+		&\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - \frac{1}{2} 
+		(\Bfinmix{\sA}{\sA})^2
+		\right)
+		\bigg).
+		%		-\frac{\alpha}{2\detTetr_3} \left( 
+		%		\varkappa \left( I_{\Dfin{}{}2} - \frac{1}{2} I_{\Dfin{}{}1}\right)
+		%		+
+		%		\frac{1}{\varkappa} \left( I_{\Bfin{}{}2} - \frac{1}{2} I_{\Bfin{}{}1}
+		%		\right)
+		%		\right) ,
+	\end{align}
+	
+	
+	
+	\section{Conclusion and discussion}
+	
+	We have presented a 3+1-split of the TEGR equations in their historical pure
+	tetrad version, i.e. with the spin connection set to zero. To the best of
+	our knowledge, there were not many attempts to obtain a 3+1-split of the
+	TEGR equations, e.g. \cite{Capozziello2021,Pati2022}, and we are not aware
+	of any attempts to solve numerically the full TEGR system of equations for
+	general spacetimes. This paper, therefore, may help to cover this gap.
+	However, first attempts to solve similar equations for the dGREM equations
+	\cite{Olivares2022} in vacuum were done recently \cite{oliynyk2025} with a
+	structure compatible discretization.
+	
+	Our derivation started from the action integral of TEGR with an arbitrary
+	Lagrangian denisty, and therefore extensions of TEGR such as $ f(\Tscal)
+	$-teleparallel theories also can be covered in the future. After separating
+	the spatial and time components of the torsion, the 3+1 governing partial
+	differential equations have appeared to have the same structure as equations
+	of nonlinear electrodynamics \cite{DPRZ2017} and equations for continuum
+	fluid and solid mechanics with torsion \cite{Torsion2019} if, howeveer, the
+	gauge vectors $A_k$ and $\Omega_k$ are set to $0$. For more general gauge
+	conditions on $A_k$ and $\Omega_k$, the 3+1 equations have a structure of
+	the Maxwell equations coupled with the acoustic-type equations, e.g. see
+	\cite{MaxwellGLM}. Moreover, it has appeared that the derived equations are
+	equivalent to the recently proposed dGREM tetrad formulation of GR
+	\cite{Olivares2022}. However, we emphasize that that the starting point of
+	\cite{Olivares2022} was different. Here, we started from the variational principle while the fundamental elements of the dGREM
+	formulation are the frame field, their exterior derivatives, and the
+	Nester-Witten and Sparling forms.
+	
+	The derived 3+1 TEGR equations are not immediately hyperbolic as usually the
+	case for many first-order reductions of the Einstein equations. We
+	demonstrated that for the vacuum equations the differential operator of the
+	equations can be transformed into a different but equivalent form which is
+	equivalent to the symmetric hyperbolic tetrad reformulation of GR by
+	Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
+	\cite{Buchman2003}. The question of hyperbolicity of the full 3+1 TEGR
+	equations coupled with matter is still open and requires further
+	investigation.
+	
+	%Additionally, the equations have the structure of the so-called Symmetric Hyperbolic 
+	%Thermodynamically 
+	%Compatible (SHTC) class of equations \cite{God1961,SHTC-GENERIC-CMAT}, however the 
+	%hyperbolicity 
+	%of 
+	%the proposed formulation is left unexplored in this paper. Furthermore, as any SHTC equations, 
+	%the 
+	%proposed model likely to have also a Hamiltonian structure and underlying Poisson bracket 
+	%formulation \cite{SHTC-GENERIC-CMAT,PKG_Book2018}. This would be very important for developing 
+	%of 
+	%so-called structure-preserving integrators \cite{HTC2022} in order to respect various 
+	%continuous 
+	%properties of the 
+	%governing equations, such as involutions \eqref{eqn.div.constr}, at the discrete level, see 
+	%also 
+	%the 
+	%discussion on this topic in \cite{Olivares2022}.
+	
+	Despite it is argued that TEGR is fully equivalent to Einstein's general
+	relativity, the proposed 3+1 TEGR equations have yet to be carefully tested
+	in a computational code and have yet to be proved to pass all the standard
+	benchmark tests of GR. Therefore, further research will concern
+	implementation of the TEGR equations in a high-order discontinuous Galerkin
+	code \cite{Dumbser2018a,Busto2020}, with a possibility of constraint
+	cleaning  \cite{Dumbser2019} and well-balancing \cite{Gaburro2021}. This in
+	particular would allow a direct comparison of the TEGR with other 	3+1
+	equations of GR, such as Z4 formulations \cite{Alic2012} forwarded by Bona
+	\textit{et al} in \cite{Z4}, and FO-CCZ4 by Dumbser \textit{et al}
+	\cite{FO-CCZ4}, a strongly hyperbolic formulations of GR, within the same
+	computational code.  Another numerical strategy would be to use staggered
+	grids and to develop a structure-preserving discretization
+	\cite{SIGPR2021,Olivares2022,Fambri2020a,oliynyk2025} that should allow to keep errors
+	of div and curl-type involution constraints of TEGR at the machine
+	precision.
+	
+	
+	\paragraph{Acknowledgments}
+	I.P. is grateful to A.~Golovnev for sharing his thoughts about various
+	aspects of teleparallel gravity that were important for the appearance of
+	this work. Also, I.P. would like to thank M.~Dumbser, O.~Zanotti, E.R. Most
+	for their support and insightful discussions. I.P. acknowledges the
+	financial support received from the Italian Ministry of Education,
+	University and Research (MIUR) in the frame of the Departments of Excellence
+	Initiative 2018–2022 attributed to the Department of Civil, Environmental
+	and Mechanical Engineering (DICAM) of the University of Trento (Grant No.
+	L.232/2016) and in the frame of the Progetti di Rilevante Interesse
+	Nazionale (PRIN) 2017, Project No. 2017KKJP4X, “Innovative numerical methods
+	for evolutionary partial differential equations and applications”.
+	%
+	During part of the development of this work,
+	funding for H.O. came from Radboud University Nijmegen through a Virtual
+	Institute of Accretion (VIA) postdoctoral fellowship from the Netherlands
+	Research School for Astronomy (NOVA).
+	HO is supported by the Individual CEEC program - 5th edition funded by the Portuguese Foundation for Science and Technology (FCT).
+	This work is supported by CIDMA under the
+	Portuguese Foundation for Science and Technology 
+	(FCT, https://ror.org/00snfqn58)  
+	Multi-Annual Financing Program for R\&D Units.
+	H.O. acknowledges support from the projects PTDC/FIS-AST/3041/2020, CERN/FIS-PAR/0024/2021 and 2022.04560.PTDC. This work has further been supported by the European Horizon Europe staff exchange (SE) programme HORIZON-MSCA-2021-SE-01 Grant No. NewFunFiCO-10108625.
+	%
+	The work of E.R. is supported by the Mathematical Center in Akademgorodok
+	under the agreement No. 075-15-2025-348 with the Ministry of Science and
+	Higher Education of the Russian Federation.
+	
+	
+	%-------------------------------------------------------
+	\appendix
+	%-------------------------------------------------------
+	
+	%
+	%%-------------------------------------------------------
+	%\section{Spacetime form of the energy-momentum}\label{app.sec.EM}
+	%%-------------------------------------------------------
+	%
+	%Here, we show how the energy-momentum conservation law \eqref{eqn.Noether.cons} can be written 
+	%in 
+	%a 
+	%pure 
+	%spacetime form \eqref{eqn.EM3}.
+	%
+	%Contracting 
+	%\begin{equation}%\label{key}
+	%	\pd{\mu} \Laghodge_{\tetr{a}{\mu}} = 0
+	%\end{equation} with $ \tetr{a}{\nu} $ and then adding to it $ 0\equiv 
+	%\Laghodge_{\tetr{a}{\mu}}\pd{\mu}\tetr{a}{\nu} -  
+	%\Laghodge_{\tetr{a}{\mu}}\pd{\mu}\tetr{a}{\nu} $ 
+	%one gets
+	%\begin{equation}
+	%\pd{\mu}(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}}) - 
+	%\Laghodge_{\tetr{a}{\mu}}\pd{\mu}\tetr{a}{\nu} 
+	%= 
+	%0.
+	%\end{equation}
+	%Replacing $ \pd{\mu}\tetr{a}{\nu} $ with $ \pd{\mu}\tetr{a}{\nu} = \pd{\nu}\tetr{a}{\mu} + 
+	%\Tors{a}{\mu\nu} $ 
+	%yields
+	%\begin{equation}
+	%\pd{\mu}(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}}) - 
+	%\Laghodge_{\tetr{a}{\mu}}\pd{\nu}\tetr{a}{\mu} 
+	%- 
+	%\Laghodge_{\tetr{a}{\mu}}\Tors{a}{\mu\nu} = 0.
+	%\end{equation}
+	%Then, using the fact that $ L = L(\tetr{a}{\mu},\HDT{a\mu\nu}) $, the second term can be 
+	%substituted 
+	%by $ \Laghodge_{\tetr{a}{\mu}}\pd{\nu}\tetr{a}{\mu} = \pd{\nu}\Laghodge - 
+	%\Laghodge_{\HDT{a\lambda\rho}}\pd{\nu}\HDT{a\lambda\rho} $. This results in
+	%\begin{equation}\label{app.eqn.EM1}
+	%\pd{\mu}(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} - L \delta^\mu_{\ \nu}) +
+	%\Laghodge_{\HDT{a\lambda\rho}}\pd{\nu}\HDT{a\lambda\rho} -
+	%\Laghodge_{\tetr{a}{\mu}}\Tors{a}{\mu\nu} = 0.
+	%\end{equation} 
+	%Now, the energy-momentum current $ -\Laghodge_{\tetr{a}{\mu}} $ in the last term can be 
+	%substituted 
+	%by its 
+	%expression from the Euler-Lagrange equation \eqref{eqn.EM.Hodge}:
+	%\begin{multline}\label{app.eqn.EM2}
+	%	-\Laghodge_{\tetr{a}{\mu}}\Tors{a}{\mu\nu} = 
+	%	\Tors{a}{\mu\nu}\pd{\lambda}(\LCsymb^{\mu\gamma\rho\lambda}\Laghodge_{\HDT{a\gamma\rho}}) =
+	%	
+	%-\frac12\LCsymb_{\mu\nu\alpha\beta}\HDT{a\alpha\beta}\pd{\lambda}(\LCsymb^{\mu\gamma\rho\lambda}\Laghodge_{\HDT{a\gamma\rho}})
+	%	 =
+	%	 \\
+	%	2\HDT{a\alpha\beta}\pd{\beta}\Laghodge_{\HDT{a\nu\alpha}} + 
+	%	\HDT{a\alpha\beta}\pd{\nu}\Laghodge_{\HDT{a\alpha\beta}},
+	%\end{multline}
+	%where we have used  $ 
+	%-\LCsymb_{\mu\nu\alpha\beta}\LCsymb^{\mu\gamma\rho\lambda} = 
+	%\KD{\gamma\rho\lambda}{\nu\alpha\beta} +
+	%\KD{\lambda\gamma\rho}{\nu\alpha\beta} +
+	%\KD{\rho\lambda\gamma}{\nu\alpha\beta} -
+	%\KD{\gamma\lambda\rho}{\nu\alpha\beta} -
+	%\KD{\lambda\rho\gamma}{\nu\alpha\beta} -
+	%\KD{\rho\gamma\lambda}{\nu\alpha\beta}
+	%$, with $ \KD{\gamma\rho\lambda}{\nu\alpha\beta} = 
+	%\KD{\gamma}{\nu}\KD{\rho}{\alpha}\KD{\lambda}{\beta} $, e.g. see \cite{KleinertMultivalued}, 
+	%p.45. 
+	%Hence, using expression \eqref{app.eqn.EM2}, equation 
+	%\eqref{app.eqn.EM1} can be written as
+	%\begin{equation}
+	%\pd{\mu}(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} - L \delta^\mu_{\ \nu}) +
+	%\Laghodge_{\HDT{b\lambda\rho}}\pd{\nu}\HDT{b\lambda\rho} +
+	%2\HDT{a\alpha\beta}\pd{\beta}\Laghodge_{\HDT{a\nu\alpha}} + 
+	%\HDT{a\alpha\beta}\pd{\nu}\Laghodge_{\HDT{a\alpha\beta}} = 0,
+	%\end{equation} 
+	%and then
+	%\begin{equation}
+	%\pd{\mu}\left(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} + 
+	%(\HDT{b\lambda\rho}\Laghodge_{\HDT{b\lambda\rho}}- 
+	%L) \delta^\mu_{\ \nu} \right) -
+	%2\HDT{a\alpha\mu}\pd{\mu}\Laghodge_{\HDT{a\alpha\nu}} = 0,
+	%\end{equation} 
+	%Finally, using the integrability condition \eqref{integr.HT}, this equation can be written in 
+	%a 
+	%fully conservative form
+	%\begin{equation}
+	%\pd{\mu}\left(\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} -
+	%2\HDT{a\lambda\mu}\Laghodge_{\HDT{a\lambda\nu}}
+	%+
+	%(\HDT{b\lambda\rho}\Laghodge_{\HDT{b\lambda\rho}}- 
+	%L) \delta^\mu_{\ \nu} \right) = 0.
+	%\end{equation} 
+	
+	
+	%It can be shown (see 
+	%expression \eqref{app.eqn.Noether2} 
+	%for $ \Laghodge_{\tetr{a}{\mu}} $ in 
+	%Appendix~\ref{app.sec.NC}) that the tetrad part $ 
+	%\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} $ expands as
+	%\begin{align}
+	%	\tetr{a}{\nu}\Laghodge_{\tetr{a}{\mu}} & =
+	%    -\tetr{a}{\nu} \Um_{\tetr{a}{\mu}} \nonumber\\
+	%   & + u_\nu u^\mu(\Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} + \Dm{a}{\lambda} 
+	%   \Um_{\Dm{a}{\lambda}}) 
+	%   \nonumber\\
+	%%   &- u^\mu u_\lambda \Dm{a}{\lambda} \Um_{\Dm{a}{\nu}} - u_\nu u^\lambda 
+	%%   \Bm{a}{\mu}\Um_{\Bm{a}{\lambda}} \nonumber\\
+	%   &-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \Um_{\Dm{a}{\beta}} \Um_{\Bm{a}{\lambda}}
+	%   -\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \Dm{a}{\beta}\Bm{a}{\lambda}
+	%\end{align}
+	%
+	%On the other hand, the torsion part $ - 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	%(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} $ reads
+	%\begin{align}
+	%	- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	%	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \delta^\mu_{\ \nu} & = -\Um 
+	%	\KD{\mu}{\nu}\nonumber\\
+	%	& + \Dm{a}{\mu}\Um_{\Dm{a}{\nu}}+ \Bm{a}{\mu}\Um_{\Bm{a}{\nu}} \nonumber\\
+	%	& - u_\nu u^\mu(\Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} + \Dm{a}{\lambda} 
+	%	\Um_{\Dm{a}{\lambda}}) 
+	%	\nonumber\\
+	%	%   &- u^\mu u_\lambda \Dm{a}{\lambda} \Um_{\Dm{a}{\nu}} - u_\nu u^\lambda 
+	%	%   \Bm{a}{\mu}\Um_{\Bm{a}{\lambda}} \nonumber\\
+	%	&-\LCsymb^{\mu\alpha\beta\lambda} u_\nu u_\alpha \mathcal{\Um}_{\Dm{a}{\beta}} 
+	%	\Um_{\Bm{a}{\lambda}}
+	%	-\LCsymb_{\nu\alpha\beta\lambda} u^\mu u^\alpha \Dm{a}{\beta}\Bm{a}{\lambda}.
+	%\end{align}
+	
+	
+	\section{Transformation of Noether's current $ \NC{a}{\mu} $}\label{app.sec.NC}
+	
+	Here, we express Noether's current $ \NC{a}{\mu} = \Laghodge_{\tetr{a}{\mu}} $ for the 
+	gravitational part of the Lagrangian (i.e. the matter part is ignored in this section) in terms 
+	of 
+	the 
+	potential $ \Um $ and new variables $ \Dm{a}{\mu} $ and $ \Bm{a}{\mu} $. 
+	
+	Thus, for the parametrization
+	$ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\mu}) $, one 
+	has
+	\begin{equation}\label{app.eqn.Noether1}
+		\Laghodge_{\tetr{a}{\mu}} = \LagBE_{\tetr{a}{\mu}} 
+		+ \LagBE_{\BT{b}{\lambda}} \frac{\partial \BT{b}{\lambda}}{\partial \tetr{a}{\mu}}
+		+ \LagBE_{\ET{b}{\lambda}} \frac{\partial \ET{b}{\lambda}}{\partial \tetr{a}{\mu}}.
+	\end{equation}
+	Then, using the definitions of the frame 4-velocity $ u^\nu = \itetr{\nu}{\indalg{0}} $ and $ 
+	u_\nu 
+	= 
+	-\tetr{\indalg{0}}{\nu} $ and the torsion fields
+	$ \BT{b}{\lambda} = \HDT{b\lambda\nu} u_\nu = - \HDT{b\lambda\nu} \tetr{\indalg{0}}{\nu}$ and 
+	$ \ET{b}{\lambda} = \Tors{b}{\lambda\nu} u^\nu = 
+	-\frac12\LCsymb_{\lambda\nu\alpha\beta}\HDT{b\alpha\beta} \itetr{\nu}{\indalg{0}}$, and the 
+	fact 
+	that $ \partial\itetr{\lambda}{b}/\partial\tetr{a}{\mu} = -\itetr{\lambda}{a}\itetr{\mu}{b} $, 
+	we 
+	can rewrite \eqref{app.eqn.Noether1} as
+	\begin{multline}
+		\Laghodge_{\tetr{a}{\mu}} = \LagBE_{\tetr{a}{\mu}} 
+		+ \LagBE_{\BT{b}{\lambda}} \frac{\partial \BT{b}{\lambda}}{\partial \tetr{a}{\mu}}
+		+ \LagBE_{\ET{b}{\lambda}} \frac{\partial \ET{b}{\lambda}}{\partial \tetr{a}{\mu}} = \\
+		\LagBE_{\tetr{a}{\mu}} - \LagBE_{\BT{b}{\lambda}} \KD{\indalg{0}}{a}
+		(u^\lambda \BT{b}{\mu} - u^\mu \BT{b}{\lambda}+\LCsymb^{\lambda\mu\alpha\beta} u_\alpha  
+		\ET{b}{\beta}) \\
+		-\LagBE_{\ET{b}{\lambda}} (u_\lambda \ET{b}{\nu} - u_\nu \ET{b}{\lambda} - 
+		\LCsymb_{\lambda\nu\alpha\rho}u^\alpha\BT{b}{\rho})\itetr{\nu}{a}u^\mu.
+	\end{multline}
+	Using the definitions \eqref{eqn.Legendre2} and \eqref{eqn.Legendre3}, the latter can be 
+	rewritten 
+	as
+	\begin{align}
+		&\Laghodge_{\tetr{a}{\mu}} =
+		-\Um_{\tetr{a}{\mu}} \nonumber\\
+		&- \Um_{\Bm{b}{\lambda}} \KD{\indalg{0}}{a}
+		(-u^\lambda \Bm{b}{\mu} + u^\mu \Bm{b}{\lambda}+\LCsymb^{\lambda\mu\alpha\beta} u_\alpha 
+		\Um_{\Dm{b}{\beta}}) \nonumber\\
+		&-\Dm{b}{\lambda} \itetr{\nu}{a}u^\mu (u_\lambda \Um_{\Dm{b}{\nu}} - u_\nu 
+		\Um_{\Dm{b}{\lambda}} + 
+		\LCsymb_{\lambda\nu\alpha\rho}u^\alpha\Bm{b}{\rho}),
+	\end{align}
+	which, after some term rearrangements, reads
+	\begin{align}\label{eqn.J.BD}
+		&\Laghodge_{\tetr{a}{\mu}} =
+		-\Um_{\tetr{a}{\mu}} 
+		\nonumber\\
+		% 
+		&+ \KD{\indalg{0}}{a}
+		\bigg( 
+		u^\lambda \Bm{b}{\mu} \Um_{\Bm{b}{\lambda}} 
+		- u^\mu \Bm{b}{\lambda} \Um_{\Bm{b}{\lambda}} 
+		\nonumber\\
+		&- u^\mu \Dm{b}{\lambda} \Um_{\Dm{b}{\lambda}}
+		+ \LCsymb^{\mu\lambda\rho\sigma} u_\rho \Um_{\Bm{b}{\lambda}}
+		\Um_{\Dm{b}{\sigma}} 
+		\bigg) \nonumber\\
+		%
+		&- \itetr{\nu}{a}u^\mu
+		\left(
+		u_\lambda \Dm{b}{\lambda} \Um_{\Dm{b}{\nu}} 
+		- \LCsymb_{\nu\lambda\rho\sigma}u^\rho\Bm{b}{\sigma}\Dm{b}{\lambda}
+		\right),
+	\end{align}
+	and exactly is \eqref{eqn.JiA}.
+		
+	This formula, in particular, can be used to get the following expression for the 
+	energy-momentum $ 
+	\EMmat{\mu}{\nu} = \tetr{a}{\nu} \NC{a}{\mu}$:
+	\begin{align}
+		\EMmat{\mu}{\nu} =
+		& - \tetr{a}{\nu} \Um_{\tetr{a}{\mu}} \nonumber\\
+		& - u^\lambda u_\nu \Bm{a}{\mu} \Um_{\Bm{a}{\lambda}} - u^\mu u_\lambda \Dm{a}{\lambda} 
+		\Um_{\Dm{a}{\nu}}				\nonumber\\
+		& + u^\mu u_\nu \Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} 
+		+ u^\mu u_\nu \Dm{a}{\lambda} \Um_{\Dm{a}{\lambda}}
+		\nonumber \\
+		& + \LCsymb_{\nu\sigma\lambda\rho} u^\mu u^\sigma \Bm{a}{\lambda} \Dm{a}{\rho} 
+		\nonumber \\
+		&+ \LCsymb^{\mu\sigma\lambda\rho} u_\nu u_\sigma \Um_{\Bm{a}{\lambda}} 
+		\Um_{\Dm{a}{\rho}}.\label{eqn.sigma.tetr.part}
+	\end{align}
+	
+	
+	\section{Expression for the energy-momentum}\label{app.energymomentum}
+	
+	In this section, we derive expression \eqref{eqn.sigma.BD} for the gravitational part fof the 
+	energy-momentum
+	\begin{equation}\label{eqn.EM.hodge}
+		\EMmat{\mu}{\nu} =
+		2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} - 
+		(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu}
+	\end{equation}
+	
+	Because $ \HDT{a\mu\nu} $ is 
+	antisymmetric tensor, to compute the derivative $ \Laghodge_{\HDT{a\lambda\nu}} $ one needs to 
+	use 
+	its parametrization via the \We\ connection, which is not symmetric, i.e. $ \HDT{a\mu\nu} = 
+	\LCsymb^{\mu\nu\rho\sigma} \w{a}{\rho\sigma}$. Thus, for Lagrangians $ 
+	\Lag(\tetr{a}{\mu},\w{a}{\mu\nu}) = 
+	\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu})$ one can write 
+	\begin{equation}
+		\Lag_{\w{a}{\lambda\mu}} = \LCsymb^{\lambda\mu\rho\sigma} \Laghodge_{\HDT{a\rho\sigma}},
+	\end{equation}
+	or using the identity $ \LCsymb_{\lambda\mu\alpha\beta}\LCsymb^{\lambda\mu\rho\sigma} = 
+	-2(\KD{\rho}{\alpha}\KD{\sigma}{\beta} - \KD{\rho}{\beta}\KD{\sigma}{\alpha}) $, 
+	\begin{equation}\label{eqn.L.T}
+		\LCsymb_{\alpha\beta\rho\sigma}\Lag_{\w{a}{\lambda\mu}} = -4 \Laghodge_{\HDT{a\rho\sigma}}.
+	\end{equation}
+	
+	On the other hand, using the definitions $ \ET{a}{\mu} = (\w{a}{\mu\nu} - \w{a}{\nu\mu})u^\nu 
+	$, $ 
+	\BT{a}{\mu} = \LCsymb^{\mu\nu\rho\sigma}\w{a}{\rho\sigma} u_\nu $, and  the parametrization $ 
+	\Lag(\tetr{a}{\mu},\w{a}{\mu\nu}) = \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\mu}) $, one can 
+	write
+	\begin{align}\label{eqn.Lambda.W}
+		\Lag_{\w{b}{\lambda\gamma}} &= 
+		\LagBE_{\ET{a}{\mu}} \frac{\partial \ET{a}{\mu}}{\partial \w{b}{\lambda\gamma}} 
+		+
+		\LagBE_{\BT{a}{\mu}} \frac{\partial \BT{a}{\mu}}{\partial \w{b}{\lambda\gamma}} 
+		\nonumber\\
+		&=
+		u^\gamma \LagBE_{\ET{b}{\lambda}} - u^\lambda \LagBE_{\ET{b}{\gamma}} - 
+		\LCsymb^{\lambda\gamma\nu\mu} u_\nu \LagBE_{\BT{a}{\mu}},
+	\end{align}
+	and hence, from \eqref{eqn.L.T} and \eqref{eqn.Lambda.W}, one can deduce 
+	\begin{align}
+		\Laghodge_{\HDT{a\lambda\nu}} &= \nonumber\\
+		&-\frac{1}{2} 
+		\left(
+		u_\lambda \LagBE_{\BT{a}{\nu}} - u_\nu \LagBE_{\BT{a}{\lambda}} 
+		-
+		\LCsymb_{\lambda\nu\rho\sigma} u^\rho \LagBE_{\ET{a}{\sigma}} 
+		\right).
+	\end{align}
+	Then, after contracting the later equation with $ \HDT{a\lambda\mu} = u^\lambda \BT{a}{\mu} - 
+	u^\mu 
+	\BT{a}{\lambda} + \LCsymb^{\lambda\mu\alpha\beta} u_\alpha \ET{a}{\beta} $, one obtains
+	\begin{align}\label{eqn.T.L.T} 
+		2 \HDT{a\lambda\mu} &\Laghodge_{\HDT{a\lambda\nu}}  = \nonumber\\
+		&  \BT{a}{\mu}\LagBE_{\BT{a}{\nu}} 
+		- \ET{a}{\nu}\LagBE_{\ET{a}{\mu}} \nonumber\\
+		& + u^\lambda u_\nu \BT{a}{\mu} \LagBE_{\BT{a}{\lambda}} - u^\mu u_\nu \BT{a}{\lambda} 
+		\LagBE_{\BT{a}{\lambda}}				\nonumber\\
+		& - \LCsymb_{\nu\lambda\rho\sigma} u^\mu u^\sigma \BT{a}{\lambda} \LagBE_{\ET{a}{\rho}} 
+		\nonumber\\
+		& - \LCsymb^{\mu\lambda\rho\sigma} u_\nu u_\rho \ET{a}{\sigma} \LagBE_{\BT{a}{\lambda}}
+		\nonumber \\
+		& + (u^\mu u_\nu + \KD{\mu}{\nu}) \ET{a}{\lambda} \LagBE_{\ET{a}{\lambda}} - u^\mu 
+		u_\lambda 
+		\ET{a}{\nu} \LagBE_{\ET{a}{\lambda}}.
+	\end{align}
+	This can be used to demonstrate that the full contraction  $ 	\HDT{a\lambda\rho} 
+	\Laghodge_{\HDT{a\lambda\rho}} $ results in
+	\begin{equation}\label{eqn.T.L.T.full}
+		\HDT{a\lambda\rho} \Laghodge_{\HDT{a\lambda\rho}}
+		=
+		\BT{a}{\lambda} \LagBE_{\BT{a}{\lambda}} + \ET{a}{\lambda} \LagBE_{\ET{a}{\lambda}}.
+	\end{equation}
+	
+	Collecting together \eqref{eqn.T.L.T} and \eqref{eqn.T.L.T.full} and using the change of 
+	variables and potential \eqref{eqn.Legendre1}--\eqref{eqn.Legendre3}, we arrive at
+	\begin{align}\label{eqn.Sigma.tors.part}
+		2 \HDT{a\lambda\mu}&L_{\HDT{a\lambda\nu}} - 
+		(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu} = \nonumber\\
+		& - \Bm{a}{\mu}\Um_{\Bm{a}{\nu}} - \Dm{a}{\nu}\Um_{\Dm{a}{\mu}} \nonumber\\
+		& - u^\lambda u_\nu \Bm{a}{\mu} \Um_{\Bm{a}{\lambda}} - u^\mu u_\lambda \Dm{a}{\lambda} 
+		\Um_{\Dm{a}{\nu}}				\nonumber\\
+		& + u^\mu u_\nu \Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} 
+		+ u^\mu u_\nu \Dm{a}{\lambda} \Um_{\Dm{a}{\lambda}}
+		\nonumber \\
+		& + \LCsymb_{\nu\sigma\lambda\rho} u^\mu u^\sigma \Bm{a}{\lambda} \Dm{a}{\rho} 
+		\nonumber\\
+		& + \LCsymb^{\mu\sigma\lambda\rho} u_\nu u_\sigma \Um_{\Bm{a}{\lambda}} 
+		\Um_{\Dm{a}{\rho}} 
+		\nonumber \\
+		& + (\Bm{a}{\lambda} \Um_{\Bm{a}{\lambda}} + \Dm{a}{\lambda} \Um_{\Dm{a}{\lambda}} - 
+		\Um) \KD{\mu}{\nu}.
+	\end{align}
+	%where $ \projector{\mu}{\nu} = u^\mu u_\nu + \KD{\mu}{\nu} $.
+	
+	%Finally, combining this result with the tetrad part given by \eqref{eqn.J.BD}, one arrives at 
+	%(many 
+	%terms in \eqref{eqn.J.BD} and \eqref{eqn.Sigma.tors.part} are canceled out )
+	%\begin{multline}
+	%	\tetr{a}{\nu} \Laghodge_{\tetr{a}{\mu}}
+	%		- 2 \HDT{a\lambda\mu}L_{\HDT{a\lambda\nu}} + 
+	%	(\HDT{a\lambda\rho}L_{\HDT{a\lambda\rho}} - L) \KD{\mu}{\nu} = \\
+	%	- \tetr{a}{\nu} \Um_{\tetr{a}{\mu}}
+	%	+ \Dm{a}{\mu}\Um_{\Dm{a}{\nu}} + \Bm{a}{\mu}\Um_{\Bm{a}{\nu}}
+	%	- (
+	%	\Dm{a}{\lambda}\Um_{\Dm{a}{\lambda}}+ \Bm{a}{\lambda}\Um_{\Bm{a}{\lambda}}
+	%	-\Um
+	%	) \KD{\mu}{\nu}.	
+	%\end{multline}
+	
+	
+	
+	
+	
+	
+	\section{Transformation of the torsion PDE}\label{app.sec.Deqn}
+	
+	
+	In this appendix, we demonstrate how the Euler-Lagrange equation \eqref{eqn.1st.order.EL} 
+	\begin{equation}\label{eqn.EL.tors}
+		\D{\nu}(\LCsymb^{\mu\nu\lambda\rho}\Laghodge_{\HDT{a\lambda\rho}}) 
+		=-\Laghodge_{\tetr{a}{\mu}}
+	\end{equation}
+	can be 
+	transformed to the form \eqref{eqn.tors.BE.a}.
+	
+	Based on the different parametrization of the Lagrangian (we omit for the moment dependence of 
+	the 
+	Lagrangian on the tetrad field) $ \Lag(\w{a}{\mu}) = 
+	\Laghodge(\HDT{a\mu\nu}) = \Lagtors(\Tors{a}{\mu\nu}) $, one can obtain
+	\begin{equation}\label{eqn.Lambda_W.Hodge}
+		\Lag_{\w{a}{\lambda\mu}} = \LCsymb^{\lambda\mu\rho\sigma} \Laghodge_{\HDT{a\rho\sigma}},
+		\quad
+		\Lag_{\w{a}{\lambda\mu}} = \Lagtors_{\Tors{a}{\lambda\mu}} - 
+		\Lagtors_{\Tors{a}{\mu\lambda}},
+	\end{equation}
+	from which it follows that the objects
+	\begin{equation}
+		\HTConj{a\mu\nu} := \Laghodge_{\HDT{a\mu\nu}}, 
+		\qquad
+		\TorsConj{a}{\mu\nu} := \frac12 \left( \Lagtors_{\Tors{a}{\mu\nu}} - 
+		\Lagtors_{\Tors{a}{\nu\mu}} 
+		\right)
+	\end{equation}
+	are Hodge duals of each others:
+	\begin{subequations}
+		\begin{align}
+			\HTConj{a\mu\nu} &:=-\frac12\LCsymb_{\mu\nu\rho\sigma}\TorsConj{a}{\rho\sigma}, 
+			\\
+			\TorsConj{a}{\mu\nu} &:= \phantom{+}\frac12 
+			\LCsymb^{\mu\nu\rho\sigma}\HTConj{a\rho\sigma}.
+		\end{align}
+	\end{subequations}
+	Therefore, one can write the following identities
+	\begin{subequations}
+		\begin{align}
+			\HTConj{a\mu\nu} &= u_\mu \Hbb{a}{\nu} - u_\nu \Hbb{a}{\mu} - 
+			\LCsymb_{\mu\nu\rho\sigma}u^\rho \Dbb{a}{\sigma}\label{app.eqn.Deqn1},\\[2mm]
+			\TorsConj{a}{\mu\nu} &= u^\mu \Dbb{a}{\nu} - u^\nu \Dbb{a}{\mu} +
+			\LCsymb^{\mu\nu\rho\sigma}u_\rho \Hbb{a}{\sigma},\label{eqn.TorsConj}
+		\end{align}
+	\end{subequations}
+	where 
+	\begin{equation}\label{app.eqn.DH}
+		\Hbb{a}{\mu} := \HTConj{a\mu\nu}u^\nu, 
+		\qquad
+		\Dbb{a}{\mu} := \TorsConj{a}{\mu\nu}u_\nu,
+	\end{equation}
+	
+	Hence, the Euler-Lagrange equation \eqref{eqn.EL.tors} now reads
+	\begin{equation}%\label{key}	
+		\pd{\nu} \TorsConj{a}{\mu\nu} =-\frac12 \Laghodge_{\tetr{a}{\mu}},
+	\end{equation}
+	or, according to \eqref{eqn.TorsConj}, it can be written as
+	\begin{equation}\label{app.eqn.Deqn2}
+		\D{\nu}(u^\mu \Dbb{a}{\nu} - u^\nu \Dbb{a}{\mu} + \LCsymb^{\mu\nu\alpha\beta}
+		u_\alpha\Hbb{a}{\beta}) = -\frac12 \Laghodge_{\tetr{a}{\mu}}.
+	\end{equation}
+	
+	It remains to express $ \Dbb{a}{\mu} $ and $ \Hbb{a}{\mu} $ in terms of $ 
+	\LagBE(\BT{a}{\mu},\ET{a}{\mu}) $. Thus, using the fact that $ \Lag_{\w{a}{\mu\nu}} = 2 
+	\TorsConj{a}{\mu\nu} $ and $ \Lag_{\w{a}{\mu\nu}} = \LCsymb_{\mu\nu\rho\sigma} 
+	\HTConj{a\rho\sigma} 
+	$,  and the expression \eqref{eqn.Lambda.W}, one can derive that
+	\begin{subequations}
+		\begin{align}%\label{key}
+			\Hbb{a}{\mu} &=-\frac12 \left( \LagBE_{\BT{a}{\mu}} + u^\lambda 
+			\LagBE_{\BT{a}{\lambda}} 
+			u_\mu 
+			\right),
+			\\
+			\Dbb{a}{\mu} &=-\frac12 \left( \LagBE_{\ET{a}{\mu}} + u_\lambda 
+			\LagBE_{\ET{a}{\lambda}} 
+			u^\mu 
+			\right).
+		\end{align}
+	\end{subequations}
+	
+	Finally, plugging these expressions in 
+	\eqref{app.eqn.Deqn2}, one obtains the desired result 
+	\begin{equation}
+		\D{\nu}( u^\mu\LagBE_{\ET{a}{\nu}} - u^\nu \LagBE_{\ET{a}{\mu}} + 
+		\LCsymb^{\mu\nu\rho\sigma}u_\rho\LagBE_{\BT{a}{\sigma}}) 
+		= \Laghodge_{\tetr{a}{\mu}}.
+	\end{equation}
+	
+	
+	
+	\section{Some expressions of the torsion scalar}
+	
+	Denoting the scalars in the right-hand side of \eqref{eqn.tors.scal0} as ($ \Tscal = \Tscal_1 + 
+	\Tscal_2 + \Tscal_3 $)
+	\begin{subequations}
+		\begin{align}\label{eqn.tors.scal}
+			\Tscal_1 = & \frac14 \mg{ab}g^{\beta\lambda }g^{\mu\gamma 
+			}\Tors{a}{\lambda\gamma} \Tors{b}{\beta\mu },\\[2mm]
+			%
+			\Tscal_2 = & \frac12 g^{\mu\gamma} \itetr{\lambda}{a} \itetr{\beta}{b} 
+			\Tors{a}{\mu\beta} 
+			\Tors{b}{\gamma\lambda},\\[2mm]
+			%
+			\quad
+			\Tscal_3 = & -g^{\mu\lambda} \itetr{\rho}{a} \itetr{\gamma}{b} \Tors{a}{\mu\rho} 
+			\Tors{b}{\lambda\gamma},	  
+		\end{align}
+	\end{subequations}
+	we can also write 
+	\begin{subequations}
+		\begin{align}\label{eqn.tors.scal.TQLC}
+			\mathcal{T}_1 &= Q_3 + \frac12 C_4, \\
+			\mathcal{T}_2 &=- Q_1 + Q_4 + L_1 -C_1 + C_2 + \frac12 C_4, \\[2mm]
+			\mathcal{T}_3 &= 2 Q_1 + Q_2 + L_2 + 2 C_1 + C_3 - C_4,
+		\end{align}
+	\end{subequations}
+	where the scalars $ Q $, $ L $, and $ C $ are scalars made of $ \ET{a}{\mu} $ and 
+	$ \BT{a}{\mu} $ as follows.
+	
+	\begin{subequations}
+	Quadratic in $ \ET{a}{\mu} $:
+	\begin{align}\label{eqn.tors.scal2.Q}
+		Q_1 &= -\frac12 \ET{\indalg{0}}{\alpha} g^{\alpha\beta} \ET{\indalg{0}}{\beta},\\[2mm]
+		%
+		Q_2 &= \itetr{\alpha}{a} \ET{a}{\alpha} \itetr{\beta}{b} \ET{b}{\beta} = 
+		\ET{\alpha}{\alpha} \ET{\beta}{\beta},\\[2mm]
+		%
+		Q_3 &=-\frac12 \mg{ab} \ET{a}{\alpha} g^{\alpha\mu}
+		\ET{b}{\mu},\\[2mm]
+		%
+		Q_4 &=-\frac12 \itetr{\lambda}{a} \ET{a}{\beta} \itetr{\beta}{b} \ET{b}{\lambda} = 
+		\ET{\lambda}{\beta} \ET{\beta}{\lambda}.
+	\end{align}
+	
+	Mixed scalars (linear in $ \ET{a}{\mu} $):
+	\begin{align}\label{eqb.ts.scal.L}
+		L_1 &= \LCsymb_{\lambda\tau\varphi\gamma} u^\varphi g^{\tau\beta} \itetr{\lambda}{a} 
+		\ET{a}{\beta} \BT{\indalg{0}}{\gamma},\\[2mm]
+		%
+		L_2 &= 2 \LCsymb_{\lambda\tau\varphi\gamma} u^\varphi g^{\lambda\beta} \itetr{\tau}{a} 
+		\ET{\indalg{0}}{\beta} \BT{a}{\gamma}.
+	\end{align}
+	
+	Quadratic in $ \BT{a}{\mu} $ (constant in  $ \ET{a}{\mu} $)
+	\begin{align}\label{eqn.tors.scal.C}
+		C_1 &=-\frac12 h^{-2} g_{\lambda\rho} \BT{\indalg{0}}{\rho} \BT{\indalg{0}}{\lambda},\\[2mm]
+		%
+		C_2 &=-\frac12 h^{-2} g_{\rho\varphi} \itetr{\varphi}{a} \BT{a}{\rho} \itetr{\beta}{b} 
+		\BT{b}{\lambda}g_{\lambda\beta} 
+%		= -\frac12 h^{-2} g_{\rho\varphi} \BT{\varphi}{\rho} 
+%		\BT{\beta}{\lambda}g_{\lambda\beta},
+		,\\[2mm]
+		%
+		C_3 &= h^{-2} \itetr{\varphi}{a} \BT{a}{\sigma} g_{\varphi\beta} \itetr{\lambda}{b} 
+		\BT{b}{\beta} g_{\lambda\sigma} 
+%		= h^{-2} \BT{\varphi}{\sigma} g_{\varphi\beta} 
+%		\BT{\lambda}{\beta} g_{\lambda\sigma},
+		,\\[2mm]
+		%
+		C_4 &= h^{-2} \itetr{\varphi}{a} \BT{a}{\sigma} g_{\varphi\lambda} \itetr{\lambda}{b} 
+		\BT{b}{\beta} g_{\beta\sigma} .
+%		=h^{-2} \BT{\varphi}{\sigma} g_{\varphi\lambda} 
+%		\BT{\lambda}{\beta} g_{\beta\sigma}.
+	\end{align}
+	\end{subequations}
+	
+	In terms of the Hodge dual $ \HDT{a\mu\nu} $, the torsion scalar $ \Tscal $ can be rewritten as
+	\begin{subequations}
+	\begin{equation}\label{eqn.tors.scal.hodge}
+		\Tscal = \Hscal_1 + \Hscal_2 + \Hscal_3 + \Hscal_4,
+	\end{equation}
+	where 
+		\begin{align}\label{eqn.hodge.scal}
+			\Hscal_1 &= \frac{1}{2 h^2} \mg{ac}\mg{bd}\tetr{c}{\lambda}\tetr{d}{\sigma} 
+			g_{\tau\rho} 
+			\HDT{a\rho\sigma}\HDT{b\lambda\tau},
+			\\[2mm]
+			\Hscal_2 &= \frac{1}{2 h^2} \mg{ac}\mg{bd}\tetr{c}{\tau}\tetr{d}{\rho} 
+			g_{\lambda\sigma} 
+			\HDT{a\rho\sigma}\HDT{b\lambda\tau},
+			\\[2mm]
+			%
+			\Hscal_3 &=-\frac{1}{4 h^2} \mg{ac}\mg{bd}\tetr{c}{\sigma}\tetr{d}{\lambda} 
+			g_{\tau\rho} 
+			\HDT{a\rho\sigma}\HDT{b\lambda\tau},
+			\\[2mm] 
+			\Hscal_4 &=-\frac{1}{4 h^2} \mg{ac}\mg{bd}\tetr{c}{\rho}\tetr{d}{\tau} 
+			g_{\lambda\sigma} 
+			\HDT{a\rho\sigma}\HDT{b\lambda\tau}.
+		\end{align}
+	\end{subequations}
+	
+	Finally, in terms of the \We\ connection, the torsion scalar reads:
+	\begin{subequations}
+		\begin{equation}
+			\Tscal = \sum_{n=1}^{8}\mathcal{W}_n
+		\end{equation}
+		\begin{align}
+			\mathcal{W}_1 &= \frac12 
+			\mg{ab}g^{\beta\lambda}g^{\mu\gamma}\w{a}{\lambda\gamma}\w{b}{\beta\mu},
+			\\
+			\mathcal{W}_2 &=-\frac12 
+			\mg{ab}g^{\beta\lambda}g^{\mu\gamma}\w{a}{\gamma\lambda}\w{b}{\beta\mu},
+		\end{align}
+		\begin{align}
+			\mathcal{W}_3 &= \frac12 
+			g^{\mu\gamma}\itetr{\beta}{a}\w{a}{\lambda\gamma}\itetr{\lambda}{b}\w{b}{\beta\mu},
+			\\
+			\mathcal{W}_4 &=\frac12 
+			g^{\mu\gamma}\itetr{\beta}{a}\w{a}{\gamma\lambda}\itetr{\lambda}{b}\w{b}{\mu\beta},
+		\end{align}
+		\begin{equation}
+			\mathcal{W}_5 =  
+			-g^{\mu\gamma}\itetr{\beta}{a}\w{a}{\gamma\lambda}\itetr{\lambda}{b}\w{b}{\beta\mu},
+		\end{equation}
+		\begin{align}
+			\mathcal{W}_6 &= -g^{\mu\lambda} w^{1}_{\lambda} w^{1}_{\mu},
+			\\
+			\mathcal{W}_7 &= -g^{\mu\lambda} w^{2}_{\lambda} w^{2}_{\mu},
+			\\
+			\mathcal{W}_8 &= 2 g^{\mu\lambda} w^{1}_{\mu} w^{2}_{\lambda},
+		\end{align}
+		where $ w^{1}_\mu = \itetr{\lambda}{a} \w{a}{\mu\lambda}$, $ w^{2}_\mu = \itetr{\lambda}{a} 
+		\w{a}{\lambda\mu} $.
+	\end{subequations}
+	
+	
+	\printbibliography
+	
+\end{document}
