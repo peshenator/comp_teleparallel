@@ -347,13 +347,14 @@ BCOR5mm, % Binding correction
 	for the tetrads and conjugate momenta. In \cite{Capozziello2021}, the
 	spatial tetrad and their first order Lie derivative along the normal vector
 	to the foliations were chosen as the state variables. Somewhat similar to
-	the Hamiltonian formalism in the use of conjugate variables and Legendre
-	transforms, here we explore another line of deriving 3+1 formulation of TEGR
-	which is rather aligned with the relativistic electrodynamics. In
-	particular, the key difference from the Hamiltonian formulations
-	\cite{Maluf2001a,Pati2022} is in the promotion of the torsion to the
-	dynamical variable with its own evolution equation. As the result, the
-	obtained 3+1 equations are completely different from the mentioned papers and have a rather elegant structure similar to Maxwell's equations.
+	the Hamiltonian formalism in systematic use of conjugate variables and
+	Legendre transforms, here we explore another line of deriving a 3+1
+	formulation of TEGR that is aligned with the relativistic
+	electrodynamics. In particular, the key difference from the Hamiltonian
+	formulations \cite{Maluf2001a,Pati2022} is in the promotion of the torsion
+	to the dynamical variable with its own evolution equation. As the result,
+	the obtained 3+1 equations are completely different from the mentioned
+	papers and have a rather elegant structure similar to Maxwell's equations.
 
 	A second objective of this paper is to develop a 3+1 formulation entirely
 	independent of the Einstein's theory, i.e. our development avoids
@@ -2296,10 +2297,10 @@ BCOR5mm, % Binding correction
 	\section{Hyperbolicity of the vacuum 3+1 TEGR equations}\label{sec.hyperbolicity}
 
 	The 3+1 TEGR system \eqref{eqn.3+1.summary} is an overdetermined system due
-	the presence of the momentum and energy equations \eqref{eqn.3+1.m} and
+	the presence of the total (gravity + matter) momentum and energy equations \eqref{eqn.3+1.m} and
 	\eqref{eqn.3+1.e}. The question of hyperbolicity of \eqref{eqn.3+1.summary},
 	therefore, requires considering a model for matter, which goes beyond the
-	scope of this paper. However, we can still analyze the hyperbolicity of the
+	scope of this paper. However, we can still analyze hyperbolicity of the
 	vacuum equations \eqref{eqn.3+1.summary} without the momentum and energy
 	equations which might be considered as a starting point of further research.
 	In particular, we shall show that the vacuum 3+1 TEGR equations are
@@ -2326,13 +2327,13 @@ BCOR5mm, % Binding correction
 	\end{align}
 	where $ \nabla_c := \itetr{\lambda}{c} \nabla_{\lambda} $ and $ \nabla_{\lambda} $ is the 
 	standard 
-	covariant derivative of GR associated with the symmetric Levi-Civita connection, and $ 
+	covariant derivative of GR of the symmetric Levi-Civita connection, and $ 
 	\Gamma^{\mu}_{\ 
 		\nu\lambda} $ are the Christoffel symbols of the Levi-Civita connection.
 	
 	If $ \Tors{a}{bc} = \Tors{a}{\mu\nu}\itetr{\mu}{b}\itetr{\nu}{c} $ and $ \Tors{}{abc} = \mg{ad} 
-	\Tors{d}{bc} $ is the torsion written in the tetrad basis, then the relation between the Ricci 
-	rotation coefficient and torsion can be expressed by the formula
+	\Tors{d}{bc} $ is the torsion coefficients if it is written in the tetrad basis, then the relation between the Ricci 
+	rotation coefficients and torsion can be expressed by the formula
 	\begin{equation}\label{eqn.Ricci.Tors}
 		\mathcal{R}_{abc} = \frac{1}{2} 
 		\left(  
@@ -2375,10 +2376,10 @@ BCOR5mm, % Binding correction
 			%		\omega^{\sB} = & \frac{\varkappa}{\lapse} \MG{\sB\sA} \Omega_{\sA}.
 		\end{align}
 	\end{subequations}
-	We remark that due to our choice of the 3+1 split \eqref{eqn.h.eta.matrix}, i.e. that 
-	observer's time vector, $ \bas{\indalg{0}} $, is align with the normal vector to the 
-	spatial hypersurfaces, the matrices $ \Kbuch{\sA}{\sB} $ and $ \Dfin{\sA\sB}{} $ are 
-	\textit{symmetric}.
+	We remark that due to our choice of the 3+1 split \eqref{eqn.h.eta.matrix},
+	i.e. that observer's time vector, $ \bas{\indalg{0}} $, is aligned with the
+	normal vector to the spatial hypersurfaces, the matrices $ \Kbuch{\sA}{\sB}
+	$ and $ \Dfin{\sA\sB}{} $ are \textit{symmetric}.
 	
 	Additionally, we have the following relations between the \ERWBB\ vectors $
 	a_{\sA} $, $ \omega^{\sA} $ and the \tegr\ vectors $
@@ -2544,9 +2545,9 @@ BCOR5mm, % Binding correction
 	conditions on $a_\sA$ and $\omega_\sA$:
 	\begin{subequations}\label{eqn.aw.pde}
 		\begin{align}
-			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= 0,
+			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= \text{l.o.t.},
 			\\[2mm]
-			\pd{\indalg{0}} \omega_\sA + \alpha \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= 0,
+			\pd{\indalg{0}} \omega_\sA + \alpha \MG{\sB\sC}\pd{\sB} \Nbuchdown{\sC}{\sA} &= \text{l.o.t.},
 		\end{align}
 	\end{subequations}
 	the resulting system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} is symmetric
