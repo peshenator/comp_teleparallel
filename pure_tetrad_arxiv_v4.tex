@@ -2296,28 +2296,67 @@ BCOR5mm, % Binding correction
 	
 	\section{Hyperbolicity of the vacuum 3+1 TEGR equations}\label{sec.hyperbolicity}
 
-	The 3+1 TEGR system \eqref{eqn.3+1.summary} is an overdetermined system due
-	the presence of the total (gravity + matter) momentum and energy equations \eqref{eqn.3+1.m} and
-	\eqref{eqn.3+1.e}. The question of hyperbolicity of \eqref{eqn.3+1.summary},
-	therefore, requires considering a model for matter, which goes beyond the
-	scope of this paper. However, we can still analyze hyperbolicity of the
-	vacuum equations \eqref{eqn.3+1.summary} without the momentum and energy
-	equations which might be considered as a starting point of further research.
-	In particular, we shall show that the vacuum 3+1 TEGR equations are
-	equivalent to the tetrad reformulation of GR by Estabrook-Robinson-Wahlquist
-	\cite{Estabrook1997} and Buchman-Bardeen \cite{Buchman2003} which is known
-	to be symmetric hyperbolic, and will be referenced to as \ERWBB\
-	formulation. We remind that solely hyperbolicity is not enough for
+	Due to the presence of the total (gravity + matter) momentum and energy
+	equations \eqref{eqn.3+1.m} and \eqref{eqn.3+1.e}, analysis of hyperbolicity
+	of the 3+1 TEGR system \eqref{eqn.3+1.summary} requires consideration of a
+	model for matter, which however goes beyond the scope of this paper.
+	Nevertheless, we can still analyze hyperbolicity of the vacuum TEGR
+	equations \eqref{eqn.3+1.summary} for which the momentum and energy
+	equations can be omitted. This would be still an important result since in
+	the empty space the field equations must be causal and have well-posed
+	initial value problem. 
+	
+	In empty space, the 3+1 TEGR system reduces to the evolution equations
+	\eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and \eqref{eqn.3+1.h} for the
+	gravitational variables $\{\Dfin{\sA}{i},\Bfin{\sA}{i},\tetr{\sA}{i}\}$,
+	subject to the constraints \eqref{eqn.div.constrD} and
+	\eqref{eqn.div.constrB} and appropriate gauge conditions on
+	$\Efin{\indalg{0}}{i}$ and $\Hfin{\indalg{0}}{i}$. In fact, as we shall see,
+	the choice of the gauge conditions for $\Efin{\indalg{0}}{i}$ and
+	$\Hfin{\indalg{0}}{i}$ plays an important role in our hyperbolicity
+	analysis. Moreover, we shall assume that the lapse $\lapse$ and shift
+	$\shift{i}$ are not dynamical but some prescribed functions of space and
+	time.
+
+	We will show how the 3+1 vacuum TEGR equations, when restricted to solutions
+	satisfying the Hamiltonian constraint \eqref{eqn.div.constrD}, can be
+	transformed into an equivalent first-order system. This system has the
+	principal part of the differential operator identical to that of the
+	first-order tetrad reformulation of GR developed by Estabrook, Robinson, and
+	Wahlquist \cite{Estabrook1997} and by Buchman and Bardeen
+	\cite{Estabrook1997}. This specific formulation, which we will refer to as
+	the \ERWBB\ formulation, is known to be \textit{symmetric hyperbolic} if
+	subjected to a certain type of gauge conditions. This indirectly
+	demonstrates the hyperbolicity of the vacuum TEGR equations. However, this
+	result should be taken with care, especially in the context of numerical
+	relativity since some differential terms will be turned into algebraic terms
+	using the Hamiltonian constraint. This means that the differential operators
+	of the original 3+1 TEGR equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B}, and
+	\eqref{eqn.3+1.h} and the new system having the form of the \ERWBB\
+	formulation are not exactly equivalent. In other words, in the context of
+	numerical relativity, this may require a constraint-compatible
+	discretization, e.g. see \cite[Sec.VI.G]{Olivares2022} or
+	\cite{oliynyk2025}.
+
+	Moreover, we could not confirm or disprove the equivalence of the TEGR
+	equations written in the \ERWBB\ form and the tetrad \ERWBB\ formulation
+	itself. Although their differential parts are the same, we were not able to
+	get the algebraic parts of the equations to match. Consequently, we do not
+	claim an exact equivalence between the 3+1 TEGR equations and the ERWBB
+	tetrad formulation of GR. Our hyperbolicity analysis remains valid, however,
+	since it only depends on the principal part of the differential operator.
+
+	Let us also remind that solely hyperbolicity is not enough for
 	well-posedness of the initial value problem for a general quasi-linear
 	system of first-order equations. At least, to the best of our knowledge,
 	there is no an existence and uniqueness theorem for such a class of
 	equations in multiple dimensions\footnote{ Despite this, for a system
-	describing causal propagation of 	signals, the hyperbolicity is considered
+	describing causal propagation of signals, the hyperbolicity is considered
 	as a minimum requirement for numerical discretization.}. In contrary, such a
 	theorem exists for symmetric hyperbolic systems, e.g. see \cite{Serre2007}.
 	
-	Let us first introduce the main elements of the \ERWBB\ formulation which relies on the Ricci 
-	rotation coefficients
+	Let us first introduce the main elements of the \ERWBB\ formulation which
+	relies on the Ricci rotation coefficients
 	\begin{align}\label{eqn.Ricci.rot}
 		\mathcal{R}_{abc} 
 		:= & \bm{\itetrsymbol}_a\cdot\nabla_c \bm{\itetrsymbol}_b \nonumber\\
@@ -2359,8 +2398,20 @@ BCOR5mm, % Binding correction
 	\end{equation}
 	Here, $ \LCtens_{\sA\sB\sC} = 
 	\detTetr_3 \LCsymb_{ijk}\itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $.
-	
-	It can be shown that the following relations between the \ERWBB\ and TEGR state variables hold
+
+	Additionally, introducing the vector
+	\begin{equation}
+		n^\sA = \frac{1}{2} \LCtens^{\sA\sB\sC} \mg{\sC\sD} \Nbuch{\sB}{\sD},
+	\end{equation}
+	the Hamiltonian constraint in terms of \ERWBB\ takes the form (see \cite[eq.(A1)]{Buchman2003})
+	\begin{multline}\label{eqn.Hamiltonian.ERWBB}
+		\pd{\sA} n^\sA = \frac12 \Nbuch{\sA\sB}{}\Nbuchmix{\sA\sB}{} + \frac14\left( \Kbuchmix{\sA\sB}{}\Kbuch{\sA}{\sB} - \Nbuch{\sA\sB}{}\Nbuchmix{\sB\sA}{} \right) 
+		\\
+		- \frac14\left( \left( \Kbuchmix{\sA}{\sA} \right)^2 + \left( \Nbuch{\sA}{\sA} \right)^2\right),
+	\end{multline}
+	where $\pd{\sA} = \itetr{k}{\sA}\pd{k}$.
+
+	It can be shown that the following one-to-one relations between the \ERWBB\ and TEGR state variables hold
 	\begin{subequations}\label{eqn.Buchman.TEGR.KN}
 		\begin{align}
 			\Kbuch{\sA}{\sB} = & \frac{\varkappa}{\detTetr_3} 
@@ -2370,21 +2421,21 @@ BCOR5mm, % Binding correction
 			-\Nbuch{\sA}{\sB} =&\frac{1}{\detTetr_3}
 			\left(
 			\Bfinmixx{\sA}{\sB} - \frac{1}{2}\Bfinmix{\sC}{\sC}\KD{\sB}{\sA}
-			\right).
+			\right),
 			%		\\[2mm]
 			%		a_{\sB} = & \frac{1}{\lapse} A_{\sB},\\[2mm]
 			%		\omega^{\sB} = & \frac{\varkappa}{\lapse} \MG{\sB\sA} \Omega_{\sA}.
 		\end{align}
 	\end{subequations}
-	We remark that due to our choice of the 3+1 split \eqref{eqn.h.eta.matrix},
+	where $\Dfin{\sA\sB}{} = \mg{\sA\sC}\tetr{\sB}{i}\Dfin{\sB}{i}$ and $\Bfinmixx{\sA}{\sB} = \mg{\sA\sC}\tetr{\sB}{i}\Bfin{\sC}{i}$. We remark that due to our choice of the 3+1 split \eqref{eqn.h.eta.matrix},
 	i.e. that observer's time vector, $ \bas{\indalg{0}} $, is aligned with the
 	normal vector to the spatial hypersurfaces, the matrices $ \Kbuch{\sA}{\sB}
 	$ and $ \Dfin{\sA\sB}{} $ are \textit{symmetric}.
 	
 	Additionally, we have the following relations between the \ERWBB\ vectors $
 	a_{\sA} $, $ \omega^{\sA} $ and the \tegr\ vectors $
-	A_{k}=\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ \Omega_{k} =
-	\Hfin{\indalg{0}}{k} $
+	A_{\sA}=\itetr{k}{\sA}\Efin{\indalg{0}}{k} = \pd{k}\lapse $ and $ \Omega_{\sA} =
+	\itetr{k}{\sA}\Hfin{\indalg{0}}{k} $
 	\begin{equation}\label{eqn.Buchman.TEGR.AW}
 		a_{\sA} = \lapse^{-1} A_{\sA},
 		\qquad
@@ -2408,104 +2459,17 @@ BCOR5mm, % Binding correction
 	\end{subequations}
 	where $\Efin{}{\sA\sB} = \mg{\sA\sC}\itetr{k}{\sB}\Efin{\sC}{k}$ and $\Hfin{\sA}{\sB} = \itetr{k}{\sA}\Hfin{k}{\sB}$.
 	
-	% Unfortunately, system \eqref{eqn.3+1.summary} is not immediately hyperbolic
-	% even for the Minkowski spacetime (it is actually only weakly hyperbolic
-	% because some eigenvectors are missing), and therefore it can not be
-	% equivalent to the symmetric hyperbolic \ERWBB\ formulation of GR right away.
-	% In this section, we discuss what modifications of equations
-	% \eqref{eqn.3+1.summary} are necessary in order to make it equivalent to the
-	% \ERWBB\ formulation. These modifications rely on the use of Hamiltonian and
-	% momentum constraints \eqref{eqn.div.constrD} and symmetry of $
-	% \Dfin{\sA\sB}{} $. 
-	
-	% Because we are considering a vacuum space-time, the momentum and energy
-	% equations \eqref{eqn.3+1.m}, \eqref{eqn.3+1.e} can be omitted. Moreover,
-	% modifications concern only torsion equations \eqref{eqn.3+1.D},
-	% \eqref{eqn.3+1.B}, and therefore for the sake of simplicity, we also omit
-	% the tetrad equations \eqref{eqn.3+1.h}
-	
-	% If one considers 18 equations \eqref{eqn.3+1.D}, \eqref{eqn.3+1.B} written in a 
-	% quasilinear form\footnote{Due to the rotational invariance, 
-	% 	it is actually sufficient to consider the system in any preferred coordinate direction, say 
-	% 	in $ x^1 
-	% 	$, without lose of generality.}
-	% \begin{equation}\label{eqn.quasi.lin}
-	% 	\pd{t} \bm{Q} + \bm{M}^k(\bm{Q})\pd{k} \bm{Q} = \bm{S}
-	% \end{equation}
-	% for 18 unknowns $ \bm{Q}=\{ \Dfin{\sA}{i}, \Bfin{\sA}{i} \} $ then the matrix $ \bm{M} = \xi_k 
-	% \bm{M}^k $ has all real eigenvalues but only 10 linearly independent eigenvectors already for 
-	% the 
-	% flat Minkowski spacetime, that is the 
-	% system is only 
-	% weakly hyperbolic. Here, $ \bm{M}^k =
-	% \pd{}\bm{F}^k/\pd{}\bm{Q} $ is the Jacobian of the $ k $-\textit{th} flux vector.
-	
-	
-	% Evolution equations \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} for the torsion
-	% fields have a conservative form (i.e. their differential terms are the
-	% 4-divergence) which is in particular convenient for developing of high-order
-	% methods for hyperbolic equations.
-	% %\begin{subequations}\label{eqn.BD.alt0}
-	% %	\begin{align}
-	% 	%		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-	% 	%		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-	% 	%		\Hfin{\sA}{j}) & 
-	% 	%		= \shift{i}\rho_\sA - \stress{\sA}{i},
-	% 	%		\label{eqn.BD.alt0.D}
-	% 	%		\\[2mm]
-	% 	%		%		
-	% 	%		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-	% 	%		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-	% 	%		\Efin{\sA}{j}) & 
-	% 	%		= 0.
-	% 	%		\label{eqn.BD.alt0.B}
-	% 	%	\end{align}
-	% %\end{subequations}
-	% However, this flux-conservative form of equations has a flaw in the
-	% eigenvalues already for the flat spacetime with non-zero shift vector $
-	% \shift{k} $. Namely, some characteristic velocities are always $ 0 $ despite
-	% the non-zero shift vector. The same issue is well known for the
-	% magnetohydrodynamics equations \cite{Powell1999}. From our experience with
-	% the non-relativistic equations of nonlinear electrodynamics of moving media
-	% \cite{DPRZ2017} and continuum mechanics with torsion \cite{Torsion2019} that
-	% have the same structure as \eqref{eqn.3+1.summary}. Instead, the following
-	% non-conservative form does not have such a pathology
-	% \begin{subequations}\label{eqn.BD.alt}
-	% 	\begin{align}
-	% 		\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-	% 		\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-	% 		\Hfin{\sA}{j}) 
-	% 		-\shift{i}\pd{k} \Dfin{\sA}{k}
-	% 		& 
-	% 		= - \stress{\sA}{i},
-	% 		\label{eqn.BD.alt.D}
-	% 		\\[2mm]
-	% 		%		
-	% 		\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-	% 		\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-	% 		\Efin{\sA}{j}) 
-	% 		-\shift{i}\pd{k} \Bfin{\sA}{k}
-	% 		& 
-	% 		= 0,
-	% 		\label{eqn.BD.alt.B}
-	% 	\end{align}
-	% \end{subequations}
-	% and which is obtained from \eqref{eqn.3+1.D} and \eqref{eqn.3+1.B} by
-	% turning the momentum $ \rho_\sA $ on the right hand-side of
-	% \eqref{eqn.3+1.D} into a differential term according to the momentum
-	% constraint $ \rho_\sA = \pd{k}\Dfin{\sA}{k} $ and adding formally a zero, $
-	% 0 = \pd{k}\Bfin{\sA}{k} $, to \eqref{eqn.3+1.B}. These modifications are
-	% legitimate for smooth solutions thanks to involution constraints
-	% \eqref{eqn.div.constrD} and \eqref{eqn.Ja0}. After this, the characteristic
-	% velocities have the desired values equal to $ \sim\shift{k} $ or $ \sim
-	% \shift{k} \pm c $, if $ c $ is the light speed. However, this only allows to
-	% fix the issue with the eigenvalues, while some eigenvectors are still
-	% missing.
-	
-	
-	
-	
-	
+	First of all, let us note that, in the tetrad frame, the tetrad equation \eqref{eqn.3+1.h} reads
+	\begin{equation}
+		\pd{\indalg{0}} \itetr{k}{\sA} = \frac{1}{\lapse} \left( \Efin{\sA}{i}\itetr{i}{\sB}\itetr{k}{\sA} - \pd{\sA} \shift{k} \right),
+	\end{equation}
+	where $ \pd{\indalg{0}} = \itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} =
+	\lapse^{-1}\pd{t} - \lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} =
+	\itetr{k}{\sA}\pd{k} $. For a non-dynamical shift $ \shift{k} $, this is
+	simply an ordinary differential equation for the frame field $
+	\itetr{k}{\sA} $ along the observer's trajectories and hence, it does not
+	affect the hyperbolicity analysis.
+
 	Now, rewriting the 3+1 TEGR equations on $\Dfin{\sA}{i}$ and $\Bfin{\sA}{i}$
 	(eqs.~\eqref{eqn.3+1.D} and \eqref{eqn.3+1.B}) in terms of $\Dfin{\sA}{\sB}
 	= \tetr{\sB}{i}\Dfin{\sA}{i}$ and $\Bfin{\sA}{\sB} =
@@ -2513,6 +2477,27 @@ BCOR5mm, % Binding correction
 	\eqref{eqn.Buchman.TEGR.KN} to these equations and using relations
 	\eqref{eqn.Buchman.TEGR.KN}--\eqref{eqn.const.KN}, after a lengthy but
 	rather straightforward sequence of transformations, one obtains the following equations
+		\begin{subequations}\label{eqn.KN.pde0}
+		\begin{align}
+			\frac{1}{\lapse}\pd{\indalg{0}} \Kbuch{\sA}{\sB}
+			&
+			- \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
+			- \pd{\sA} a_{\sB}  + \mg{\sA\sB} \pd{\sC} n^\sC = \text{l.o.t.}
+			\\[2mm]
+			\frac{1}{\lapse}\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
+			&
+			+ \mg{\sB\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Kbuch{\sE}{\sA}
+			+ \pd{\sA} \omega_{\sB} = \text{l.o.t.}
+			\label{eqn.KN.pde.N}
+		\end{align}
+	\end{subequations}
+	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do
+	not contain space and time derivatives).
+
+	Finally, using the Hamiltonian constraint \eqref{eqn.Hamiltonian.ERWBB}, the
+	divergence term $\pd{\sC}n^\sC$ can be transformed into algebraic terms, and
+	moved to the right-hand side of the equations. Thus, the 3+1 TEGR equations
+	for $\Dfin{\sA}{i}$ and $\Bfin{\sA}{i}$ become
 	\begin{subequations}\label{eqn.KN.pde}
 		\begin{align}
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
@@ -2527,12 +2512,14 @@ BCOR5mm, % Binding correction
 			\label{eqn.KN.pde.N}
 		\end{align}
 	\end{subequations}
-	where 'l.o.t.' stands for 'low-order terms' (i.e. algebraic terms that do
-	not contain space and time derivatives), $ \pd{\indalg{0}} =
-	\itetr{\mu}{\indalg{0}}\pd{\mu} = u^\mu\pd{\mu} = \lapse^{-1}\pd{t} -
-	\lapse^{-1}\shift{k}\pd{k}$, and $ \pd{\sA} = \itetr{k}{\sA}\pd{k} $. 
-	We note the opposite order of the subscripts $\sA$ and $\sB$ in \eqref{eqn.KN.pde.N} in the second term with respect to \cite[eq.(40)]{Buchman2003}. This however does not affect the symmetric hyperbolicity of the system discussed in what follows.
-	%The low-order terms are given in the appendix\,\ref{}.
+	We note the opposite order of the subscripts $\sA$ and $\sB$ in
+	\eqref{eqn.KN.pde.N} in the second term with respect to
+	\cite[eq.(40)]{Buchman2003}. This is solely conditioned by our initial
+	choice of ordering the spacetime and tetrad indices in $\Bfin{\sA}{i}$ and
+	it does not affect the symmetric hyperbolicity of the system discussed
+	below.
+
+
 
 	Similar to $ A_k $ and $ \Omega_k $ in TEGR, the vectors $ a_{\sB} $ and $
 	\omega_{\sA} $ in the \ERWBB\ formulation of GR are not provided with
@@ -2541,8 +2528,8 @@ BCOR5mm, % Binding correction
 	to choose their evolution equations in such a way as to guaranty the
 	well-posedness of the enlarged system for the unknowns $
 	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown
-	in \cite{Estabrook1997,Buchman2003}, if coupled with the following gauge
-	conditions on $a_\sA$ and $\omega_\sA$:
+	in \cite{Estabrook1997,Buchman2003}, if coupled with the Nester of Lorentz
+	gauge conditions on $a_\sA$ and $\omega_\sA$ having the form:
 	\begin{subequations}\label{eqn.aw.pde}
 		\begin{align}
 			\pd{\indalg{0}} a_\sA - \alpha \MG{\sB\sC}\pd{\sB} \Kbuch{\sC}{\sA} &= \text{l.o.t.},
@@ -2561,12 +2548,11 @@ BCOR5mm, % Binding correction
 	$\bm{Q} = \{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
 	
 	In summary, the 3+1 \tegr\ equations in vacuum, eqs. \eqref{eqn.3+1.D} and
-	\eqref{eqn.3+1.B}, if coupled with the proper gauge conditions on $A_k$ and
+	\eqref{eqn.3+1.B}, if coupled with proper gauge conditions on $A_k$ and
 	$\Omega_k$, are equivalent to symmetric-hyperbolic system
-	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde}. However, this is a very preliminary
-	result for further investigation of the well-posedness of the entire 3+1 TEGR
-	system because even the time evolution on the tetrad field $\tetr{\sA}{i}$
-	was excluded from the consideration.
+	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} on solutions satisfying the
+	Hamiltonian constraint. This demonstrates that these equations are causal
+	and have well-posed initial value problem under mentioned conditions.
 
 	% \textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude the
 	% same for the original 3+1 TEGR equations \eqref{eqn.3+1.summary} because
@@ -3022,13 +3008,15 @@ BCOR5mm, % Binding correction
 	
 	The derived 3+1 TEGR equations are not immediately hyperbolic as usually the
 	case for many first-order reductions of the Einstein equations. We
-	demonstrated that for the vacuum equations the differential operator of the
-	equations can be transformed into a different but equivalent form which is
-	equivalent to the symmetric hyperbolic tetrad reformulation of GR by
-	Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
-	\cite{Buchman2003}. The question of hyperbolicity of the full 3+1 TEGR
-	equations coupled with matter is still open and requires further
-	investigation.
+	demonstrated that for the empty space, the differential operator of the 3+1
+	vacuum TEGR equations can be transformed into a different but equivalent
+	quasi-linear form, provided that the Hamiltonian constraint is fulfilled.
+	This form is equivalent to the symmetric hyperbolic tetrad reformulation of
+	GR by Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
+	\cite{Buchman2003} if certain type of gauge conditions is imposed on the
+	vectors $\Efin{\indalg{0}}{k}$ and $\Hfin{\indalg{0}}{k}$. The question of
+	hyperbolicity of the full 3+1 TEGR equations coupled with matter is still
+	open and requires further investigation.
 	
 	%Additionally, the equations have the structure of the so-called Symmetric Hyperbolic 
 	%Thermodynamically 
