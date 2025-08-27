@@ -251,19 +251,17 @@ BCOR5mm, % Binding correction
 	\section*{Abstract} % This section will not appear in the table of contents due to the star 
 	% (\section*)
 	\noindent
-	\textit{ Driven by the need for numerical solutions to the Einstein field
-	equations, we derive a first-order reduction of the second-order partial
-	differential equations of the teleparallel equivalent of general relativity
-	(TEGR) in the pure-tetrad formulation (no spin connection). We then propose
-	a 3+1 decomposition of these equations suitable for computational
-	implementation. We demonstrate that in vacuum 	(matter-free spacetime) the
-	obtained system of first-order equations is equivalent to the tetrad
-	reformulation of general relativity by Estabrook, Robinson, Wahlquist, and
-	Buchman and Bardeen, and therefore also admits a symmetric hyperbolic
-	formulation. However, the question of hyperbolicity of the 3+1 TEGR
-	equations for arbitrary spacetimes remains unaddressed so far. Furthermore,
-	the structure of the 3+1  equations resembles a lot of similarities with the
-	equations of relativistic electrodynamics and the recently proposed dGREM
+	\textit{ This paper presents a derivation of a first-order reduction and 3+1
+	decomposition of the teleparallel equivalent of general relativity (TEGR) in
+	the pure-tetrad formulation (no spin connection). Our analysis demonstrates
+	that in vacuum spacetimes, our 3+1 TEGR equations has the principal part of
+	the differential operator equivalent to the one of tetrad reformulation of
+	general relativity by Estabrook, Robinson, Wahlquist, and Buchman and
+	Bardeen, and therefore the presented 3+1 decomposition of TEGR also admits a
+	symmetric hyperbolic formulation, a desirable property for ensuring
+	well-posedness of the initial value problem. Furthermore, the structure of
+	the 3+1 equations resembles a lot of similarities with the equations of
+	relativistic electrodynamics and the recently proposed dGREM
 	tetrad-reformulation of general relativity. }
 	%----------------------------------------------------------------------------------------
 	%	AUTHOR AFFILIATIONS
@@ -1902,77 +1900,13 @@ BCOR5mm, % Binding correction
 			%		\tag{\ref{eqn.tetr.3+1}} 
 		\end{align}
 	\end{subequations}
-	%\begin{subequations}
-	%	\begin{align}
-		%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-		%		-\frac{\alpha}{\varkappa \detTetr_3} 
-		%		\mg{\sA\sB}\mg{\sC\sD} 
-		%		& \left( \tetr{\sD}{k} \tetr{\sB}{j} - \frac12 \tetr{\sD}{j} \tetr{\sB}{k} \right) 
-		%		\Bfin{\sC}{j}
-		%		- 
-		%		\frac{1}{\varkappa \detTetr_3} \mg{\sA,\sB} \LCsymb^{ijl} \gamma_{ik} \tetr{\sB}{j} 
-		%		\Efin{\indalg{0}}{l}
-		%		%\frac{\detTetr_3}{\varkappa} \LCsymb_{kli} \itetr{l}{\sA} \gamma^{ij} 
-		%		%\Efin{\indalg{0}}{j}
-		%		,\\[2mm]
-		%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
-		%		-\frac{\alpha \varkappa}{\detTetr_3} 
-		%		& \left( \tetr{\sA}{j} \tetr{\sB}{k} - \frac12 \tetr{\sA}{k} \tetr{\sB}{j} \right) 
-		%		\Dfin{\sB}{j} 
-		%		- 
-		%		\frac{\varkappa}{\detTetr_3} \LCsymb^{ijl} 
-		%		\gamma_{ik} \tetr{\sA}{j} \Hfin{\indalg{0}}{l}.
-		%	\end{align}
-	%\end{subequations}
+	
 	with the total (matter+gravity) momentum $ \rho_{\sA} = \itetr{i}{\sA}\rho_i $ and the total 
 	energy density $ \rho_{\indalg{0}} = -\alpha^{-1} \Ufin = \NC{\indalg{0}}{0} $ computed from 
 	\eqref{eqn.Ja0}, and the gravitational part of the momentum flux $ \stress{i}{\sA} = 
 	\itetr{k}{\sA} \stress{i}{k}$  computed from \eqref{eqn.flux.const}.
-%	\begin{gather*}
-%		\stress{i}{k} := -\Bfin{a}{k} 
-%		\Hfin{a}{i} - 
-%		\Dfin{a}{k} \Efin{a}{i} + (\Bfin{a}{j} 
-%		\Hfin{a}{j} + 
-%		\Dfin{a}{j} \Efin{a}{j} 
-%		- \Ufin)\delta^k_{\ i},
-%	\end{gather*}
-	%\begin{align*}
-	%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ k} \itetr{k}{\sA} 
-	%	\Bfin{\sA}{j} + s^l_{\ k} \itetr{k}{\sA} \pd{i}\tetr{\sA}{l} + \rho_j 
-	%\pd{i}\shift{j},\\[2mm]
-	%	\rhs{0} =&- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	%	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_j 
-	%	\itetr{j}{\sA}
-	%	+ \LCsymb^{klj} \Hfin{a}{l}\Efin{a}{j}\pd{k}\ln(\alpha) + s^k_{\ j} \itetr{j}{\sA} 
-	%	\pd{k}\shift{\sA}.
-	%\end{align*}
-	%while the source terms in the energy-momentum equations read
-	%\begin{align*}
-	%	\rhs{i} =&-\rho_k \itetr{k}{\sA} \Efin{\sA}{i} + \rho_j \pd{i}\shift{j}
-	%	+\stress{j}{k} \w{j}{ki}\\[2mm]
-	%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} 
-	%%	\Bfin{\sA}{j} + \rho_\sA \pd{i}\shift{\sA} + (-\shift{k} \rho_{\sA}+ s^k_{\ \sA})  
-	%%	\pd{i}\tetr{\sA}{k} = 
-	%%	-\rho_\sA  \Efin{\sA}{i} - \LCsymb_{ilj} s^l_{\ \sA} \Bfin{\sA}{j}
-	%%	+ \rho_k\pd{i}\shift{k} + s^k_{\ j} \w{j}{ik},\\[2mm]
-	%	%
-	%	\rhs{0} =&
-	%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	%	+ \left( \pd{t} \shift{\sA} - \shift{k} \pd{k}\shift{\sA} \right) \rho_{\sA}
-	%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \stress{\sA}{k} 
-	%	\pd{k}\shift{\sA}\\[2mm]
-	%	=&
-	%	- \left(\pd{t} \ln(\alpha) - \shift{k} \pd{k}\ln(\alpha) \right) \Ufin
-	%	+ \rho_j \pd{t} \shift{j} + \stress{j}{k} \pd{k}\shift{j} + \rho_{\sA} \shift{j} 
-	%\Efin{\sA}{j} 
-	%	+ \LCsymb^{klj} \Hfin{\sA}{l}\Efin{\sA}{j}\pd{k}\ln(\alpha) + \shift{j} \stress{l}{k} 
-	%\w{l}{kj},
-	%\end{align*}
-	%where $ \rho_{\sA} = \itetr{i}{\sA} \rho_i$, 
-	%%$ s^k_{\ \sA} = \itetr{i}{\sA} s^k_{\ i} $, 
-	%and $ 
-	%\w{j}{ik} = \itetr{j}{\sA}\pd{i}\tetr{\sA}{k}$.
-	
+
+
 	In particular, the structure of this system resembles very much the structure of the nonlinear 
 	electrodynamics of 
 	moving media already solved numerically in \cite{DPRZ2017} for example, as well as the 
@@ -2047,107 +1981,6 @@ BCOR5mm, % Binding correction
 			\itetr{j}{\sB} \Omega^l}\MG{\sA\sB},
 	\end{align}
 	where $ A_k = \Efin{\indalg{0}}{k} $ and $ \Omega_k =\Hfin{\indalg{0}}{k}$, and with the potential $ \Ufin $ given by \eqref{eqn.Ufin0}.
-	
-	
-	%Noether current \eqref{eqn.J} becomes:
-	%\begin{subequations}
-	%\begin{equation}\label{eqn.J_Ai}
-	%	\NC{\sA}{i} =-\nc{\sA}{i} 
-	%	-\frac{1}{2\alpha}  \beta^i \left( \tetr{\sB}{j} \itetr{k}{\sA} \Dfin{\sB}{j} 
-	%	- \frac{\detTetr_3}{\alpha \varkappa} \itetr{j}{\sA} 
-	%	\itetr{k}{\sB} \Efin{\sB}{j} \right) \Efin{\indalg{0}}{k}
-	%	+ \beta^i \LCsymb_{jkl} \itetr{j}{\sA} \Bfin{\sB}{k} \Dfin{\sB}{l},
-	%\end{equation}
-	%
-	%\begin{equation}\label{eqn.J_A0}
-	%	\NC{\sA}{0} =-\nc{\sA}{0}
-	%	+ \frac{1}{2\alpha} 
-	%	\left(
-	%	\itetr{i}{\sA} \tetr{\sB}{k} \Dfin{\sB}{k} - \frac{\detTetr_3}{\alpha \varkappa} 
-	%\itetr{k}{\sA} 
-	%	\itetr{i}{\sB} \Efin{\sB}{k} 
-	%	\right) \Efin{\indalg{0}}{i} - \LCsymb_{ijl} \itetr{i}{\sA} \Bfin{\sB}{j} \Dfin{\sB}{l},
-	%\end{equation}
-	%
-	%\begin{align}\label{eqn.J_0i}
-	%	\NC{\indalg{0}}{i} =-\nc{\indalg{0}}{i}
-	%	&+ \frac{1}{\alpha} 
-	%	\left(
-	%	  \Bfin{\sB}{i} \Hfin{\sB}{0}
-	%	+ \beta^i \Bfin{\sB}{l} \Hfin{\sB}{l} 
-	%	- \beta^l \Bfin{\sB}{i} \Hfin{\sB}{l} \right) \nonumber\\
-	%	& + \frac{1}{\alpha} \beta^i
-	%	\left(
-	%	  \Dfin{\sB}{l} \Efin{\sB}{l} 
-	%	+ \Dfin{\indalg{0}}{l} \Efin{\indalg{0}}{l} 
-	%	\right) \nonumber\\ 
-	%	& + \frac{\detTetr_3}{2\alpha\varkappa}
-	%	\left( \itetr{k}{\sB} \gamma^{ij} - \itetr{i}{\sB} \gamma^{kj} \right) \Efin{\sB}{j} 
-	%	\Efin{\indalg{0}}{k} \nonumber\\
-	%	& + \frac{1}{\alpha} \LCsymb^{ilk} \Hfin{\sB}{l} \Efin{\sB}{k},
-	%\end{align}
-	%
-	%\begin{equation}\label{eqn.J_00}
-	%	\NC{\indalg{0}}{0} =-\nc{\indalg{0}}{0} 
-	%	- \frac{1}{\alpha} 
-	%	\left( 
-	%	  \Bfin{\sA}{i} \Hfin{\sA}{i} 
-	%	+ \Dfin{\sA}{i} \Efin{\sA}{i}
-	%	\right)
-	%	+ \frac{\detTetr_3}{\alpha \varkappa} \LCsymb_{ijk} \gamma^{il} \itetr{j}{\sA}\Bfin{\sA}{k} 
-	%	\Efin{\indalg{0}}{l}
-	%\end{equation}
-	%
-	%\end{subequations}
-	%
-	%\begin{subequations}
-	%	\begin{align}\label{eqn.j_Ai}
-		%		\nc{\sA}{i} =&
-		%		\frac{\detTetr}{2\varkappa}\Bigg[
-		%		\phantom{+} \frac{2}{\alpha^2} \Bigg( 
-		%		\frac{1}{4} \left( \itetr{j}{\sA}\gamma^{ki} - 
-		%		\itetr{k}{\sA} 
-		%		\gamma^{ij} \right)  
-		%		\Efin{\indalg{0}}{j}\Efin{\indalg{0}}{k} %\nonumber\\
-		%		%
-		%		%&\phantom{ \frac{2}{\alpha^2} \Bigg(} 
-		%		+ 
-		%		\frac{1}{\alpha} \shift{i} 
-		%		\itetr{jk}{\sC\sA} \Efin{\sC}{j} \Efin{\indalg{0}}{k}
-		%		-	
-		%		\itetr{i}{\sC} \itetr{kj}{\sB\sA} \Efin{\sC}{j}\Efin{\sB}{k}
-		%		+
-		%		\frac{1}{2} \mg{\sC\sB}\gamma^{ik}\itetr{j}{\sA} \Efin{\sC}{j}\Efin{\sB}{k}
-		%		\Bigg) 
-		%		\nonumber\\
-		%		%
-		%		&\phantom{\phantom{+} \frac{2}{\alpha^2} \Bigg(}
-		%		+ \frac{2}{\detTetr_3^2} 
-		%		\Bigg( 
-		%		\tetr{\sD}{k}\mg{\sA\sB\sC\sD} - \itetr{i}{\sA} \tetr{\sE\sD}{kj} 
-		%\mg{\sC\sE}\mg{\sB\sD}
-		%		\Bigg) \Bfin{\sB}{k}\Bfin{\sC}{i} 
-		%		\nonumber\\
-		%		%
-		%		&\phantom{\phantom{+} \frac{2}{\alpha^2} \Bigg(}
-		%		- \frac{2}{\alpha} \LCsymb_{jnk} 
-		%		\left(
-		%		\gamma^{in}\itetr{l}{\sA}\itetr{j}{\sC} +
-		%		\gamma^{il}\itetr{n}{\sA}\itetr{j}{\sC} -
-		%		\gamma^{jl}\itetr{n}{\sA}\itetr{i}{\sC}
-		%		\right) \Bfin{\sC}{k} \Efin{\indalg{0}}{l} \Bigg]
-		%		+ (\Dfin{a}{k} \Efin{a}{k} - \Ufin) \itetr{i}{\sA}
-		%	\end{align}
-	%where we have used the following notations
-	%	\begin{equation}
-		%		\itetr{jk}{\sC\sA} = \itetr{j}{\sC} \itetr{k}{\sA} - \frac12 \itetr{j}{\sA} 
-		%\itetr{k}{\sC},
-		%		\quad
-		%		\tetr{\sC\sD}{kj} = \tetr{\sC}{k}\tetr{\sD}{j} - \frac12 \tetr{\sC}{j}\tetr{\sD}{k},
-		%		\quad
-		%		\mg{\sA\sB\sC\sD} = \mg{\sA\sB} \mg{\sC\sD} - \frac12 \mg{\sA\sC} \mg{\sB\sD}.
-		%	\end{equation}
-	%\end{subequations}
 	
 	
 	
@@ -2234,64 +2067,6 @@ BCOR5mm, % Binding correction
 	\begin{equation}%\label{key}
 		{\EMmat{\mu}{\mu}} = 0.
 	\end{equation}
-	
-	%\subsubsection{Free parameters}
-	%
-	%The lapse $\alpha$  an shift vector $\shift{k}$ are not subjected to any constraints and can 
-	%be 
-	%evolved in an arbitrary but meaningful way. 
-	
-	%$ \LCsymb_{\sA\sB\sC} = \LCsymb_{ijk} \itetr{i}{\sA}\itetr{j}{\sB}\itetr{k}{\sC} $
-	
-	%\subsection{Summary of change of variables and potentials}
-	%
-	%\begin{itemize}
-	%	\item[$ \left\langle 1 \right\rangle $] 
-	%	$ \Lag(\tetr{a}{\mu},\pd{\lambda}\tetr{a}{\nu}) = 
-	%	\Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) $,  
-	%	\quad 
-	%	$ \{\tetr{a}{\mu},\pd{\mu}\tetr{a}{\nu}\} \to \{\tetr{a}{\mu},\HDT{a\mu\nu}\}$,
-	%	\quad
-	%	eqs. \eqref{eqn.EL}$ \to $ \eqref{eqn.1st.order.TEGR}
-	%	\\[1mm]
-	%	%
-	%	\item[$ \left\langle 2 \right\rangle $] 
-	%	$ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
-	%	\LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu})$,
-	%	\quad
-	%	$ \{\tetr{a}{\mu},\HDT{a\mu\nu}\} \to \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} $,
-	%	\quad
-	%	eqs. \eqref{eqn.1st.order.TEGR}$ \to $\eqref{eqn.tors.BE}
-	%	\\[1mm]
-	%	%
-	%	\item[$ \left\langle 3 \right\rangle $] 
-	%	$ \LagBE(\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}) \to 
-	%	\Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu})$,
-	%	\quad
-	%	$ \{\tetr{a}{\mu},\BT{a}{\mu},\ET{a}{\nu}\} \to \{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\}$,
-	%	\quad
-	%	eqs. \eqref{eqn.tors.BE}$ \to $\eqref{eqn.PDE.4D}
-	%	\\[1mm]
-	%	%
-	%	\item[$ \left\langle 4 \right\rangle $] 
-	%	$ \Um(\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}) = \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu})$,
-	%	\quad
-	%	$\{\tetr{a}{\mu},\Bm{a}{\mu},\Dm{a}{\mu}\} \to 
-	%	\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\}$,
-	%	\quad
-	%	eqs. \eqref{eqn.PDE.4D}$ \to $\eqref{eqn.tpo.2}
-	%	\\[1mm]
-	%	%
-	%	\item[$ \left\langle 5 \right\rangle $] 
-	%	$ \aU(\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}) = 
-	%	\Ufin(\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu})$,
-	%	\quad
-	%	$\{\tetr{a}{\mu},\aB{a}{\mu},\aD{a}{\mu}\} \to 
-	%	\{\tetr{a}{\mu},\Bfin{a}{\mu},\Dfin{a}{\mu}\}$,
-	%	\quad
-	%	eqs. \eqref{eqn.tpo.2}$ \to $\eqref{eqn.3+1.summary}
-	%\end{itemize}
-	
 	
 	
 	\section{Hyperbolicity of the vacuum 3+1 TEGR equations}\label{sec.hyperbolicity}
@@ -2503,7 +2278,7 @@ BCOR5mm, % Binding correction
 			\pd{\indalg{0}} \Kbuch{\sA}{\sB}
 			&
 			- \alpha \mg{\sA\sC}\LCtens^{\sC\sD\sE} \pd{\sD} \Nbuchdown{\sE}{\sB}
-			- \alpha \pd{\sA} a_{\sB} = \text{l.o.t.}
+			- \alpha \pd{\sA} a_{\sB} = \text{l.o.t.}\label{eqn.KN.pde.K}
 			\\[2mm]
 			\pd{\indalg{0}} \Nbuchdown{\sA}{\sB}
 			&
@@ -2547,185 +2322,37 @@ BCOR5mm, % Binding correction
 	$\Kbuchmix{\sA}{\sB}$ and $\Nbuchdown{\sA}{\sB}$ in the following way
 	$\bm{Q} = \{\Kbuch{\indalg{1}}{\sA},\Kbuch{\indalg{2}}{\sA},\Kbuch{\indalg{3}}{\sA},\Nbuchdown{\sA}{\indalg{1}},\Nbuchdown{\sA}{\indalg{2}},\Nbuchdown{\sA}{\indalg{3}},a_\sA,\omega_\sA\}$.
 	
-	In summary, the 3+1 \tegr\ equations in vacuum, eqs. \eqref{eqn.3+1.D} and
-	\eqref{eqn.3+1.B}, if coupled with proper gauge conditions on $A_k$ and
-	$\Omega_k$, are equivalent to symmetric-hyperbolic system
-	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} on solutions satisfying the
+	In summary, the 3+1 \tegr\ equations in vacuum, eqs. \eqref{eqn.3+1.D},
+	\eqref{eqn.3+1.B}, and \eqref{eqn.3+1.h}, if coupled with proper gauge
+	conditions on $A_k$ and $\Omega_k$, are equivalent to symmetric-hyperbolic
+	system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} on solutions satisfying the
 	Hamiltonian constraint. This demonstrates that these equations are causal
 	and have well-posed initial value problem under mentioned conditions.
 
-	% \textbf{REWRITE THIS!!!!!}  However, we can not immediately conclude the
-	% same for the original 3+1 TEGR equations \eqref{eqn.3+1.summary} because
-	% the differential operators of \eqref{eqn.3+1.summary} and
-	% \eqref{eqn.BD.alt2} are different even though the overall equations are
-	% equivalent. We recall that the hyperbolicity (well-posedness of the initial
-	% value problem) is defined by the leading-order terms of the differential
-	% operator (all differential terms in the case of first-order systems).
-	% Nevertheless, this is an important result demonstrating that inside of the
-	% class of equations equivalent to TEGR equations \eqref{eqn.3+1.summary}
-	% there is a possibility, at least one given by \eqref{eqn.BD.alt2},  to
-	% rewrite the TEGR vacuum equations as a symmetric hyperbolic system.
+	Finally, it is worth remarking about the matter coupling. As we will
+	discuss in the next section, $\Kbuch{\sA}{\sB}$ is the extrinsic curvature
+	of the spatial hypersurfaces. Although the \ERWBB\ formulation was initially
+	derived for empty spacetimes \cite{Estabrook1997,Buchman2003}, we can assume
+	that the matter stress tensor will appear on the right-hand side of
+	\eqref{eqn.KN.pde.K} as a source term, similar to the standard 3+1
+	decomposition of the Einstein equations (see
+	\cite[eq.(5.19)]{Gourgoulhon2012a}). Similarly, the matter stress tensor is
+	present on the right-hand side of the equation for $\Dfin{\sA}{i}$ and will
+	therefore be inherited as a source term in \eqref{eqn.KN.pde.K}. This
+	maintains the similarity between the two formulations even when matter
+	fields are included.
 	
-	%The second step to recovering hyperbolicity of the TEGR equations consists in not modifying 
-	%the 
-	%equations but extending the set of state variables and the set of evolution equations.
-	%Thus, following to \cite{Estabrook1997,Buchman2003}, we chose also to evolve the gauge 
-	%freedoms $ 
-	%A_k = 
-	%\Efin{\indalg{0}}{k} $ and $ \Omega_k = \Hfin{\indalg{0}}{k} $ according to
-	%\begin{subequations}\label{eqn.AOmega}
-	%	\begin{align}
-		%		&\pd{\indalg{0}}A_i      - \pd{k} \Efinn{k}{i} = 0, 
-		%		\\[2mm]
-		%		&\pd{\indalg{0}}\Omega_i + \pd{k} \Hfinnmix{i}{k} = 0.
-		%	\end{align}
-	%\end{subequations}
-	%We set the right hand-side of these two equations to zero because it is not important for the 
-	%hyperbolicity. In general, one may want to chose any other gauge conditions, e.g. see 
-	%\cite{Buchman2003}. While increasing number of evolution equations, this modification 
-	%drastically 
-	%improves the situation with the missing eigenvectors. Now, the system of 24 equations 
-	%\eqref{eqn.3+1.D}, 
-	%\eqref{eqn.3+1.B}, and \eqref{eqn.AOmega} has only 2 eigenvectors missing, see the 
-	%supplementary 
-	%materials [??].
-	
-	
-	
-%	\section{Symmetrization}
-%	
-%	The energy is
-%	\begin{equation}
-%		\Ufin(\tetr{\sA}{k},\Dfin{\sA}{k},\Bfin{\sA}{k}) = 
-%		-\frac{\alpha}{2\detTetr_3} \left( 
-%		\varkappa \left( \Dfin{\sB}{\sA} \Dfin{\sA}{\sB} - \frac{1}{2} 
-%(\Dfin{\sA}{\sA})^2\right)
-%		+
-%		\frac{1}{\varkappa} \left( \Bfinmix{\sA}{\sB} \Bfinmix{\sB}{\sA} - 
-%\frac{1}{2} 
-%		(\Bfinmix{\sA}{\sA})^2
-%		\right)
-%		\right).
-%	\end{equation}
-%	
-%	Having this expression for the potential $ \Ufin $ and introducing notations
-%	\begin{equation}
-%		\Hfinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Bfin{\sA}{k}},
-%		\qquad
-%		\Efinn{\sA}{k} = \frac{\partial \Ufin\hfill}{\partial \Dfin{\sA}{k}},	
-%	\end{equation}
-%	the constitutive relations \eqref{eqn.H.E} can be rewritten as
-%	\begin{equation}\label{eqn.H.E.split}
-%		\Hfin{\sA}{k} := %\Ufin_{\Bfin{\sA}{k}} =
-%		\Hfinn{\sA}{k}
-%		{ 
-%			\color{blue}
-%			-
-%			\varkappa^{-1}\detTetr_3 \LCsymb_{kjl} \itetr{j}{\sA} A^l},
-%		\qquad
-%		\Efin{\sA}{k} := %\Ufin_{\Dfin{\sA}{k}}=
-%		\Efinn{\sA}{k}
-%		{
-%			\color{blue}
-%			-
-%			\varkappa \detTetr_3 \LCsymb_{kjl} 
-%			\itetr{j}{\sB} \MG{\sA\sB} \Omega^l}.
-%	\end{equation}
-%	
-%	In turn, the equations for $ \Dfin{\sA}{k} $ and $ \Bfin{\sA}{k} $ can be 
-%written as 
-%	\begin{subequations}\label{eqn.BD.hat}
-%		\begin{align}
-%				\pd{t} \Dfin{\sA}{i} + \pd{k}(\shift{i} 
-%				\Dfin{\sA}{k} - \shift{k}\Dfin{\sA}{i}  - \LCsymb^{ikj} \,
-%				\Hfinn{\sA}{j}) 
-%				&
-%				{ + \color{red} \pd{k} 
-%						\left(
-%						\itetr{i}{\sA} \hat{A}^k - \itetr{k}{\sA} \hat{A}^i
-%						\right) }
-%				-\shift{i}\pd{k} \Dfin{\sA}{k}
-%				= - \stress{\sA}{i},
-%				\\[2mm]
-%				\pd{t} \Bfin{\sA}{i} + \pd{k}(\,\shift{i} 
-%				\Bfin{\sA}{k} - \shift{k}\Bfin{\sA}{i}  + \LCsymb^{ikj} 
-%				\Efinn{\sA}{j}) 
-%				&
-%				{ - \color{red}\pd{k} 
-%						\left(
-%						\itetr{i}{\sB} \hat{\Omega}^k - \itetr{k}{\sB} 
-%\hat{\Omega}^i
-%						\right) \MG{\sA\sB}}
-%				-\shift{i}\pd{k} \Bfin{\sA}{k}
-%				= 0,
-%			\end{align}
-%	\end{subequations}
-%	where {\color{blue}$ \hat{A}^i = \varkappa^{-1} \detTetr_3 A^i $, $ 
-%\hat{\Omega}^i = \varkappa 
-%		\detTetr_3 
-%		\Omega^i $.} 
-%	
-%	\IP{ If we simply set $ A_i = 0 $ and $ \Omega_i = 0 $, this system of 18 
-%equations has 
-%		\textit{only 10 eigenvectors} for the flat spacetime.}
-%	
-%	Currently, the main natural idea, also exploited by Buchman et al 
-%\cite{Buchman2003} (see 
-%	eq.(44) 
-%	or (47)), is to add 
-%	two PDEs for the $ A_k = \Efin{\indalg{0}}{k} $  and $ \Omega_k = 
-%\Hfin{\indalg{0}}{k} $. 
-%	
-%	\IP{The 
-%		question is how to find these PDEs. So far, I tested the following 
-%simple equations:}
-%	\begin{subequations}
-%		\begin{align}
-%				&\pd{t}A_i - \shift{k}\pd{k}A_i + \itetr{k}{\sA} \pd{k} 
-%\Efin{\sA}{i} = rhs, 
-%				\\[2mm]
-%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i + \itetr{k}{\sA} \pd{k} 
-%\Hfin{\sA}{i} = 
-%		rhs,  
-%			\end{align}
-%	\end{subequations}
-%	or in terms of \eqref{eqn.H.E.split}
-%	\begin{subequations}\label{eqn.A.Omega}
-%		\begin{align}
-%				&\pd{t}A_i - \shift{k}\pd{k}A_i + {\color{red}\itetr{k}{\sA} 
-%\pd{k} \Efinn{\sA}{i}}
-%				{\color{blue}
-%					-\itetr{k}{\sA} \pd{k}(	\LCsymb_{ijl} 
-%					\itetr{j}{\sB} \hat{\Omega}^l) \MG{\sA\sB}
-%					}
-%				 = rhs, 
-%				\\[2mm]
-%				&\pd{t}\Omega_i -\shift{k}\pd{k}\Omega_i 
-%				+ 
-%				{\color{red}\itetr{k}{\sA} \pd{k} 
-%					\Hfinn{\sB}{i} \MG{\sA\sB}
-%					} 
-%				{\color{blue}
-%					- \itetr{k}{\sA} \pd{k}(\LCsymb_{ijl} \itetr{j}{\sB} 
-%\hat{A}^l) \MG{\sA\sB}
-%					}= rhs.
-%			\end{align}
-%	\end{subequations}
-%	Now, \eqref{eqn.BD.hat} and \eqref{eqn.A.Omega} is a system for 24 unknowns  
-%$ \{ 
-%	\Dfin{\sA}{i},\Bfin{\sA}{i},A_i,\Omega_i\} $ which has 22 eigenvectors. 
-%Therefore, 2 are 
-%	missing.
-%	
-%	\IP{The goal is to try to symmetrize \eqref{eqn.BD.hat}, 
-%\eqref{eqn.A.Omega}. The multipliers 
-%	are 
-%		$ 
-%		\Efinn{\sA}{i} $, $ \Hfinn{\sA}{i} $, $ \hat{A}^i $, and $ 
-%\hat{\Omega}^i $}
-%	
-	
-	
+	However, if the matter sector is retained, extra equations (such as
+	\eqref{eqn.3+1.m} and \eqref{eqn.3+1.e} in case of ideal fluids) must be
+	added to the symmetric hyperbolic system defined by
+	\eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} in both TEGR and \ERWBB\
+	formulations. This addition will likely destroy the symmetric hyperbolicity
+	of the enlarged system. Nevertheless, because the relativistic equations for
+	ideal fluids are themselves symmetric hyperbolic \cite{Ruggeri1981Euler},
+	there is still hope that the combined system for gravity and matter could be
+	symmetrized, at least in this simple case.
+
+
 	
 	\section{Relation between the torsion and extrinsic curvature}
 	
@@ -2774,7 +2401,7 @@ BCOR5mm, % Binding correction
 	
 	To obtain another expression for $ K_{ij} $ in terms of the primary state variable $ 
 	\Dfin{\sA}{i} 
-	$, one needs to use the the constitutive relationship \eqref{eqn.E} to deduce
+	$, one needs to use the constitutive relationship \eqref{eqn.E} to deduce
 %	\begin{align}
 %		&\mg{\sA\sB} (\tetr{\sA}{i}\Efin{\sB}{j} + \tetr{\sA}{j}\Efin{\sB}{i})
 %		=\\
