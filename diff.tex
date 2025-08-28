@@ -1,7 +1,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %DIF LATEXDIFF DIFFERENCE FILE
 %DIF DEL pure_tetrad_arxiv_v3.tex   Fri May 23 22:51:03 2025
-%DIF ADD pure_tetrad_arxiv_v4.tex   Thu Aug 28 00:27:41 2025
+%DIF ADD pure_tetrad_arxiv_v4.tex   Thu Aug 28 10:45:51 2025
 % Arsclassica Article
 % LaTeX Template
 % Version 1.1 (1/8/17)
@@ -420,11 +420,18 @@ is in the promotion of the torsion
 	density which is a function of the torsion scalar and obtain corresponding
 	Euler-Lagrange equations coupled with some constraints (differential
 	identities). The obtained equations are then reduced to the first-order form
-	and the 3+1 decomposition is performed. However, despite this independent
-	route, we demonstrate that the resulting 3+1 equations are equivalent to
-	tetrad reformulations of the GR such as the one by
-	Estabrook-Robinson-Wahlquist \cite{Estabrook1997} and Buchman-Bardeen
-	\cite{Buchman2003} (the \ERWBB\ formulation for brevity), and recent dGREM formulation of GR \cite{Olivares2022}. 
+	and \DIFdelbegin \DIFdel{the }\DIFdelend \DIFaddbegin \DIFadd{a }\DIFaddend 3+1 decomposition is performed. \DIFdelbegin \DIFdel{However, despite this independent
+	route
+	}\DIFdelend \DIFaddbegin \DIFadd{Although, completely different route
+	have been taken to obtain our 3+1 TEGR equations}\DIFaddend , we demonstrate that the
+	resulting \DIFdelbegin \DIFdel{3+1 }\DIFdelend equations are equivalent to \DIFdelbegin \DIFdel{tetrad reformulations of the GRsuch as the one by
+	Estabrook-Robinson-Wahlquist \mbox{%DIFAUXCMD
+\cite{Estabrook1997} }\hskip0pt%DIFAUXCMD
+and Buchman-Bardeen
+	\mbox{%DIFAUXCMD
+\cite{Buchman2003} }\hskip0pt%DIFAUXCMD
+(the \ERWBB\ formulation for brevity), and recent dGREMformulation of GR }\DIFdelend \DIFaddbegin \DIFadd{the recently proposed tetrad
+	reformulation of GR, called dGREM, }\DIFaddend \cite{Olivares2022}.
 
 	From the numerical view point, any 3+1 formulation has to have the
 	well-posed initial value problem (i.e. a solution exists, the solution is
@@ -434,15 +441,26 @@ is in the promotion of the torsion
 	numerical relativity the term ``strong hyperbolicity'' is used emphasizing
 	that not only eigenvalues must be real but that the full basis of
 	eigenvectors must exist}. Therefore, the third objective of the paper is to
-	test if the proposed 3+1 formulation of TEGR is hyperbolic. As is the
-	case with other first-order reductions of the Einstein equations
-	\cite{Baumgarte2003a}, the question of hyperbolicity of 3+1 TEGR
-	equations considered here is not trivial and depends on the delicate use of
-	multiple involution constraints (stationary identities), e.g. see
-	\cite{FO-CCZ4}. In particular, for a vacuum space-time, we have found that
-	the proposed 3+1 TEGR equations (if written in the tetrad frame) are
-	equivalent to ERWBB \cite{Estabrook1997,Buchman2003} which is known to by
-	symmetric hyperbolic for a certain choice of gauge conditions.
+	test if the proposed 3+1 formulation of TEGR is hyperbolic. As is the case
+	with other first-order reductions of the Einstein equations
+	\cite{Baumgarte2003a}, the question of hyperbolicity of 3+1 TEGR equations
+	considered here is not trivial and depends on the delicate use of multiple
+	involution constraints (stationary identities), e.g. see \cite{FO-CCZ4}. In
+	particular, for \DIFdelbegin \DIFdel{a vacuum space-time}\DIFdelend \DIFaddbegin \DIFadd{vacuum spacetimes and a certain choice of gauge conditions}\DIFaddend ,
+	we have found that the proposed 3+1 TEGR equations \DIFdelbegin \DIFdel{(if written in the tetrad frame) are
+	equivalent to ERWBB \mbox{%DIFAUXCMD
+\cite{Estabrook1997,Buchman2003} }\hskip0pt%DIFAUXCMD
+which is known to by symmetric hyperbolic for
+	a certain choice of gauge conditions}\DIFdelend \DIFaddbegin \DIFadd{can be transformed into a
+	symmetric hyperbolic system similar to the tetrad reformulation of the GR
+	proposed by Estabrook, Robinson, and Wahlquist \mbox{%DIFAUXCMD
+\cite{Estabrook1997} }\hskip0pt%DIFAUXCMD
+and
+	further developed by Buchman and Bardeen
+	\mbox{%DIFAUXCMD
+\cite{Buchman2003,Buchman2005,Bardeen2011} }\hskip0pt%DIFAUXCMD
+(the \ERWBB\ formulation for
+	brevity)}\DIFaddend . 
 
 	We note that we do not consider the most general TEGR formulation as for
 	example presented in \cite{AldrovandiPereiraBook}. The linear connection of
@@ -455,9 +473,9 @@ is in the promotion of the torsion
 	respect to both the diffeomorphisms of the spacetime and the Lorentz
 	transformations of tangent spaces. However, being important from the
 	theoretical viewpoint and for extensions of teleparallel gravity
-	\cite{Golovnev2017a}, the spin connection of TEGR introduces extra degrees
-	of freedom which do not have evolution equations and therefore can be
-	treated as parameters (not state variables) of the theory. Since we are
+	\cite{Golovnev2017a}, the spin connection \DIFdelbegin \DIFdel{of TEGR }\DIFdelend introduces extra degrees of
+	freedom which do not have evolution equations \DIFaddbegin \DIFadd{in TEGR }\DIFaddend and therefore can be
+	treated as \DIFdelbegin \DIFdel{parameters (not state variables) }\DIFdelend \DIFaddbegin \DIFadd{non-dynamical parameters }\DIFaddend of the theory. Since we are
 	interested in developing a computational framework for GR, the consideration
 	of this paper is, therefore, restricted to the frames for which the spin
 	connection is set to zero globally (\We\ gauge). We thus consider TEGR in
@@ -491,9 +509,16 @@ is in the promotion of the torsion
 	Section\,\ref{sec.PDEs}, we replace the second-order Euler-Lagrange
 	equations by an extended system of first-order partial differential
 	equations. In Section\,\ref{sec.31.prep}, we rewrite the obtained system in
-	a form similar to the relativistic electrodynamics. Section \ref{sec.31} discusses the details of the 3+1 split of the TEGR equations, which is the main result of this paper. The summary of the 3+1 equations is given in Section\,\ref{sec.summary}. In Section\,\ref{sec.hyperbolicity}, we discuss the question of hyperbolicity of the 3+1 vacuum TEGR equations via demonstrating its equivalence to the symmetric hyperbolic \ERWBB\ tetrad formulation of GR \mbox{%DIFAUXCMD
+	a form similar to the relativistic electrodynamics. Section \ref{sec.31}
+	discusses the details of the 3+1 split of the TEGR equations, which is the
+	main result of this paper. The summary of the 3+1 equations is given in
+	Section\,\ref{sec.summary}. In Section\,\ref{sec.hyperbolicity}, we discuss
+	the question of hyperbolicity of the vacuum 3+1 TEGR equations via
+	transforming these equations into an equivalent symmetric hyperbolic system similar to that of \ERWBB\ \mbox{%DIFAUXCMD
 \cite{Estabrook1997,Buchman2003}}\hskip0pt%DIFAUXCMD
-. Finally, we outline possible directions for future research in Section\,\ref{sec.conclusion}.
+. Finally, we
+	outline possible directions for future research in
+	Section\,\ref{sec.conclusion}.
 }
 
 	\DIFaddend \section{Definitions}\DIFaddbegin \label{sec.def}
@@ -2399,15 +2424,15 @@ is in the promotion of the torsion
 	$\Efin{\indalg{0}}{i}$ and $\Hfin{\indalg{0}}{i}$. In fact, as we shall see,
 	the choice of the gauge conditions for $\Efin{\indalg{0}}{i}$ and
 	$\Hfin{\indalg{0}}{i}$ plays an important role in our hyperbolicity
-	analysis. Moreover}\DIFaddend , we shall \DIFdelbegin \DIFdel{show that the vacuum }\DIFdelend \DIFaddbegin \DIFadd{assume that the lapse $\lapse$ and shift
+	analysis. Moreover}\DIFaddend , we shall \DIFdelbegin \DIFdel{show that the }\DIFdelend \DIFaddbegin \DIFadd{assume that the lapse $\lapse$ and shift
 	$\shift{i}$ are not dynamical but some prescribed functions of space and
 	time.
 }
 
-	\DIFadd{We will show how the }\DIFaddend 3+1 \DIFdelbegin \DIFdel{TEGR equations are
-	equivalent to the }\DIFdelend \DIFaddbegin \DIFadd{vacuum TEGR equations, when restricted to solutions
-	satisfying the Hamiltonian constraint \eqref{eqn.div.constrD}, can be
-	transformed into an equivalent first-order system. This system has the
+	\DIFadd{We will show how the }\DIFaddend vacuum 3+1 TEGR equations\DIFdelbegin \DIFdel{are
+	equivalent to the }\DIFdelend \DIFaddbegin \DIFadd{, when restricted to
+	solutions satisfying the Hamiltonian constraint \eqref{eqn.div.constrD}, can
+	be transformed into an equivalent first-order system. This system has the
 	principal part of the differential operator identical to that of the
 	first-order }\DIFaddend tetrad reformulation of GR \DIFdelbegin \DIFdel{by Estabrook-Robinson-Wahlquist
 	\mbox{%DIFAUXCMD
