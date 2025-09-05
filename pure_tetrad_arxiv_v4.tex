@@ -260,7 +260,7 @@ BCOR5mm, % Binding correction
 	Bardeen, and therefore the presented 3+1 decomposition of TEGR also admits a
 	symmetric hyperbolic formulation, a desirable property for ensuring
 	well-posedness of the initial value problem. Furthermore, the structure of
-	the 3+1 equations resembles a lot of similarities with the equations of
+	the 3+1 equations possess a lot of similarities with the equations of
 	relativistic electrodynamics and the recently proposed dGREM
 	tetrad-reformulation of general relativity. }
 	%----------------------------------------------------------------------------------------
@@ -361,8 +361,8 @@ BCOR5mm, % Binding correction
 	density which is a function of the torsion scalar and obtain corresponding
 	Euler-Lagrange equations coupled with some constraints (differential
 	identities). The obtained equations are then reduced to the first-order form
-	and a 3+1 decomposition is performed. Although, completely different route
-	have been taken to obtain our 3+1 TEGR equations, we demonstrate that the
+	and a 3+1 decomposition is performed. Although a completely different route
+	has been taken to obtain our 3+1 TEGR equations, we demonstrate that the
 	resulting equations are equivalent to the recently proposed tetrad
 	reformulation of GR, called dGREM, \cite{Olivares2022}.
 
@@ -373,7 +373,7 @@ BCOR5mm, % Binding correction
 	system of governing equations has to be hyperbolic\footnote{Note that in the
 	numerical relativity the term ``strong hyperbolicity'' is used emphasizing
 	that not only eigenvalues must be real but that the full basis of
-	eigenvectors must exist}. Therefore, the third objective of the paper is to
+	eigenvectors must exist.}. Therefore, the third objective of the paper is to
 	test if the proposed 3+1 formulation of TEGR is hyperbolic. As is the case
 	with other first-order reductions of the Einstein equations
 	\cite{Baumgarte2003a}, the question of hyperbolicity of 3+1 TEGR equations
@@ -407,7 +407,7 @@ BCOR5mm, % Binding correction
 	its historical, or \emph{pure tetrad}, formulation \cite{Golovnev2017a}.
 	
 	
-	Interestingly that another motivation to study the mathematical structure of
+	Another motivation to study the mathematical structure of
 	the teleparallel gravity is coming from the continuum fluid and solid
 	mechanics. In particular, the role of the torsion to describe defects in
 	solids has been known for decades now, e.g. see
@@ -433,7 +433,7 @@ BCOR5mm, % Binding correction
 	Section\,\ref{sec.PDEs}, we replace the second-order Euler-Lagrange
 	equations by an extended system of first-order partial differential
 	equations. In Section\,\ref{sec.31.prep}, we rewrite the obtained system in
-	a form similar to the relativistic electrodynamics. Section \ref{sec.31}
+	a form similar to relativistic electrodynamics. Section \ref{sec.31}
 	discusses the details of the 3+1 split of the TEGR equations, which is the
 	main result of this paper. The summary of the 3+1 equations is given in
 	Section\,\ref{sec.summary}. In Section\,\ref{sec.hyperbolicity}, we discuss
@@ -528,7 +528,7 @@ BCOR5mm, % Binding correction
 	
 	\subsection{Observer's 4-velocity}
 	
-	Observer's 4-velocity is associated with the $ 0 $-\textit{th} vector of the tetrad basis 
+	We choose to associate observer's 4-velocity with the $ 0 $-\textit{th} vector of the tetrad basis 
 	\begin{equation}\label{eqn.4v}
 		u^\mu := \itetr{\mu}{\indalg{0}}, \qquad u_\mu = g_{\mu\nu}u^\nu.
 	\end{equation}
@@ -942,8 +942,8 @@ BCOR5mm, % Binding correction
 	\begin{equation}\label{eqn.stress}
 		\EMmat{\mu}{\nu}:=\tetr{a}{\nu} L_{\tetr{a}{\mu}},
 	\end{equation}
-	which can be called the total energy-momentum tensor density, does not
-	conserved in the ordinary sense nor in the covariant one.
+	which can be called the total energy-momentum tensor density, is not
+	conserved neither in the ordinary sense nor in the covariant one.
 	
 	Indeed, after contracting with $ \tetr{a}{\nu} $ and adding to it $ 0\equiv
 	\Laghodge_{\tetr{a}{\mu}}\pd{\mu} \tetr{a}{\nu} -
@@ -974,7 +974,7 @@ BCOR5mm, % Binding correction
 	\begin{equation*}\label{eqn.EM.cov}
 		\DW{\mu}\EMmat{\mu}{\nu} = -\EMmat{\mu}{\nu} \Tors{\rho}{\mu\rho},
 	\end{equation*}
-	and hence, $ \EMmat{\mu}{\nu} $ does not conserved also in the covariant sense.
+	and hence, $ \EMmat{\mu}{\nu} $ is also not conserved in the covariant sense.
 	
 	%In what follows, it is always implied that $ \Laghodge(\tetr{a}{\mu},\HDT{a\mu\nu}) = 
 	%\Laghodge^\text{(m)}(\tetr{a}{\mu},\HDT{a\mu\nu},\ldots) + 
@@ -1164,7 +1164,7 @@ BCOR5mm, % Binding correction
 			& = 0,
 		\end{align}
 	\end{subequations}
-	with $\Bm{a}{\mu}$ and $\Dm{a}{\mu}$ being the analogs of the magnetic and
+	with $\Bm{a}{\mu}$ and $\Dm{a}{\mu}$ being the analogs of the magnetic induction and
 	electric displacement fields, accordingly.
 	
 	
@@ -2312,7 +2312,7 @@ BCOR5mm, % Binding correction
 	to choose their evolution equations in such a way as to guaranty the
 	well-posedness of the enlarged system for the unknowns $
 	\{\Kbuch{\sA}{\sB},\Nbuchdown{\sA}{\sB},a_\sB,\omega_\sB \}$. Thus, as shown
-	in \cite{Estabrook1997,Buchman2003}, if coupled with the Nester of Lorentz
+	in \cite{Estabrook1997,Buchman2003}, if coupled with the Nester or Lorentz
 	gauge conditions on $a_\sA$ and $\omega_\sA$ having the form:
 	\begin{subequations}\label{eqn.aw.pde}
 		\begin{align}
@@ -2336,9 +2336,9 @@ BCOR5mm, % Binding correction
 	conditions on $A_k$ and $\Omega_k$, are equivalent to symmetric-hyperbolic
 	system \eqref{eqn.KN.pde}--\eqref{eqn.aw.pde} on solutions satisfying the
 	Hamiltonian constraint. This demonstrates that these equations are causal
-	and have well-posed initial value problem under mentioned conditions.
+	and have well-posed initial value problem under the mentioned conditions.
 
-	Finally, it is worth remarking about the matter coupling. As we will
+	Finally, it is worth commenting on the matter coupling. As we will
 	discuss in the next section, $\Kbuch{\sA}{\sB}$ is the extrinsic curvature
 	of the spatial hypersurfaces. Although the \ERWBB\ formulation was initially
 	derived for empty spacetimes \cite{Estabrook1997,Buchman2003}, we can assume
@@ -2710,12 +2710,17 @@ BCOR5mm, % Binding correction
 	funding for H.O. came from Radboud University Nijmegen through a Virtual
 	Institute of Accretion (VIA) postdoctoral fellowship from the Netherlands
 	Research School for Astronomy (NOVA).
-	HO is supported by the Individual CEEC program - 5th edition funded by the Portuguese Foundation for Science and Technology (FCT).
-	This work is supported by CIDMA under the
-	Portuguese Foundation for Science and Technology 
-	(FCT, https://ror.org/00snfqn58)  
-	Multi-Annual Financing Program for R\&D Units.
-	H.O. acknowledges support from the projects PTDC/FIS-AST/3041/2020, CERN/FIS-PAR/0024/2021 and 2022.04560.PTDC. This work has further been supported by the European Horizon Europe staff exchange (SE) programme HORIZON-MSCA-2021-SE-01 Grant No. NewFunFiCO-10108625.
+	HO is supported by the Individual CEEC program - 5th edition funded by
+	the Portuguese Foundation for Science and Technology (FCT). This work is
+	supported by the Center for Research and Development in Mathematics and
+	Applications (CIDMA) through the Portuguese Foundation for Science and
+	Technology (FCT) Multi-Annual Financing Program for R\&D Units (UID/04106).
+	The authors acknowledge support from the projects
+	CERN/FIS-PAR/0024/2021 and 2022.04560.PTDC. This work has further been
+	supported by the  European Horizon Europe staff exchange (SE) programme
+	HORIZON-MSCA-2021-SE-01 Grant No. NewFunFiCO-10108625.
+
+
 	%
 	The work of E.R. is supported by the Mathematical Center in Akademgorodok
 	under the agreement No. 075-15-2025-348 with the Ministry of Science and
